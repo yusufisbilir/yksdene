@@ -1,31 +1,29 @@
 'use client'
 
 import { useEffect, useReducer } from 'react'
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select'
-import { Button } from './ui/button'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs'
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select'
+import { Button } from '../ui/button'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs'
 import { EXAM_TIMES } from '@/constants/constants'
 import { TimerMode, initialState, timerReducer } from '@/reducers/timerReducer'
+import DigitalTimer from './DigitalTimer'
+import formatTime from '@/utils/formatTime'
 
-export function Timer() {
-  const [state, dispatch] = useReducer(timerReducer, initialState)
+export default function Timer() {
+  const [timerState, dispatch] = useReducer(timerReducer, initialState)
 
   useEffect(() => {
     let interval: NodeJS.Timeout
 
-    if (state.isRunning) {
+    if (timerState.isRunning) {
       interval = setInterval(() => {
         dispatch({ type: 'TICK' })
       }, 1000)
     }
 
     return () => clearInterval(interval)
-  }, [state.isRunning])
-
-  const formatTime = (min: number, sec: number) => {
-    return `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`
-  }
+  }, [timerState.isRunning])
 
   return (
     <Card className="w-full max-w-xl mx-auto bg-white shadow-lg border border-orange-200">
@@ -35,7 +33,7 @@ export function Timer() {
       <CardContent className="space-y-6">
         <div className="flex flex-col gap-4">
           <Select
-            value={state.selectedExam}
+            value={timerState.selectedExam}
             onValueChange={(value) =>
               dispatch({ type: 'SET_EXAM', payload: value as keyof typeof EXAM_TIMES })
             }
@@ -56,10 +54,10 @@ export function Timer() {
             </SelectContent>
           </Select>
 
-          {state.selectedExam === 'Custom' && (
+          {timerState.selectedExam === 'Custom' && (
             <input
               type="number"
-              value={state.customMinutes}
+              value={timerState.customMinutes}
               onChange={(e) => dispatch({ type: 'SET_CUSTOM_MINUTES', payload: e.target.value })}
               placeholder="Dakika girin"
               className="w-full p-2 rounded-md bg-white border border-orange-300 text-orange-950 placeholder:text-orange-500"
@@ -68,7 +66,7 @@ export function Timer() {
         </div>
 
         <Tabs
-          value={state.mode}
+          value={timerState.mode}
           onValueChange={(value) => dispatch({ type: 'SET_MODE', payload: value as TimerMode })}
           className="w-full"
         >
@@ -87,9 +85,7 @@ export function Timer() {
             </TabsTrigger>
           </TabsList>
           <TabsContent value="digital" className="mt-4">
-            <div className="text-6xl font-mono text-center text-orange-500">
-              {formatTime(state.minutes, state.seconds)}
-            </div>
+            <DigitalTimer timer={timerState} />
           </TabsContent>
           <TabsContent value="analog" className="mt-4">
             <div className="relative w-48 h-48 mx-auto rounded-full border-4 border-orange-300 bg-white">
@@ -97,25 +93,25 @@ export function Timer() {
                 className="absolute w-1 h-24 bg-orange-400 top-24 left-24 origin-bottom transform -translate-x-1/2"
                 style={{
                   transform: `rotate(${
-                    ((state.minutes * 60 + state.seconds) / (60 * 60)) * 360
+                    ((timerState.minutes * 60 + timerState.seconds) / (60 * 60)) * 360
                   }deg) translateY(-50%)`,
                 }}
               />
               <div
                 className="absolute w-1 h-20 bg-orange-600 top-24 left-24 origin-bottom transform -translate-x-1/2"
                 style={{
-                  transform: `rotate(${(state.seconds / 60) * 360}deg) translateY(-50%)`,
+                  transform: `rotate(${(timerState.seconds / 60) * 360}deg) translateY(-50%)`,
                 }}
               />
               <div className="absolute inset-0 flex items-center justify-center text-lg font-mono text-orange-500">
-                {formatTime(state.minutes, state.seconds)}
+                {formatTime(timerState.minutes, timerState.seconds)}
               </div>
             </div>
           </TabsContent>
         </Tabs>
 
         <div className="flex justify-center gap-4">
-          {!state.isRunning ? (
+          {!timerState.isRunning ? (
             <Button
               onClick={() => dispatch({ type: 'START' })}
               className="bg-orange-500 hover:bg-orange-600 text-white font-medium"
