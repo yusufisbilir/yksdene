@@ -1,0 +1,1 @@
+type TimerMode = 'digital' | 'analog'
