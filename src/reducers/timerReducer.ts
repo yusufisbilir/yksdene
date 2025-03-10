@@ -21,8 +21,8 @@ export type TimerAction =
   | { type: 'SET_MODE'; payload: TimerMode }
 
 export const initialState: TimerState = {
-  selectedExam: 'Custom',
-  minutes: 0,
+  selectedExam: 'TYT',
+  minutes: EXAM_TIMES.TYT,
   seconds: 0,
   isRunning: false,
   mode: 'digital',
