@@ -6,8 +6,8 @@ interface Timing {
   updateHours: { transform: string }
 }
 
-const useClock = (): Timing => {
-  const [currentTime, setCurrentTime] = useState<Date>(new Date())
+const useClock = ({ customTime }: { customTime?: Date }): Timing => {
+  const [currentTime, setCurrentTime] = useState<Date>(customTime ?? new Date())
   const [timing, setTiming] = useState<Timing>({
     updateSeconds: { transform: 'rotate(0deg)' },
     updateMinutes: { transform: 'rotate(0deg)' },
@@ -15,6 +15,10 @@ const useClock = (): Timing => {
   })
 
   const updateTime = (): void => {
+    if (customTime) {
+      currentTime.setMinutes(currentTime.getMinutes() + 1)
+      return
+    }
     setCurrentTime(new Date())
   }
 
@@ -22,7 +26,7 @@ const useClock = (): Timing => {
     const interval = setInterval(updateTime, 1000)
 
     return () => clearInterval(interval)
-  }, [])
+  }, [customTime])
 
   useEffect(() => {
     setTiming({
