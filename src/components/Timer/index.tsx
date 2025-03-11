@@ -9,6 +9,7 @@ import { EXAM_TIMES } from '@/constants/constants'
 import { TimerMode, initialState, timerReducer } from '@/reducers/timerReducer'
 import DigitalTimer from './DigitalTimer'
 import formatTime from '@/utils/formatTime'
+import AnalogTimer from './AnalogTimer'
 
 export default function Timer() {
   const [timerState, dispatch] = useReducer(timerReducer, initialState)
@@ -88,25 +89,7 @@ export default function Timer() {
             <DigitalTimer timer={timerState} />
           </TabsContent>
           <TabsContent value="analog" className="mt-4">
-            <div className="relative w-48 h-48 mx-auto rounded-full border-4 border-orange-300 bg-white">
-              <div
-                className="absolute w-1 h-24 bg-orange-400 top-24 left-24 origin-bottom transform -translate-x-1/2"
-                style={{
-                  transform: `rotate(${
-                    ((timerState.minutes * 60 + timerState.seconds) / (60 * 60)) * 360
-                  }deg) translateY(-50%)`,
-                }}
-              />
-              <div
-                className="absolute w-1 h-20 bg-orange-600 top-24 left-24 origin-bottom transform -translate-x-1/2"
-                style={{
-                  transform: `rotate(${(timerState.seconds / 60) * 360}deg) translateY(-50%)`,
-                }}
-              />
-              <div className="absolute inset-0 flex items-center justify-center text-lg font-mono text-orange-500">
-                {formatTime(timerState.minutes, timerState.seconds)}
-              </div>
-            </div>
+            <AnalogTimer timer={timerState} />
           </TabsContent>
         </Tabs>
 
