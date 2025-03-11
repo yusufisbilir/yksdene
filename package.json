@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "watch": "tsc --watch"
   },
   "dependencies": {
     "@radix-ui/react-progress": "^1.1.2",
@@ -36,6 +37,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.2.1",
     "tailwindcss": "^4",
+    "tsc-watch": "^6.2.1",
     "typescript": "^5"
   }
 }
