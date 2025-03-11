@@ -30,18 +30,18 @@ const AnalogTimer = () => {
       {/* Saatin arka planı */}
       <Image src={HourBody} alt="Hour Body" width={400} height={400} priority className="z-0" />
       <div
-        className={`absolute bottom-1/2 left-1/2 z-10 w-2 h-20 origin-bottom bg-black -translate-x-1`}
+        className={`absolute bottom-1/2 left-1/2 z-10 w-2 h-10 sm:h-20 origin-bottom bg-black -translate-x-1`}
         style={{ transform: timing.updateHours.transform }}
       ></div>
       <div
-        className={`absolute bottom-1/2 left-1/2 z-10 w-2 h-32 origin-bottom bg-black -translate-x-1`}
+        className={`absolute bottom-1/2 left-1/2 z-10 w-2 h-16 sm:h-32 origin-bottom bg-black -translate-x-1`}
         style={{ transform: timing.updateMinutes.transform }}
       ></div>
       <div
-        className={`absolute bottom-1/2 left-1/2 z-30 w-1 h-40 origin-bottom bg-red-800 rounded-full -translate-x-0.5`}
+        className={`absolute bottom-1/2 left-1/2 z-30 w-1 h-20 sm:h-40 origin-bottom bg-red-800 rounded-full -translate-x-0.5`}
         style={{ transform: timing.updateSeconds.transform }}
       ></div>
-      <div className={`absolute z-40 w-4 h-4 rounded-full bg-black`}></div>
+      <div className={`absolute z-40 w-3 h-3 sm:w-4 md:h-4 rounded-full bg-black`}></div>
     </div>
   )
 }
