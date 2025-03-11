@@ -6,7 +6,10 @@ import HourBody from '@/public/analogTimeAssets/hour_body.svg'
 import useClock from '@/hooks/useClock'
 
 const AnalogTimer = ({ timer }: { timer: TimerState }) => {
-  const timing = useClock({})
+  const date = new Date(2025, 2, 11, 10, 0, 0)
+  const timing = useClock({
+    customTime: date,
+  })
 
   return (
     <div className="w-full h-full flex items-center justify-center relative">

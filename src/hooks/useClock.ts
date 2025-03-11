@@ -16,7 +16,7 @@ const useClock = ({ customTime }: { customTime?: Date }): Timing => {
 
   const updateTime = (): void => {
     if (customTime) {
-      currentTime.setMinutes(currentTime.getMinutes() + 1)
+      setCurrentTime(new Date(currentTime.setSeconds(currentTime.getSeconds() + 1)))
       return
     }
     setCurrentTime(new Date())
