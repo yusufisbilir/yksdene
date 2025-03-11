@@ -1,9 +1,9 @@
-import { EXAM_TIMES } from '@/constants/constants'
+import { EXAM } from '@/constants/constants'
 
 export type TimerMode = 'digital' | 'analog'
 
 export interface TimerState {
-  selectedExam: keyof typeof EXAM_TIMES
+  selectedExam: EXAM
   minutes: number
   seconds: number
   isRunning: boolean
@@ -13,7 +13,7 @@ export interface TimerState {
 }
 
 export type TimerAction =
-  | { type: 'SET_EXAM'; payload: keyof typeof EXAM_TIMES }
+  | { type: 'SET_EXAM'; payload: EXAM }
   | { type: 'SET_CUSTOM_MINUTES'; payload: string }
   | { type: 'TICK' }
   | { type: 'START' }
@@ -23,7 +23,7 @@ export type TimerAction =
 
 export const initialState: TimerState = {
   selectedExam: 'TYT',
-  minutes: EXAM_TIMES.TYT,
+  minutes: EXAM.TYT.duration,
   seconds: 0,
   isRunning: false,
   mode: 'digital',
@@ -37,7 +37,7 @@ export function timerReducer(state: TimerState, action: TimerAction): TimerState
       return {
         ...state,
         selectedExam: action.payload,
-        minutes: action.payload !== 'Custom' ? EXAM_TIMES[action.payload] : state.minutes,
+        minutes: action.payload !== 'Custom' ? EXAM[action.payload].duration : state.minutes,
         seconds: 0,
         isDirty: false,
       }
@@ -81,7 +81,7 @@ export function timerReducer(state: TimerState, action: TimerAction): TimerState
         minutes:
           state.selectedExam === 'Custom'
             ? parseInt(state.customMinutes) || 0
-            : EXAM_TIMES[state.selectedExam],
+            : EXAM[state.selectedExam].duration,
         seconds: 0,
         isDirty: false,
       }

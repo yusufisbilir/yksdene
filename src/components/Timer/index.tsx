@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select'
 import { Button } from '../ui/button'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs'
-import { EXAM_TIMES } from '@/constants/constants'
+import { EXAM } from '@/constants/constants'
 import { TimerMode, initialState, timerReducer } from '@/reducers/timerReducer'
 import DigitalTimer from './DigitalTimer'
 import formatTime from '@/utils/formatTime'
@@ -35,19 +35,17 @@ export default function Timer() {
         <div className="flex flex-col gap-4">
           <Select
             value={timerState.selectedExam}
-            onValueChange={(value) =>
-              dispatch({ type: 'SET_EXAM', payload: value as keyof typeof EXAM_TIMES })
-            }
+            onValueChange={(value) => dispatch({ type: 'SET_EXAM', payload: value as EXAM })}
           >
             <SelectTrigger className="w-full border-orange-300 bg-white text-orange-950">
               <SelectValue placeholder="Sınav seçin" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="TYT" className="text-orange-950">
-                TYT (135 dakika)
+                {`TYT (${EXAM.TYT.duration} dakika)`}
               </SelectItem>
               <SelectItem value="AYT" className="text-orange-950">
-                AYT (180 dakika)
+                {`AYT (${EXAM.AYT.duration} dakika)`}
               </SelectItem>
               <SelectItem value="Custom" className="text-orange-950">
                 Özel Süre
