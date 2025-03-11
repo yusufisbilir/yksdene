@@ -10,6 +10,7 @@ export interface TimerState {
   isRunning: boolean
   customMinutes: string
   isDirty: boolean
+  isFinished: boolean
 }
 
 export type TimerAction =
@@ -20,6 +21,7 @@ export type TimerAction =
   | { type: 'PAUSE' }
   | { type: 'RESET' }
   | { type: 'SET_MODE'; payload: TimerMode }
+  | { type: 'SET_FINISHED'; payload: boolean }
 
 export const initialState: TimerState = {
   selectedExam: 'TYT',
@@ -28,6 +30,7 @@ export const initialState: TimerState = {
   isRunning: false,
   customMinutes: '',
   isDirty: false,
+  isFinished: false,
 }
 
 function timerReducer(state: TimerState, action: TimerAction): TimerState {
@@ -39,6 +42,7 @@ function timerReducer(state: TimerState, action: TimerAction): TimerState {
         minutes: action.payload !== 'Custom' ? EXAM[action.payload].duration : state.minutes,
         seconds: 0,
         isDirty: false,
+        isFinished: false,
       }
 
     case 'SET_CUSTOM_MINUTES':
@@ -48,6 +52,7 @@ function timerReducer(state: TimerState, action: TimerAction): TimerState {
         minutes: state.selectedExam === 'Custom' ? parseInt(action.payload) || 0 : state.minutes,
         seconds: 0,
         isDirty: false,
+        isFinished: false,
       }
 
     case 'TICK':
@@ -57,7 +62,7 @@ function timerReducer(state: TimerState, action: TimerAction): TimerState {
       } else if (state.minutes > 0) {
         return { ...state, minutes: state.minutes - 1, seconds: 59 }
       } else {
-        return { ...state, isRunning: false }
+        return { ...state, isRunning: false, isFinished: true }
       }
 
     case 'START':
@@ -65,6 +70,7 @@ function timerReducer(state: TimerState, action: TimerAction): TimerState {
         ...state,
         isRunning: state.minutes > 0 || state.seconds > 0,
         isDirty: true,
+        isFinished: false,
       }
 
     case 'PAUSE':
@@ -83,6 +89,13 @@ function timerReducer(state: TimerState, action: TimerAction): TimerState {
             : EXAM[state.selectedExam].duration,
         seconds: 0,
         isDirty: false,
+        isFinished: false,
+      }
+
+    case 'SET_FINISHED':
+      return {
+        ...state,
+        isFinished: action.payload,
       }
 
     default:

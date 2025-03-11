@@ -12,14 +12,14 @@ const TimerActions = () => {
       {!state.isRunning ? (
         <Button
           onClick={() => dispatch({ type: 'START' })}
-          className="bg-orange-500 hover:bg-orange-600 text-white font-medium"
+          className="bg-orange-500 hover:bg-orange-600 text-white font-medium cursor-pointer"
         >
           Başlat
         </Button>
       ) : (
         <Button
           onClick={() => dispatch({ type: 'PAUSE' })}
-          className="bg-orange-600 hover:bg-orange-700 text-white font-medium"
+          className="bg-orange-600 hover:bg-orange-700 text-white font-medium cursor-pointer"
         >
           Duraklat
         </Button>
@@ -27,7 +27,7 @@ const TimerActions = () => {
       <Button
         onClick={() => dispatch({ type: 'RESET' })}
         variant="outline"
-        className="border-orange-300 text-orange-600 hover:bg-orange-50 font-medium"
+        className="border-orange-300 text-orange-600 hover:bg-orange-50 font-medium cursor-pointer"
       >
         Sıfırla
       </Button>
