@@ -10,7 +10,6 @@ export interface TimerState {
   minutes: number
   seconds: number
   isRunning: boolean
-  mode: TimerMode
   customMinutes: string
   isDirty: boolean
 }
@@ -29,7 +28,6 @@ export const initialState: TimerState = {
   minutes: EXAM.TYT.duration,
   seconds: 0,
   isRunning: false,
-  mode: 'digital',
   customMinutes: '',
   isDirty: false,
 }
@@ -87,12 +85,6 @@ function timerReducer(state: TimerState, action: TimerAction): TimerState {
             : EXAM[state.selectedExam].duration,
         seconds: 0,
         isDirty: false,
-      }
-
-    case 'SET_MODE':
-      return {
-        ...state,
-        mode: action.payload,
       }
 
     default:
