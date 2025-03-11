@@ -31,16 +31,6 @@ const Header = () => {
         Deneme
       </Link>
       <Link
-        href={ROUTES.DAILYEXAMPRACTICE}
-        className={`${
-          isActive(ROUTES.DAILYEXAMPRACTICE)
-            ? 'text-orange-500 border-b-2 border-orange-500'
-            : 'text-gray-500 hover:text-gray-900'
-        } px-3 py-2 text-sm font-medium transition-colors`}
-      >
-        Günlük Deneme
-      </Link>
-      <Link
         href={ROUTES.TIMER}
         className={`${
           isActive(ROUTES.TIMER)
@@ -49,6 +39,12 @@ const Header = () => {
         } px-3 py-2 text-sm font-medium transition-colors`}
       >
         Sayaç
+      </Link>
+      <Link
+        href={ROUTES.DAILYEXAMPRACTICE}
+        className={`text-gray-300 px-3 py-2 text-sm font-medium transition-colors cursor-not-allowed`}
+      >
+        Günlük Deneme (yakında)
       </Link>
     </>
   )
