@@ -3,8 +3,6 @@
 import { createContext, useContext, useReducer, ReactNode, useEffect } from 'react'
 import { EXAM } from '@/constants/constants'
 
-export type TimerMode = 'digital' | 'analog'
-
 export interface TimerState {
   selectedExam: EXAM
   minutes: number
