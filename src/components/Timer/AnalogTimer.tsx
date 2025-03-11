@@ -5,18 +5,23 @@ import Image from 'next/image'
 import HourBody from '@/public/analogTimeAssets/hour_body.svg'
 import useClock from '@/hooks/useClock'
 import { useEffect, useState } from 'react'
+import { EXAM } from '@/constants/constants'
 
 const AnalogTimer = ({ timer }: { timer: TimerState }) => {
   const [customTime, setCustomTime] = useState(new Date(2025, 2, 11, 10, 0, 0))
 
   const { timing, reset } = useClock({
     customTime: customTime,
-    stopped: !timer.isRunning,
+    stopped: !timer.isRunning || timer.seconds + timer.minutes === 0,
   })
 
   useEffect(() => {
     if (!timer.isDirty) reset()
   }, [timer.isDirty])
+
+  useEffect(() => {
+    setCustomTime(EXAM[timer.selectedExam]?.time)
+  }, [timer.selectedExam])
 
   return (
     <div className="w-full h-full flex items-center justify-center relative">
