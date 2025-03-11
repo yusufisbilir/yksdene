@@ -1,14 +1,13 @@
 'use client'
 
 import { useEffect, useReducer } from 'react'
-import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
+import { Card, CardContent } from '../ui/card'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select'
 import { Button } from '../ui/button'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs'
 import { EXAM } from '@/constants/constants'
 import { TimerMode, initialState, timerReducer } from '@/reducers/timerReducer'
 import DigitalTimer from './DigitalTimer'
-import formatTime from '@/utils/formatTime'
 import AnalogTimer from './AnalogTimer'
 
 export default function Timer() {
@@ -28,9 +27,6 @@ export default function Timer() {
 
   return (
     <Card className="w-full max-w-xl mx-auto bg-white shadow-lg border border-orange-200">
-      <CardHeader>
-        <CardTitle className="text-center text-2xl font-bold text-orange-500">YKS Timer</CardTitle>
-      </CardHeader>
       <CardContent className="space-y-6">
         <div className="flex flex-col gap-4">
           <Select
