@@ -1,13 +1,15 @@
 'use client'
 
-import { TimerState } from '@/reducers/timerReducer'
 import Image from 'next/image'
 import HourBody from '@/public/analogTimeAssets/hour_body.svg'
 import useClock from '@/hooks/useClock'
 import { useEffect, useState } from 'react'
 import { EXAM } from '@/constants/constants'
+import { useTimer } from '@/contexts/TimerContext'
 
-const AnalogTimer = ({ timer }: { timer: TimerState }) => {
+const AnalogTimer = () => {
+  const { state: timer } = useTimer()
+
   const [customTime, setCustomTime] = useState(new Date(2025, 2, 11, 10, 0, 0))
 
   const { timing, reset } = useClock({
@@ -20,7 +22,7 @@ const AnalogTimer = ({ timer }: { timer: TimerState }) => {
   }, [timer.isDirty])
 
   useEffect(() => {
-    setCustomTime(EXAM[timer.selectedExam]?.time)
+    setCustomTime(EXAM[timer.selectedExam as EXAM]?.time)
   }, [timer.selectedExam])
 
   return (

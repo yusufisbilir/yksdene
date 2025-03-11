@@ -1,5 +1,5 @@
 import { EXAM } from '@/constants/constants'
-import { TimerState } from './timerReducer'
+import { TimerState } from '@/contexts/TimerContext'
 
 const getTotalTimerSeconds = (timer: TimerState) => {
   if (timer.selectedExam === 'Custom') {

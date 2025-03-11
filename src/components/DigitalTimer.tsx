@@ -2,11 +2,13 @@
 
 import { Label, PolarGrid, PolarRadiusAxis, RadialBar, RadialBarChart } from 'recharts'
 import { ChartConfig, ChartContainer } from '@/components/ui/chart'
-import { TimerState } from '@/reducers/timerReducer'
 import formatTime from '@/utils/formatTime'
 import getTotalTimerSeconds from '@/reducers/getTotalTimerSeconds'
+import { useTimer } from '@/contexts/TimerContext'
 
-export default function DigitalTimer({ timer }: { timer: TimerState }) {
+export default function DigitalTimer() {
+  const { state: timer } = useTimer()
+
   const currentSecond = timer.minutes * 60 + timer.seconds
   const chartData = [{ process: currentSecond, fill: 'var(--chart-1)' }]
 
@@ -21,7 +23,7 @@ export default function DigitalTimer({ timer }: { timer: TimerState }) {
   const percentage = (chartData[0].process / totalSeconds) * 100
 
   return (
-    <ChartContainer config={chartConfig} className="mx-auto aspect-square max-h-[250px]">
+    <ChartContainer config={chartConfig} className="mx-auto aspect-square max-h-[400px] h-[400px]">
       <RadialBarChart
         data={chartData}
         startAngle={90}

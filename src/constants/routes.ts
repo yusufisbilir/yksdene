@@ -1,5 +1,5 @@
 export const ROUTES = {
-  EXAMPRACTICE: '/',
-  DAILYEXAMPRACTICE: '/dailyexampractice',
-  TIMER: '/timer',
+  EXAMPRACTICE: '/deneme',
+  DAILYEXAMPRACTICE: '/gunluk_deneme',
+  TIMER: '/sayac',
 } as const

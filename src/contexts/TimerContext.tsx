@@ -1,3 +1,6 @@
+'use client'
+
+import { createContext, useContext, useReducer, ReactNode, useEffect } from 'react'
 import { EXAM } from '@/constants/constants'
 
 export type TimerMode = 'digital' | 'analog'
@@ -31,7 +34,7 @@ export const initialState: TimerState = {
   isDirty: false,
 }
 
-export function timerReducer(state: TimerState, action: TimerAction): TimerState {
+function timerReducer(state: TimerState, action: TimerAction): TimerState {
   switch (action.type) {
     case 'SET_EXAM':
       return {
@@ -95,4 +98,37 @@ export function timerReducer(state: TimerState, action: TimerAction): TimerState
     default:
       return state
   }
+}
+
+interface TimerContextType {
+  state: TimerState
+  dispatch: React.Dispatch<TimerAction>
+}
+
+const TimerContext = createContext<TimerContextType | undefined>(undefined)
+
+export function TimerProvider({ children }: { children: ReactNode }) {
+  const [state, dispatch] = useReducer(timerReducer, initialState)
+
+  useEffect(() => {
+    let interval: NodeJS.Timeout
+
+    if (state.isRunning) {
+      interval = setInterval(() => {
+        dispatch({ type: 'TICK' })
+      }, 1000)
+    }
+
+    return () => clearInterval(interval)
+  }, [state.isRunning])
+
+  return <TimerContext.Provider value={{ state, dispatch }}>{children}</TimerContext.Provider>
+}
+
+export function useTimer() {
+  const context = useContext(TimerContext)
+  if (context === undefined) {
+    throw new Error('useTimer must be used within a TimerProvider')
+  }
+  return context
 }
