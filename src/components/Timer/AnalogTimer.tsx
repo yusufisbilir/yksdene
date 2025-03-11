@@ -4,12 +4,19 @@ import { TimerState } from '@/reducers/timerReducer'
 import Image from 'next/image'
 import HourBody from '@/public/analogTimeAssets/hour_body.svg'
 import useClock from '@/hooks/useClock'
+import { useEffect, useState } from 'react'
 
 const AnalogTimer = ({ timer }: { timer: TimerState }) => {
-  const date = new Date(2025, 2, 11, 10, 0, 0)
-  const timing = useClock({
-    customTime: date,
+  const [customTime, setCustomTime] = useState(new Date(2025, 2, 11, 10, 0, 0))
+
+  const { timing, reset } = useClock({
+    customTime: customTime,
+    stopped: !timer.isRunning,
   })
+
+  useEffect(() => {
+    if (!timer.isDirty) reset()
+  }, [timer.isDirty])
 
   return (
     <div className="w-full h-full flex items-center justify-center relative">

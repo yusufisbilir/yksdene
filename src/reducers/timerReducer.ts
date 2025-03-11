@@ -9,6 +9,7 @@ export interface TimerState {
   isRunning: boolean
   mode: TimerMode
   customMinutes: string
+  isDirty: boolean
 }
 
 export type TimerAction =
@@ -27,6 +28,7 @@ export const initialState: TimerState = {
   isRunning: false,
   mode: 'digital',
   customMinutes: '',
+  isDirty: false,
 }
 
 export function timerReducer(state: TimerState, action: TimerAction): TimerState {
@@ -37,6 +39,7 @@ export function timerReducer(state: TimerState, action: TimerAction): TimerState
         selectedExam: action.payload,
         minutes: action.payload !== 'Custom' ? EXAM_TIMES[action.payload] : state.minutes,
         seconds: 0,
+        isDirty: false,
       }
 
     case 'SET_CUSTOM_MINUTES':
@@ -45,6 +48,7 @@ export function timerReducer(state: TimerState, action: TimerAction): TimerState
         customMinutes: action.payload,
         minutes: state.selectedExam === 'Custom' ? parseInt(action.payload) || 0 : state.minutes,
         seconds: 0,
+        isDirty: false,
       }
 
     case 'TICK':
@@ -61,6 +65,7 @@ export function timerReducer(state: TimerState, action: TimerAction): TimerState
       return {
         ...state,
         isRunning: state.minutes > 0 || state.seconds > 0,
+        isDirty: true,
       }
 
     case 'PAUSE':
@@ -78,6 +83,7 @@ export function timerReducer(state: TimerState, action: TimerAction): TimerState
             ? parseInt(state.customMinutes) || 0
             : EXAM_TIMES[state.selectedExam],
         seconds: 0,
+        isDirty: false,
       }
 
     case 'SET_MODE':

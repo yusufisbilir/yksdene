@@ -6,8 +6,18 @@ interface Timing {
   updateHours: { transform: string }
 }
 
-const useClock = ({ customTime }: { customTime?: Date }): Timing => {
-  const [currentTime, setCurrentTime] = useState<Date>(customTime ?? new Date())
+type ReturnType = {
+  timing: Timing
+  reset: () => void
+}
+
+type IUseClockProps = {
+  customTime: Date
+  stopped?: boolean
+}
+
+const useClock = ({ customTime, stopped }: IUseClockProps): ReturnType => {
+  const [currentTime, setCurrentTime] = useState<Date>(new Date())
   const [timing, setTiming] = useState<Timing>({
     updateSeconds: { transform: 'rotate(0deg)' },
     updateMinutes: { transform: 'rotate(0deg)' },
@@ -15,17 +25,20 @@ const useClock = ({ customTime }: { customTime?: Date }): Timing => {
   })
 
   const updateTime = (): void => {
-    if (customTime) {
-      setCurrentTime(new Date(currentTime.setSeconds(currentTime.getSeconds() + 1)))
-      return
-    }
-    setCurrentTime(new Date())
+    setCurrentTime((prevState) => new Date(prevState.getTime() + 1000))
   }
 
+  const reset = () => setCurrentTime(customTime)
+
   useEffect(() => {
+    if (stopped) return
     const interval = setInterval(updateTime, 1000)
 
     return () => clearInterval(interval)
+  }, [stopped])
+
+  useEffect(() => {
+    if (customTime) setCurrentTime(customTime)
   }, [customTime])
 
   useEffect(() => {
@@ -38,7 +51,7 @@ const useClock = ({ customTime }: { customTime?: Date }): Timing => {
     })
   }, [currentTime])
 
-  return timing
+  return { timing, reset }
 }
 
 export default useClock
