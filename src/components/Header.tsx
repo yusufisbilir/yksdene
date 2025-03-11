@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { ROUTES } from '@/constants/routes'
 
 const Header = () => {
   const pathname = usePathname()
@@ -15,34 +16,34 @@ const Header = () => {
         </Link>
         <nav className="hidden sm:flex space-x-8">
           <Link
-            href="/digital"
+            href={ROUTES.EXAMPRACTICE}
             className={`${
-              isActive('/digital')
-                ? 'text-blue-600 border-b-2 border-blue-600'
+              isActive(ROUTES.EXAMPRACTICE)
+                ? 'text-orange-500 border-b-2 border-orange-500'
                 : 'text-gray-500 hover:text-gray-900'
             } px-3 py-2 text-sm font-medium transition-colors`}
           >
-            Digital Timer
+            Deneme
           </Link>
           <Link
-            href="/exampractice"
+            href={ROUTES.DAILYEXAMPRACTICE}
             className={`${
-              isActive('/exampractice')
-                ? 'text-blue-600 border-b-2 border-blue-600'
+              isActive(ROUTES.DAILYEXAMPRACTICE)
+                ? 'text-orange-500 border-b-2 border-orange-500'
                 : 'text-gray-500 hover:text-gray-900'
             } px-3 py-2 text-sm font-medium transition-colors`}
           >
-            Exam Practice
+            Günlük Deneme
           </Link>
           <Link
-            href="/dailyexampractice"
+            href={ROUTES.TIMER}
             className={`${
-              isActive('/dailyexampractice')
-                ? 'text-blue-600 border-b-2 border-blue-600'
+              isActive(ROUTES.TIMER)
+                ? 'text-orange-500 border-b-2 border-orange-500'
                 : 'text-gray-500 hover:text-gray-900'
             } px-3 py-2 text-sm font-medium transition-colors`}
           >
-            Daily Practice
+            Sayaç
           </Link>
         </nav>
       </div>
