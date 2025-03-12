@@ -26,7 +26,6 @@ const AnalogTimer = () => {
 
   return (
     <div className="w-full h-full flex items-center justify-center relative">
-      {/* Saatin arka planı */}
       <Image
         src={'/analogTimeAssets/hour_body.svg'}
         alt="Hour Body"
