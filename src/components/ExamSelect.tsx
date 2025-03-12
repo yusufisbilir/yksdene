@@ -17,7 +17,10 @@ const ExamSelect = () => {
     <div className="flex items-center gap-x-4">
       <Select
         value={state.selectedExam}
-        onValueChange={(value) => dispatch({ type: 'SET_EXAM', payload: value as EXAM })}
+        onValueChange={(value) => {
+          dispatch({ type: 'RESET' })
+          dispatch({ type: 'SET_EXAM', payload: value as EXAM })
+        }}
       >
         <SelectTrigger className="w-full border-orange-300 bg-white text-orange-950">
           <SelectValue placeholder="Sınav seçin" />
