@@ -62,7 +62,7 @@ const Header = () => {
     <header className="bg-white shadow-sm z-50 h-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-16 items-center">
         <Link href="/" className="text-2xl font-bold text-orange-500 flex-shrink-0">
-          YKS Timer
+          YKS Dene
         </Link>
         {/* mobile nav */}
         <div className="sm:hidden">
