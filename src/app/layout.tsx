@@ -7,7 +7,7 @@ import { TimerProvider } from '@/contexts/TimerContext'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'YKStimer - YKS Deneme Takip',
+  title: 'YKS Dene',
   description: 'YKS hazırlık sürecinizi etkili bir şekilde yönetin',
 }
 
