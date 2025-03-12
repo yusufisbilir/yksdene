@@ -18,10 +18,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="tr">
-      <body className={`${inter.className} min-h-screen h-screen bg-orange-50`}>
+      <body className={`${inter.className} root_layout_container`}>
         <TimerProvider>
           <Header />
-          <main className="px-4 py-6 pt-16 h-full flex flex-col justify-center">{children}</main>
+          <main className="root_layout_children_wrapper">{children}</main>
         </TimerProvider>
       </body>
     </html>

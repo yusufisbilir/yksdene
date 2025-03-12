@@ -13,7 +13,7 @@ export default function RootLayout({
   const { state } = useTimer()
 
   return (
-    <section className="flex flex-col gap-y-6 w-full max-w-xl mx-auto bg-white shadow-lg border border-orange-200 rounded-xl p-6 relative">
+    <section className="timers_layout_container">
       {state.isFinished && <FinishedTimerOverlay />}
       <ExamSelect />
       {children}

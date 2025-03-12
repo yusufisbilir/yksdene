@@ -123,4 +123,15 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  .root_layout_container {
+    @apply min-h-dvh h-dvh bg-white sm:bg-orange-50 flex flex-col;
+  }
+  .root_layout_children_wrapper {
+    @apply flex flex-col sm:justify-center grow;
+  }
+
+  .timers_layout_container {
+    @apply flex flex-col gap-y-6 w-full max-w-xl mx-auto bg-white sm:shadow-lg sm:border sm:border-orange-200 sm:rounded-xl px-2 sm:px-6 py-4 sm:py-6 relative;
+  }
 }
