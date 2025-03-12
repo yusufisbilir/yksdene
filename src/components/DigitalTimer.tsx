@@ -23,7 +23,7 @@ export default function DigitalTimer() {
   const percentage = (chartData[0].process / totalSeconds) * 100
 
   return (
-    <ChartContainer config={chartConfig} className="mx-auto aspect-square max-h-[400px] h-[400px]">
+    <ChartContainer config={chartConfig} className="mx-auto aspect-square min-h-[300px]">
       <RadialBarChart
         data={chartData}
         startAngle={90}

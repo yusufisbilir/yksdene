@@ -1,7 +1,6 @@
 'use client'
 
 import Image from 'next/image'
-import HourBody from '@/public/analogTimeAssets/hour_body.svg'
 import useClock from '@/hooks/useClock'
 import { useEffect, useState } from 'react'
 import { EXAM } from '@/constants/constants'
@@ -27,8 +26,14 @@ const AnalogTimer = () => {
 
   return (
     <div className="w-full h-full flex items-center justify-center relative">
-      {/* Saatin arka planı */}
-      <Image src={HourBody} alt="Hour Body" width={400} height={400} priority className="z-0" />
+      <Image
+        src={'/analogTimeAssets/hour_body.svg'}
+        alt="Hour Body"
+        width={400}
+        height={400}
+        priority
+        className="z-0"
+      />
       <div
         className={`absolute bottom-1/2 left-1/2 z-10 w-2 h-10 sm:h-20 origin-bottom bg-black -translate-x-1`}
         style={{ transform: timing.updateHours.transform }}
