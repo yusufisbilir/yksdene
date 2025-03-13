@@ -5,6 +5,7 @@ import Header from '@/components/Header'
 import { TimerProvider } from '@/contexts/TimerContext'
 import { Analytics } from '@vercel/analytics/react'
 import { PomodoroProvider } from '@/contexts/PomodoroContext'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -22,6 +23,7 @@ export default function RootLayout({
     <html lang="tr">
       <body className={`${inter.className} root_layout_container`}>
         <Analytics />
+        <SpeedInsights />
         <TimerProvider>
           <PomodoroProvider>
             <Header />
