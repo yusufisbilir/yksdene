@@ -17,8 +17,11 @@ const Clock = () => {
   })
 
   useEffect(() => {
-    if (!timer.isDirty) reset()
-  }, [timer.isDirty])
+    const handleReset = () => {
+      if (!timer.isDirty) reset()
+    }
+    handleReset()
+  }, [timer.isDirty, reset])
 
   useEffect(() => {
     setCustomTime(EXAM[timer.selectedExam as EXAM]?.time)

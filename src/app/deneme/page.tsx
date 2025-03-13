@@ -6,7 +6,7 @@ import FinishedTimerOverlay from '@/components/examPractice/FinishedTimerOverlay
 import TimerActions from '@/components/examPractice/TimerActions'
 import { useTimer } from '@/contexts/TimerContext'
 
-const page = () => {
+const Page = () => {
   const { state } = useTimer()
 
   return (
@@ -22,4 +22,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
