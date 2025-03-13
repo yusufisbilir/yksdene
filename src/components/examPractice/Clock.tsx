@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import { EXAM } from '@/constants/constants'
 import { useTimer } from '@/contexts/TimerContext'
 
-const AnalogTimer = () => {
+const Clock = () => {
   const { state: timer } = useTimer()
 
   const [customTime, setCustomTime] = useState(new Date(2025, 2, 11, 10, 0, 0))
@@ -51,4 +51,4 @@ const AnalogTimer = () => {
   )
 }
 
-export default AnalogTimer
+export default Clock
