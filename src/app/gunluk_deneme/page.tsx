@@ -3,7 +3,6 @@ import Clock from '@/components/examPractice/Clock'
 import ExamSelect from '@/components/examPractice/ExamSelect'
 import FinishedTimerConfetti from '@/components/examPractice/FinishedTimerConfetti'
 import FinishedTimerOverlay from '@/components/examPractice/FinishedTimerOverlay'
-import TimerActions from '@/components/examPractice/TimerActions'
 import { Button } from '@/components/ui/button'
 import { useTimer } from '@/contexts/TimerContext'
 import { useEffect, useState } from 'react'
@@ -31,12 +30,7 @@ const Page = () => {
       {isVisibleDailyExamPractice && (
         <div className="centered_card_container gap-y-2">
           <h1 className="font-semibold">Gerçek Sınav Deneyimi</h1>
-          <p>
-            Her sabah 10:15'te başlar. <br />
-            Gerçek sınavda bu saate bakarak kalan süreni hesaplayacaksın. Havalı kronometreler veya
-            pomodoro uygulamaları yok. <br />
-            Başarılar dilerim ❤️
-          </p>
+          <p>Her sabah 10:15&apos;te başlar. Başarılar dilerim ❤️</p>
           <Button
             className="max-w-fit self-end"
             onClick={() => setIsVisibleDailyExamPractice(false)}
@@ -49,7 +43,6 @@ const Page = () => {
         {state.isFinished && <FinishedTimerOverlay />}
         <ExamSelect />
         <Clock />
-        <TimerActions />
       </div>
     </section>
   )
