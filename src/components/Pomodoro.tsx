@@ -46,10 +46,6 @@ export function Pomodoro() {
   return (
     <div className="w-full space-y-6">
       <div className="space-y-4">
-        <div className="text-center">
-          <h2 className="text-6xl font-bold my-8">{formatTime(state.minutes, state.seconds)}</h2>
-        </div>
-
         <div className="flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-4">
           <Button
             className="w-full sm:w-auto"
@@ -72,6 +68,10 @@ export function Pomodoro() {
           >
             Uzun Mola
           </Button>
+        </div>
+
+        <div className="text-center">
+          <h2 className="text-6xl font-bold my-8">{formatTime(state.minutes, state.seconds)}</h2>
         </div>
 
         <div className="flex justify-center space-x-4">
