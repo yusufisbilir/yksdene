@@ -124,6 +124,7 @@
     @apply bg-background text-foreground;
   }
 
+  /* Root Layout */
   .root_layout_container {
     @apply min-h-dvh h-dvh bg-white sm:bg-orange-50 flex flex-col;
   }
@@ -131,7 +132,25 @@
     @apply flex flex-col sm:justify-center grow;
   }
 
+  /* Timers Layout */
   .timers_layout_container {
     @apply flex flex-col gap-y-6 w-full max-w-xl mx-auto bg-white sm:shadow-lg sm:border sm:border-orange-200 sm:rounded-xl px-2 sm:px-6 py-4 sm:py-6 relative;
+  }
+
+  /* Analog Timer */
+  .analog_timer_container {
+    @apply w-full h-full flex items-center justify-center relative;
+  }
+  .analog_timer_hour_hand {
+    @apply absolute bottom-1/2 left-1/2 z-10 w-2 h-12 sm:h-20 origin-bottom rounded-full bg-gray-900 -translate-x-1;
+  }
+  .analog_timer_minute_hand {
+    @apply absolute bottom-1/2 left-1/2 z-10 w-2 h-20 sm:h-32 origin-bottom rounded-full bg-gray-900 -translate-x-1;
+  }
+  .analog_timer_second_hand {
+    @apply absolute bottom-1/2 left-1/2 z-30 w-1 h-24 sm:h-40 origin-bottom bg-red-800 rounded-full -translate-x-0.5;
+  }
+  .analog_timer_center_circle {
+    @apply absolute z-40 w-4 h-4 rounded-full bg-black;
   }
 }
