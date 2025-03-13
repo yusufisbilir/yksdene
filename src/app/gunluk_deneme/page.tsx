@@ -6,18 +6,29 @@ import FinishedTimerOverlay from '@/components/examPractice/FinishedTimerOverlay
 import TimerActions from '@/components/examPractice/TimerActions'
 import { Button } from '@/components/ui/button'
 import { useTimer } from '@/contexts/TimerContext'
+import { useEffect, useState } from 'react'
 import { useLocalStorage } from 'usehooks-ts'
 
 const Page = () => {
   const { state } = useTimer()
-  const [infoBoxVisibilities, setInfoBoxVisibilities] = useLocalStorage('infoBoxVisibilities', {
-    dailyExamPractice: true,
-  })
+  const [isMounted, setIsMounted] = useState(false)
+  const [isVisibleDailyExamPractice, setIsVisibleDailyExamPractice] = useLocalStorage(
+    'isVisibleDailyExamPractice',
+    true,
+  )
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
+  if (!isMounted) {
+    return null
+  }
 
   return (
     <section className="flex flex-col gap-y-2 my-4">
       {state.isFinished && <FinishedTimerConfetti />}
-      {infoBoxVisibilities.dailyExamPractice && (
+      {isVisibleDailyExamPractice && (
         <div className="centered_card_container gap-y-2">
           <h1 className="font-semibold">Gerçek Sınav Deneyimi</h1>
           <p>
@@ -28,9 +39,7 @@ const Page = () => {
           </p>
           <Button
             className="max-w-fit self-end"
-            onClick={() =>
-              setInfoBoxVisibilities((prev) => ({ ...prev, dailyExamPractice: false }))
-            }
+            onClick={() => setIsVisibleDailyExamPractice(false)}
           >
             Anladım Hocam, Hallederiz
           </Button>

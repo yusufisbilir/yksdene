@@ -6,18 +6,29 @@ import FinishedTimerOverlay from '@/components/examPractice/FinishedTimerOverlay
 import TimerActions from '@/components/examPractice/TimerActions'
 import { Button } from '@/components/ui/button'
 import { useTimer } from '@/contexts/TimerContext'
+import { useEffect, useState } from 'react'
 import { useLocalStorage } from 'usehooks-ts'
 
 const Page = () => {
   const { state } = useTimer()
-  const [infoBoxVisibilities, setInfoBoxVisibilities] = useLocalStorage('infoBoxVisibilities', {
-    exampPractice: true,
-  })
+  const [isMounted, setIsMounted] = useState(false)
+  const [isVisibleExamPractice, setIsVisibleExamPractice] = useLocalStorage(
+    'isVisibleExamPractice',
+    true,
+  )
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
+  if (!isMounted) {
+    return null
+  }
 
   return (
     <section className="flex flex-col gap-y-2 my-4">
       {state.isFinished && <FinishedTimerConfetti />}
-      {infoBoxVisibilities.exampPractice && (
+      {isVisibleExamPractice && (
         <div className="centered_card_container gap-y-2">
           <h1 className="font-semibold">İşte o saat 😱</h1>
           <p>
@@ -29,10 +40,7 @@ const Page = () => {
             <br />
             Başarılar dilerim ❤️
           </p>
-          <Button
-            className="max-w-fit self-end"
-            onClick={() => setInfoBoxVisibilities((prev) => ({ ...prev, exampPractice: false }))}
-          >
+          <Button className="max-w-fit self-end" onClick={() => setIsVisibleExamPractice(false)}>
             Anladım Hocam, Hallederiz
           </Button>
         </div>
