@@ -80,7 +80,7 @@ const Header = () => {
             <DrawerContent>
               <DrawerHeader>
                 <div className="flex items-center justify-between">
-                  <DrawerTitle className="text-orange-500">YKS Timer</DrawerTitle>
+                  <DrawerTitle className="text-orange-500">YKS Dene</DrawerTitle>
                   <DrawerClose asChild>
                     <Button
                       variant="ghost"
