@@ -9,6 +9,7 @@ import useDailyExamTimer from '@/hooks/useDailyExamTimer'
 import { useTimer } from '@/contexts/TimerContext'
 import AnalogClock from '@/components/shared/AnalogClock'
 import getExamDuration from '@/utils/getExamDuration'
+import ExamInfo from '@/components/dailyExamPractice/ExamInfo'
 
 const Page = () => {
   const [isMounted, setIsMounted] = useState(false)
@@ -63,24 +64,7 @@ const Page = () => {
       <div className="centered_card_container z-40">
         <ExamSelect />
         <AnalogClock clockRotations={clockRotations} />
-        <div className="border border-gray-200 shadow-md rounded-lg max-w-fit mx-auto">
-          <div className="grid grid-cols-2 gap-4 p-6">
-            <div className="text-gray-600 font-semibold">Sınav Başlama Saati:</div>
-            <div className="text-orange-500 font-medium">
-              {getExamStartEndTimes(timer.selectedExam).start}
-            </div>
-
-            <div className="text-gray-600 font-semibold">Sınav Bitiş Saati:</div>
-            <div className="text-orange-500 font-medium">
-              {getExamStartEndTimes(timer.selectedExam).end}
-            </div>
-
-            <div className="text-gray-600 font-semibold">Sınav Süresi:</div>
-            <div className="text-orange-500 font-medium">
-              {getExamDuration(timer.selectedExam)} Dakika
-            </div>
-          </div>
-        </div>
+        <ExamInfo selectedExam={timer.selectedExam} />
       </div>
     </section>
   )
