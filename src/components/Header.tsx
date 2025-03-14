@@ -14,6 +14,7 @@ import {
 import { Menu } from 'lucide-react'
 import { Button } from './ui/button'
 import { useState } from 'react'
+import { cn } from '@/lib/utils'
 
 const Header = () => {
   const pathname = usePathname()
@@ -24,37 +25,32 @@ const Header = () => {
     setIsOpen(false)
   }
 
+  const getRouteName = (route: string) => {
+    switch (route) {
+      case ROUTES.EXAMPRACTICE:
+        return 'Deneme'
+      case ROUTES.DAILYEXAMPRACTICE:
+        return 'Günlük Deneme'
+      case ROUTES.POMODORO:
+        return 'Pomodoro'
+      default:
+        return 'Home'
+    }
+  }
+
   const NavLinks = () => (
     <>
-      <Link
-        href={ROUTES.EXAMPRACTICE}
-        className={`${
-          isActive(ROUTES.EXAMPRACTICE)
-            ? 'text-orange-500 border-b-2 border-orange-500'
-            : 'text-gray-500 hover:text-gray-900'
-        } px-3 py-2 text-sm font-medium transition-colors`}
-        onClick={handleNavLinkClick}
-      >
-        Deneme
-      </Link>
-      <Link
-        href={ROUTES.POMODORO}
-        className={`${
-          isActive(ROUTES.POMODORO)
-            ? 'text-orange-500 border-b-2 border-orange-500'
-            : 'text-gray-500 hover:text-gray-900'
-        } px-3 py-2 text-sm font-medium transition-colors`}
-        onClick={handleNavLinkClick}
-      >
-        Pomodoro
-      </Link>
-      <Link
-        href={ROUTES.DAILYEXAMPRACTICE}
-        className={`text-gray-300 px-3 py-2 text-sm font-medium transition-colors cursor-not-allowed`}
-        onClick={handleNavLinkClick}
-      >
-        Günlük Deneme (yakında)
-      </Link>
+      {Object.entries(ROUTES).map(([key, value]) => (
+        <Link
+          key={key}
+          href={value}
+          className={cn(isActive(value) ? 'header_nav_link_active' : 'header_nav_link_inactive')}
+          onClick={handleNavLinkClick}
+          suppressHydrationWarning
+        >
+          {getRouteName(value)}
+        </Link>
+      ))}
     </>
   )
 

@@ -1,10 +1,11 @@
 'use client'
 
+import { Exam } from '@/types'
+import getExamDuration from '@/utils/getExamDuration'
 import { createContext, useContext, useReducer, ReactNode, useEffect } from 'react'
-import { EXAM } from '@/constants/constants'
 
 export interface TimerState {
-  selectedExam: EXAM
+  selectedExam: Exam
   minutes: number
   seconds: number
   isRunning: boolean
@@ -13,7 +14,7 @@ export interface TimerState {
 }
 
 export type TimerAction =
-  | { type: 'SET_EXAM'; payload: EXAM }
+  | { type: 'SET_EXAM'; payload: Exam }
   | { type: 'TICK' }
   | { type: 'START' }
   | { type: 'PAUSE' }
@@ -21,8 +22,8 @@ export type TimerAction =
   | { type: 'SET_FINISHED'; payload: boolean }
 
 export const initialState: TimerState = {
-  selectedExam: 'TYT',
-  minutes: EXAM.TYT.duration,
+  selectedExam: 'tyt',
+  minutes: getExamDuration('tyt'),
   seconds: 0,
   isRunning: false,
   isDirty: false,
@@ -35,7 +36,7 @@ function timerReducer(state: TimerState, action: TimerAction): TimerState {
       return {
         ...state,
         selectedExam: action.payload,
-        minutes: EXAM[action.payload].duration,
+        minutes: getExamDuration(action.payload),
         seconds: 0,
         isDirty: false,
         isFinished: false,
@@ -69,7 +70,7 @@ function timerReducer(state: TimerState, action: TimerAction): TimerState {
       return {
         ...state,
         isRunning: false,
-        minutes: EXAM[state.selectedExam].duration,
+        minutes: getExamDuration(state.selectedExam),
         seconds: 0,
         isDirty: false,
         isFinished: false,
