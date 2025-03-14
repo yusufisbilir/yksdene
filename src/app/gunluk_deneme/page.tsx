@@ -8,8 +8,8 @@ import getExamStartEndTimes from '@/utils/getExamStartEndTimes'
 import useDailyExamTimer from '@/hooks/useDailyExamTimer'
 import { useTimer } from '@/contexts/TimerContext'
 import AnalogClock from '@/components/shared/AnalogClock'
-import getExamDuration from '@/utils/getExamDuration'
 import ExamInfo from '@/components/dailyExamPractice/ExamInfo'
+import DailyExamPracticeOverlay from '@/components/dailyExamPractice/DailyExamPracticeOverlay'
 
 const Page = () => {
   const [isMounted, setIsMounted] = useState(false)
@@ -63,7 +63,10 @@ const Page = () => {
       )}
       <div className="centered_card_container z-40">
         <ExamSelect />
-        <AnalogClock clockRotations={clockRotations} />
+        <div className="relative">
+          <DailyExamPracticeOverlay startDate={startDate} endDate={endDate} />
+          <AnalogClock clockRotations={clockRotations} />
+        </div>
         <ExamInfo selectedExam={timer.selectedExam} />
       </div>
     </section>
