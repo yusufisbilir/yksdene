@@ -2,7 +2,6 @@
 
 import ExamSelect from '@/components/examPractice/ExamSelect'
 import { Button } from '@/components/ui/button'
-import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { useLocalStorage } from 'usehooks-ts'
 import getExamStartEndTimes from '@/utils/getExamStartEndTimes'
