@@ -8,6 +8,7 @@ import { useLocalStorage } from 'usehooks-ts'
 import getExamStartEndTimes from '@/utils/getExamStartEndTimes'
 import useDailyExamTimer from '@/hooks/useDailyExamTimer'
 import { useTimer } from '@/contexts/TimerContext'
+import AnalogClock from '@/components/shared/AnalogClock'
 
 const Page = () => {
   const [isMounted, setIsMounted] = useState(false)
@@ -19,7 +20,7 @@ const Page = () => {
   const [startDate, setStartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(new Date())
 
-  const { timing } = useDailyExamTimer({
+  const { clockRotations } = useDailyExamTimer({
     startDate: startDate,
     endDate: endDate,
   })
@@ -61,29 +62,7 @@ const Page = () => {
       )}
       <div className="centered_card_container z-40">
         <ExamSelect />
-        <div className="analog_timer_container">
-          <Image
-            src={'/analogTimeAssets/hour_body.svg'}
-            alt="Hour Body"
-            width={400}
-            height={400}
-            priority
-            className="z-0"
-          />
-          <div
-            className={`analog_timer_hour_hand`}
-            style={{ transform: timing.updateHours.transform }}
-          ></div>
-          <div
-            className={`analog_timer_minute_hand`}
-            style={{ transform: timing.updateMinutes.transform }}
-          ></div>
-          <div
-            className={`analog_timer_second_hand`}
-            style={{ transform: timing.updateSeconds.transform }}
-          ></div>
-          <div className={`analog_timer_center_circle`}></div>
-        </div>
+        <AnalogClock clockRotations={clockRotations} />
       </div>
     </section>
   )

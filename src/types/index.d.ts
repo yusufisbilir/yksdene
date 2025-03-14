@@ -6,3 +6,9 @@ export const Exam = {
 } as const
 
 export type Exam = (typeof Exam)[keyof typeof Exam]
+
+export interface ClockRotations {
+  updateSeconds: { transform: string }
+  updateMinutes: { transform: string }
+  updateHours: { transform: string }
+}

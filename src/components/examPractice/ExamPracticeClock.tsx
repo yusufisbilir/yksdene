@@ -1,17 +1,17 @@
 'use client'
 
-import Image from 'next/image'
 import useClock from '@/hooks/useClock'
 import { useEffect, useState } from 'react'
 import { useTimer } from '@/contexts/TimerContext'
 import getExamStartEndTimes from '@/utils/getExamStartEndTimes'
+import AnalogClock from '../shared/AnalogClock'
 
-const Clock = () => {
+const ExamPracticeClock = () => {
   const { state: timer } = useTimer()
 
   const [customTime, setCustomTime] = useState(new Date(2025, 2, 11, 10, 0, 0))
 
-  const { timing, reset } = useClock({
+  const { clockRotations, reset } = useClock({
     customTime: customTime,
     stopped: !timer.isRunning || timer.seconds + timer.minutes === 0,
   })
@@ -30,31 +30,7 @@ const Clock = () => {
     setCustomTime(date)
   }, [timer.selectedExam])
 
-  return (
-    <div className="analog_timer_container">
-      <Image
-        src={'/analogTimeAssets/hour_body.svg'}
-        alt="Hour Body"
-        width={400}
-        height={400}
-        priority
-        className="z-0"
-      />
-      <div
-        className={`analog_timer_hour_hand`}
-        style={{ transform: timing.updateHours.transform }}
-      ></div>
-      <div
-        className={`analog_timer_minute_hand`}
-        style={{ transform: timing.updateMinutes.transform }}
-      ></div>
-      <div
-        className={`analog_timer_second_hand`}
-        style={{ transform: timing.updateSeconds.transform }}
-      ></div>
-      <div className={`analog_timer_center_circle`}></div>
-    </div>
-  )
+  return <AnalogClock clockRotations={clockRotations} />
 }
 
-export default Clock
+export default ExamPracticeClock

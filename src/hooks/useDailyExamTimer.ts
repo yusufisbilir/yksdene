@@ -1,13 +1,8 @@
+import { ClockRotations } from '@/types'
 import { useState, useEffect } from 'react'
 
-interface Timing {
-  updateSeconds: { transform: string }
-  updateMinutes: { transform: string }
-  updateHours: { transform: string }
-}
-
 type ReturnType = {
-  timing: Timing
+  clockRotations: ClockRotations
 }
 
 type IProps = {
@@ -17,7 +12,7 @@ type IProps = {
 
 const useDailyExamTimer = ({ startDate, endDate }: IProps): ReturnType => {
   const [currentTime, setCurrentTime] = useState<Date>(new Date())
-  const [timing, setTiming] = useState<Timing>({
+  const [clockRotations, setClockRotations] = useState<ClockRotations>({
     updateSeconds: { transform: 'rotate(0deg)' },
     updateMinutes: { transform: 'rotate(0deg)' },
     updateHours: { transform: 'rotate(0deg)' },
@@ -42,7 +37,7 @@ const useDailyExamTimer = ({ startDate, endDate }: IProps): ReturnType => {
       updatedTime = endDate
     }
 
-    setTiming({
+    setClockRotations({
       updateSeconds: { transform: `rotate(${updatedTime.getSeconds() * 6}deg)` },
       updateMinutes: { transform: `rotate(${updatedTime.getMinutes() * 6}deg)` },
       updateHours: {
@@ -51,7 +46,7 @@ const useDailyExamTimer = ({ startDate, endDate }: IProps): ReturnType => {
     })
   }, [currentTime, startDate, endDate])
 
-  return { timing }
+  return { clockRotations }
 }
 
 export default useDailyExamTimer

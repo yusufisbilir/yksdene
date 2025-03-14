@@ -1,13 +1,8 @@
+import { ClockRotations } from '@/types'
 import { useEffect, useState } from 'react'
 
-interface Timing {
-  updateSeconds: { transform: string }
-  updateMinutes: { transform: string }
-  updateHours: { transform: string }
-}
-
 type ReturnType = {
-  timing: Timing
+  clockRotations: ClockRotations
   reset: () => void
 }
 
@@ -18,7 +13,7 @@ type IUseClockProps = {
 
 const useClock = ({ customTime, stopped }: IUseClockProps): ReturnType => {
   const [currentTime, setCurrentTime] = useState<Date>(new Date())
-  const [timing, setTiming] = useState<Timing>({
+  const [clockRotations, setClockRotations] = useState<ClockRotations>({
     updateSeconds: { transform: 'rotate(0deg)' },
     updateMinutes: { transform: 'rotate(0deg)' },
     updateHours: { transform: 'rotate(0deg)' },
@@ -42,7 +37,7 @@ const useClock = ({ customTime, stopped }: IUseClockProps): ReturnType => {
   }, [customTime])
 
   useEffect(() => {
-    setTiming({
+    setClockRotations({
       updateSeconds: { transform: `rotate(${currentTime.getSeconds() * 6}deg)` },
       updateMinutes: { transform: `rotate(${currentTime.getMinutes() * 6}deg)` },
       updateHours: {
@@ -51,7 +46,7 @@ const useClock = ({ customTime, stopped }: IUseClockProps): ReturnType => {
     })
   }, [currentTime])
 
-  return { timing, reset }
+  return { clockRotations, reset }
 }
 
 export default useClock
