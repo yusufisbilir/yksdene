@@ -3,8 +3,8 @@
 import Image from 'next/image'
 import useClock from '@/hooks/useClock'
 import { useEffect, useState } from 'react'
-import { EXAM } from '@/constants/constants'
 import { useTimer } from '@/contexts/TimerContext'
+import getExamStartEndTimes from '@/utils/getExamStartEndTimes'
 
 const Clock = () => {
   const { state: timer } = useTimer()
@@ -24,7 +24,10 @@ const Clock = () => {
   }, [timer.isDirty, reset])
 
   useEffect(() => {
-    setCustomTime(EXAM[timer.selectedExam as EXAM]?.time)
+    const [hours, minutes] = getExamStartEndTimes(timer.selectedExam).start.split(':').map(Number)
+    const date = new Date()
+    date.setHours(hours, minutes, 0, 0)
+    setCustomTime(date)
   }, [timer.selectedExam])
 
   return (

@@ -1,8 +1,9 @@
 'use client'
 
+import { Exam } from '@/types'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select'
-import { EXAM } from '@/constants/constants'
 import { useTimer } from '@/contexts/TimerContext'
+import getExamDuration from '@/utils/getExamDuration'
 
 const ExamSelect = () => {
   const { state, dispatch } = useTimer()
@@ -11,20 +12,20 @@ const ExamSelect = () => {
     <div className="flex items-center gap-x-4">
       <Select
         value={state.selectedExam}
-        onValueChange={(value) => {
+        onValueChange={(value: Exam) => {
           dispatch({ type: 'RESET' })
-          dispatch({ type: 'SET_EXAM', payload: value as EXAM })
+          dispatch({ type: 'SET_EXAM', payload: value })
         }}
       >
         <SelectTrigger className="w-full border-orange-300 bg-white text-orange-950">
           <SelectValue placeholder="Sınav seçin" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="TYT" className="text-orange-950">
-            {`TYT (${EXAM.TYT.duration} dakika)`}
+          <SelectItem value="tyt" className="text-orange-950">
+            {`TYT (${getExamDuration('tyt')} dakika)`}
           </SelectItem>
-          <SelectItem value="AYT" className="text-orange-950">
-            {`AYT (${EXAM.AYT.duration} dakika)`}
+          <SelectItem value="ayt" className="text-orange-950">
+            {`AYT (${getExamDuration('ayt')} dakika)`}
           </SelectItem>
         </SelectContent>
       </Select>
