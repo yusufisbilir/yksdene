@@ -15,6 +15,7 @@ import { Menu } from 'lucide-react'
 import { Button } from './ui/button'
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
+import LoginDialog from './login-dialog'
 
 const Header = () => {
   const pathname = usePathname()
@@ -97,6 +98,7 @@ const Header = () => {
         {/* Lg nav */}
         <nav className="hidden sm:flex space-x-8">
           <NavLinks />
+          <LoginDialog />
         </nav>
       </div>
     </header>
