@@ -5,7 +5,7 @@ import FinishedTimerConfetti from '@/components/examPractice/FinishedTimerConfet
 import FinishedTimerOverlay from '@/components/examPractice/FinishedTimerOverlay'
 import TimerActions from '@/components/examPractice/TimerActions'
 import { Button } from '@/components/ui/button'
-import { useTimer } from '@/contexts/TimerContext'
+import { useTimer } from '@/context/TimerContext'
 import { useEffect, useState } from 'react'
 import { useLocalStorage } from 'usehooks-ts'
 

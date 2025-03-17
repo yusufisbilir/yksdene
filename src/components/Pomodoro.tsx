@@ -1,6 +1,6 @@
 'use client'
 
-import { usePomodoro } from '@/contexts/PomodoroContext'
+import { usePomodoro } from '@/context/PomodoroContext'
 import { Button } from './ui/button'
 import { Card, CardContent } from './ui/card'
 import { Input } from './ui/input'

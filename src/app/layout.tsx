@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/Header'
-import { TimerProvider } from '@/contexts/TimerContext'
+import { TimerProvider } from '@/context/TimerContext'
 import { Analytics } from '@vercel/analytics/react'
-import { PomodoroProvider } from '@/contexts/PomodoroContext'
+import { PomodoroProvider } from '@/context/PomodoroContext'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 
 const inter = Inter({ subsets: ['latin'] })

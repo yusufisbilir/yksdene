@@ -1,4 +1,4 @@
-import { TimerState } from '@/contexts/TimerContext'
+import { TimerState } from '@/context/TimerContext'
 import getExamDuration from './getExamDuration'
 
 const getTotalTimerSeconds = (timer: TimerState) => {

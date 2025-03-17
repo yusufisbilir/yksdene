@@ -2,7 +2,7 @@
 
 import { Exam } from '@/types'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select'
-import { useTimer } from '@/contexts/TimerContext'
+import { useTimer } from '@/context/TimerContext'
 import getExamDuration from '@/utils/getExamDuration'
 
 const ExamSelect = () => {
