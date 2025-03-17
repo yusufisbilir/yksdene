@@ -6,6 +6,7 @@ import { TimerProvider } from '@/context/TimerContext'
 import { Analytics } from '@vercel/analytics/react'
 import { PomodoroProvider } from '@/context/PomodoroContext'
 import { SpeedInsights } from '@vercel/speed-insights/next'
+import { AuthProvider } from '@/context/auth-context'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -24,12 +25,14 @@ export default function RootLayout({
       <body className={`${inter.className} root_layout_container`}>
         <Analytics />
         <SpeedInsights />
-        <TimerProvider>
-          <PomodoroProvider>
-            <Header />
-            <main className="root_layout_children_wrapper">{children}</main>
-          </PomodoroProvider>
-        </TimerProvider>
+        <AuthProvider>
+          <TimerProvider>
+            <PomodoroProvider>
+              <Header />
+              <main className="root_layout_children_wrapper">{children}</main>
+            </PomodoroProvider>
+          </TimerProvider>
+        </AuthProvider>
       </body>
     </html>
   )

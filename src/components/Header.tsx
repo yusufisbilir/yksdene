@@ -16,11 +16,21 @@ import { Button } from './ui/button'
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
 import LoginDialog from './login-dialog'
+import { useAuth } from '@/context/auth-context'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from './ui/dropdown-menu'
+import { User } from 'lucide-react'
+import { DropdownMenuLabel } from '@radix-ui/react-dropdown-menu'
 
 const Header = () => {
   const pathname = usePathname()
   const isActive = (path: string) => pathname === path
   const [isOpen, setIsOpen] = useState(false)
+  const { user, isLoading, signOut } = useAuth()
 
   const handleNavLinkClick = () => {
     setIsOpen(false)
@@ -98,7 +108,35 @@ const Header = () => {
         {/* Lg nav */}
         <nav className="hidden sm:flex space-x-8">
           <NavLinks />
-          <LoginDialog />
+          <div>
+            {isLoading ? (
+              // Loading state
+              <div className="h-9 w-9 animate-pulse rounded-full bg-gray-200" />
+            ) : user ? (
+              // Logged in state
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline">
+                    <div className="flex items-center gap-2">
+                      <User className="h-5 w-5" />
+                      <span className="text-sm font-medium">
+                        {user.user_metadata.name ?? user.email}
+                      </span>
+                    </div>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="p-2 flex flex-col gap-2">
+                  <DropdownMenuLabel className="font-medium">{user.email}</DropdownMenuLabel>
+                  <DropdownMenuItem className="cursor-pointer" onClick={() => signOut()}>
+                    Çıkış Yap
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              // Logged out state
+              <LoginDialog />
+            )}
+          </div>
         </nav>
       </div>
     </header>
