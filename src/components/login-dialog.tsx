@@ -1,3 +1,5 @@
+'use client'
+
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -7,9 +9,38 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog'
+import { createClient } from '@/lib/supabase/client'
 import { LogIn, User } from 'lucide-react'
+import { useState } from 'react'
 
 const LoginDialog = () => {
+  const [isLoading, setIsLoading] = useState(false)
+  const supabase = createClient()
+
+  async function handleGoogleLogin() {
+    try {
+      setIsLoading(true)
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: `${location.origin}/auth/callback`,
+          queryParams: {
+            access_type: 'offline',
+            prompt: 'consent',
+          },
+        },
+      })
+
+      if (error) {
+        throw error
+      }
+    } catch (error) {
+      console.error('Error:', error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -24,8 +55,14 @@ const LoginDialog = () => {
             Netlerini takip et, sıralamalarda yarış. YKS çalışmayı eğlenceli hale getir. 🎉
           </DialogDescription>
         </DialogHeader>
-        <Button type="submit" className="flex items-center gap-2 justify-center">
-          <LogIn className="w-2 h-2" /> Google ile Giriş Yap
+        <Button
+          type="submit"
+          className="flex items-center gap-2 justify-center"
+          onClick={handleGoogleLogin}
+          disabled={isLoading}
+        >
+          <LogIn className="w-4 h-4" />
+          {isLoading ? 'Giriş yapılıyor...' : 'Google ile Giriş Yap'}
         </Button>
       </DialogContent>
     </Dialog>
