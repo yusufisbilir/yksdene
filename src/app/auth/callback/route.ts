@@ -1,25 +1,34 @@
-import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
+import { NextResponse } from 'next/server'
 
 export async function GET(request: Request) {
-  const supabase = await createClient()
-  const { searchParams } = new URL(request.url)
+  const { searchParams, origin } = new URL(request.url)
   const code = searchParams.get('code')
+  const error = searchParams.get('error')
+  const errorDescription = searchParams.get('error_description')
+  const next = searchParams.get('next') ?? '/'
 
-  if (code) {
-    try {
-      const { data, error } = await supabase.auth.exchangeCodeForSession(code)
-
-      if (error) {
-        return NextResponse.redirect(new URL('/auth/error', request.url))
-      }
-
-      return NextResponse.redirect(new URL('/', request.url))
-    } catch (error) {
-      console.error('Error exchanging code for session:', error)
-      return NextResponse.redirect(new URL('/auth/error', request.url))
-    }
+  // Handle error from OAuth provider
+  if (error) {
+    return NextResponse.redirect(
+      `${origin}/auth/error?error=${encodeURIComponent(errorDescription || error)}`,
+    )
   }
 
-  return NextResponse.redirect(new URL('/auth/error', request.url))
+  if (code) {
+    const supabase = await createClient()
+    const { error: sessionError } = await supabase.auth.exchangeCodeForSession(code)
+
+    if (sessionError) {
+      return NextResponse.redirect(
+        `${origin}/auth/error?error=${encodeURIComponent(sessionError.message)}`,
+      )
+    }
+
+    return NextResponse.redirect(`${origin}${next}`)
+  }
+
+  return NextResponse.redirect(
+    `${origin}/auth/error?error=${encodeURIComponent('Invalid authorization code')}`,
+  )
 }
