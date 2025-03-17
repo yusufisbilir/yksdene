@@ -12,3 +12,12 @@ export interface ClockRotations {
   updateMinutes: { transform: string }
   updateHours: { transform: string }
 }
+
+interface TimerState {
+  selectedExam: Exam
+  minutes: number
+  seconds: number
+  isRunning: boolean
+  isDirty: boolean
+  isFinished: boolean
+}

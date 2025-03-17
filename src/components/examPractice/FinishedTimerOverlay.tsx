@@ -2,10 +2,12 @@
 
 import React from 'react'
 import { Button } from '../ui/button'
-import { useTimer } from '@/context/timer-context'
+import { useAppSelector, useAppDispatch } from '@/hooks/useRedux'
+import { reset } from '@/store/slices/timer.slice'
 
 const FinishedTimerOverlay = () => {
-  const { dispatch } = useTimer()
+  const timerState = useAppSelector((state) => state.timer)
+  const dispatch = useAppDispatch()
 
   return (
     <div className="absolute top-1 left-1 bottom-1 right-1 z-50 backdrop-blur-sm rounded-xl">
@@ -15,7 +17,7 @@ const FinishedTimerOverlay = () => {
         <Button
           size="lg"
           className="bg-orange-500 hover:bg-orange-600 text-white font-medium cursor-pointer"
-          onClick={() => dispatch({ type: 'RESET' })}
+          onClick={() => dispatch(reset())}
         >
           Sıfırla
         </Button>

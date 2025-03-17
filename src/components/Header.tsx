@@ -16,7 +16,7 @@ import { Button } from './ui/button'
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
 import LoginDialog from './login-dialog'
-import { useAuth } from '@/context/auth-context'
+import { useAppSelector, useAppDispatch } from '@/hooks/useRedux'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -25,15 +25,21 @@ import {
 } from './ui/dropdown-menu'
 import { User } from 'lucide-react'
 import { DropdownMenuLabel } from '@radix-ui/react-dropdown-menu'
+import { signOut } from '@/store/slices/auth.slice'
 
 const Header = () => {
   const pathname = usePathname()
   const isActive = (path: string) => pathname === path
   const [isOpen, setIsOpen] = useState(false)
-  const { user, isLoading, signOut } = useAuth()
+  const { user, isLoading } = useAppSelector((state) => state.auth)
+  const dispatch = useAppDispatch()
 
   const handleNavLinkClick = () => {
     setIsOpen(false)
+  }
+
+  const handleSignOut = () => {
+    dispatch(signOut())
   }
 
   const getRouteName = (route: string) => {
@@ -127,7 +133,7 @@ const Header = () => {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="p-2 flex flex-col gap-2">
                   <DropdownMenuLabel className="font-medium">{user.email}</DropdownMenuLabel>
-                  <DropdownMenuItem className="cursor-pointer" onClick={() => signOut()}>
+                  <DropdownMenuItem className="cursor-pointer" onClick={handleSignOut}>
                     Çıkış Yap
                   </DropdownMenuItem>
                 </DropdownMenuContent>
