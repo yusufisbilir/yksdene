@@ -2,7 +2,7 @@
 
 import useClock from '@/hooks/useClock'
 import { useEffect, useState } from 'react'
-import { useTimer } from '@/context/TimerContext'
+import { useTimer } from '@/context/timer-context'
 import getExamStartEndTimes from '@/utils/getExamStartEndTimes'
 import AnalogClock from '../shared/AnalogClock'
 

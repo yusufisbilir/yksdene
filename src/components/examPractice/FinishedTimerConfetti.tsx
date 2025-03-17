@@ -1,5 +1,5 @@
 'use client'
-import { useTimer } from '@/context/TimerContext'
+import { useTimer } from '@/context/timer-context'
 import useWindowSize from '@/hooks/useWindowSize'
 import React from 'react'
 import ReactConfetti from 'react-confetti'

@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { Button } from '../ui/button'
-import { useTimer } from '@/context/TimerContext'
+import { useTimer } from '@/context/timer-context'
 
 const TimerActions = () => {
   const { state, dispatch } = useTimer()
