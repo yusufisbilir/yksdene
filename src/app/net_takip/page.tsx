@@ -29,6 +29,17 @@ import {
   SelectTrigger,
   SelectItem,
 } from '@/components/ui/select'
+import * as z from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form'
 
 interface SubjectResultForm {
   subject_id: string
@@ -36,46 +47,47 @@ interface SubjectResultForm {
   incorrect_count: number
 }
 
+const examFormSchema = z.object({
+  examTemplate: z.string().min(1, 'Deneme türü seçiniz'),
+  examName: z.string().min(1, 'Deneme adı gereklidir'),
+  examDate: z.string().min(1, 'Tarih seçiniz'),
+  subjectResults: z.array(
+    z.object({
+      subject_id: z.string(),
+      correct_count: z.number().min(0, "0'dan küçük olamaz"),
+      incorrect_count: z.number().min(0, "0'dan küçük olamaz"),
+    }),
+  ),
+})
+
+type ExamFormValues = z.infer<typeof examFormSchema>
+
 export default function NetTakipPage() {
-  const [selectedTemplate, setSelectedTemplate] = useState<string>()
-  const [examName, setExamName] = useState('')
   const [isAddingExam, setIsAddingExam] = useState(false)
-  const [showSubjectResults, setShowSubjectResults] = useState(false)
-  const [subjectResults, setSubjectResults] = useState<SubjectResultForm[]>([])
-  const [examDate, setExamDate] = useState(format(new Date(), 'yyyy-MM-dd'))
 
   const { data: examTemplates, isLoading: isLoadingTemplates } = useGetExamTemplatesQuery()
   const { data: examResults, isLoading: isLoadingResults } = useGetExamResultsQuery()
-  const { data: subjects } = useGetSubjectsQuery(selectedTemplate || '', {
-    skip: !selectedTemplate,
-  })
   const [createExamAttemptWithResults] = useCreateExamAttemptWithResultsMutation()
 
-  const handleSubjectResultChange = (
-    subjectId: string,
-    field: 'correct_count' | 'incorrect_count',
-    value: number,
-  ) => {
-    setSubjectResults((prev) => {
-      const existingSubject = prev.find((s) => s.subject_id === subjectId)
-      if (!existingSubject) {
-        return [...prev, { subject_id: subjectId, correct_count: 0, incorrect_count: 0 }]
-      }
-      return prev.map((subject) =>
-        subject.subject_id === subjectId
-          ? {
-              ...subject,
-              [field]: Math.min(
-                Math.max(0, value),
-                subjects?.find((s) => s.id === subjectId)?.question_count || 0,
-              ),
-            }
-          : subject,
-      )
-    })
-  }
+  const form = useForm<ExamFormValues>({
+    resolver: zodResolver(examFormSchema),
+    defaultValues: {
+      examTemplate: examTemplates?.find((template) => template.name === 'TYT')?.id || '',
+      examName: '',
+      examDate: format(new Date(), 'yyyy-MM-dd'),
+      subjectResults: [],
+    },
+  })
+
+  const examTemplate = form.watch('examTemplate')
+
+  const { data: subjects } = useGetSubjectsQuery(examTemplate || '', {
+    skip: !examTemplate,
+    refetchOnMountOrArgChange: true,
+  })
 
   const getTotalStats = () => {
+    const subjectResults = form.watch('subjectResults')
     return subjectResults.reduce(
       (acc, subject) => {
         const subjectTemplate = subjects?.find((s) => s.id === subject.subject_id)
@@ -91,23 +103,19 @@ export default function NetTakipPage() {
     )
   }
 
-  const handleAddExam = async () => {
-    if (!examName || !selectedTemplate) return
-
+  const onSubmit = async (data: ExamFormValues) => {
     try {
       await createExamAttemptWithResults({
         examAttempt: {
-          name: examName,
-          date: examDate,
-          exam_template_id: selectedTemplate,
+          name: data.examName,
+          date: data.examDate,
+          exam_template_id: data.examTemplate,
         },
-        subjectResults: subjectResults,
+        subjectResults: data.subjectResults,
       }).unwrap()
 
       // Reset form
-      setExamName('')
-      setSubjectResults([])
-      setExamDate(format(new Date(), 'yyyy-MM-dd'))
+      form.reset()
       setIsAddingExam(false)
     } catch (error) {
       console.error('Failed to save exam results:', error)
@@ -115,8 +123,22 @@ export default function NetTakipPage() {
   }
 
   useEffect(() => {
-    console.log('examTemplates:', examTemplates)
+    form.setValue(
+      'examTemplate',
+      examTemplates?.find((template) => template.name === 'TYT')?.id ?? '',
+    )
   }, [examTemplates])
+
+  useEffect(() => {
+    if (subjects) {
+      const initialSubjectResults = subjects.map((subject) => ({
+        correct_count: 0,
+        incorrect_count: 0,
+        subject_id: subject.id,
+      }))
+      form.setValue('subjectResults', initialSubjectResults)
+    }
+  }, [subjects, form.setValue])
 
   if (isLoadingTemplates || isLoadingResults) {
     return (
@@ -142,127 +164,168 @@ export default function NetTakipPage() {
           <CardHeader>
             <CardTitle>Yeni Deneme Ekle</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-6">
-            <div className="space-y-4">
-              <div className="space-y-2">
-                <Label>Deneme Türü</Label>
-                <Select
-                  value={selectedTemplate}
-                  onValueChange={(value) => setSelectedTemplate(value)}
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder="Seçiniz" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {examTemplates?.map((template) => (
-                      <SelectItem key={template.id} value={template.id}>
-                        {template.name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="space-y-2">
-                <Label>Başlık</Label>
-                <Input
-                  value={examName}
-                  onChange={(e) => setExamName(e.target.value)}
-                  placeholder="Deneme adını girin"
-                  className="w-full"
-                />
-              </div>
-              <div className="space-y-2">
-                <Label>Tarih</Label>
-                <Input
-                  type="date"
-                  value={examDate}
-                  onChange={(e) => setExamDate(e.target.value)}
-                  className="w-full"
-                />
-              </div>
-            </div>
+          <CardContent>
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                <div className="grid grid-cols-3 gap-4">
+                  <FormField
+                    control={form.control}
+                    name="examTemplate"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Deneme Türü</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger className="w-full">
+                              <SelectValue placeholder="Seçiniz" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            {examTemplates?.map((template) => (
+                              <SelectItem key={template.id} value={template.id}>
+                                {template.name}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
 
-            {selectedTemplate && (
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <h3 className="font-semibold">Sonuçlar</h3>
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm text-muted-foreground">
-                      {getTotalStats().correct} Doğru
-                    </span>
-                    <span className="text-sm text-muted-foreground">
-                      {getTotalStats().incorrect} Yanlış
-                    </span>
-                    <span className="text-sm text-muted-foreground">
-                      {getTotalStats().blank} Boş
-                    </span>
-                    <span className="text-sm font-medium">
-                      {getTotalStats().net.toFixed(2)} Net
-                    </span>
-                  </div>
+                  <FormField
+                    control={form.control}
+                    name="examName"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Başlık</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Deneme adını girin" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="examDate"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Tarih</FormLabel>
+                        <FormControl>
+                          <Input type="date" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
                 </div>
 
-                <div className="space-y-4">
-                  {subjects?.map((subject) => {
-                    const result = subjectResults.find((r) => r.subject_id === subject.id)
-                    return (
-                      <div key={subject.id} className="space-y-2">
-                        <div className="flex items-center gap-2">
-                          <Label>{subject.name}</Label>
-                          <span className="text-sm text-muted-foreground ml-auto">
-                            {subject.question_count} Soru
-                          </span>
-                        </div>
-                        <div className="grid grid-cols-2 gap-4">
-                          <div>
-                            <Input
-                              type="number"
-                              min="0"
-                              max={subject.question_count}
-                              value={result?.correct_count || 0}
-                              onChange={(e) =>
-                                handleSubjectResultChange(
-                                  subject.id,
-                                  'correct_count',
-                                  parseInt(e.target.value) || 0,
-                                )
-                              }
-                              placeholder="Doğru"
-                              className="w-full"
-                            />
-                          </div>
-                          <div>
-                            <Input
-                              type="number"
-                              min="0"
-                              max={subject.question_count}
-                              value={result?.incorrect_count || 0}
-                              onChange={(e) =>
-                                handleSubjectResultChange(
-                                  subject.id,
-                                  'incorrect_count',
-                                  parseInt(e.target.value) || 0,
-                                )
-                              }
-                              placeholder="Yanlış"
-                              className="w-full"
-                            />
-                          </div>
-                        </div>
+                {form.getValues('examTemplate') && subjects && (
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <h3 className="font-semibold">Sonuçlar</h3>
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm text-muted-foreground">
+                          {getTotalStats().correct} Doğru
+                        </span>
+                        <span className="text-sm text-muted-foreground">
+                          {getTotalStats().incorrect} Yanlış
+                        </span>
+                        <span className="text-sm text-muted-foreground">
+                          {getTotalStats().blank} Boş
+                        </span>
+                        <span className="text-sm font-medium">
+                          {getTotalStats().net.toFixed(2)} Net
+                        </span>
                       </div>
-                    )
-                  })}
-                </div>
-              </div>
-            )}
+                    </div>
 
-            <Button
-              onClick={handleAddExam}
-              className="w-full"
-              disabled={!selectedTemplate || !examName}
-            >
-              Kaydet
-            </Button>
+                    {subjects.map((subject) => {
+                      const subjectIndex = form
+                        .getValues('subjectResults')
+                        .findIndex((s) => s.subject_id === subject.id)
+
+                      return (
+                        <div key={subject.id} className="space-y-2">
+                          <div className="flex items-center gap-2">
+                            <Label>{subject.name}</Label>
+                            <span className="text-sm text-muted-foreground ml-auto">
+                              {subject.question_count} Soru
+                            </span>
+                          </div>
+                          <div className="grid grid-cols-2 gap-4">
+                            <FormField
+                              control={form.control}
+                              name={`subjectResults.${subjectIndex}.correct_count`}
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormControl>
+                                    <Input
+                                      type="number"
+                                      min="0"
+                                      max={subject.question_count}
+                                      placeholder="Doğru"
+                                      value={field.value || ''}
+                                      onFocus={(e) => e.target.select()}
+                                      onChange={(e) => {
+                                        const value =
+                                          e.target.value === ''
+                                            ? 0
+                                            : Math.min(
+                                                Math.max(0, parseInt(e.target.value) || 0),
+                                                subject.question_count,
+                                              )
+                                        field.onChange(value)
+                                      }}
+                                    />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                            <FormField
+                              control={form.control}
+                              name={`subjectResults.${subjectIndex}.incorrect_count`}
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormControl>
+                                    <Input
+                                      type="number"
+                                      min="0"
+                                      max={subject.question_count}
+                                      placeholder="Yanlış"
+                                      value={field.value || ''}
+                                      onFocus={(e) => e.target.select()}
+                                      onChange={(e) => {
+                                        const value =
+                                          e.target.value === ''
+                                            ? 0
+                                            : Math.min(
+                                                Math.max(0, parseInt(e.target.value) || 0),
+                                                subject.question_count,
+                                              )
+                                        field.onChange(value)
+                                      }}
+                                    />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
+                )}
+
+                <Button type="submit" className="w-full">
+                  Kaydet
+                </Button>
+              </form>
+            </Form>
           </CardContent>
         </Card>
       )}

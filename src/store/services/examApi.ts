@@ -12,7 +12,7 @@ import {
   SubjectTrend,
   ExamAttemptWithResults,
 } from '@/types/db.types'
-import { getExamTemplates } from '@/lib/supabase/actions/exam.actions'
+import { getExamTemplates, getSubjects } from '@/lib/supabase/actions/exam.actions'
 import { toast } from 'sonner'
 
 const handleError = (error: unknown) => {
@@ -46,14 +46,7 @@ export const examApi = createApi({
     getSubjects: builder.query<Subject[], string>({
       queryFn: async (examTemplateId) => {
         try {
-          const supabase = await createClient()
-          const { data, error } = await supabase
-            .from('subjects')
-            .select('*')
-            .eq('exam_template_id', examTemplateId)
-            .order('display_order')
-
-          if (error) throw error
+          const data = await getSubjects(examTemplateId)
           return { data }
         } catch (error) {
           return { error: handleError(error) }
