@@ -127,6 +127,10 @@ export default function NetTakipPage() {
       'examTemplate',
       examTemplates?.find((template) => template.name === 'TYT')?.id ?? '',
     )
+    form.setValue(
+      'examName',
+      `${examTemplates?.find((template) => template.name === 'TYT')?.name} Denemesi`,
+    )
   }, [examTemplates])
 
   useEffect(() => {
