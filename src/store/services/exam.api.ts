@@ -12,7 +12,12 @@ import {
   SubjectTrend,
   ExamAttemptWithResults,
 } from '@/types/db.types'
-import { getExamTemplates, getSubjects } from '@/lib/supabase/actions/exam.actions'
+import {
+  createExamAttempt,
+  createExamAttemptWithResults,
+  getExamTemplates,
+  getSubjects,
+} from '@/lib/supabase/actions/exam.actions'
 import { toast } from 'sonner'
 
 const handleError = (error: unknown) => {
@@ -56,6 +61,18 @@ export const examApi = createApi({
     }),
 
     // Exam Attempts
+    createExamAttempt: builder.mutation<ExamAttempt, ExamAttemptInsert>({
+      queryFn: async (examAttempt) => {
+        try {
+          const data = await createExamAttempt(examAttempt)
+          return { data }
+        } catch (error) {
+          return { error: handleError(error) }
+        }
+      },
+      invalidatesTags: ['ExamAttempts', 'ExamResults'],
+    }),
+
     getExamAttempts: builder.query<ExamAttempt[], void>({
       queryFn: async () => {
         try {
@@ -91,25 +108,6 @@ export const examApi = createApi({
         }
       },
       providesTags: (result, error, id) => [{ type: 'ExamAttempts', id }],
-    }),
-
-    createExamAttempt: builder.mutation<ExamAttempt, ExamAttemptInsert>({
-      queryFn: async (examAttempt) => {
-        try {
-          const supabase = await createClient()
-          const { data, error } = await supabase
-            .from('exam_attempts')
-            .insert(examAttempt)
-            .select()
-            .single()
-
-          if (error) throw error
-          return { data }
-        } catch (error) {
-          return { error: handleError(error) }
-        }
-      },
-      invalidatesTags: ['ExamAttempts', 'ExamResults'],
     }),
 
     updateExamAttempt: builder.mutation<ExamAttempt, { id: string } & Partial<ExamAttemptInsert>>({
@@ -223,40 +221,12 @@ export const examApi = createApi({
     >({
       queryFn: async ({ examAttempt, subjectResults }) => {
         try {
-          const supabase = await createClient()
+          const data = await createExamAttemptWithResults({
+            examAttempt,
+            subjectResults,
+          })
 
-          // 1. Create exam attempt
-          const { data: examAttemptData, error: examAttemptError } = await supabase
-            .from('exam_attempts')
-            .insert(examAttempt)
-            .select()
-            .single()
-
-          if (examAttemptError) throw examAttemptError
-
-          // 2. Create subject results
-          const subjectResultsToInsert = subjectResults.map((result) => ({
-            ...result,
-            exam_attempt_id: examAttemptData.id,
-          }))
-
-          const { data: subjectResultsData, error: subjectResultsError } = await supabase
-            .from('subject_results')
-            .insert(subjectResultsToInsert)
-            .select()
-
-          if (subjectResultsError) {
-            // Rollback by deleting the exam attempt
-            await supabase.from('exam_attempts').delete().eq('id', examAttemptData.id)
-            throw subjectResultsError
-          }
-
-          return {
-            data: {
-              examAttempt: examAttemptData,
-              subjectResults: subjectResultsData,
-            },
-          }
+          return { data }
         } catch (error) {
           return { error: handleError(error) }
         }
