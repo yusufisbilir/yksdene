@@ -12,9 +12,12 @@ import {
   SubjectTrend,
   ExamAttemptWithResults,
 } from '@/types/db.types'
+import { getExamTemplates } from '@/lib/supabase/actions/exam.actions'
+import { toast } from 'sonner'
 
 const handleError = (error: unknown) => {
   console.error('API Error:', error)
+  toast.error(error instanceof Error ? error.message : 'Bir hata oluştu. Lütfen tekrar deneyin.')
   throw {
     status: error instanceof Error ? error.name : 'UNKNOWN_ERROR',
     message: error instanceof Error ? error.message : 'Bir hata oluştu. Lütfen tekrar deneyin.',
@@ -30,14 +33,7 @@ export const examApi = createApi({
     getExamTemplates: builder.query<ExamTemplate[], void>({
       queryFn: async () => {
         try {
-          const supabase = await createClient()
-          const { data, error } = await supabase
-            .from('exam_templates')
-            .select('*')
-            .order('category')
-            .order('name')
-
-          if (error) throw error
+          const data = await getExamTemplates()
           return { data }
         } catch (error) {
           return { error: handleError(error) }
