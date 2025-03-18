@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import authReducer from './slices/auth.slice'
 import pomodoroReducer from './slices/pomodoro.slice'
 import timerReducer from './slices/timer.slice'
-import { examApi } from './services/examApi'
+import { examApi } from './services/exam-api'
 
 export const store = configureStore({
   reducer: {
