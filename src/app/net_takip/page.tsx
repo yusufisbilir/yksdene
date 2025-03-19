@@ -3,9 +3,9 @@
 import { useEffect, useState } from 'react'
 import {
   useGetExamTemplatesQuery,
-  useGetExamResultsQuery,
   useCreateExamAttemptWithResultsMutation,
   useGetSubjectsQuery,
+  useGetExamAttemptViewsQuery,
 } from '@/store/services/exam.api'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -66,7 +66,8 @@ export default function NetTakipPage() {
   const [isAddingExam, setIsAddingExam] = useState(false)
 
   const { data: examTemplates, isLoading: isLoadingTemplates } = useGetExamTemplatesQuery()
-  const { data: examResults, isLoading: isLoadingResults } = useGetExamResultsQuery()
+  const { data: examAttemptViews, isLoading: isLoadingExamAttemptViews } =
+    useGetExamAttemptViewsQuery()
   const [createExamAttemptWithResults] = useCreateExamAttemptWithResultsMutation()
 
   const form = useForm<ExamFormValues>({
@@ -144,7 +145,11 @@ export default function NetTakipPage() {
     }
   }, [subjects, form.setValue])
 
-  if (isLoadingTemplates || isLoadingResults) {
+  useEffect(() => {
+    console.log('examAttemptViews:', examAttemptViews)
+  }, [examAttemptViews])
+
+  if (isLoadingTemplates || isLoadingExamAttemptViews) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
         <Loader2 className="h-8 w-8 animate-spin" />
@@ -335,29 +340,33 @@ export default function NetTakipPage() {
       )}
 
       {/* Exam results list */}
-      {/* <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {examResults?.map((result) => (
-          <Card key={result.exam_attempt_id}>
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {examAttemptViews?.map((result) => (
+          <Card key={result.attempt_id}>
             <CardHeader>
-              <CardTitle className="text-lg">{result.exam_name}</CardTitle>
+              <CardTitle className="text-lg">{result.attempt_name}</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-2">
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Tarih:</span>
-                  <span>{format(new Date(result.date!), 'dd MMMM yyyy', { locale: tr })}</span>
+                  {result.attempt_date && (
+                    <span>
+                      {format(new Date(result.attempt_date), 'dd MMMM yyyy', { locale: tr })}
+                    </span>
+                  )}
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Doğru:</span>
-                  <span className="text-green-600">{result.correct_count}</span>
+                  <span className="text-green-600">{result.total_correct}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Yanlış:</span>
-                  <span className="text-red-600">{result.incorrect_count}</span>
+                  <span className="text-red-600">{result.total_incorrect}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Boş:</span>
-                  <span className="text-yellow-600">{result.blank_count}</span>
+                  <span className="text-yellow-600">{result.total_blank}</span>
                 </div>
                 <div className="flex justify-between font-semibold">
                   <span>Net:</span>
@@ -369,7 +378,7 @@ export default function NetTakipPage() {
             </CardContent>
           </Card>
         ))}
-      </div> */}
+      </div>
     </div>
   )
 }

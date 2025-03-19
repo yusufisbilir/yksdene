@@ -4,7 +4,7 @@ type ExamTemplate = Tables<'exam_templates'>
 type ExamAttempt = Tables<'exam_attempts'>
 type SubjectResult = Tables<'subject_results'>
 type Subject = Tables<'subjects'>
-type ExamResult = Tables<'exam_results_view'>
+type ExamAttemptView = Tables<'exam_attempt_view'>
 
 type ExamAttemptInsert = TablesInsert<'exam_attempts'>
 type SubjectResultInsert = TablesInsert<'subject_results'>
@@ -50,7 +50,7 @@ export type {
   ExamAttempt,
   SubjectResult,
   Subject,
-  ExamResult,
+  ExamAttemptView,
   ExamAttemptInsert,
   SubjectResultInsert,
   ExamTemplateInsert,

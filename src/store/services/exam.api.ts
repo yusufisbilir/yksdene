@@ -5,7 +5,7 @@ import {
   ExamAttempt,
   SubjectResult,
   Subject,
-  ExamResult,
+  ExamAttemptView,
   ExamAttemptInsert,
   SubjectResultInsert,
   ExamStatistics,
@@ -13,8 +13,8 @@ import {
   ExamAttemptWithResults,
 } from '@/types/db.types'
 import {
-  createExamAttempt,
   createExamAttemptWithResults,
+  getExamAttemptViews,
   getExamTemplates,
   getSubjects,
 } from '@/lib/supabase/actions/exam.actions'
@@ -32,7 +32,7 @@ const handleError = (error: unknown) => {
 export const examApi = createApi({
   reducerPath: 'examApi',
   baseQuery: fetchBaseQuery({ baseUrl: '/' }),
-  tagTypes: ['ExamTemplates', 'ExamAttempts', 'Subjects', 'SubjectResults', 'ExamResults'],
+  tagTypes: ['ExamTemplates', 'ExamAttempts', 'Subjects', 'SubjectResults', 'ExamAttemptView'],
   endpoints: (builder) => ({
     // Exam Templates
     getExamTemplates: builder.query<ExamTemplate[], void>({
@@ -60,19 +60,20 @@ export const examApi = createApi({
       providesTags: (result, error, examTemplateId) => [{ type: 'Subjects', id: examTemplateId }],
     }),
 
-    // Exam Attempts
-    createExamAttempt: builder.mutation<ExamAttempt, ExamAttemptInsert>({
-      queryFn: async (examAttempt) => {
+    // Exam Attempt View
+    getExamAttemptViews: builder.query<ExamAttemptView[], void>({
+      queryFn: async () => {
         try {
-          const data = await createExamAttempt(examAttempt)
+          const data = await getExamAttemptViews()
           return { data }
         } catch (error) {
           return { error: handleError(error) }
         }
       },
-      invalidatesTags: ['ExamAttempts', 'ExamResults'],
+      providesTags: ['ExamAttemptView'],
     }),
 
+    // Exam Attempts
     getExamAttempts: builder.query<ExamAttempt[], void>({
       queryFn: async () => {
         try {
@@ -127,7 +128,7 @@ export const examApi = createApi({
           return { error: handleError(error) }
         }
       },
-      invalidatesTags: (result, error, { id }) => [{ type: 'ExamAttempts', id }, 'ExamResults'],
+      invalidatesTags: (result, error, { id }) => [{ type: 'ExamAttempts', id }, 'ExamAttemptView'],
     }),
 
     deleteExamAttempt: builder.mutation<void, string>({
@@ -142,7 +143,7 @@ export const examApi = createApi({
           return { error: handleError(error) }
         }
       },
-      invalidatesTags: ['ExamAttempts', 'SubjectResults', 'ExamResults'],
+      invalidatesTags: ['ExamAttempts', 'SubjectResults', 'ExamAttemptView'],
     }),
 
     // Subject Results
@@ -184,7 +185,7 @@ export const examApi = createApi({
       },
       invalidatesTags: (result, error, { exam_attempt_id }) => [
         { type: 'SubjectResults', id: exam_attempt_id?.toString() },
-        'ExamResults',
+        'ExamAttemptView',
       ],
     }),
 
@@ -208,7 +209,10 @@ export const examApi = createApi({
           return { error: handleError(error) }
         }
       },
-      invalidatesTags: (result, error, { id }) => [{ type: 'SubjectResults', id }, 'ExamResults'],
+      invalidatesTags: (result, error, { id }) => [
+        { type: 'SubjectResults', id },
+        'ExamAttemptView',
+      ],
     }),
 
     // Transactional operation: Create exam attempt with subject results
@@ -231,7 +235,7 @@ export const examApi = createApi({
           return { error: handleError(error) }
         }
       },
-      invalidatesTags: ['ExamAttempts', 'SubjectResults', 'ExamResults'],
+      invalidatesTags: ['ExamAttempts', 'SubjectResults', 'ExamAttemptView'],
     }),
 
     // Update both exam attempt and subject results
@@ -286,45 +290,8 @@ export const examApi = createApi({
       invalidatesTags: (result, error, { id }) => [
         { type: 'ExamAttempts', id },
         { type: 'SubjectResults', id },
-        'ExamResults',
+        'ExamAttemptView',
       ],
-    }),
-
-    // Exam Results View
-    getExamResults: builder.query<ExamResult[], void>({
-      queryFn: async () => {
-        try {
-          const supabase = await createClient()
-          const { data, error } = await supabase
-            .from('exam_results_view')
-            .select('*')
-            .order('date', { ascending: false })
-
-          if (error) throw error
-          return { data }
-        } catch (error) {
-          return { error: handleError(error) }
-        }
-      },
-      providesTags: ['ExamResults'],
-    }),
-
-    getExamResultsByAttemptId: builder.query<ExamResult[], string>({
-      queryFn: async (examAttemptId) => {
-        try {
-          const supabase = await createClient()
-          const { data, error } = await supabase
-            .from('exam_results_view')
-            .select('*')
-            .eq('exam_attempt_id', examAttemptId)
-
-          if (error) throw error
-          return { data }
-        } catch (error) {
-          return { error: handleError(error) }
-        }
-      },
-      providesTags: (result, error, examAttemptId) => [{ type: 'ExamResults', id: examAttemptId }],
     }),
 
     // Statistics and Analytics
@@ -447,7 +414,7 @@ export const examApi = createApi({
     //     }
     //   },
     //   providesTags: (result, error, examTemplateId) => [
-    //     { type: 'ExamResults', id: examTemplateId },
+    //     { type: 'ExamAttemptView', id: examTemplateId },
     //   ],
     // }),
 
@@ -499,7 +466,7 @@ export const examApi = createApi({
     //     }
     //   },
     //   providesTags: (result, error, examTemplateId) => [
-    //     { type: 'ExamResults', id: examTemplateId },
+    //     { type: 'ExamAttemptView', id: examTemplateId },
     //   ],
     // }),
 
@@ -560,7 +527,7 @@ export const examApi = createApi({
     //       return { error: handleError(error) }
     //     }
     //   },
-    //   providesTags: ['ExamResults'],
+    //   providesTags: ['ExamAttemptView'],
     // }),
 
     // Category comparison - Compare different exam categories
@@ -627,7 +594,7 @@ export const examApi = createApi({
     //       return { error: handleError(error) }
     //     }
     //   },
-    //   providesTags: ['ExamResults'],
+    //   providesTags: ['ExamAttemptView'],
     // }),
   }),
 })
@@ -636,7 +603,6 @@ export const {
   useGetExamTemplatesQuery,
   useGetExamAttemptsQuery,
   useGetExamAttemptByIdQuery,
-  useCreateExamAttemptMutation,
   useUpdateExamAttemptMutation,
   useDeleteExamAttemptMutation,
   useGetSubjectsQuery,
@@ -645,10 +611,5 @@ export const {
   useUpdateSubjectResultMutation,
   useCreateExamAttemptWithResultsMutation,
   useUpdateExamAttemptWithResultsMutation,
-  useGetExamResultsQuery,
-  useGetExamResultsByAttemptIdQuery,
-  // useGetExamStatisticsQuery,
-  // useGetSubjectTrendsQuery,
-  // useGetPerformanceTimelineQuery,
-  // useGetCategoryComparisonQuery,
+  useGetExamAttemptViewsQuery,
 } = examApi
