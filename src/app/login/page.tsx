@@ -2,6 +2,9 @@
 
 import LoginGoogleButton from '@/components/login-google-button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import UserCard from '@/components/user-card'
+import { UserMenu } from '@/components/UserMenu'
+import { useAppSelector } from '@/hooks/useRedux'
 import {
   LineChart,
   Line,
@@ -20,6 +23,7 @@ const data = [
 ]
 
 export default function LoginPage() {
+  const { user } = useAppSelector((state) => state.auth)
   return (
     <div className="flex items-center justify-center p-4">
       <div className="flex flex-col gap-4">
@@ -31,14 +35,16 @@ export default function LoginPage() {
             </CardDescription>
           </CardHeader>
           <CardContent className="w-full">
-            <LoginGoogleButton />
+            {user ? <UserCard /> : <LoginGoogleButton />}
           </CardContent>
         </Card>
 
         <Card className="w-full centered_card_container">
           <CardHeader>
             <CardTitle>Özellikler</CardTitle>
-            <CardDescription>YKS Dene ile net takibi ve daha fazlası</CardDescription>
+            <CardDescription>
+              🎉 YKS Dene ile YKS çalışmanızı daha eğlenceli hale getirin
+            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="space-y-4">
@@ -72,6 +78,19 @@ export default function LoginPage() {
                 <p className="text-sm text-muted-foreground">
                   Detaylı performans raporları ile güçlü ve zayıf yönlerinizi keşfedin. Gelişim
                   alanlarınızı belirleyin.
+                </p>
+              </div>
+              <div className="space-y-2">
+                <h3 className="font-semibold">Sıralamalarda Yarış</h3>
+                <p className="text-sm text-muted-foreground">
+                  Günlük deneme sınavlarında yarışın ve sıralamalarınızı görün.
+                </p>
+              </div>
+              <div className="space-y-2">
+                <h3 className="font-semibold">Gerçek YKS Saati İle Süreni Hesapla</h3>
+                <p className="text-sm text-muted-foreground">
+                  Gerçek sınavda duvar saatine bakarak kalan süreni hesaplayacaksın. Havalı
+                  kronometreler veya pomodoro uygulamaları yok.
                 </p>
               </div>
             </div>
