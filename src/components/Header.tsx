@@ -50,17 +50,19 @@ const Header = () => {
 
   const NavLinks = () => (
     <>
-      {Object.entries(ROUTES).map(([key, value]) => (
-        <Link
-          key={key}
-          href={value}
-          className={cn(isActive(value) ? 'header_nav_link_active' : 'header_nav_link_inactive')}
-          onClick={handleNavLinkClick}
-          suppressHydrationWarning
-        >
-          {getRouteName(value)}
-        </Link>
-      ))}
+      {Object.entries(ROUTES)
+        .filter(([key]) => key !== 'LOGIN')
+        .map(([key, value]) => (
+          <Link
+            key={key}
+            href={value}
+            className={cn(isActive(value) ? 'header_nav_link_active' : 'header_nav_link_inactive')}
+            onClick={handleNavLinkClick}
+            suppressHydrationWarning
+          >
+            {getRouteName(value)}
+          </Link>
+        ))}
     </>
   )
 
