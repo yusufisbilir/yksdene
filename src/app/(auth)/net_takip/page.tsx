@@ -145,10 +145,6 @@ export default function NetTakipPage() {
     }
   }, [subjects, form.setValue])
 
-  useEffect(() => {
-    console.log('examAttemptViews:', examAttemptViews)
-  }, [examAttemptViews])
-
   if (isLoadingTemplates || isLoadingExamAttemptViews) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
