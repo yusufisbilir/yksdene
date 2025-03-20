@@ -29,7 +29,7 @@ export default function LoginPage() {
       <div className="flex flex-col gap-4">
         <Card className="w-full centered_card_container">
           <CardHeader>
-            <CardTitle>YKS Dene'ye Hoş Geldiniz</CardTitle>
+            <CardTitle>YKS Dene&apos;ye Hoş Geldiniz</CardTitle>
             <CardDescription>
               Net takibi ve tüm özelliklere erişmek için giriş yapın
             </CardDescription>

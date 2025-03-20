@@ -69,7 +69,7 @@ export default function NetTakipPage() {
       'examName',
       `${examTemplates?.find((template) => template.name === 'TYT')?.name} Denemesi`,
     )
-  }, [examTemplates])
+  }, [examTemplates, form])
 
   useEffect(() => {
     if (subjects) {
@@ -80,7 +80,7 @@ export default function NetTakipPage() {
       }))
       form.setValue('subjectResults', initialSubjectResults)
     }
-  }, [subjects, form.setValue])
+  }, [subjects, form.setValue, form])
 
   if (isLoadingTemplates || isLoadingExamAttemptViews) {
     return (
