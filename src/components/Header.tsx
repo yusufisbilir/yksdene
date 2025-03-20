@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { ROUTES } from '@/constants/routes'
+import { ROUTES, RouteValue } from '@/constants/routes'
 import {
   Drawer,
   DrawerClose,
@@ -29,7 +29,7 @@ const Header = () => {
     setIsOpen(false)
   }
 
-  const getRouteName = (route: string) => {
+  const getRouteName = (route: RouteValue) => {
     switch (route) {
       case ROUTES.EXAMPRACTICE:
         return 'Deneme'
@@ -37,43 +37,49 @@ const Header = () => {
         return 'Günlük Deneme'
       case ROUTES.POMODORO:
         return 'Pomodoro'
-      case ROUTES.NETTAKIP:
+      case ROUTES.NET_TAKIP:
         return 'Net Takip'
+      case ROUTES.LOGIN:
+        return 'Giriş'
       default:
-        return 'Home'
+        // if route is not in ROUTES, this will throw an error
+        const exhaustiveCheck: never = route
+        return exhaustiveCheck
     }
   }
 
   const NavLinks = () => (
     <>
-      {Object.entries(ROUTES).map(([key, value]) => (
-        <Link
-          key={key}
-          href={value}
-          className={cn(isActive(value) ? 'header_nav_link_active' : 'header_nav_link_inactive')}
-          onClick={handleNavLinkClick}
-          suppressHydrationWarning
-        >
-          {getRouteName(value)}
-        </Link>
-      ))}
+      {Object.entries(ROUTES)
+        .filter(([key]) => key !== 'LOGIN')
+        .map(([key, value]) => (
+          <Link
+            key={key}
+            href={value}
+            className={cn(isActive(value) ? 'header_nav_link_active' : 'header_nav_link_inactive')}
+            onClick={handleNavLinkClick}
+            suppressHydrationWarning
+          >
+            {getRouteName(value)}
+          </Link>
+        ))}
     </>
   )
 
   return (
     <header className="bg-white shadow-sm z-50 h-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-16 items-center">
+      <div className="max-w-7xl mx-auto px-4 lg:px-6 flex justify-between h-16 items-center">
         <Link href="/" className="text-2xl font-bold text-orange-500 flex-shrink-0">
           YKS Dene
         </Link>
         {/* mobile nav */}
-        <div className="sm:hidden">
+        <div className="lg:hidden">
           <Drawer open={isOpen} onOpenChange={setIsOpen}>
             <DrawerTrigger asChild>
               <Button
                 variant="ghost"
                 size="icon"
-                className="text-gray-500"
+                className="text-gray-500 flex items-center justify-center"
                 onClick={() => setIsOpen(true)}
               >
                 <Menu className="h-6 w-6" />
@@ -104,7 +110,7 @@ const Header = () => {
           </Drawer>
         </div>
         {/* Lg nav */}
-        <nav className="hidden sm:flex space-x-8">
+        <nav className="hidden lg:flex space-x-8">
           <NavLinks />
           <div>
             <UserMenu />

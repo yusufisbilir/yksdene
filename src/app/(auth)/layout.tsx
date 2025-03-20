@@ -8,7 +8,7 @@ const Layout = async ({ children }: { children: React.ReactNode }) => {
   const user = await getUser()
 
   if (!user) {
-    return redirect(ROUTES.EXAMPRACTICE)
+    return redirect(ROUTES.LOGIN)
   }
 
   return <>{children}</>
