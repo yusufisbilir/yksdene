@@ -12,8 +12,8 @@ import { Loader2 } from 'lucide-react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { format } from 'date-fns'
-import { AddExamForm } from '@/components/net_takip/AddExamForm'
-import { ExamResultsList } from '@/components/net_takip/ExamResultsList'
+import { AddExamForm } from '@/components/net_takip/add-exam-form'
+import { ExamResultsList } from '@/components/net_takip/exam-results-list'
 import { examFormSchema, ExamFormValues } from '@/components/net_takip/types'
 
 export default function NetTakipPage() {

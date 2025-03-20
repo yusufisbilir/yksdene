@@ -1,4 +1,4 @@
-import { ExamResultCard } from './ExamResultCard'
+import { ExamResultCard } from './exam-result-card'
 import { ExamAttemptView } from './types'
 
 interface ExamResultsListProps {
