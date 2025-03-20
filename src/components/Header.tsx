@@ -97,16 +97,18 @@ const Header = () => {
               <nav className="flex flex-col space-y-4 p-4">
                 <NavLinks />
               </nav>
-              <DrawerFooter>{/* <UserMenu /> */}</DrawerFooter>
+              <DrawerFooter>
+                <UserMenu />
+              </DrawerFooter>
             </DrawerContent>
           </Drawer>
         </div>
         {/* Lg nav */}
         <nav className="hidden sm:flex space-x-8">
           <NavLinks />
-          {/* <div>
+          <div>
             <UserMenu />
-          </div> */}
+          </div>
         </nav>
       </div>
     </header>
