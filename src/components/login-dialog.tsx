@@ -13,31 +13,9 @@ import { createClient } from '@/lib/supabase/client'
 import { getURL } from '@/utils/getGoogleAuthRedirectURL'
 import { LogIn, User } from 'lucide-react'
 import { useState } from 'react'
+import LoginGoogleButton from './login-google-button'
 
 const LoginDialog = () => {
-  const [isLoading, setIsLoading] = useState(false)
-  const supabase = createClient()
-
-  async function handleGoogleLogin() {
-    try {
-      setIsLoading(true)
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: {
-          redirectTo: getURL(),
-        },
-      })
-
-      if (error) {
-        throw error
-      }
-    } catch (error) {
-      console.error('Error:', error)
-    } finally {
-      setIsLoading(false)
-    }
-  }
-
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -52,15 +30,7 @@ const LoginDialog = () => {
             Netlerini takip et, sıralamalarda yarış. YKS çalışmayı eğlenceli hale getir. 🎉
           </DialogDescription>
         </DialogHeader>
-        <Button
-          type="submit"
-          className="flex items-center gap-2 justify-center"
-          onClick={handleGoogleLogin}
-          disabled={isLoading}
-        >
-          <LogIn className="w-4 h-4" />
-          {isLoading ? 'Giriş yapılıyor...' : 'Google ile Giriş Yap'}
-        </Button>
+        <LoginGoogleButton />
       </DialogContent>
     </Dialog>
   )
