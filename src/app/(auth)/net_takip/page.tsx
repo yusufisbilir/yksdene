@@ -2,9 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import {
-  useGetExamTemplatesQuery,
   useCreateExamAttemptWithResultsMutation,
-  useGetSubjectsQuery,
   useGetExamAttemptViewsQuery,
 } from '@/store/services/exam.api'
 import { Button } from '@/components/ui/button'
@@ -15,11 +13,11 @@ import { format } from 'date-fns'
 import { AddExamForm } from '@/components/net_takip/add-exam-form'
 import { ExamResultsList } from '@/components/net_takip/exam-results-list'
 import { examFormSchema, ExamFormValues } from '@/components/net_takip/types'
+import { examTemplates, subjects as dbSubjects } from '@/constants/db.constants'
 
 export default function NetTakipPage() {
   const [isAddingExam, setIsAddingExam] = useState(false)
-
-  const { data: examTemplates, isLoading: isLoadingTemplates } = useGetExamTemplatesQuery()
+  const [subjects, setSubjects] = useState(dbSubjects)
   const { data: examAttemptViews, isLoading: isLoadingExamAttemptViews } =
     useGetExamAttemptViewsQuery()
   const [createExamAttemptWithResults] = useCreateExamAttemptWithResultsMutation()
@@ -35,11 +33,6 @@ export default function NetTakipPage() {
   })
 
   const examTemplate = form.watch('examTemplate')
-
-  const { data: subjects } = useGetSubjectsQuery(examTemplate || '', {
-    skip: !examTemplate,
-    refetchOnMountOrArgChange: true,
-  })
 
   const onSubmit = async (data: ExamFormValues) => {
     try {
@@ -61,17 +54,6 @@ export default function NetTakipPage() {
   }
 
   useEffect(() => {
-    form.setValue(
-      'examTemplate',
-      examTemplates?.find((template) => template.name === 'TYT')?.id ?? '',
-    )
-    form.setValue(
-      'examName',
-      `${examTemplates?.find((template) => template.name === 'TYT')?.name} Denemesi`,
-    )
-  }, [examTemplates, form])
-
-  useEffect(() => {
     if (subjects) {
       const initialSubjectResults = subjects.map((subject) => ({
         correct_count: 0,
@@ -82,7 +64,20 @@ export default function NetTakipPage() {
     }
   }, [subjects, form.setValue, form])
 
-  if (isLoadingTemplates || isLoadingExamAttemptViews) {
+  useEffect(() => {
+    if (examTemplate) {
+      const filteredSubjects = dbSubjects.filter(
+        (subject) => subject.exam_template_id === examTemplate,
+      )
+      setSubjects(filteredSubjects)
+      form.setValue(
+        'examName',
+        `${examTemplates.find((template) => template.id === examTemplate)?.name} Denemesi`,
+      )
+    }
+  }, [examTemplate, form])
+
+  if (isLoadingExamAttemptViews) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
         <Loader2 className="h-8 w-8 animate-spin" />
