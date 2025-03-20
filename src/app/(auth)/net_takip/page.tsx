@@ -157,9 +157,9 @@ export default function NetTakipPage() {
     <div className="max-w-4xl w-full centered_card_container">
       {/* Header */}
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold">Net Takip</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold">Net Takip</h1>
         <Button onClick={() => setIsAddingExam(!isAddingExam)}>
-          {isAddingExam ? 'İptal' : 'Yeni Deneme Ekle'}
+          {isAddingExam ? 'İptal' : 'Deneme Ekle'}
         </Button>
       </div>
 
