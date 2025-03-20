@@ -172,7 +172,7 @@ export default function NetTakipPage() {
           <CardContent>
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <FormField
                     control={form.control}
                     name="examTemplate"
@@ -229,7 +229,7 @@ export default function NetTakipPage() {
 
                 {form.getValues('examTemplate') && subjects && (
                   <div className="space-y-4">
-                    <div className="flex items-center justify-between">
+                    <div className="flex sm:flex-row flex-col items-center justify-between gap-2">
                       <h3 className="font-semibold">Sonuçlar</h3>
                       <div className="flex items-center gap-2">
                         <span className="text-sm text-muted-foreground">
