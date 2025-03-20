@@ -1,22 +1,16 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { createClient } from '@/lib/supabase/client'
 import {
-  ExamTemplate,
   ExamAttempt,
   SubjectResult,
-  Subject,
   ExamAttemptView,
   ExamAttemptInsert,
   SubjectResultInsert,
-  ExamStatistics,
-  SubjectTrend,
   ExamAttemptWithResults,
 } from '@/types/db.types'
 import {
   createExamAttemptWithResults,
   getExamAttemptViews,
-  getExamTemplates,
-  getSubjects,
 } from '@/lib/supabase/actions/exam.actions'
 import { toast } from 'sonner'
 
@@ -34,32 +28,6 @@ export const examApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: '/' }),
   tagTypes: ['ExamTemplates', 'ExamAttempts', 'Subjects', 'SubjectResults', 'ExamAttemptView'],
   endpoints: (builder) => ({
-    // Exam Templates
-    getExamTemplates: builder.query<ExamTemplate[], void>({
-      queryFn: async () => {
-        try {
-          const data = await getExamTemplates()
-          return { data }
-        } catch (error) {
-          return { error: handleError(error) }
-        }
-      },
-      providesTags: ['ExamTemplates'],
-    }),
-
-    // Subjects
-    getSubjects: builder.query<Subject[], string>({
-      queryFn: async (examTemplateId) => {
-        try {
-          const data = await getSubjects(examTemplateId)
-          return { data }
-        } catch (error) {
-          return { error: handleError(error) }
-        }
-      },
-      providesTags: (result, error, examTemplateId) => [{ type: 'Subjects', id: examTemplateId }],
-    }),
-
     // Exam Attempt View
     getExamAttemptViews: builder.query<ExamAttemptView[], void>({
       queryFn: async () => {
@@ -600,12 +568,10 @@ export const examApi = createApi({
 })
 
 export const {
-  useGetExamTemplatesQuery,
   useGetExamAttemptsQuery,
   useGetExamAttemptByIdQuery,
   useUpdateExamAttemptMutation,
   useDeleteExamAttemptMutation,
-  useGetSubjectsQuery,
   useGetSubjectResultsQuery,
   useCreateSubjectResultMutation,
   useUpdateSubjectResultMutation,
