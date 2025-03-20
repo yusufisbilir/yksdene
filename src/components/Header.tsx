@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { ROUTES } from '@/constants/routes'
+import { ROUTES, RouteValue } from '@/constants/routes'
 import {
   Drawer,
   DrawerClose,
@@ -29,7 +29,7 @@ const Header = () => {
     setIsOpen(false)
   }
 
-  const getRouteName = (route: string) => {
+  const getRouteName = (route: RouteValue) => {
     switch (route) {
       case ROUTES.EXAMPRACTICE:
         return 'Deneme'
@@ -39,8 +39,12 @@ const Header = () => {
         return 'Pomodoro'
       case ROUTES.NET_TAKIP:
         return 'Net Takip'
+      case ROUTES.LOGIN:
+        return 'Giriş'
       default:
-        return 'Home'
+        // if route is not in ROUTES, this will throw an error
+        const exhaustiveCheck: never = route
+        return exhaustiveCheck
     }
   }
 

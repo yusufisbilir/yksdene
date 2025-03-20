@@ -5,3 +5,5 @@ export const ROUTES = {
   NET_TAKIP: '/net_takip',
   LOGIN: '/login',
 } as const
+
+export type RouteValue = (typeof ROUTES)[keyof typeof ROUTES]
