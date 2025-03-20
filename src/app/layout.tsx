@@ -2,10 +2,13 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/Header'
-import { TimerProvider } from '@/contexts/TimerContext'
 import { Analytics } from '@vercel/analytics/react'
-import { PomodoroProvider } from '@/contexts/PomodoroContext'
 import { SpeedInsights } from '@vercel/speed-insights/next'
+import { ReduxProvider } from '@/providers/redux-provider'
+import { ExamTimer } from '@/providers/exam-timer'
+import { AuthProvider } from '@/providers/auth-provider'
+import { PomodoroTimer } from '@/providers/pomodoro-timer'
+import { Toaster } from '@/components/ui/sonner'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -24,12 +27,17 @@ export default function RootLayout({
       <body className={`${inter.className} root_layout_container`}>
         <Analytics />
         <SpeedInsights />
-        <TimerProvider>
-          <PomodoroProvider>
-            <Header />
-            <main className="root_layout_children_wrapper">{children}</main>
-          </PomodoroProvider>
-        </TimerProvider>
+        <ReduxProvider>
+          <AuthProvider>
+            <PomodoroTimer>
+              <ExamTimer>
+                <Header />
+                <main className="root_layout_children_wrapper">{children}</main>
+                <Toaster />
+              </ExamTimer>
+            </PomodoroTimer>
+          </AuthProvider>
+        </ReduxProvider>
       </body>
     </html>
   )

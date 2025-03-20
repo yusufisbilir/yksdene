@@ -1,6 +1,5 @@
 'use client'
 
-import { usePomodoro } from '@/contexts/PomodoroContext'
 import { Button } from './ui/button'
 import { Card, CardContent } from './ui/card'
 import { Input } from './ui/input'
@@ -10,9 +9,12 @@ import { PlayIcon, PauseIcon, RefreshCwIcon } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 import formatTime from '@/utils/formatTime'
+import { useAppDispatch, useAppSelector } from '@/hooks/useRedux'
+import { pause, reset, setMode, start, updateSettings } from '@/store/slices/pomodoro.slice'
 
 export function Pomodoro() {
-  const { state, dispatch } = usePomodoro()
+  const pomodoro = useAppSelector((state) => state.pomodoro)
+  const dispatch = useAppDispatch()
   const [isMounted, setIsMounted] = useState(false)
   const [settings, setSettings] = useLocalStorage('pomodoroSettings', {
     pomodoroTime: 25,
@@ -40,7 +42,7 @@ export function Pomodoro() {
 
   const saveSettings = () => {
     setSettings(tempSettings)
-    dispatch({ type: 'UPDATE_SETTINGS', payload: tempSettings })
+    dispatch(updateSettings(tempSettings))
   }
 
   return (
@@ -49,42 +51,48 @@ export function Pomodoro() {
         <div className="flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-4">
           <Button
             className="w-full sm:w-auto"
-            variant={state.currentMode === 'pomodoro' ? 'default' : 'outline'}
-            onClick={() => dispatch({ type: 'SET_MODE', payload: 'pomodoro' })}
+            variant={pomodoro.currentMode === 'pomodoro' ? 'default' : 'outline'}
+            onClick={() => dispatch(setMode('pomodoro'))}
           >
             Pomodoro
           </Button>
           <Button
             className="w-full sm:w-auto"
-            variant={state.currentMode === 'shortBreak' ? 'default' : 'outline'}
-            onClick={() => dispatch({ type: 'SET_MODE', payload: 'shortBreak' })}
+            variant={pomodoro.currentMode === 'shortBreak' ? 'default' : 'outline'}
+            onClick={() => dispatch(setMode('shortBreak'))}
           >
             Kısa Mola
           </Button>
           <Button
             className="w-full sm:w-auto"
-            variant={state.currentMode === 'longBreak' ? 'default' : 'outline'}
-            onClick={() => dispatch({ type: 'SET_MODE', payload: 'longBreak' })}
+            variant={pomodoro.currentMode === 'longBreak' ? 'default' : 'outline'}
+            onClick={() => dispatch(setMode('longBreak'))}
           >
             Uzun Mola
           </Button>
         </div>
 
         <div className="text-center">
-          <h2 className="text-6xl font-bold my-8">{formatTime(state.minutes, state.seconds)}</h2>
+          <h2 className="text-6xl font-bold my-8">
+            {formatTime(pomodoro.minutes, pomodoro.seconds)}
+          </h2>
         </div>
 
         <div className="flex justify-center space-x-4">
-          <Button onClick={() => dispatch({ type: state.isRunning ? 'PAUSE' : 'START' })} size="lg">
-            {state.isRunning ? <PauseIcon className="h-6 w-6" /> : <PlayIcon className="h-6 w-6" />}
+          <Button onClick={() => dispatch(pomodoro.isRunning ? pause() : start())} size="lg">
+            {pomodoro.isRunning ? (
+              <PauseIcon className="h-6 w-6" />
+            ) : (
+              <PlayIcon className="h-6 w-6" />
+            )}
           </Button>
-          <Button onClick={() => dispatch({ type: 'RESET' })} variant="outline" size="lg">
+          <Button onClick={() => dispatch(reset())} variant="outline" size="lg">
             <RefreshCwIcon className="h-6 w-6" />
           </Button>
         </div>
 
         <div className="text-center text-sm text-muted-foreground">
-          Tamamlanan Pomodoro: {state.completedPomodoros}
+          Tamamlanan Pomodoro: {pomodoro.completedPomodoros}
         </div>
       </div>
 

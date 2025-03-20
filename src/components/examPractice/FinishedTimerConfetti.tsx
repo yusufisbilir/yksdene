@@ -1,11 +1,11 @@
 'use client'
-import { useTimer } from '@/contexts/TimerContext'
+import { useAppSelector } from '@/hooks/useRedux'
 import useWindowSize from '@/hooks/useWindowSize'
 import React from 'react'
 import ReactConfetti from 'react-confetti'
 
 const FinishedTimerConfetti = () => {
-  const { state } = useTimer()
+  const timerState = useAppSelector((state) => state.timer)
   const { width, height } = useWindowSize()
   const [isMounted, setIsMounted] = React.useState(false)
 
@@ -13,7 +13,7 @@ const FinishedTimerConfetti = () => {
     setIsMounted(true)
     let audio: HTMLAudioElement | undefined
 
-    if (typeof window !== 'undefined' && state.isFinished) {
+    if (typeof window !== 'undefined' && timerState.isFinished) {
       audio = new Audio('/sounds/end_notification.wav')
 
       audio.load()
@@ -34,7 +34,7 @@ const FinishedTimerConfetti = () => {
         audio.currentTime = 0
       }
     }
-  }, [state.isFinished])
+  }, [timerState.isFinished])
 
   if (!isMounted) return null
 

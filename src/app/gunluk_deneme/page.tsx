@@ -6,14 +6,15 @@ import { useEffect, useState } from 'react'
 import { useLocalStorage } from 'usehooks-ts'
 import getExamStartEndTimes from '@/utils/getExamStartEndTimes'
 import useDailyExamTimer from '@/hooks/useDailyExamTimer'
-import { useTimer } from '@/contexts/TimerContext'
+import { useAppSelector, useAppDispatch } from '@/hooks/useRedux'
+import { start, pause, reset } from '@/store/slices/timer.slice'
 import AnalogClock from '@/components/shared/AnalogClock'
 import ExamInfo from '@/components/dailyExamPractice/ExamInfo'
 import DailyExamPracticeOverlay from '@/components/dailyExamPractice/DailyExamPracticeOverlay'
 
 const Page = () => {
   const [isMounted, setIsMounted] = useState(false)
-  const { state: timer } = useTimer()
+  const timerState = useAppSelector((state) => state.timer)
   const [isVisibleDailyExamPractice, setIsVisibleDailyExamPractice] = useLocalStorage(
     'isVisibleDailyExamPractice',
     true,
@@ -28,20 +29,20 @@ const Page = () => {
 
   useEffect(() => {
     setIsMounted(true)
-    const [startHours, startMinutes] = getExamStartEndTimes(timer.selectedExam)
+    const [startHours, startMinutes] = getExamStartEndTimes(timerState.selectedExam)
       .start.split(':')
       .map(Number)
     const startDate = new Date()
     startDate.setHours(startHours, startMinutes, 0, 0)
     setStartDate(startDate)
 
-    const [endHours, endMinutes] = getExamStartEndTimes(timer.selectedExam)
+    const [endHours, endMinutes] = getExamStartEndTimes(timerState.selectedExam)
       .end.split(':')
       .map(Number)
     const endDate = new Date()
     endDate.setHours(endHours, endMinutes, 0, 0)
     setEndDate(endDate)
-  }, [timer.selectedExam])
+  }, [timerState.selectedExam])
 
   if (!isMounted) {
     return null
@@ -67,7 +68,7 @@ const Page = () => {
           <DailyExamPracticeOverlay startDate={startDate} endDate={endDate} />
           <AnalogClock clockRotations={clockRotations} />
         </div>
-        <ExamInfo selectedExam={timer.selectedExam} />
+        <ExamInfo selectedExam={timerState.selectedExam} />
       </div>
     </section>
   )

@@ -1,16 +1,17 @@
 'use client'
+
 import ExamPracticeClock from '@/components/examPractice/ExamPracticeClock'
 import ExamSelect from '@/components/examPractice/ExamSelect'
 import FinishedTimerConfetti from '@/components/examPractice/FinishedTimerConfetti'
 import FinishedTimerOverlay from '@/components/examPractice/FinishedTimerOverlay'
 import TimerActions from '@/components/examPractice/TimerActions'
 import { Button } from '@/components/ui/button'
-import { useTimer } from '@/contexts/TimerContext'
+import { useAppSelector } from '@/hooks/useRedux'
 import { useEffect, useState } from 'react'
 import { useLocalStorage } from 'usehooks-ts'
 
 const Page = () => {
-  const { state } = useTimer()
+  const timerState = useAppSelector((state) => state.timer)
   const [isMounted, setIsMounted] = useState(false)
   const [isVisibleExamPractice, setIsVisibleExamPractice] = useLocalStorage(
     'isVisibleExamPractice',
@@ -27,7 +28,7 @@ const Page = () => {
 
   return (
     <section className="flex flex-col gap-y-2 my-4">
-      {state.isFinished && <FinishedTimerConfetti />}
+      {timerState.isFinished && <FinishedTimerConfetti />}
       {isVisibleExamPractice && (
         <div className="centered_card_container gap-y-2">
           <h1 className="font-semibold">İşte o saat 😱</h1>
@@ -46,7 +47,7 @@ const Page = () => {
         </div>
       )}
       <div className="centered_card_container z-40">
-        {state.isFinished && <FinishedTimerOverlay />}
+        {timerState.isFinished && <FinishedTimerOverlay />}
         <ExamSelect />
         <ExamPracticeClock />
         <TimerActions />

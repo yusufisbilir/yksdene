@@ -7,6 +7,7 @@ import {
   Drawer,
   DrawerClose,
   DrawerContent,
+  DrawerFooter,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
@@ -15,6 +16,9 @@ import { Menu } from 'lucide-react'
 import { Button } from './ui/button'
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
+import { useAppSelector, useAppDispatch } from '@/hooks/useRedux'
+import { signOut } from '@/store/slices/auth.slice'
+import { UserMenu } from './UserMenu'
 
 const Header = () => {
   const pathname = usePathname()
@@ -33,6 +37,8 @@ const Header = () => {
         return 'Günlük Deneme'
       case ROUTES.POMODORO:
         return 'Pomodoro'
+      case ROUTES.NETTAKIP:
+        return 'Net Takip'
       default:
         return 'Home'
     }
@@ -91,12 +97,18 @@ const Header = () => {
               <nav className="flex flex-col space-y-4 p-4">
                 <NavLinks />
               </nav>
+              <DrawerFooter>
+                <UserMenu />
+              </DrawerFooter>
             </DrawerContent>
           </Drawer>
         </div>
         {/* Lg nav */}
         <nav className="hidden sm:flex space-x-8">
           <NavLinks />
+          <div>
+            <UserMenu />
+          </div>
         </nav>
       </div>
     </header>
