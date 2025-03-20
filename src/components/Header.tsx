@@ -37,7 +37,7 @@ const Header = () => {
         return 'Günlük Deneme'
       case ROUTES.POMODORO:
         return 'Pomodoro'
-      case ROUTES.NETTAKIP:
+      case ROUTES.NET_TAKIP:
         return 'Net Takip'
       default:
         return 'Home'
