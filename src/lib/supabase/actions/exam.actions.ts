@@ -1,6 +1,5 @@
 'use server'
 
-import { createClient } from '@/lib/supabase/server'
 import {
   ExamAttempt,
   ExamAttemptInsert,
@@ -8,11 +7,12 @@ import {
   ExamAttemptWithResults,
   SubjectResultInsert,
 } from '@/types/db.types'
+import { createClerkSupabaseClientSsr } from '../server'
 
 // Exam Attempts
 async function createExamAttempt(examAttempt: ExamAttemptInsert): Promise<ExamAttempt> {
-  const supabase = await createClient()
-  const { data, error } = await supabase.from('exam_attempts').insert(examAttempt).select().single()
+  const client = await createClerkSupabaseClientSsr()
+  const { data, error } = await client.from('exam_attempts').insert(examAttempt).select().single()
 
   if (error) throw error.message ?? 'Create exam attempt get error'
   return data
@@ -25,8 +25,7 @@ export async function createExamAttemptWithResults({
   examAttempt: ExamAttemptInsert
   subjectResults: Omit<SubjectResultInsert, 'exam_attempt_id'>[]
 }): Promise<ExamAttemptWithResults> {
-  const supabase = await createClient()
-
+  const client = await createClerkSupabaseClientSsr()
   // 1. Create exam attempt
   const examAttemptData = await createExamAttempt(examAttempt)
 
@@ -36,14 +35,14 @@ export async function createExamAttemptWithResults({
     exam_attempt_id: examAttemptData.id,
   }))
 
-  const { data: subjectResultsData, error: subjectResultsError } = await supabase
+  const { data: subjectResultsData, error: subjectResultsError } = await client
     .from('subject_results')
     .insert(subjectResultsToInsert)
     .select()
 
   if (subjectResultsError) {
     // Rollback by deleting the exam attempt
-    await supabase.from('exam_attempts').delete().eq('id', examAttemptData.id)
+    await client.from('exam_attempts').delete().eq('id', examAttemptData.id)
     throw subjectResultsError.message ?? 'Create subject results get error'
   }
 
@@ -54,8 +53,8 @@ export async function createExamAttemptWithResults({
 }
 
 export async function getExamAttemptViews(): Promise<ExamAttemptView[]> {
-  const supabase = await createClient()
-  const { data, error } = await supabase
+  const client = await createClerkSupabaseClientSsr()
+  const { data, error } = await client
     .from('exam_attempt_view')
     .select('*')
     .order('attempt_date', { ascending: false })
@@ -65,8 +64,8 @@ export async function getExamAttemptViews(): Promise<ExamAttemptView[]> {
 }
 
 export async function deleteExamAttempt(id: string): Promise<ExamAttempt[] | null> {
-  const supabase = await createClient()
-  const { data, error } = await supabase.from('exam_attempts').delete().eq('id', id)
+  const client = await createClerkSupabaseClientSsr()
+  const { data, error } = await client.from('exam_attempts').delete().eq('id', id)
   if (error) throw error.message ?? 'Delete exam attempt get error'
 
   return data

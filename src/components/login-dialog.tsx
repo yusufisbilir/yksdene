@@ -9,10 +9,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog'
-import { createClient } from '@/lib/supabase/client'
-import { getURL } from '@/utils/getGoogleAuthRedirectURL'
-import { LogIn, User } from 'lucide-react'
-import { useState } from 'react'
+import { User } from 'lucide-react'
 import LoginGoogleButton from './login-google-button'
 
 const LoginDialog = () => {

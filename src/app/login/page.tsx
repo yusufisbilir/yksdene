@@ -1,10 +1,13 @@
 'use client'
 
-import LoginGoogleButton from '@/components/login-google-button'
+import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import UserCard from '@/components/user-card'
-import { UserMenu } from '@/components/UserMenu'
-import { useAppSelector } from '@/hooks/useRedux'
+import { SignedIn } from '@clerk/nextjs'
+import { SignUpButton } from '@clerk/nextjs'
+import { SignInButton } from '@clerk/nextjs'
+import { SignedOut } from '@clerk/nextjs'
+import { UserButton } from '@clerk/nextjs'
+import { User } from 'lucide-react'
 import {
   LineChart,
   Line,
@@ -23,7 +26,6 @@ const data = [
 ]
 
 export default function LoginPage() {
-  const { user } = useAppSelector((state) => state.auth)
   return (
     <div className="flex items-center justify-center p-4">
       <div className="flex flex-col gap-4">
@@ -35,7 +37,19 @@ export default function LoginPage() {
             </CardDescription>
           </CardHeader>
           <CardContent className="w-full">
-            {user ? <UserCard /> : <LoginGoogleButton />}
+            <SignedOut>
+              <SignInButton>
+                <Button variant="outline" className="w-full">
+                  <div className="flex items-center gap-2">
+                    <User className="h-5 w-5" />
+                    <span className="text-sm font-medium">Giriş Yap</span>
+                  </div>
+                </Button>
+              </SignInButton>
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
           </CardContent>
         </Card>
 

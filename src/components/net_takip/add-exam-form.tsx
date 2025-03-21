@@ -20,15 +20,36 @@ import { UseFormReturn } from 'react-hook-form'
 import { SubjectResults } from './subject-results'
 import { TotalStats } from './total-stats'
 import { ExamFormValues, ExamTemplate, Subject } from './types'
+import { ReactNode } from 'react'
 
 interface AddExamFormProps {
   form: UseFormReturn<ExamFormValues>
   examTemplates: ExamTemplate[]
   subjects: Subject[]
   onSubmit: (data: ExamFormValues) => Promise<void>
+  children?: ReactNode
 }
 
-export function AddExamForm({ form, examTemplates, subjects, onSubmit }: AddExamFormProps) {
+interface SubmitButtonProps {
+  children: ReactNode
+  disabled?: boolean
+}
+
+function SubmitButton({ children, disabled }: SubmitButtonProps) {
+  return (
+    <Button type="submit" className="w-full" disabled={disabled}>
+      {children}
+    </Button>
+  )
+}
+
+export function AddExamForm({
+  form,
+  examTemplates,
+  subjects,
+  onSubmit,
+  children,
+}: AddExamFormProps) {
   const getTotalStats = () => {
     const subjectResults = form.watch('subjectResults')
     return subjectResults.reduce(
@@ -119,12 +140,12 @@ export function AddExamForm({ form, examTemplates, subjects, onSubmit }: AddExam
               </div>
             )}
 
-            <Button type="submit" className="w-full">
-              Kaydet
-            </Button>
+            {children || <SubmitButton>Kaydet</SubmitButton>}
           </form>
         </Form>
       </CardContent>
     </Card>
   )
 }
+
+AddExamForm.SubmitButton = SubmitButton

@@ -10,6 +10,8 @@
     "watch": "tsc --watch"
   },
   "dependencies": {
+    "@clerk/localizations": "^3.13.1",
+    "@clerk/nextjs": "^6.12.7",
     "@hookform/resolvers": "^4.1.3",
     "@radix-ui/react-collapsible": "^1.1.3",
     "@radix-ui/react-dialog": "^1.1.6",
