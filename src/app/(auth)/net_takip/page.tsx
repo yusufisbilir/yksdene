@@ -20,7 +20,8 @@ export default function NetTakipPage() {
   const [subjects, setSubjects] = useState(dbSubjects)
   const { data: examAttemptViews, isLoading: isLoadingExamAttemptViews } =
     useGetExamAttemptViewsQuery()
-  const [createExamAttemptWithResults] = useCreateExamAttemptWithResultsMutation()
+  const [createExamAttemptWithResults, { isLoading: isLoadingCreateExamAttemptWithResults }] =
+    useCreateExamAttemptWithResultsMutation()
 
   const form = useForm<ExamFormValues>({
     resolver: zodResolver(examFormSchema),
@@ -80,7 +81,7 @@ export default function NetTakipPage() {
   if (isLoadingExamAttemptViews) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
-        <Loader2 className="h-8 w-8 animate-spin" />
+        <Loader2 className="h-12 w-12 animate-spin text-primary" />
       </div>
     )
   }
@@ -102,7 +103,18 @@ export default function NetTakipPage() {
           examTemplates={examTemplates || []}
           subjects={subjects || []}
           onSubmit={onSubmit}
-        />
+        >
+          <AddExamForm.SubmitButton disabled={isLoadingCreateExamAttemptWithResults}>
+            {isLoadingCreateExamAttemptWithResults ? (
+              <div className="flex items-center gap-4">
+                <Loader2 className="h-8 w-8 animate-spin text-white" />
+                <p>Deneme Kaydediliyor...</p>
+              </div>
+            ) : (
+              'Kaydet'
+            )}
+          </AddExamForm.SubmitButton>
+        </AddExamForm>
       )}
 
       {/* Exam results list */}
