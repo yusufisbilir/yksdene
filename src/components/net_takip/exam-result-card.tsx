@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { format } from 'date-fns'
 import { tr } from 'date-fns/locale'
 import { ExamAttemptView } from './types'
+import DeleteExamAttemptButton from './delete-exam_attempt_button'
 
 export function ExamResultCard({
   attempt_name,
@@ -10,11 +11,13 @@ export function ExamResultCard({
   total_incorrect,
   total_blank,
   net_score,
+  attempt_id,
 }: ExamAttemptView) {
   return (
     <Card>
-      <CardHeader>
+      <CardHeader className="flex flex-row items-center justify-between w-full">
         <CardTitle className="text-lg">{attempt_name || 'İsimsiz Deneme'}</CardTitle>
+        {attempt_id && <DeleteExamAttemptButton attempt_id={attempt_id} />}
       </CardHeader>
       <CardContent>
         <div className="space-y-2">

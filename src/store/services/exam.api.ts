@@ -10,6 +10,7 @@ import {
 } from '@/types/db.types'
 import {
   createExamAttemptWithResults,
+  deleteExamAttempt,
   getExamAttemptViews,
 } from '@/lib/supabase/actions/exam.actions'
 import { toast } from 'sonner'
@@ -99,14 +100,11 @@ export const examApi = createApi({
       invalidatesTags: (result, error, { id }) => [{ type: 'ExamAttempts', id }, 'ExamAttemptView'],
     }),
 
-    deleteExamAttempt: builder.mutation<void, string>({
+    deleteExamAttempt: builder.mutation<ExamAttempt[] | null, string>({
       queryFn: async (id) => {
         try {
-          const supabase = await createClient()
-          const { error } = await supabase.from('exam_attempts').delete().eq('id', id)
-
-          if (error) throw error
-          return { data: undefined }
+          const result = await deleteExamAttempt(id)
+          return { data: result }
         } catch (error) {
           return { error: handleError(error) }
         }
