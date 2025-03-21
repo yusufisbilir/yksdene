@@ -16,8 +16,6 @@ import { Menu } from 'lucide-react'
 import { Button } from './ui/button'
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
-import { useAppSelector, useAppDispatch } from '@/hooks/useRedux'
-import { signOut } from '@/store/slices/auth.slice'
 import { UserMenu } from './UserMenu'
 
 const Header = () => {
@@ -110,7 +108,7 @@ const Header = () => {
           </Drawer>
         </div>
         {/* Lg nav */}
-        <nav className="hidden lg:flex space-x-8">
+        <nav className="hidden lg:flex items-center space-x-8">
           <NavLinks />
           <div>
             <UserMenu />

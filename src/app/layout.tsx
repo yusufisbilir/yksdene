@@ -6,9 +6,10 @@ import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { ReduxProvider } from '@/providers/redux-provider'
 import { ExamTimer } from '@/providers/exam-timer'
-import { AuthProvider } from '@/providers/auth-provider'
 import { PomodoroTimer } from '@/providers/pomodoro-timer'
 import { Toaster } from '@/components/ui/sonner'
+import { ClerkProvider } from '@clerk/nextjs'
+import { trTR } from '@clerk/localizations'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,12 +24,12 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="tr">
-      <body className={`${inter.className} root_layout_container`}>
-        <Analytics />
-        <SpeedInsights />
-        <ReduxProvider>
-          <AuthProvider>
+    <ClerkProvider localization={trTR}>
+      <html lang="tr">
+        <body className={`${inter.className} root_layout_container`}>
+          <Analytics />
+          <SpeedInsights />
+          <ReduxProvider>
             <PomodoroTimer>
               <ExamTimer>
                 <Header />
@@ -36,9 +37,9 @@ export default function RootLayout({
                 <Toaster />
               </ExamTimer>
             </PomodoroTimer>
-          </AuthProvider>
-        </ReduxProvider>
-      </body>
-    </html>
+          </ReduxProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   )
 }

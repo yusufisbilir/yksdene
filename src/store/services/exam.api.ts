@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { createClient } from '@/lib/supabase/client'
 import {
   ExamAttempt,
   SubjectResult,
@@ -43,63 +42,6 @@ export const examApi = createApi({
     }),
 
     // Exam Attempts
-    getExamAttempts: builder.query<ExamAttempt[], void>({
-      queryFn: async () => {
-        try {
-          const supabase = await createClient()
-          const { data, error } = await supabase
-            .from('exam_attempts')
-            .select('*, exam_templates(name, category)')
-            .order('date', { ascending: false })
-
-          if (error) throw error
-          return { data }
-        } catch (error) {
-          return { error: handleError(error) }
-        }
-      },
-      providesTags: ['ExamAttempts'],
-    }),
-
-    getExamAttemptById: builder.query<ExamAttempt, string>({
-      queryFn: async (id) => {
-        try {
-          const supabase = await createClient()
-          const { data, error } = await supabase
-            .from('exam_attempts')
-            .select('*, exam_templates(name, category)')
-            .eq('id', id)
-            .single()
-
-          if (error) throw error
-          return { data }
-        } catch (error) {
-          return { error: handleError(error) }
-        }
-      },
-      providesTags: (result, error, id) => [{ type: 'ExamAttempts', id }],
-    }),
-
-    updateExamAttempt: builder.mutation<ExamAttempt, { id: string } & Partial<ExamAttemptInsert>>({
-      queryFn: async ({ id, ...examAttempt }) => {
-        try {
-          const supabase = await createClient()
-          const { data, error } = await supabase
-            .from('exam_attempts')
-            .update({ ...examAttempt, updated_at: new Date().toISOString() })
-            .eq('id', id)
-            .select()
-            .single()
-
-          if (error) throw error
-          return { data }
-        } catch (error) {
-          return { error: handleError(error) }
-        }
-      },
-      invalidatesTags: (result, error, { id }) => [{ type: 'ExamAttempts', id }, 'ExamAttemptView'],
-    }),
-
     deleteExamAttempt: builder.mutation<ExamAttempt[] | null, string>({
       queryFn: async (id) => {
         try {
@@ -111,75 +53,131 @@ export const examApi = createApi({
       },
       invalidatesTags: ['ExamAttempts', 'SubjectResults', 'ExamAttemptView'],
     }),
+    // getExamAttempts: builder.query<ExamAttempt[], void>({
+    //   queryFn: async () => {
+    //     try {
+    //       const supabase = await createClient()
+    //       const { data, error } = await supabase
+    //         .from('exam_attempts')
+    //         .select('*, exam_templates(name, category)')
+    //         .order('date', { ascending: false })
+
+    //       if (error) throw error
+    //       return { data }
+    //     } catch (error) {
+    //       return { error: handleError(error) }
+    //     }
+    //   },
+    //   providesTags: ['ExamAttempts'],
+    // }),
+
+    // getExamAttemptById: builder.query<ExamAttempt, string>({
+    //   queryFn: async (id) => {
+    //     try {
+    //       const supabase = await createClient()
+    //       const { data, error } = await supabase
+    //         .from('exam_attempts')
+    //         .select('*, exam_templates(name, category)')
+    //         .eq('id', id)
+    //         .single()
+
+    //       if (error) throw error
+    //       return { data }
+    //     } catch (error) {
+    //       return { error: handleError(error) }
+    //     }
+    //   },
+    //   providesTags: (result, error, id) => [{ type: 'ExamAttempts', id }],
+    // }),
+
+    // updateExamAttempt: builder.mutation<ExamAttempt, { id: string } & Partial<ExamAttemptInsert>>({
+    //   queryFn: async ({ id, ...examAttempt }) => {
+    //     try {
+    //       const supabase = await createClient()
+    //       const { data, error } = await supabase
+    //         .from('exam_attempts')
+    //         .update({ ...examAttempt, updated_at: new Date().toISOString() })
+    //         .eq('id', id)
+    //         .select()
+    //         .single()
+
+    //       if (error) throw error
+    //       return { data }
+    //     } catch (error) {
+    //       return { error: handleError(error) }
+    //     }
+    //   },
+    //   invalidatesTags: (result, error, { id }) => [{ type: 'ExamAttempts', id }, 'ExamAttemptView'],
+    // }),
 
     // Subject Results
-    getSubjectResults: builder.query<SubjectResult[], string>({
-      queryFn: async (examAttemptId) => {
-        try {
-          const supabase = await createClient()
-          const { data, error } = await supabase
-            .from('subject_results')
-            .select('*, subjects(name, question_count)')
-            .eq('exam_attempt_id', examAttemptId)
+    // getSubjectResults: builder.query<SubjectResult[], string>({
+    //   queryFn: async (examAttemptId) => {
+    //     try {
+    //       const supabase = await createClient()
+    //       const { data, error } = await supabase
+    //         .from('subject_results')
+    //         .select('*, subjects(name, question_count)')
+    //         .eq('exam_attempt_id', examAttemptId)
 
-          if (error) throw error
-          return { data }
-        } catch (error) {
-          return { error: handleError(error) }
-        }
-      },
-      providesTags: (result, error, examAttemptId) => [
-        { type: 'SubjectResults', id: examAttemptId },
-      ],
-    }),
+    //       if (error) throw error
+    //       return { data }
+    //     } catch (error) {
+    //       return { error: handleError(error) }
+    //     }
+    //   },
+    //   providesTags: (result, error, examAttemptId) => [
+    //     { type: 'SubjectResults', id: examAttemptId },
+    //   ],
+    // }),
 
-    createSubjectResult: builder.mutation<SubjectResult, SubjectResultInsert>({
-      queryFn: async (subjectResult) => {
-        try {
-          const supabase = await createClient()
-          const { data, error } = await supabase
-            .from('subject_results')
-            .insert(subjectResult)
-            .select()
-            .single()
+    // createSubjectResult: builder.mutation<SubjectResult, SubjectResultInsert>({
+    //   queryFn: async (subjectResult) => {
+    //     try {
+    //       const supabase = await createClient()
+    //       const { data, error } = await supabase
+    //         .from('subject_results')
+    //         .insert(subjectResult)
+    //         .select()
+    //         .single()
 
-          if (error) throw error
-          return { data }
-        } catch (error) {
-          return { error: handleError(error) }
-        }
-      },
-      invalidatesTags: (result, error, { exam_attempt_id }) => [
-        { type: 'SubjectResults', id: exam_attempt_id?.toString() },
-        'ExamAttemptView',
-      ],
-    }),
+    //       if (error) throw error
+    //       return { data }
+    //     } catch (error) {
+    //       return { error: handleError(error) }
+    //     }
+    //   },
+    //   invalidatesTags: (result, error, { exam_attempt_id }) => [
+    //     { type: 'SubjectResults', id: exam_attempt_id?.toString() },
+    //     'ExamAttemptView',
+    //   ],
+    // }),
 
-    updateSubjectResult: builder.mutation<
-      SubjectResult,
-      { id: string } & Partial<SubjectResultInsert>
-    >({
-      queryFn: async ({ id, ...subjectResult }) => {
-        try {
-          const supabase = await createClient()
-          const { data, error } = await supabase
-            .from('subject_results')
-            .update({ ...subjectResult, updated_at: new Date().toISOString() })
-            .eq('id', id)
-            .select()
-            .single()
+    // updateSubjectResult: builder.mutation<
+    //   SubjectResult,
+    //   { id: string } & Partial<SubjectResultInsert>
+    // >({
+    //   queryFn: async ({ id, ...subjectResult }) => {
+    //     try {
+    //       const supabase = await createClient()
+    //       const { data, error } = await supabase
+    //         .from('subject_results')
+    //         .update({ ...subjectResult, updated_at: new Date().toISOString() })
+    //         .eq('id', id)
+    //         .select()
+    //         .single()
 
-          if (error) throw error
-          return { data }
-        } catch (error) {
-          return { error: handleError(error) }
-        }
-      },
-      invalidatesTags: (result, error, { id }) => [
-        { type: 'SubjectResults', id },
-        'ExamAttemptView',
-      ],
-    }),
+    //       if (error) throw error
+    //       return { data }
+    //     } catch (error) {
+    //       return { error: handleError(error) }
+    //     }
+    //   },
+    //   invalidatesTags: (result, error, { id }) => [
+    //     { type: 'SubjectResults', id },
+    //     'ExamAttemptView',
+    //   ],
+    // }),
 
     // Transactional operation: Create exam attempt with subject results
     createExamAttemptWithResults: builder.mutation<
@@ -205,60 +203,60 @@ export const examApi = createApi({
     }),
 
     // Update both exam attempt and subject results
-    updateExamAttemptWithResults: builder.mutation<
-      ExamAttemptWithResults,
-      {
-        id: string
-        examAttempt: Partial<ExamAttemptInsert>
-        subjectResults: SubjectResultInsert[]
-      }
-    >({
-      queryFn: async ({ id, examAttempt, subjectResults }) => {
-        try {
-          const supabase = await createClient()
+    // updateExamAttemptWithResults: builder.mutation<
+    //   ExamAttemptWithResults,
+    //   {
+    //     id: string
+    //     examAttempt: Partial<ExamAttemptInsert>
+    //     subjectResults: SubjectResultInsert[]
+    //   }
+    // >({
+    //   queryFn: async ({ id, examAttempt, subjectResults }) => {
+    //     try {
+    //       const supabase = await createClient()
 
-          // 1. Update exam attempt
-          const { data: examAttemptData, error: examAttemptError } = await supabase
-            .from('exam_attempts')
-            .update({ ...examAttempt, updated_at: new Date().toISOString() })
-            .eq('id', id)
-            .select()
-            .single()
+    //       // 1. Update exam attempt
+    //       const { data: examAttemptData, error: examAttemptError } = await supabase
+    //         .from('exam_attempts')
+    //         .update({ ...examAttempt, updated_at: new Date().toISOString() })
+    //         .eq('id', id)
+    //         .select()
+    //         .single()
 
-          if (examAttemptError) throw examAttemptError
+    //       if (examAttemptError) throw examAttemptError
 
-          // 2. Delete existing subject results
-          const { error: deleteError } = await supabase
-            .from('subject_results')
-            .delete()
-            .eq('exam_attempt_id', id)
+    //       // 2. Delete existing subject results
+    //       const { error: deleteError } = await supabase
+    //         .from('subject_results')
+    //         .delete()
+    //         .eq('exam_attempt_id', id)
 
-          if (deleteError) throw deleteError
+    //       if (deleteError) throw deleteError
 
-          // 3. Create new subject results
-          const { data: subjectResultsData, error: subjectResultsError } = await supabase
-            .from('subject_results')
-            .insert(subjectResults)
-            .select()
+    //       // 3. Create new subject results
+    //       const { data: subjectResultsData, error: subjectResultsError } = await supabase
+    //         .from('subject_results')
+    //         .insert(subjectResults)
+    //         .select()
 
-          if (subjectResultsError) throw subjectResultsError
+    //       if (subjectResultsError) throw subjectResultsError
 
-          return {
-            data: {
-              examAttempt: examAttemptData,
-              subjectResults: subjectResultsData,
-            },
-          }
-        } catch (error) {
-          return { error: handleError(error) }
-        }
-      },
-      invalidatesTags: (result, error, { id }) => [
-        { type: 'ExamAttempts', id },
-        { type: 'SubjectResults', id },
-        'ExamAttemptView',
-      ],
-    }),
+    //       return {
+    //         data: {
+    //           examAttempt: examAttemptData,
+    //           subjectResults: subjectResultsData,
+    //         },
+    //       }
+    //     } catch (error) {
+    //       return { error: handleError(error) }
+    //     }
+    //   },
+    //   invalidatesTags: (result, error, { id }) => [
+    //     { type: 'ExamAttempts', id },
+    //     { type: 'SubjectResults', id },
+    //     'ExamAttemptView',
+    //   ],
+    // }),
 
     // Statistics and Analytics
     // getExamStatistics: builder.query<ExamStatistics, string>({
@@ -566,14 +564,14 @@ export const examApi = createApi({
 })
 
 export const {
-  useGetExamAttemptsQuery,
-  useGetExamAttemptByIdQuery,
-  useUpdateExamAttemptMutation,
+  // useGetExamAttemptsQuery,
+  // useGetExamAttemptByIdQuery,
+  // useUpdateExamAttemptMutation,
   useDeleteExamAttemptMutation,
-  useGetSubjectResultsQuery,
-  useCreateSubjectResultMutation,
-  useUpdateSubjectResultMutation,
+  // useGetSubjectResultsQuery,
+  // useCreateSubjectResultMutation,
+  // useUpdateSubjectResultMutation,
   useCreateExamAttemptWithResultsMutation,
-  useUpdateExamAttemptWithResultsMutation,
+  // useUpdateExamAttemptWithResultsMutation,
   useGetExamAttemptViewsQuery,
 } = examApi
