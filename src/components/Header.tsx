@@ -17,6 +17,7 @@ import { Button } from './ui/button'
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
 import { UserMenu } from './UserMenu'
+import { MobileUserMenu } from './mobile-user-menu'
 
 const Header = () => {
   const pathname = usePathname()
@@ -101,8 +102,8 @@ const Header = () => {
               <nav className="flex flex-col space-y-4 p-4">
                 <NavLinks />
               </nav>
-              <DrawerFooter>
-                <UserMenu />
+              <DrawerFooter className="px-7">
+                <MobileUserMenu />
               </DrawerFooter>
             </DrawerContent>
           </Drawer>
