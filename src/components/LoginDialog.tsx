@@ -10,7 +10,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog'
 import { User } from 'lucide-react'
-import LoginGoogleButton from './login-google-button'
+import LoginGoogleButton from './LoginGoogleButton'
 
 const LoginDialog = () => {
   return (

@@ -17,7 +17,7 @@ import { Button } from './ui/button'
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
 import { UserMenu } from './UserMenu'
-import { MobileUserMenu } from './mobile-user-menu'
+import { MobileUserMenu } from './MobileUserMenu'
 
 const Header = () => {
   const pathname = usePathname()
