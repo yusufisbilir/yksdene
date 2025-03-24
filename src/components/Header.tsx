@@ -40,7 +40,7 @@ const Header = () => {
         return 'Net Takip'
       case ROUTES.LOGIN:
         return 'Giriş'
-      case ROUTES.ROOT:
+      case ROUTES.HOME:
         return 'Anasayfa'
       default:
         // if route is not in ROUTES, this will throw an error

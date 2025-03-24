@@ -1,5 +1,5 @@
 export const ROUTES = {
-  ROOT: '/',
+  HOME: '/',
   EXAMPRACTICE: '/deneme',
   DAILYEXAMPRACTICE: '/gunluk_deneme',
   POMODORO: '/pomodoro',
