@@ -3,6 +3,13 @@
 import { Webhook } from 'svix'
 import { headers } from 'next/headers'
 import { UserJSON, WebhookEvent } from '@clerk/nextjs/server'
+import { createClient } from '@supabase/supabase-js'
+
+// Create a direct Supabase client for webhook handling
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!,
+)
 
 export async function POST(req: Request) {
   const SIGNING_SECRET = process.env.SIGNING_SECRET
@@ -47,18 +54,33 @@ export async function POST(req: Request) {
     })
   }
 
-  // Do something with payload
-  // For this guide, log payload to console
+  // Sync user to supabase
   const user = evt.data as UserJSON
 
-  if (evt.type === 'user.created') {
-    console.log('user created', user.id)
-  }
-  if (evt.type === 'user.deleted') {
-    console.log('user deleted', user.id)
-  }
-  if (evt.type === 'user.updated') {
-    console.log('user updated', user.id)
+  try {
+    if (evt.type === 'user.created') {
+      console.log('Creating profile for user:', user.id)
+      const { error } = await supabase
+        .from('profiles')
+        .insert({
+          id: user.id,
+          graduated: false,
+          obp: 80,
+        })
+        .select()
+        .single()
+
+      if (error) throw error
+    }
+    if (evt.type === 'user.deleted') {
+      console.log('Deleting profile for user:', user.id)
+      const { error } = await supabase.from('profiles').delete().eq('id', user.id)
+
+      if (error) throw error
+    }
+  } catch (error) {
+    console.error('Error syncing user with Supabase:', error)
+    return new Response('Error syncing user with Supabase', { status: 500 })
   }
 
   return new Response('Webhook received', { status: 200 })

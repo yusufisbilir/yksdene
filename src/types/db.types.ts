@@ -16,6 +16,10 @@ type ExamAttemptUpdate = TablesUpdate<'exam_attempts'>
 type SubjectResultUpdate = TablesUpdate<'subject_results'>
 type SubjectUpdate = TablesUpdate<'subjects'>
 
+type Profiles = Tables<'profiles'>
+type ProfilesInsert = TablesInsert<'profiles'>
+type ProfilesUpdate = TablesUpdate<'profiles'>
+
 type ExamStatistics = {
   total_attempts: number
   average_net_score: number
@@ -62,4 +66,7 @@ export type {
   ExamStatistics,
   SubjectTrend,
   ExamAttemptWithResults,
+  Profiles,
+  ProfilesInsert,
+  ProfilesUpdate,
 }
