@@ -1,6 +1,8 @@
-import { ROUTES } from '@/constants/routes'
-import { redirect } from 'next/navigation'
+import Dashboard from '@/components/dashboard'
+import { calculateExamTemplateStatistics } from '@/lib/supabase/actions/exam.actions'
 
-export default function Home() {
-  return <div></div>
+export default async function Home() {
+  const examTemplateStats = await calculateExamTemplateStatistics()
+
+  return <Dashboard examTemplateStats={examTemplateStats} />
 }
