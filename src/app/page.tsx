@@ -1,6 +1,13 @@
-import { ROUTES } from '@/constants/routes'
-import { redirect } from 'next/navigation'
+import Dashboard from '@/components/dashboard/Dashboard'
+import PublicDashboard from '@/components/PublicDashboard'
+import { auth } from '@clerk/nextjs/server'
 
-export default function Home() {
-  return <div></div>
+export default async function Home() {
+  const { userId } = await auth()
+
+  if (!userId) {
+    return <PublicDashboard />
+  }
+
+  return <Dashboard />
 }

@@ -5,7 +5,7 @@ import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs'
 
 export function UserMenu() {
   return (
-    <>
+    <div className="flex items-center justify-center">
       <SignedOut>
         <SignInButton>
           <Button variant="outline" className="w-full">
@@ -19,6 +19,6 @@ export function UserMenu() {
       <SignedIn>
         <UserButton />
       </SignedIn>
-    </>
+    </div>
   )
 }

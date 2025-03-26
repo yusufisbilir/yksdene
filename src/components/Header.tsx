@@ -113,9 +113,7 @@ const Header = () => {
         {/* Lg nav */}
         <nav className="hidden lg:flex items-center space-x-8">
           <NavLinks />
-          <div>
-            <UserMenu />
-          </div>
+          <UserMenu />
         </nav>
       </div>
     </header>
