@@ -36,30 +36,30 @@ export type Database = {
     Tables: {
       exam_attempts: {
         Row: {
-          created_at: string | null
+          created_at: string
           date: string
-          exam_template_id: string | null
+          exam_template_id: string
           id: string
           name: string
-          updated_at: string | null
+          updated_at: string
           user_id: string
         }
         Insert: {
-          created_at?: string | null
+          created_at?: string
           date: string
-          exam_template_id?: string | null
+          exam_template_id: string
           id?: string
           name: string
-          updated_at?: string | null
+          updated_at?: string
           user_id?: string
         }
         Update: {
-          created_at?: string | null
+          created_at?: string
           date?: string
-          exam_template_id?: string | null
+          exam_template_id?: string
           id?: string
           name?: string
-          updated_at?: string | null
+          updated_at?: string
           user_id?: string
         }
         Relationships: [
@@ -82,19 +82,19 @@ export type Database = {
       exam_templates: {
         Row: {
           category: string
-          created_at: string | null
+          created_at: string
           id: string
           name: string
         }
         Insert: {
           category: string
-          created_at?: string | null
+          created_at?: string
           id?: string
           name: string
         }
         Update: {
           category?: string
-          created_at?: string | null
+          created_at?: string
           id?: string
           name?: string
         }
@@ -102,57 +102,57 @@ export type Database = {
       }
       profiles: {
         Row: {
-          created_at: string | null
-          graduated: boolean | null
+          created_at: string
+          graduated: boolean
           id: string
-          obp: number | null
-          updated_at: string | null
+          obp: number
+          updated_at: string
         }
         Insert: {
-          created_at?: string | null
-          graduated?: boolean | null
+          created_at?: string
+          graduated?: boolean
           id: string
-          obp?: number | null
-          updated_at?: string | null
+          obp?: number
+          updated_at?: string
         }
         Update: {
-          created_at?: string | null
-          graduated?: boolean | null
+          created_at?: string
+          graduated?: boolean
           id?: string
-          obp?: number | null
-          updated_at?: string | null
+          obp?: number
+          updated_at?: string
         }
         Relationships: []
       }
       subject_results: {
         Row: {
           correct_count: number
-          created_at: string | null
-          exam_attempt_id: string | null
+          created_at: string
+          exam_attempt_id: string
           id: string
           incorrect_count: number
-          subject_id: string | null
-          updated_at: string | null
+          subject_id: string
+          updated_at: string
           user_id: string
         }
         Insert: {
           correct_count?: number
-          created_at?: string | null
-          exam_attempt_id?: string | null
+          created_at?: string
+          exam_attempt_id: string
           id?: string
           incorrect_count?: number
-          subject_id?: string | null
-          updated_at?: string | null
+          subject_id: string
+          updated_at?: string
           user_id?: string
         }
         Update: {
           correct_count?: number
-          created_at?: string | null
-          exam_attempt_id?: string | null
+          created_at?: string
+          exam_attempt_id?: string
           id?: string
           incorrect_count?: number
-          subject_id?: string | null
-          updated_at?: string | null
+          subject_id?: string
+          updated_at?: string
           user_id?: string
         }
         Relationships: [
@@ -195,25 +195,25 @@ export type Database = {
       }
       subjects: {
         Row: {
-          created_at: string | null
+          created_at: string
           display_order: number
-          exam_template_id: string | null
+          exam_template_id: string
           id: string
           name: string
           question_count: number
         }
         Insert: {
-          created_at?: string | null
+          created_at?: string
           display_order: number
-          exam_template_id?: string | null
+          exam_template_id: string
           id?: string
           name: string
           question_count: number
         }
         Update: {
-          created_at?: string | null
+          created_at?: string
           display_order?: number
-          exam_template_id?: string | null
+          exam_template_id?: string
           id?: string
           name?: string
           question_count?: number
