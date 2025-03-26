@@ -1,8 +1,13 @@
-import Dashboard from '@/components/dashboard'
-import { calculateExamTemplateStatistics } from '@/lib/supabase/actions/exam.actions'
+import Dashboard from '@/components/dashboard/Dashboard'
+import PublicDashboard from '@/components/PublicDashboard'
+import { auth } from '@clerk/nextjs/server'
 
 export default async function Home() {
-  const examTemplateStats = await calculateExamTemplateStatistics()
+  const { userId } = await auth()
 
-  return <Dashboard examTemplateStats={examTemplateStats} />
+  if (!userId) {
+    return <PublicDashboard />
+  }
+
+  return <Dashboard />
 }
