@@ -17,7 +17,7 @@ import { Button } from './ui/button'
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
 import { UserMenu } from './UserMenu'
-import { MobileUserMenu } from './mobile-user-menu'
+import { MobileUserMenu } from './MobileUserMenu'
 
 const Header = () => {
   const pathname = usePathname()
@@ -40,6 +40,8 @@ const Header = () => {
         return 'Net Takip'
       case ROUTES.LOGIN:
         return 'Giriş'
+      case ROUTES.HOME:
+        return 'Anasayfa'
       default:
         // if route is not in ROUTES, this will throw an error
         const exhaustiveCheck: never = route
@@ -111,9 +113,7 @@ const Header = () => {
         {/* Lg nav */}
         <nav className="hidden lg:flex items-center space-x-8">
           <NavLinks />
-          <div>
-            <UserMenu />
-          </div>
+          <UserMenu />
         </nav>
       </div>
     </header>

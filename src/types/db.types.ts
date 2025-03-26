@@ -1,72 +1,49 @@
 import { Tables, TablesInsert, TablesUpdate } from './supabase.types'
 
-type ExamTemplate = Tables<'exam_templates'>
-type ExamAttempt = Tables<'exam_attempts'>
-type SubjectResult = Tables<'subject_results'>
-type Subject = Tables<'subjects'>
-type ExamAttemptView = Tables<'exam_attempt_view'>
+// Exam Attempts
+export type ExamAttempt = Tables<'exam_attempts'>
+export type ExamAttemptInsert = TablesInsert<'exam_attempts'>
+export type ExamAttemptUpdate = TablesUpdate<'exam_attempts'>
+export type ExamAttemptView = Tables<'exam_attempt_view'>
 
-type ExamAttemptInsert = TablesInsert<'exam_attempts'>
-type SubjectResultInsert = TablesInsert<'subject_results'>
-type ExamTemplateInsert = TablesInsert<'exam_templates'>
-type SubjectInsert = TablesInsert<'subjects'>
+// Exam Templates
+export type ExamTemplate = Tables<'exam_templates'>
+export type ExamTemplateInsert = TablesInsert<'exam_templates'>
+export type ExamTemplateUpdate = TablesUpdate<'exam_templates'>
 
-type ExamTemplateUpdate = TablesUpdate<'exam_templates'>
-type ExamAttemptUpdate = TablesUpdate<'exam_attempts'>
-type SubjectResultUpdate = TablesUpdate<'subject_results'>
-type SubjectUpdate = TablesUpdate<'subjects'>
+// Profiles
+export type Profiles = Tables<'profiles'>
+export type ProfilesInsert = TablesInsert<'profiles'>
+export type ProfilesUpdate = TablesUpdate<'profiles'>
 
-type Profiles = Tables<'profiles'>
-type ProfilesInsert = TablesInsert<'profiles'>
-type ProfilesUpdate = TablesUpdate<'profiles'>
+// Subjects
+export type Subject = Tables<'subjects'>
+export type SubjectInsert = TablesInsert<'subjects'>
+export type SubjectUpdate = TablesUpdate<'subjects'>
 
-type ExamStatistics = {
-  total_attempts: number
-  average_net_score: number
-  best_attempt: {
-    exam_name: string
-    date: string
-    net_score: number
-  }
-  subject_performance: Array<{
-    subject_name: string
-    average_net_score: number
-    trend: 'up' | 'down' | 'stable'
-  }>
-}
+// Subject Results
+export type SubjectResult = Tables<'subject_results'>
+export type SubjectResultInsert = TablesInsert<'subject_results'>
+export type SubjectResultUpdate = TablesUpdate<'subject_results'>
 
-type SubjectTrend = {
-  subject_name: string
-  data: Array<{
-    date: string
-    exam_attempt_id: string
-    net_score: number
-  }>
-}
-
-type ExamAttemptWithResults = {
+// Combined Types
+export type ExamAttemptWithResults = {
   examAttempt: ExamAttempt
   subjectResults: SubjectResult[]
 }
 
-export type {
-  ExamTemplate,
-  ExamAttempt,
-  SubjectResult,
-  Subject,
-  ExamAttemptView,
-  ExamAttemptInsert,
-  SubjectResultInsert,
-  ExamTemplateInsert,
-  SubjectInsert,
-  ExamTemplateUpdate,
-  ExamAttemptUpdate,
-  SubjectResultUpdate,
-  SubjectUpdate,
-  ExamStatistics,
-  SubjectTrend,
-  ExamAttemptWithResults,
-  Profiles,
-  ProfilesInsert,
-  ProfilesUpdate,
+// Statistics
+export type ExamCategoryStatistics = {
+  [key in ExamTemplate['id']]: {
+    totalAttempts: number
+    totalNetScore: number
+    averageNetScore: number
+    performanceTrend: {
+      date: string
+      net_score: number
+      correct: number
+      incorrect: number
+      blank: number
+    }[]
+  }
 }
