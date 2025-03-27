@@ -14,12 +14,12 @@ const Dashboard = async () => {
   }
 
   return (
-    <Card className="container mx-auto p-6 space-y-6 my-6">
+    <article className="space-y-4 panel">
       <h1 className="text-3xl font-bold tracking-tight">Sınav Performans Paneli</h1>
       <StatisticsCards examTemplateStats={examTemplateStats} />
       <PerformanceTrends examTemplateStats={examTemplateStats} />
       <QuestionAnalysis examTemplateStats={examTemplateStats} />
-    </Card>
+    </article>
   )
 }
 

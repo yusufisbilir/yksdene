@@ -81,16 +81,16 @@ export default function NetTakipPage() {
   if (isLoadingExamAttemptViews) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
-        <Loader2 className="h-12 w-12 animate-spin text-primary" />
+        <Loader2 className="w-12 h-12 animate-spin text-primary" />
       </div>
     )
   }
 
   return (
-    <div className="max-w-4xl w-full centered_card_container">
+    <article className="space-y-6 panel">
       {/* Header */}
-      <div className="flex justify-between items-center">
-        <h1 className="text-2xl sm:text-3xl font-bold">Net Takip</h1>
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold sm:text-3xl">Net Takip</h1>
         <Button onClick={() => setIsAddingExam(!isAddingExam)}>
           {isAddingExam ? 'İptal' : 'Deneme Ekle'}
         </Button>
@@ -107,7 +107,7 @@ export default function NetTakipPage() {
           <AddExamForm.SubmitButton disabled={isLoadingCreateExamAttemptWithResults}>
             {isLoadingCreateExamAttemptWithResults ? (
               <div className="flex items-center gap-4">
-                <Loader2 className="h-8 w-8 animate-spin text-white" />
+                <Loader2 className="w-8 h-8 text-white animate-spin" />
                 <p>Deneme Kaydediliyor...</p>
               </div>
             ) : (
@@ -119,6 +119,6 @@ export default function NetTakipPage() {
 
       {/* Exam results list */}
       <ExamResultsList results={examAttemptViews || []} />
-    </div>
+    </article>
   )
 }
