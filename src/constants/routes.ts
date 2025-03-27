@@ -4,7 +4,6 @@ export const ROUTES = {
   DAILYEXAMPRACTICE: '/gunluk_deneme',
   POMODORO: '/pomodoro',
   NET_TAKIP: '/net_takip',
-  LOGIN: '/login',
 } as const
 
 export type RouteValue = (typeof ROUTES)[keyof typeof ROUTES]
@@ -19,8 +18,6 @@ export const getRouteName = (route: RouteValue) => {
       return 'Pomodoro'
     case ROUTES.NET_TAKIP:
       return 'Net Takip'
-    case ROUTES.LOGIN:
-      return 'Giriş'
     case ROUTES.HOME:
       return 'Anasayfa'
     default:

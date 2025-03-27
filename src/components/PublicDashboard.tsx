@@ -2,7 +2,7 @@
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { SignInButton } from '@clerk/nextjs'
-import { BarChart2, Clock, TargetIcon, TrendingUp, User, Users } from 'lucide-react'
+import { BarChart2, Clock, TargetIcon, TrendingUp, User, Users, CheckCircle } from 'lucide-react'
 import {
   CartesianGrid,
   Line,
@@ -61,39 +61,58 @@ const PublicDashboard = () => {
   return (
     <section className="space-y-6 panel">
       <div className="space-y-2 text-center">
-        <h1 className="text-3xl font-bold tracking-tight">Sınav Performans Paneli</h1>
+        <h1 className="text-3xl font-bold tracking-tight">Hoş Geldiiiin! 🎉</h1>
         <p className="text-muted-foreground">
-          Deneme sınavlarınızı takip edin, performansınızı analiz edin.
+          Gerçekçi şekilde denemeler çöz. Netlerini kaydet. Gelişiminle fark yarat.
         </p>
       </div>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <Card className="overflow-hidden">
           <CardHeader className="p-6 pb-0">
-            <CardTitle>Örnek Net Grafik</CardTitle>
-            <CardDescription>Netlerinizi takip edip, gelişiminizi görün</CardDescription>
+            <CardTitle>Gelecek özellikler</CardTitle>
+            <CardDescription>Kahveni yudumla ve gelişimini seyret. ☕️</CardDescription>
           </CardHeader>
           <CardContent className="p-6">
-            <div className="h-[250px] w-full">
-              <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={data}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="name" />
-                  <YAxis />
-                  <Tooltip />
-                  <Line type="monotone" dataKey="net" stroke="#3b82f6" strokeWidth={2} />
-                </LineChart>
-              </ResponsiveContainer>
-            </div>
+            <ul className="space-y-2">
+              <li className="flex items-start">
+                <CheckCircle className="w-5 h-5 mr-2 text-primary shrink-0" />
+                <span>Deneme netlerinle gerçek sıralamanı öğren</span>
+              </li>
+              <li className="flex items-start">
+                <CheckCircle className="w-5 h-5 mr-2 text-primary shrink-0" />
+                <span>Girmek istediğin bölümü seçip hayallerine ne kadar yaklaştığını izle</span>
+              </li>
+              <li className="flex items-start">
+                <CheckCircle className="w-5 h-5 mr-2 text-primary shrink-0" />
+                <span>Günlük denemelere kayıt ol ve sıralamalarda yarış</span>
+              </li>
+              <li className="flex items-start">
+                <CheckCircle className="w-5 h-5 mr-2 text-primary shrink-0" />
+                <span>Başarı tablosunda yerini al</span>
+              </li>
+              <li className="flex items-start">
+                <CheckCircle className="w-5 h-5 mr-2 text-primary shrink-0" />
+                <span>Sınav profili oluştur</span>
+              </li>
+              <li className="flex items-start">
+                <CheckCircle className="w-5 h-5 mr-2 text-primary shrink-0" />
+                <span>Diğer sınav öğrencileriyle sosyalleş</span>
+              </li>
+              <li className="flex items-start">
+                <CheckCircle className="w-5 h-5 mr-2 text-primary shrink-0" />
+                <span>Birlikte sınav odaklı bir sosyal medya olmayalım mı?</span>
+              </li>
+            </ul>
           </CardContent>
         </Card>
 
         <Card>
-          <CardHeader className="p-6">
+          <CardHeader>
             <CardTitle>Giriş Yapın</CardTitle>
-            <CardDescription>Tüm özelliklere erişmek için hesabınıza giriş yapın.</CardDescription>
+            <CardDescription>Tüm özelliklere erişmek için giriş yapmalısın.</CardDescription>
           </CardHeader>
-          <CardContent className="flex flex-col p-6 space-y-6">
+          <CardContent className="flex flex-col space-y-6">
             <SignInButton>
               <Button className="w-full">
                 <div className="flex items-center gap-2">
