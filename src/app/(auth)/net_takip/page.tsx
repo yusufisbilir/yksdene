@@ -90,7 +90,7 @@ export default function NetTakipPage() {
     <article className="space-y-6 panel">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold sm:text-3xl">Denemelerim</h1>
+        <h1 className="text-lg font-bold sm:text-3xl">Denemelerim</h1>
         <Button onClick={() => setIsAddingExam(!isAddingExam)}>
           {isAddingExam ? 'İptal' : 'Deneme Ekle'}
         </Button>
