@@ -144,9 +144,14 @@
     @apply px-2 py-4 overflow-y-auto bg-white lg:px-4 grow lg:bg-inherit;
   }
 
+  /* Full size panel */
+  .panel {
+    @apply w-full min-h-full px-2 py-4 bg-white lg:rounded-xl lg:px-6 lg:py-6 lg:border lg:border-accent;
+  }
+
   /* Centered Article Panel */
   .card {
-    @apply flex flex-col w-full max-w-xl px-2 py-4 mx-auto bg-white gap-y-6 sm:shadow-lg sm:border sm:border-orange-200 sm:rounded-xl sm:px-6 sm:py-6;
+    @apply flex flex-col w-full max-w-xl px-2 py-4 mx-auto bg-white gap-y-6 lg:shadow-lg lg:border lg:border-accent lg:rounded-xl lg:px-6 lg:py-6;
   }
   .centered_panel {
     @apply flex flex-col h-full lg:justify-center;

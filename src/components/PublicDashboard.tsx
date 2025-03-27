@@ -25,49 +25,49 @@ const features = [
     title: 'Net Takibi',
     description:
       'Günlük, haftalık ve aylık net performansınızı takip edin. Detaylı grafikler ve istatistiklerle gelişiminizi analiz edin.',
-    icon: <BarChart2 className="h-6 w-6 text-primary" />,
+    icon: <BarChart2 className="w-6 h-6 text-primary" />,
   },
   {
     title: 'Hedef Belirleme',
     description:
       'Net hedeflerinizi belirleyin ve ilerlemenizi takip edin. Hedeflerinize ulaşmak için motivasyonunuzu artırın.',
-    icon: <TargetIcon className="h-6 w-6 text-primary" />,
+    icon: <TargetIcon className="w-6 h-6 text-primary" />,
   },
   {
     title: 'Performans Analizi',
     description:
       'Detaylı performans raporları ile güçlü ve zayıf yönlerinizi keşfedin. Gelişim alanlarınızı belirleyin.',
-    icon: <TrendingUp className="h-6 w-6 text-primary" />,
+    icon: <TrendingUp className="w-6 h-6 text-primary" />,
   },
   {
     title: 'Gerçek Sıralama Takibi',
     description: 'Net sonuçlarınıza göre gerçek sıralama ve puanınızı takip edin.',
-    icon: <TrendingUp className="h-6 w-6 text-primary" />,
+    icon: <TrendingUp className="w-6 h-6 text-primary" />,
   },
   {
     title: 'Sıralamalarda Yarış',
     description: 'Günlük deneme sınavlarında yarışın ve sıralamalarınızı görün.',
-    icon: <Users className="h-6 w-6 text-primary" />,
+    icon: <Users className="w-6 h-6 text-primary" />,
   },
   {
     title: 'ÖSYM Saati',
     description:
       'Gerçek sınavda duvar saatine bakarak kalan süreni hesaplayacaksın. Havalı kronometreler veya pomodoro uygulamaları yok.',
-    icon: <Clock className="h-6 w-6 text-primary" />,
+    icon: <Clock className="w-6 h-6 text-primary" />,
   },
 ]
 
 const PublicDashboard = () => {
   return (
-    <Card className="container mx-auto p-6 space-y-8 my-6 max-w-5xl">
-      <div className="text-center space-y-2">
+    <section className="space-y-6 panel">
+      <div className="space-y-2 text-center">
         <h1 className="text-3xl font-bold tracking-tight">Sınav Performans Paneli</h1>
         <p className="text-muted-foreground">
           Deneme sınavlarınızı takip edin, performansınızı analiz edin.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <Card className="overflow-hidden">
           <CardHeader className="p-6 pb-0">
             <CardTitle>Örnek Net Grafik</CardTitle>
@@ -93,11 +93,11 @@ const PublicDashboard = () => {
             <CardTitle>Giriş Yapın</CardTitle>
             <CardDescription>Tüm özelliklere erişmek için hesabınıza giriş yapın.</CardDescription>
           </CardHeader>
-          <CardContent className="p-6 flex flex-col space-y-6">
+          <CardContent className="flex flex-col p-6 space-y-6">
             <SignInButton>
               <Button className="w-full">
                 <div className="flex items-center gap-2">
-                  <User className="h-5 w-5" />
+                  <User className="w-5 h-5" />
                   <span className="text-sm font-medium">Giriş Yap</span>
                 </div>
               </Button>
@@ -110,10 +110,10 @@ const PublicDashboard = () => {
         </Card>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {features.map((feature, index) => (
           <Card key={index} className="overflow-hidden">
-            <CardHeader className="p-6 flex flex-row items-center gap-4">
+            <CardHeader className="flex flex-row items-center gap-4 p-6">
               {feature.icon}
               <CardTitle className="text-lg">{feature.title}</CardTitle>
             </CardHeader>
@@ -123,7 +123,7 @@ const PublicDashboard = () => {
           </Card>
         ))}
       </div>
-    </Card>
+    </section>
   )
 }
 
