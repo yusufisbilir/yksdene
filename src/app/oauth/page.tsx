@@ -10,16 +10,16 @@ export default function OAuthPage() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      router.push(ROUTES.NET_TAKIP)
+      router.push(ROUTES.HOME)
     }, 1500)
 
     return () => clearTimeout(timer)
   }, [router])
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center min-h-screen">
       <div className="flex flex-col items-center gap-4">
-        <Loader2 className="h-12 w-12 animate-spin text-primary" />
+        <Loader2 className="w-12 h-12 animate-spin text-primary" />
         <h1 className="text-2xl font-semibold">Giriş başarılı!</h1>
         <p className="text-muted-foreground">Yönlendiriliyorsunuz...</p>
       </div>

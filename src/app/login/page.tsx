@@ -3,7 +3,6 @@
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { SignedIn } from '@clerk/nextjs'
-import { SignUpButton } from '@clerk/nextjs'
 import { SignInButton } from '@clerk/nextjs'
 import { SignedOut } from '@clerk/nextjs'
 import { UserButton } from '@clerk/nextjs'
@@ -29,7 +28,7 @@ export default function LoginPage() {
   return (
     <div className="flex items-center justify-center p-4">
       <div className="flex flex-col gap-4">
-        <Card className="w-full centered_card_container">
+        <Card className="w-full card">
           <CardHeader>
             <CardTitle>YKS Dene&apos;ye Hoş Geldiniz</CardTitle>
             <CardDescription>
@@ -41,7 +40,7 @@ export default function LoginPage() {
               <SignInButton>
                 <Button variant="outline" className="w-full">
                   <div className="flex items-center gap-2">
-                    <User className="h-5 w-5" />
+                    <User className="w-5 h-5" />
                     <span className="text-sm font-medium">Giriş Yap</span>
                   </div>
                 </Button>
@@ -53,7 +52,7 @@ export default function LoginPage() {
           </CardContent>
         </Card>
 
-        <Card className="w-full centered_card_container">
+        <Card className="w-full card">
           <CardHeader>
             <CardTitle>Özellikler</CardTitle>
             <CardDescription>

@@ -51,7 +51,7 @@ const Page = () => {
   return (
     <section className="flex flex-col gap-y-2 my-4">
       {isVisibleDailyExamPractice && (
-        <div className="centered_card_container gap-y-2">
+        <div className="card gap-y-2">
           <h1 className="font-semibold">Gerçek Sınav Deneyimi</h1>
           <p>Her sabah 10:15&apos;te başlar. Başarılar dilerim ❤️</p>
           <Button
@@ -62,7 +62,7 @@ const Page = () => {
           </Button>
         </div>
       )}
-      <div className="centered_card_container z-40">
+      <div className="card z-40">
         <ExamSelect />
         <div className="relative">
           <DailyExamPracticeOverlay startDate={startDate} endDate={endDate} />

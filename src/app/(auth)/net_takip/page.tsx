@@ -87,7 +87,7 @@ export default function NetTakipPage() {
   }
 
   return (
-    <div className="max-w-4xl w-full centered_card_container">
+    <div className="max-w-4xl w-full card">
       {/* Header */}
       <div className="flex justify-between items-center">
         <h1 className="text-2xl sm:text-3xl font-bold">Net Takip</h1>
