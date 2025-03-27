@@ -27,10 +27,10 @@ const Page = () => {
   }
 
   return (
-    <section className="flex flex-col gap-y-2 my-4">
+    <article className="flex flex-col gap-y-2">
       {timerState.isFinished && <FinishedTimerConfetti />}
       {isVisibleExamPractice && (
-        <div className="centered_card_container gap-y-2">
+        <div className="card gap-y-2">
           <h1 className="font-semibold">İşte o saat 😱</h1>
           <p>
             Gerçek sınavda bu saate bakarak kalan süreni hesaplayacaksın.
@@ -41,18 +41,18 @@ const Page = () => {
             <br />
             Başarılar dilerim ❤️
           </p>
-          <Button className="max-w-fit self-end" onClick={() => setIsVisibleExamPractice(false)}>
+          <Button className="self-end max-w-fit" onClick={() => setIsVisibleExamPractice(false)}>
             Anladım Hocam, Hallederiz
           </Button>
         </div>
       )}
-      <div className="centered_card_container z-40">
+      <div className="z-40 card">
         {timerState.isFinished && <FinishedTimerOverlay />}
         <ExamSelect />
         <ExamPracticeClock />
         <TimerActions />
       </div>
-    </section>
+    </article>
   )
 }
 
