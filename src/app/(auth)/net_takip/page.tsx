@@ -11,7 +11,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { format } from 'date-fns'
 import { AddExamForm } from '@/components/net_takip/add-exam-form'
-import { ExamResultsList } from '@/components/net_takip/exam-results-list'
+import { ExamResultsList } from '@/components/net_takip/ExamResultsList'
 import { examFormSchema, ExamFormValues } from '@/components/net_takip/types'
 import { examTemplates, subjects as dbSubjects } from '@/constants/db.constants'
 
@@ -90,7 +90,7 @@ export default function NetTakipPage() {
     <article className="space-y-6 panel">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold sm:text-3xl">Net Takip</h1>
+        <h1 className="text-2xl font-bold sm:text-3xl">Denemelerim</h1>
         <Button onClick={() => setIsAddingExam(!isAddingExam)}>
           {isAddingExam ? 'İptal' : 'Deneme Ekle'}
         </Button>
