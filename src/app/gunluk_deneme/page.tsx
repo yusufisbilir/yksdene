@@ -6,8 +6,7 @@ import { useEffect, useState } from 'react'
 import { useLocalStorage } from 'usehooks-ts'
 import getExamStartEndTimes from '@/utils/getExamStartEndTimes'
 import useDailyExamTimer from '@/hooks/useDailyExamTimer'
-import { useAppSelector, useAppDispatch } from '@/hooks/useRedux'
-import { start, pause, reset } from '@/store/slices/timer.slice'
+import { useAppSelector } from '@/hooks/useRedux'
 import AnalogClock from '@/components/shared/AnalogClock'
 import ExamInfo from '@/components/dailyExamPractice/ExamInfo'
 import DailyExamPracticeOverlay from '@/components/dailyExamPractice/DailyExamPracticeOverlay'
@@ -49,20 +48,20 @@ const Page = () => {
   }
 
   return (
-    <section className="flex flex-col gap-y-2 my-4">
+    <section className="flex flex-col my-4 gap-y-2">
       {isVisibleDailyExamPractice && (
         <div className="card gap-y-2">
           <h1 className="font-semibold">Gerçek Sınav Deneyimi</h1>
           <p>Her sabah 10:15&apos;te başlar. Başarılar dilerim ❤️</p>
           <Button
-            className="max-w-fit self-end"
+            className="self-end max-w-fit"
             onClick={() => setIsVisibleDailyExamPractice(false)}
           >
             Anladım Hocam, Hallederiz
           </Button>
         </div>
       )}
-      <div className="card z-40">
+      <div className="z-40 card">
         <ExamSelect />
         <div className="relative">
           <DailyExamPracticeOverlay startDate={startDate} endDate={endDate} />
