@@ -9,6 +9,8 @@ const FinishedTimerOverlay = () => {
   const timerState = useAppSelector((state) => state.timer)
   const dispatch = useAppDispatch()
 
+  if (!timerState.isFinished) return null
+
   return (
     <div className="absolute top-1 left-1 bottom-1 right-1 z-50 backdrop-blur-sm rounded-xl">
       <div className="flex h-full flex-col items-center justify-center text-white gap-3">

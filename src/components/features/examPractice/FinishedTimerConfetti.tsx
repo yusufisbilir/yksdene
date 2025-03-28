@@ -36,7 +36,7 @@ const FinishedTimerConfetti = () => {
     }
   }, [timerState.isFinished])
 
-  if (!isMounted) return null
+  if (!isMounted || !timerState.isFinished) return null
 
   return (
     <div className="z-50">
