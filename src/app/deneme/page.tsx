@@ -1,4 +1,4 @@
-import ExamPractice from '@/components/examPractice/ExamPractice'
+import ExamPractice from '@/components/features/examPractice/ExamPractice'
 
 const Page = () => {
   return <ExamPractice />

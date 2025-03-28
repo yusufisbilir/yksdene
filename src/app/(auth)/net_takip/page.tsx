@@ -10,9 +10,9 @@ import { Loader2 } from 'lucide-react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { format } from 'date-fns'
-import { AddExamForm } from '@/components/net_takip/add-exam-form'
-import { ExamResultsList } from '@/components/net_takip/ExamResultsList'
-import { examFormSchema, ExamFormValues } from '@/components/net_takip/types'
+import { AddExamForm } from '@/components/features/netTakip/AddExamForm'
+import { ExamResultsList } from '@/components/features/netTakip/ExamResultsList'
+import { examFormSchema, ExamFormValues } from '@/components/features/netTakip/types'
 import { examTemplates, subjects as dbSubjects } from '@/constants/db.constants'
 
 export default function NetTakipPage() {

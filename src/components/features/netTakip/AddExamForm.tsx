@@ -17,8 +17,8 @@ import {
   SelectItem,
 } from '@/components/ui/select'
 import { UseFormReturn } from 'react-hook-form'
-import { SubjectResults } from './subject-results'
-import { TotalStats } from './total-stats'
+import { SubjectResults } from './SubjectResults'
+import { TotalStats } from './TotalStats'
 import { ExamFormValues, ExamTemplate, Subject } from './types'
 import { ReactNode } from 'react'
 

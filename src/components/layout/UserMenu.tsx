@@ -1,6 +1,6 @@
 'use client'
 import { LogOut, User } from 'lucide-react'
-import { Button } from './ui/button'
+import { Button } from '@/components/ui/button'
 import { SignedIn, SignedOut, SignInButton, SignOutButton, useUser } from '@clerk/nextjs'
 
 export function UserMenu() {

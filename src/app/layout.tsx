@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import Sidebar from '@/components/Sidebar'
+import Sidebar from '@/components/layout/Sidebar'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { ReduxProvider } from '@/providers/redux-provider'
@@ -10,7 +10,7 @@ import { PomodoroTimer } from '@/providers/pomodoro-timer'
 import { Toaster } from '@/components/ui/sonner'
 import { ClerkProvider } from '@clerk/nextjs'
 import { trTR } from '@clerk/localizations'
-import Header from '@/components/Header'
+import Header from '@/components/layout/Header'
 
 const inter = Inter({ subsets: ['latin'] })
 

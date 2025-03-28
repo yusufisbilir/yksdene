@@ -1,4 +1,4 @@
-import DailyExamPractice from '@/components/dailyExamPractice/DailyExamPractice'
+import DailyExamPractice from '@/components/features/dailyExamPractice/DailyExamPractice'
 
 const Page = () => {
   return <DailyExamPractice />

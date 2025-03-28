@@ -4,7 +4,7 @@ import useClock from '@/hooks/useClock'
 import { useEffect, useState } from 'react'
 import { useAppSelector } from '@/hooks/useRedux'
 import getExamStartEndTimes from '@/utils/getExamStartEndTimes'
-import AnalogClock from '../shared/AnalogClock'
+import AnalogClock from '@/components/shared/AnalogClock'
 
 const ExamPracticeClock = () => {
   const timerState = useAppSelector((state) => state.timer)

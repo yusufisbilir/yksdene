@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { Button } from '../ui/button'
+import { Button } from '@/components/ui/button'
 import { useAppSelector, useAppDispatch } from '@/hooks/useRedux'
 import { reset } from '@/store/slices/timer.slice'
 

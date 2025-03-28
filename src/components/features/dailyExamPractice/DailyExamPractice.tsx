@@ -1,6 +1,6 @@
 'use client'
 
-import ExamSelect from '@/components/examPractice/ExamSelect'
+import ExamSelect from '@/components/features/examPractice/ExamSelect'
 import { Button } from '@/components/ui/button'
 import { useEffect, useState } from 'react'
 import { useLocalStorage } from 'usehooks-ts'
@@ -8,8 +8,8 @@ import getExamStartEndTimes from '@/utils/getExamStartEndTimes'
 import useDailyExamTimer from '@/hooks/useDailyExamTimer'
 import { useAppSelector } from '@/hooks/useRedux'
 import AnalogClock from '@/components/shared/AnalogClock'
-import ExamInfo from '@/components/dailyExamPractice/ExamInfo'
-import DailyExamPracticeOverlay from '@/components/dailyExamPractice/DailyExamPracticeOverlay'
+import ExamInfo from './ExamInfo'
+import DailyExamPracticeOverlay from './DailyExamPracticeOverlay'
 
 const DailyExamPractice = () => {
   const [isMounted, setIsMounted] = useState(false)

@@ -1,7 +1,13 @@
 'use client'
 
 import { Exam } from '@/types'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { useAppSelector, useAppDispatch } from '@/hooks/useRedux'
 import { reset, setExam } from '@/store/slices/timer.slice'
 import getExamDuration from '@/utils/getExamDuration'

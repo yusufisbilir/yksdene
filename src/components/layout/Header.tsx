@@ -11,7 +11,7 @@ import {
   DrawerTrigger,
 } from '@/components/ui/drawer'
 import { Menu } from 'lucide-react'
-import { Button } from './ui/button'
+import { Button } from '@/components/ui/button'
 import { useState } from 'react'
 import { UserMenu } from './UserMenu'
 import { getRouteName, ROUTES } from '@/constants/routes'
