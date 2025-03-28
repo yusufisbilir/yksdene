@@ -5,13 +5,12 @@ import {
   ExamAttemptInsert,
   ExamAttemptView,
   ExamAttemptWithResults,
-  Subject,
   SubjectResultInsert,
   ExamCategoryStatistics,
   ExamTemplate,
 } from '@/types/db.types'
 import { createClerkSupabaseClientSsr } from '../server'
-import { subjects, examTemplates } from '@/constants/db.constants'
+import { examTemplates } from '@/constants/db.constants'
 
 // Exam Attempts
 async function createExamAttempt(examAttempt: ExamAttemptInsert): Promise<ExamAttempt> {
