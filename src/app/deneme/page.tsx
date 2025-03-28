@@ -7,14 +7,16 @@ import TimerActions from '@/components/features/examPractice/TimerActions'
 
 const Page = () => {
   return (
-    <article className="flex flex-col gap-y-2">
+    <article className="centered_panel space-y-2">
       <FinishedTimerConfetti />
       <ExamPracticeInfo />
-      <div className="z-40 card">
+      <div className="z-40">
         <FinishedTimerOverlay />
-        <ExamSelect />
-        <ExamPracticeClock />
-        <TimerActions />
+        <div className="card">
+          <ExamSelect />
+          <ExamPracticeClock />
+          <TimerActions />
+        </div>
       </div>
     </article>
   )
