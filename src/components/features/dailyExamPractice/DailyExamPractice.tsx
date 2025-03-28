@@ -1,23 +1,17 @@
 'use client'
 
 import ExamSelect from '@/components/features/examPractice/ExamSelect'
-import { Button } from '@/components/ui/button'
 import { useEffect, useState } from 'react'
-import { useLocalStorage } from 'usehooks-ts'
 import getExamStartEndTimes from '@/utils/getExamStartEndTimes'
 import useDailyExamTimer from '@/hooks/useDailyExamTimer'
 import { useAppSelector } from '@/hooks/useRedux'
 import AnalogClock from '@/components/shared/AnalogClock'
 import ExamInfo from './ExamInfo'
 import DailyExamPracticeOverlay from './DailyExamPracticeOverlay'
+import InfoBox from './InfoBox'
 
 const DailyExamPractice = () => {
-  const [isMounted, setIsMounted] = useState(false)
   const timerState = useAppSelector((state) => state.timer)
-  const [isVisibleDailyExamPractice, setIsVisibleDailyExamPractice] = useLocalStorage(
-    'isVisibleDailyExamPractice',
-    true,
-  )
   const [startDate, setStartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(new Date())
 
@@ -27,7 +21,6 @@ const DailyExamPractice = () => {
   })
 
   useEffect(() => {
-    setIsMounted(true)
     const [startHours, startMinutes] = getExamStartEndTimes(timerState.selectedExam)
       .start.split(':')
       .map(Number)
@@ -43,24 +36,9 @@ const DailyExamPractice = () => {
     setEndDate(endDate)
   }, [timerState.selectedExam])
 
-  if (!isMounted) {
-    return null
-  }
-
   return (
-    <section className="flex flex-col my-4 gap-y-2">
-      {isVisibleDailyExamPractice && (
-        <div className="card gap-y-2">
-          <h1 className="font-semibold">Gerçek Sınav Deneyimi</h1>
-          <p>Her sabah 10:15&apos;te başlar. Başarılar dilerim ❤️</p>
-          <Button
-            className="self-end max-w-fit"
-            onClick={() => setIsVisibleDailyExamPractice(false)}
-          >
-            Anladım Hocam, Hallederiz
-          </Button>
-        </div>
-      )}
+    <section className="centered_panel space-y-2">
+      <InfoBox />
       <div className="z-40 card">
         <ExamSelect />
         <div className="relative">
