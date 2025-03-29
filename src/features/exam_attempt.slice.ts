@@ -4,12 +4,12 @@ import { ExamAttemptInsert, ExamAttemptView, SubjectResultInsert } from '@/types
 
 export const examAttemptSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    deleteExamAttempt: builder.mutation({
+    deleteExamAttempt: builder.mutation<void, string>({
       query: (id) => ({
-        url: `${API_ROUTES.EXAM_ATTEMPT}/${id}`,
+        url: API_ROUTES.EXAM_ATTEMPT,
         method: 'DELETE',
+        body: { id },
       }),
-      transformResponse: (response: { results: ExamAttemptView[] }) => response.results,
       invalidatesTags: ['ExamAttempts'],
     }),
 

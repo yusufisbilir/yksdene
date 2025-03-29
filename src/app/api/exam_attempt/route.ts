@@ -11,3 +11,19 @@ export async function POST(request: NextRequest) {
     return handleApiError(error)
   }
 }
+
+export async function DELETE(request: NextRequest) {
+  try {
+    const body = await request.json()
+    const { id } = body
+
+    if (!id) {
+      return NextResponse.json({ success: false, message: 'ID is required' }, { status: 400 })
+    }
+
+    await examAttemptService.deleteExamAttempt(id)
+    return NextResponse.json({ success: true })
+  } catch (error) {
+    return handleApiError(error)
+  }
+}
