@@ -1,12 +1,11 @@
-import { Card } from '@/components/ui/card'
-import { calculateExamTemplateStatistics } from '@/lib/supabase/actions/exam.actions'
 import StatisticsCards from './StatisticsCards'
 import PerformanceTrends from './PerformanceTrends'
 import QuestionAnalysis from './QuestionAnalysis'
 import { EmptyDashboard } from './EmptyDashboard'
+import { examAttemptStatisticsService } from '@/services/exam_attempt_statistics.service'
 
 const Dashboard = async () => {
-  const examTemplateStats = await calculateExamTemplateStatistics()
+  const examTemplateStats = await examAttemptStatisticsService.getExamAttemptStatistics()
   const hasStats = Object.keys(examTemplateStats).length > 0
 
   if (!hasStats) {
