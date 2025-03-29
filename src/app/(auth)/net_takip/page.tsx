@@ -12,6 +12,7 @@ import { examFormSchema, ExamFormValues } from '@/components/features/netTakip/t
 import { examTemplates, subjects as dbSubjects } from '@/constants/db.constants'
 import { useGetExamAttemptViewQuery } from '@/features/exam_attempt_view.slice'
 import { useCreateExamAttemptWithResultsMutation } from '@/features/exam_attempt.slice'
+import PageLoader from '@/components/shared/PageLoader'
 
 export default function NetTakipPage() {
   const [isAddingExam, setIsAddingExam] = useState(false)
@@ -77,11 +78,7 @@ export default function NetTakipPage() {
   }, [examTemplate, form])
 
   if (isLoadingExamAttemptViews) {
-    return (
-      <div className="flex items-center justify-center min-h-[400px]">
-        <Loader2 className="w-12 h-12 animate-spin text-primary" />
-      </div>
-    )
+    return <PageLoader />
   }
 
   return (

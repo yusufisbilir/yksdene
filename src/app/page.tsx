@@ -1,8 +1,7 @@
 import Dashboard from '@/components/features/dashboard/Dashboard'
 import PublicDashboard from '@/components/features/dashboard/PublicDashboard'
+import { SuspenseProvider } from '@/components/shared/SuspenseProvider'
 import { auth } from '@clerk/nextjs/server'
-import { Loader2 } from 'lucide-react'
-import { Suspense } from 'react'
 
 export default async function Home() {
   const { userId } = await auth()
@@ -12,14 +11,8 @@ export default async function Home() {
   }
 
   return (
-    <Suspense
-      fallback={
-        <div className="flex justify-center items-center h-screen">
-          <Loader2 className="w-8 h-8 animate-spin" />
-        </div>
-      }
-    >
+    <SuspenseProvider>
       <Dashboard />
-    </Suspense>
+    </SuspenseProvider>
   )
 }
