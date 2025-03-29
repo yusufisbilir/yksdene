@@ -2,11 +2,11 @@
 
 import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '@/hooks/useRedux'
-import { tick } from '@/store/slices/timer.slice'
+import { tick } from '@/store/slices/pomodoro.slice'
 
-export function ExamTimer({ children }: { children: React.ReactNode }) {
+export function PomodoroTimerProvider({ children }: { children: React.ReactNode }) {
   const dispatch = useAppDispatch()
-  const { isRunning } = useAppSelector((state) => state.timer)
+  const { isRunning } = useAppSelector((state) => state.pomodoro)
 
   useEffect(() => {
     let interval: NodeJS.Timeout
