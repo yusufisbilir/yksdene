@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
-import pomodoroReducer from './slices/pomodoro.slice'
-import timerReducer from './slices/timer.slice'
+import pomodoroReducer from '../features/pomodoro.slice'
+import timerReducer from '../features/timer.slice'
 import { apiSlice } from '@/features/api/apiSlice'
 import { setupListeners } from '@reduxjs/toolkit/query'
 

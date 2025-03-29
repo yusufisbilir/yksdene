@@ -9,7 +9,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { useAppSelector, useAppDispatch } from '@/hooks/useRedux'
-import { reset, setExam } from '@/store/slices/timer.slice'
+import { reset, setExam } from '@/features/timer.slice'
 import getExamDuration from '@/utils/getExamDuration'
 
 const ExamSelect = () => {

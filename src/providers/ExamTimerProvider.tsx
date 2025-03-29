@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '@/hooks/useRedux'
-import { tick } from '@/store/slices/timer.slice'
+import { tick } from '@/features/timer.slice'
 
 export function ExamTimerProvider({ children }: { children: React.ReactNode }) {
   const dispatch = useAppDispatch()

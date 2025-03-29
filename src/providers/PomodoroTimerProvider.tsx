@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '@/hooks/useRedux'
-import { tick } from '@/store/slices/pomodoro.slice'
+import { tick } from '@/features/pomodoro.slice'
 
 export function PomodoroTimerProvider({ children }: { children: React.ReactNode }) {
   const dispatch = useAppDispatch()

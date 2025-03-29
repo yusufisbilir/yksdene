@@ -3,7 +3,7 @@
 import React from 'react'
 import { Button } from '@/components/ui/button'
 import { useAppDispatch, useAppSelector } from '@/hooks/useRedux'
-import { start, pause, reset } from '@/store/slices/timer.slice'
+import { start, pause, reset } from '@/features/timer.slice'
 
 const TimerActions = () => {
   const isRunning = useAppSelector((state) => state.timer.isRunning)

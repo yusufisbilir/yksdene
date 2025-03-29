@@ -3,7 +3,7 @@
 import React from 'react'
 import { Button } from '@/components/ui/button'
 import { useAppSelector, useAppDispatch } from '@/hooks/useRedux'
-import { reset } from '@/store/slices/timer.slice'
+import { reset } from '@/features/timer.slice'
 
 const FinishedTimerOverlay = () => {
   const timerState = useAppSelector((state) => state.timer)

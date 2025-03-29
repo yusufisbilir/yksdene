@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 import formatTime from '@/utils/formatTime'
 import { useAppDispatch, useAppSelector } from '@/hooks/useRedux'
-import { pause, reset, setMode, start, updateSettings } from '@/store/slices/pomodoro.slice'
+import { pause, reset, setMode, start, updateSettings } from '@/features/pomodoro.slice'
 
 export function Pomodoro() {
   const pomodoro = useAppSelector((state) => state.pomodoro)
