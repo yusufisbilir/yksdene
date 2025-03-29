@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useCreateExamAttemptWithResultsMutation } from '@/store/services/exam.api'
 import { Button } from '@/components/ui/button'
 import { Loader2 } from 'lucide-react'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -12,6 +11,7 @@ import { ExamResultsList } from '@/components/features/netTakip/ExamResultsList'
 import { examFormSchema, ExamFormValues } from '@/components/features/netTakip/types'
 import { examTemplates, subjects as dbSubjects } from '@/constants/db.constants'
 import { useGetExamAttemptViewQuery } from '@/features/exam_attempt_view.slice'
+import { useCreateExamAttemptWithResultsMutation } from '@/features/exam_attempt.slice'
 
 export default function NetTakipPage() {
   const [isAddingExam, setIsAddingExam] = useState(false)
