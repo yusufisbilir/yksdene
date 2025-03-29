@@ -2,7 +2,7 @@
 import React from 'react'
 import { Button } from '@/components/ui/button'
 import { Loader2, Trash2 } from 'lucide-react'
-import { useDeleteExamAttemptMutation } from '@/store/services/exam.api'
+import { useDeleteExamAttemptMutation } from '@/features/exam_attempt.slice'
 
 interface DeleteExamAttemptButtonProps {
   attempt_id: string

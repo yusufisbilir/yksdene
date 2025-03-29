@@ -27,32 +27,6 @@ export const examApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: '/' }),
   tagTypes: ['ExamTemplates', 'ExamAttempts', 'Subjects', 'SubjectResults', 'ExamAttemptView'],
   endpoints: (builder) => ({
-    // Exam Attempt View
-    getExamAttemptViews: builder.query<ExamAttemptView[], void>({
-      queryFn: async () => {
-        try {
-          const data = await getExamAttemptViews()
-          return { data }
-        } catch (error) {
-          return { error: handleError(error) }
-        }
-      },
-      providesTags: ['ExamAttemptView'],
-    }),
-
-    // Exam Attempts
-    deleteExamAttempt: builder.mutation<ExamAttempt[] | null, string>({
-      queryFn: async (id) => {
-        try {
-          const result = await deleteExamAttempt(id)
-          return { data: result }
-        } catch (error) {
-          return { error: handleError(error) }
-        }
-      },
-      invalidatesTags: ['ExamAttempts', 'SubjectResults', 'ExamAttemptView'],
-    }),
-
     // Transactional operation: Create exam attempt with subject results
     createExamAttemptWithResults: builder.mutation<
       ExamAttemptWithResults,
@@ -78,8 +52,4 @@ export const examApi = createApi({
   }),
 })
 
-export const {
-  useDeleteExamAttemptMutation,
-  useCreateExamAttemptWithResultsMutation,
-  useGetExamAttemptViewsQuery,
-} = examApi
+export const { useCreateExamAttemptWithResultsMutation } = examApi
