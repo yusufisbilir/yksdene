@@ -9,12 +9,12 @@ import {
   ExamCategoryStatistics,
   ExamTemplate,
 } from '@/types/db.types'
-import { createClerkSupabaseClientSsr } from '../server'
 import { examTemplates } from '@/constants/db.constants'
+import { supabaseServerClient } from '@/lib/supabaseServerClient'
 
 // Exam Attempts
 async function createExamAttempt(examAttempt: ExamAttemptInsert): Promise<ExamAttempt> {
-  const client = await createClerkSupabaseClientSsr()
+  const client = await supabaseServerClient()
   const { data, error } = await client.from('exam_attempts').insert(examAttempt).select().single()
 
   if (error) throw error.message ?? 'Create exam attempt get error'
@@ -28,7 +28,7 @@ export async function createExamAttemptWithResults({
   examAttempt: ExamAttemptInsert
   subjectResults: Omit<SubjectResultInsert, 'exam_attempt_id'>[]
 }): Promise<ExamAttemptWithResults> {
-  const client = await createClerkSupabaseClientSsr()
+  const client = await supabaseServerClient()
   // 1. Create exam attempt
   const examAttemptData = await createExamAttempt(examAttempt)
 
@@ -56,7 +56,7 @@ export async function createExamAttemptWithResults({
 }
 
 export async function getExamAttemptViews(): Promise<ExamAttemptView[]> {
-  const client = await createClerkSupabaseClientSsr()
+  const client = await supabaseServerClient()
   const { data, error } = await client
     .from('exam_attempt_view')
     .select('*')
@@ -67,7 +67,7 @@ export async function getExamAttemptViews(): Promise<ExamAttemptView[]> {
 }
 
 export async function deleteExamAttempt(id: string): Promise<ExamAttempt[] | null> {
-  const client = await createClerkSupabaseClientSsr()
+  const client = await supabaseServerClient()
   const { data, error } = await client.from('exam_attempts').delete().eq('id', id)
   if (error) throw error.message ?? 'Delete exam attempt get error'
 

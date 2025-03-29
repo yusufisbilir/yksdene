@@ -14,12 +14,13 @@ import { AddExamForm } from '@/components/features/netTakip/AddExamForm'
 import { ExamResultsList } from '@/components/features/netTakip/ExamResultsList'
 import { examFormSchema, ExamFormValues } from '@/components/features/netTakip/types'
 import { examTemplates, subjects as dbSubjects } from '@/constants/db.constants'
+import { useGetExamAttemptViewQuery } from '@/features/exam_attempt_view/exam_attempt_view.slice'
 
 export default function NetTakipPage() {
   const [isAddingExam, setIsAddingExam] = useState(false)
   const [subjects, setSubjects] = useState(dbSubjects)
   const { data: examAttemptViews, isLoading: isLoadingExamAttemptViews } =
-    useGetExamAttemptViewsQuery()
+    useGetExamAttemptViewQuery()
   const [createExamAttemptWithResults, { isLoading: isLoadingCreateExamAttemptWithResults }] =
     useCreateExamAttemptWithResultsMutation()
 

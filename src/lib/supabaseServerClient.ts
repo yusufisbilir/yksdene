@@ -1,7 +1,7 @@
 import { auth } from '@clerk/nextjs/server'
 import { createClient } from '@supabase/supabase-js'
 
-export async function createClerkSupabaseClientSsr() {
+export async function supabaseServerClient() {
   // The `useAuth()` hook is used to access the `getToken()` method
   const { getToken } = await auth()
 
