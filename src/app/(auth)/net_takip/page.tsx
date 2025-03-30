@@ -1,25 +1,24 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import {
-  useCreateExamAttemptWithResultsMutation,
-  useGetExamAttemptViewsQuery,
-} from '@/store/services/exam.api'
 import { Button } from '@/components/ui/button'
 import { Loader2 } from 'lucide-react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { format } from 'date-fns'
-import { AddExamForm } from '@/components/net_takip/add-exam-form'
-import { ExamResultsList } from '@/components/net_takip/ExamResultsList'
-import { examFormSchema, ExamFormValues } from '@/components/net_takip/types'
+import { AddExamForm } from '@/components/features/netTakip/AddExamForm'
+import { ExamResultsList } from '@/components/features/netTakip/ExamResultsList'
+import { examFormSchema, ExamFormValues } from '@/components/features/netTakip/types'
 import { examTemplates, subjects as dbSubjects } from '@/constants/db.constants'
+import { useGetExamAttemptViewQuery } from '@/features/exam_attempt_view.slice'
+import { useCreateExamAttemptWithResultsMutation } from '@/features/exam_attempt.slice'
+import PageLoader from '@/components/shared/PageLoader'
 
 export default function NetTakipPage() {
   const [isAddingExam, setIsAddingExam] = useState(false)
   const [subjects, setSubjects] = useState(dbSubjects)
   const { data: examAttemptViews, isLoading: isLoadingExamAttemptViews } =
-    useGetExamAttemptViewsQuery()
+    useGetExamAttemptViewQuery()
   const [createExamAttemptWithResults, { isLoading: isLoadingCreateExamAttemptWithResults }] =
     useCreateExamAttemptWithResultsMutation()
 
@@ -79,11 +78,7 @@ export default function NetTakipPage() {
   }, [examTemplate, form])
 
   if (isLoadingExamAttemptViews) {
-    return (
-      <div className="flex items-center justify-center min-h-[400px]">
-        <Loader2 className="w-12 h-12 animate-spin text-primary" />
-      </div>
-    )
+    return <PageLoader />
   }
 
   return (
