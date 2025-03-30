@@ -154,7 +154,7 @@
     @apply flex flex-col w-full max-w-xl px-2 py-4 mx-auto bg-white gap-y-6 lg:shadow-lg lg:border lg:border-accent lg:rounded-xl lg:px-6 lg:py-6;
   }
   .centered_panel {
-    @apply flex flex-col h-full lg:justify-center;
+    @apply flex flex-col min-h-full lg:justify-center;
   }
 
   /* Header (mobile view) */

@@ -1,16 +1,16 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import Sidebar from '@/components/Sidebar'
+import Sidebar from '@/components/layout/Sidebar'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
-import { ReduxProvider } from '@/providers/redux-provider'
-import { ExamTimer } from '@/providers/exam-timer'
-import { PomodoroTimer } from '@/providers/pomodoro-timer'
+import { ReduxProvider } from '@/providers/ReduxProvider'
+import { ExamTimerProvider } from '@/providers/ExamTimerProvider'
+import { PomodoroTimerProvider } from '@/providers/PomodoroTimerProvider'
 import { Toaster } from '@/components/ui/sonner'
 import { ClerkProvider } from '@clerk/nextjs'
 import { trTR } from '@clerk/localizations'
-import Header from '@/components/Header'
+import Header from '@/components/layout/Header'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -31,8 +31,8 @@ export default function RootLayout({
           <Analytics />
           <SpeedInsights />
           <ReduxProvider>
-            <PomodoroTimer>
-              <ExamTimer>
+            <PomodoroTimerProvider>
+              <ExamTimerProvider>
                 <main className="main">
                   {/* Web */}
                   <Sidebar />
@@ -41,8 +41,8 @@ export default function RootLayout({
                   <section className="root_layout_children_wrapper">{children}</section>
                 </main>
                 <Toaster />
-              </ExamTimer>
-            </PomodoroTimer>
+              </ExamTimerProvider>
+            </PomodoroTimerProvider>
           </ReduxProvider>
         </body>
       </html>

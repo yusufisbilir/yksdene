@@ -1,4 +1,4 @@
-import { Pomodoro } from '@/components/Pomodoro'
+import { Pomodoro } from '@/components/features/pomodoro/Pomodoro'
 
 const page = () => {
   return (
