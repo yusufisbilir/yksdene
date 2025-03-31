@@ -1,3 +1,4 @@
+'use client'
 import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -25,8 +26,10 @@ import {
 import { Input } from '@/components/ui/input'
 import { TotalStats } from './TotalStats'
 import { SubjectResults } from './SubjectResults'
+import { useExamAttemptContext } from '@/contexts/ExamAttemptContext'
 
 export function AddExamForm() {
+  const { isAddingExamAttempt, setIsAddingExamAttempt } = useExamAttemptContext()
   const [subjects, setSubjects] = useState(dbSubjects)
   const [createExamAttemptWithResults, { isLoading: isLoadingCreateExamAttemptWithResults }] =
     useCreateExamAttemptWithResultsMutation()
@@ -55,6 +58,7 @@ export function AddExamForm() {
       }).unwrap()
 
       // Reset form
+      setIsAddingExamAttempt(false)
       form.reset()
     } catch (error) {
       console.error('Failed to save exam results:', error)
@@ -101,6 +105,8 @@ export function AddExamForm() {
       { correct: 0, incorrect: 0, blank: 0, net: 0 },
     )
   }
+
+  if (!isAddingExamAttempt) return null
 
   return (
     <Card>
