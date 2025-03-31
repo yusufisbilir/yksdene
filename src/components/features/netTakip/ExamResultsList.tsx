@@ -23,7 +23,7 @@ export function ExamResultsList() {
     isFetching,
   } = useGetExamAttemptViewQuery()
 
-  if (isLoadingExamAttemptViews && isFetching) {
+  if (isLoadingExamAttemptViews || isFetching) {
     return <PageLoader />
   }
 
