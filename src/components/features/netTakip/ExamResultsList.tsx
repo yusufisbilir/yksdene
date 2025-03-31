@@ -17,9 +17,13 @@ import { useGetExamAttemptViewQuery } from '@/features/exam_attempt_view.slice'
 import PageLoader from '@/components/shared/PageLoader'
 
 export function ExamResultsList() {
-  const { data: results, isLoading: isLoadingExamAttemptViews } = useGetExamAttemptViewQuery()
+  const {
+    data: results,
+    isLoading: isLoadingExamAttemptViews,
+    isFetching,
+  } = useGetExamAttemptViewQuery()
 
-  if (isLoadingExamAttemptViews) {
+  if (isLoadingExamAttemptViews && isFetching) {
     return <PageLoader />
   }
 
