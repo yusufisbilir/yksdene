@@ -1,4 +1,5 @@
 'use client'
+
 import { format } from 'date-fns'
 import { tr } from 'date-fns/locale'
 import DeleteExamAttemptButton from './DeleteExamAttemptButton'
@@ -41,7 +42,6 @@ export function ExamResultsList() {
 
   return (
     <>
-      {/* Büyük ekranlar için tablo görünümü (lg ve üzeri) */}
       <div className="hidden overflow-hidden border rounded-md lg:block">
         <Table>
           <TableCaption>Toplam {results?.length} deneme sonucu</TableCaption>
@@ -93,7 +93,6 @@ export function ExamResultsList() {
         </Table>
       </div>
 
-      {/* Küçük ekranlar için kart görünümü (lg'den küçük) */}
       <div className="grid gap-4 lg:hidden md:grid-cols-2">
         {results?.map((result) => (
           <Card key={result.attempt_id || ''} className="overflow-hidden">

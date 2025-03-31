@@ -1,4 +1,5 @@
 'use client'
+
 import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -27,6 +28,7 @@ import { Input } from '@/components/ui/input'
 import { TotalStats } from './TotalStats'
 import { SubjectResults } from './SubjectResults'
 import { useExamAttemptContext } from '@/contexts/ExamAttemptContext'
+import { calculateExamResults } from '@/utils/calculateExamResults'
 
 export function AddExamForm() {
   const { isAddingExamAttempt, setIsAddingExamAttempt } = useExamAttemptContext()
@@ -43,8 +45,6 @@ export function AddExamForm() {
       subjectResults: [],
     },
   })
-
-  const examTemplate = form.watch('examTemplate')
 
   const onSubmit = async (data: ExamFormValues) => {
     try {
@@ -76,6 +76,8 @@ export function AddExamForm() {
     }
   }, [subjects, form.setValue, form])
 
+  const examTemplate = form.watch('examTemplate')
+
   useEffect(() => {
     if (examTemplate) {
       const filteredSubjects = dbSubjects.filter(
@@ -88,23 +90,6 @@ export function AddExamForm() {
       )
     }
   }, [examTemplate, form])
-
-  const getTotalStats = () => {
-    const subjectResults = form.watch('subjectResults')
-    return subjectResults.reduce(
-      (acc, subject) => {
-        const subjectTemplate = subjects?.find((s) => s.id === subject.subject_id)
-        const questionCount = subjectTemplate?.question_count || 0
-        return {
-          correct: acc.correct + subject.correct_count,
-          incorrect: acc.incorrect + subject.incorrect_count,
-          blank: acc.blank + (questionCount - subject.correct_count - subject.incorrect_count),
-          net: acc.net + (subject.correct_count - subject.incorrect_count * 0.25),
-        }
-      },
-      { correct: 0, incorrect: 0, blank: 0, net: 0 },
-    )
-  }
 
   if (!isAddingExamAttempt) return null
 
@@ -175,7 +160,7 @@ export function AddExamForm() {
               <div className="space-y-4">
                 <div className="flex sm:flex-row flex-col items-center justify-between gap-2">
                   <h3 className="font-semibold">Sonuçlar</h3>
-                  <TotalStats {...getTotalStats()} />
+                  <TotalStats {...calculateExamResults(form.watch('subjectResults'))} />
                 </div>
                 <SubjectResults form={form} subjects={subjects} />
               </div>
