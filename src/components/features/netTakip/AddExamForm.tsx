@@ -1,6 +1,12 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import { format } from 'date-fns'
+import { examFormSchema, ExamFormValues } from '@/components/features/netTakip/types'
+import { examTemplates, subjects as dbSubjects } from '@/constants/db.constants'
+import { useCreateExamAttemptWithResultsMutation } from '@/features/exam_attempt.slice'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import {
   Form,
   FormControl,
@@ -12,44 +18,73 @@ import {
 import {
   Select,
   SelectContent,
-  SelectValue,
-  SelectTrigger,
   SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from '@/components/ui/select'
-import { UseFormReturn } from 'react-hook-form'
-import { SubjectResults } from './SubjectResults'
+import { Input } from '@/components/ui/input'
 import { TotalStats } from './TotalStats'
-import { ExamFormValues, ExamTemplate, Subject } from './types'
-import { ReactNode } from 'react'
+import { SubjectResults } from './SubjectResults'
 
-interface AddExamFormProps {
-  form: UseFormReturn<ExamFormValues>
-  examTemplates: ExamTemplate[]
-  subjects: Subject[]
-  onSubmit: (data: ExamFormValues) => Promise<void>
-  children?: ReactNode
-}
+export function AddExamForm() {
+  const [subjects, setSubjects] = useState(dbSubjects)
+  const [createExamAttemptWithResults, { isLoading: isLoadingCreateExamAttemptWithResults }] =
+    useCreateExamAttemptWithResultsMutation()
 
-interface SubmitButtonProps {
-  children: ReactNode
-  disabled?: boolean
-}
+  const form = useForm<ExamFormValues>({
+    resolver: zodResolver(examFormSchema),
+    defaultValues: {
+      examTemplate: examTemplates?.find((template) => template.name === 'TYT')?.id || '',
+      examName: '',
+      examDate: format(new Date(), 'yyyy-MM-dd'),
+      subjectResults: [],
+    },
+  })
 
-function SubmitButton({ children, disabled }: SubmitButtonProps) {
-  return (
-    <Button type="submit" className="w-full" disabled={disabled}>
-      {children}
-    </Button>
-  )
-}
+  const examTemplate = form.watch('examTemplate')
 
-export function AddExamForm({
-  form,
-  examTemplates,
-  subjects,
-  onSubmit,
-  children,
-}: AddExamFormProps) {
+  const onSubmit = async (data: ExamFormValues) => {
+    try {
+      await createExamAttemptWithResults({
+        examAttempt: {
+          name: data.examName,
+          date: data.examDate,
+          exam_template_id: data.examTemplate,
+        },
+        subjectResults: data.subjectResults,
+      }).unwrap()
+
+      // Reset form
+      form.reset()
+    } catch (error) {
+      console.error('Failed to save exam results:', error)
+    }
+  }
+
+  useEffect(() => {
+    if (subjects) {
+      const initialSubjectResults = subjects.map((subject) => ({
+        correct_count: 0,
+        incorrect_count: 0,
+        subject_id: subject.id,
+      }))
+      form.setValue('subjectResults', initialSubjectResults)
+    }
+  }, [subjects, form.setValue, form])
+
+  useEffect(() => {
+    if (examTemplate) {
+      const filteredSubjects = dbSubjects.filter(
+        (subject) => subject.exam_template_id === examTemplate,
+      )
+      setSubjects(filteredSubjects)
+      form.setValue(
+        'examName',
+        `${examTemplates.find((template) => template.id === examTemplate)?.name} Denemesi`,
+      )
+    }
+  }, [examTemplate, form])
+
   const getTotalStats = () => {
     const subjectResults = form.watch('subjectResults')
     return subjectResults.reduce(
@@ -140,12 +175,16 @@ export function AddExamForm({
               </div>
             )}
 
-            {children || <SubmitButton>Kaydet</SubmitButton>}
+            <Button
+              type="submit"
+              className="w-full"
+              disabled={isLoadingCreateExamAttemptWithResults}
+            >
+              {isLoadingCreateExamAttemptWithResults ? '...Kaydediliyor' : 'Kaydet'}
+            </Button>
           </form>
         </Form>
       </CardContent>
     </Card>
   )
 }
-
-AddExamForm.SubmitButton = SubmitButton
