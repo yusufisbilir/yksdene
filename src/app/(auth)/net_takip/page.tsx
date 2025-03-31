@@ -6,7 +6,7 @@ export default function NetTakipPage() {
   return (
     <article className="space-y-6 panel">
       <Header />
-      {<AddExamForm />}
+      <AddExamForm />
       <ExamResultsList />
     </article>
   )
