@@ -4,6 +4,7 @@ import QuestionAnalysis from './QuestionAnalysis'
 import { EmptyDashboard } from './EmptyDashboard'
 import { examAttemptStatisticsService } from '@/services/exam_attempt_statistics.service'
 import { ExamResultsList } from '../denemelerim/ExamResultsList'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 const Dashboard = async () => {
   const examTemplateStats = await examAttemptStatisticsService.getExamAttemptStatistics()
@@ -14,12 +15,44 @@ const Dashboard = async () => {
   }
 
   return (
-    <article className="space-y-4 panel">
+    <article className="space-y-4">
       <h1 className="text-3xl font-bold tracking-tight">👑 Başarı Tablosu</h1>
-      <ExamResultsList />
-      <StatisticsCards examTemplateStats={examTemplateStats} />
-      <PerformanceTrends examTemplateStats={examTemplateStats} />
-      <QuestionAnalysis examTemplateStats={examTemplateStats} />
+
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-2xl">Ortalama Netler</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <StatisticsCards examTemplateStats={examTemplateStats} />
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-2xl">Denemelerim</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ExamResultsList />
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-2xl">Performans Takibi</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <PerformanceTrends examTemplateStats={examTemplateStats} />
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-2xl">Soru Analizleri</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <QuestionAnalysis examTemplateStats={examTemplateStats} />
+        </CardContent>
+      </Card>
     </article>
   )
 }
