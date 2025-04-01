@@ -8,7 +8,7 @@ import { ExamCategoryStatistics } from '@/types/db.types'
 const index = ({ examTemplateStats }: { examTemplateStats: ExamCategoryStatistics }) => {
   return (
     <Card className="container mx-auto p-6 space-y-6 my-6">
-      <h1 className="text-3xl font-bold tracking-tight">Sınav Performans Paneli</h1>
+      <h1 className="text-3xl font-bold tracking-tight">👑 Başarı Tablosu</h1>
 
       {/* Overall Statistics Cards */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
