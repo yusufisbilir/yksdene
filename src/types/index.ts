@@ -1,5 +1,4 @@
 import { Tables, TablesInsert, TablesUpdate } from './supabase.types'
-import { z } from 'zod'
 
 // Exam Attempts
 export type ExamAttempt = Tables<'exam_attempts'>
