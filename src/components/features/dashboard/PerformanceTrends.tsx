@@ -46,7 +46,7 @@ const PerformanceTrends = ({ examTemplateStats }: PerformanceTrendsProps) => {
                 className="h-[250px] w-full"
               >
                 <LineChart data={chartData} margin={{ top: 5, right: 5, left: 0, bottom: 5 }}>
-                  <XAxis dataKey="date" tick={{ fontSize: 12 }} />
+                  <XAxis dataKey="date" tick={false} />
                   <YAxis width={40} tick={{ fontSize: 12 }} />
                   <CartesianGrid strokeDasharray="3 3" />
                   <Tooltip content={<ChartTooltipContent />} />

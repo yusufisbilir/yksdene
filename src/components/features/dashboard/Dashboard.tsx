@@ -15,7 +15,7 @@ const Dashboard = async () => {
   }
 
   return (
-    <article className="space-y-6 px-2 sm:px-4 md:px-6">
+    <article className="space-y-6">
       <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">👑 Başarı Tablosu</h1>
 
       <Card>
