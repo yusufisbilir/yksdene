@@ -1,4 +1,5 @@
-import { ExamAttemptView } from './types'
+'use client'
+
 import { format } from 'date-fns'
 import { tr } from 'date-fns/locale'
 import DeleteExamAttemptButton from './DeleteExamAttemptButton'
@@ -13,13 +14,17 @@ import {
 } from '@/components/ui/table'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { FileSpreadsheet } from 'lucide-react'
+import { useGetExamAttemptViewQuery } from '@/features/exam_attempt_view.slice'
+import PageLoader from '@/components/shared/PageLoader'
 
-interface ExamResultsListProps {
-  results: ExamAttemptView[]
-}
+export function ExamResultsList() {
+  const { data: results, isLoading: isLoadingExamAttemptViews } = useGetExamAttemptViewQuery()
 
-export function ExamResultsList({ results }: ExamResultsListProps) {
-  if (results.length === 0) {
+  if (isLoadingExamAttemptViews) {
+    return <PageLoader />
+  }
+
+  if (results?.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center p-8 text-center border border-dashed rounded-lg bg-muted/10 min-h-[200px]">
         <FileSpreadsheet className="w-12 h-12 mb-4 text-muted-foreground" />
@@ -33,10 +38,9 @@ export function ExamResultsList({ results }: ExamResultsListProps) {
 
   return (
     <>
-      {/* Büyük ekranlar için tablo görünümü (lg ve üzeri) */}
       <div className="hidden overflow-hidden border rounded-md lg:block">
         <Table>
-          <TableCaption>Toplam {results.length} deneme sonucu</TableCaption>
+          <TableCaption>Toplam {results?.length} deneme sonucu</TableCaption>
           <TableHeader className="bg-muted/30">
             <TableRow>
               <TableHead className="w-[250px]">Deneme Adı</TableHead>
@@ -49,7 +53,7 @@ export function ExamResultsList({ results }: ExamResultsListProps) {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {results.map((result) => (
+            {results?.map((result) => (
               <TableRow
                 key={result.attempt_id || ''}
                 className="transition-colors hover:bg-muted/50"
@@ -85,9 +89,8 @@ export function ExamResultsList({ results }: ExamResultsListProps) {
         </Table>
       </div>
 
-      {/* Küçük ekranlar için kart görünümü (lg'den küçük) */}
       <div className="grid gap-4 lg:hidden md:grid-cols-2">
-        {results.map((result) => (
+        {results?.map((result) => (
           <Card key={result.attempt_id || ''} className="overflow-hidden">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <CardTitle className="text-lg">{result.attempt_name || 'İsimsiz Deneme'}</CardTitle>

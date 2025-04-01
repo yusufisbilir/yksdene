@@ -1,6 +1,6 @@
 export const ROUTES = {
   HOME: '/',
-  NET_TAKIP: '/net_takip',
+  DENEMELERIM: '/denemelerim',
   EXAMPRACTICE: '/deneme',
   DAILYEXAMPRACTICE: '/gunluk_deneme',
   POMODORO: '/pomodoro',
@@ -16,7 +16,7 @@ export const getRouteName = (route: RouteValue) => {
       return 'Günlük Deneme'
     case ROUTES.POMODORO:
       return 'Pomodoro'
-    case ROUTES.NET_TAKIP:
+    case ROUTES.DENEMELERIM:
       return 'Denemelerim'
     case ROUTES.HOME:
       return 'Anasayfa'

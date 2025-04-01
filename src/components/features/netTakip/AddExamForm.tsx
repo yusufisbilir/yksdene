@@ -1,6 +1,14 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+'use client'
+
+import { useEffect } from 'react'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import { format } from 'date-fns'
+import { examFormSchema, ExamFormValues } from '@/components/features/netTakip/types'
+import { examTemplates, subjects as dbSubjects } from '@/constants/db.constants'
+import { useCreateExamAttemptWithResultsMutation } from '@/features/exam_attempt.slice'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import {
   Form,
   FormControl,
@@ -12,60 +20,99 @@ import {
 import {
   Select,
   SelectContent,
-  SelectValue,
-  SelectTrigger,
   SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from '@/components/ui/select'
-import { UseFormReturn } from 'react-hook-form'
-import { SubjectResults } from './SubjectResults'
+import { Input } from '@/components/ui/input'
 import { TotalStats } from './TotalStats'
-import { ExamFormValues, ExamTemplate, Subject } from './types'
-import { ReactNode } from 'react'
+import { SubjectResults } from './SubjectResults'
+import { useExamAttemptContext } from '@/contexts/ExamAttemptContext'
+import { calculateExamResults } from '@/utils/calculateExamResults'
 
-interface AddExamFormProps {
-  form: UseFormReturn<ExamFormValues>
-  examTemplates: ExamTemplate[]
-  subjects: Subject[]
-  onSubmit: (data: ExamFormValues) => Promise<void>
-  children?: ReactNode
-}
+export function AddExamForm() {
+  const { isAddingExamAttempt, setIsAddingExamAttempt } = useExamAttemptContext()
+  const [createExamAttemptWithResults, { isLoading: isLoadingCreateExamAttemptWithResults }] =
+    useCreateExamAttemptWithResultsMutation()
 
-interface SubmitButtonProps {
-  children: ReactNode
-  disabled?: boolean
-}
+  const defaultExamTemplate = examTemplates?.find((template) => template.name === 'TYT')?.id || ''
 
-function SubmitButton({ children, disabled }: SubmitButtonProps) {
-  return (
-    <Button type="submit" className="w-full" disabled={disabled}>
-      {children}
-    </Button>
-  )
-}
+  const form = useForm<ExamFormValues>({
+    resolver: zodResolver(examFormSchema),
+    defaultValues: {
+      examTemplate: defaultExamTemplate,
+      examName: '',
+      examDate: format(new Date(), 'yyyy-MM-dd'),
+      subjectResults: [],
+    },
+  })
 
-export function AddExamForm({
-  form,
-  examTemplates,
-  subjects,
-  onSubmit,
-  children,
-}: AddExamFormProps) {
-  const getTotalStats = () => {
-    const subjectResults = form.watch('subjectResults')
-    return subjectResults.reduce(
-      (acc, subject) => {
-        const subjectTemplate = subjects?.find((s) => s.id === subject.subject_id)
-        const questionCount = subjectTemplate?.question_count || 0
-        return {
-          correct: acc.correct + subject.correct_count,
-          incorrect: acc.incorrect + subject.incorrect_count,
-          blank: acc.blank + (questionCount - subject.correct_count - subject.incorrect_count),
-          net: acc.net + (subject.correct_count - subject.incorrect_count * 0.25),
-        }
-      },
-      { correct: 0, incorrect: 0, blank: 0, net: 0 },
-    )
+  const onSubmit = async (data: ExamFormValues) => {
+    try {
+      await createExamAttemptWithResults({
+        examAttempt: {
+          name: data.examName,
+          date: data.examDate,
+          exam_template_id: data.examTemplate,
+        },
+        subjectResults: data.subjectResults,
+      }).unwrap()
+
+      // Reset form
+      setIsAddingExamAttempt(false)
+      form.reset({
+        examTemplate: defaultExamTemplate,
+        examName: '',
+        examDate: format(new Date(), 'yyyy-MM-dd'),
+        subjectResults: [],
+      })
+    } catch (error) {
+      console.error('Failed to save exam results:', error)
+    }
   }
+
+  const examTemplate = form.watch('examTemplate')
+  useEffect(() => {
+    const filteredSubjects = dbSubjects.filter(
+      (subject) => subject.exam_template_id === examTemplate,
+    )
+    form.setValue(
+      'subjectResults',
+      filteredSubjects.map((subject) => ({
+        correct_count: 0,
+        incorrect_count: 0,
+        subject_id: subject.id,
+      })),
+    )
+    form.setValue(
+      'examName',
+      `${examTemplates.find((template) => template.id === examTemplate)?.name} Denemesi`,
+    )
+  }, [examTemplate])
+
+  useEffect(() => {
+    if (isAddingExamAttempt) {
+      form.setValue('examTemplate', defaultExamTemplate)
+
+      const filteredSubjects = dbSubjects.filter(
+        (subject) => subject.exam_template_id === defaultExamTemplate,
+      )
+      form.setValue(
+        'subjectResults',
+        filteredSubjects.map((subject) => ({
+          correct_count: 0,
+          incorrect_count: 0,
+          subject_id: subject.id,
+        })),
+      )
+      form.setValue(
+        'examName',
+        `${examTemplates.find((template) => template.id === defaultExamTemplate)?.name} Denemesi`,
+      )
+    }
+  }, [isAddingExamAttempt, defaultExamTemplate, form])
+
+  if (!isAddingExamAttempt) return null
 
   return (
     <Card>
@@ -130,22 +177,31 @@ export function AddExamForm({
               />
             </div>
 
-            {form.getValues('examTemplate') && subjects && (
+            {form.watch('subjectResults')?.length ? (
               <div className="space-y-4">
                 <div className="flex sm:flex-row flex-col items-center justify-between gap-2">
                   <h3 className="font-semibold">Sonuçlar</h3>
-                  <TotalStats {...getTotalStats()} />
+                  <TotalStats {...calculateExamResults(form.watch('subjectResults'))} />
                 </div>
-                <SubjectResults form={form} subjects={subjects} />
+                <SubjectResults
+                  form={form}
+                  subjects={dbSubjects?.filter(
+                    (subject) => form.watch('examTemplate') === subject.exam_template_id,
+                  )}
+                />
               </div>
-            )}
+            ) : null}
 
-            {children || <SubmitButton>Kaydet</SubmitButton>}
+            <Button
+              type="submit"
+              className="w-full"
+              disabled={isLoadingCreateExamAttemptWithResults}
+            >
+              {isLoadingCreateExamAttemptWithResults ? '...Kaydediliyor' : 'Kaydet'}
+            </Button>
           </form>
         </Form>
       </CardContent>
     </Card>
   )
 }
-
-AddExamForm.SubmitButton = SubmitButton
