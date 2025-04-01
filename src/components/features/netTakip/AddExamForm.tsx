@@ -94,7 +94,6 @@ export function AddExamForm() {
     if (isAddingExamAttempt) {
       form.setValue('examTemplate', defaultExamTemplate)
 
-      // Form tekrar açıldığında subjectResults'ı hemen doldur
       const filteredSubjects = dbSubjects.filter(
         (subject) => subject.exam_template_id === defaultExamTemplate,
       )
