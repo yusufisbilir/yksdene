@@ -1,4 +1,4 @@
-import { ExamTemplate, Subject } from '@/types/db.types'
+import { ExamTemplate, Subject } from '@/types'
 
 export const examTemplates: ExamTemplate[] = [
   {

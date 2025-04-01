@@ -8,7 +8,7 @@ import { ROUTES } from '@/constants/routes'
 export function EmptyDashboard() {
   return (
     <Card className="container p-6 space-y-6">
-      <h1 className="text-3xl font-bold tracking-tight">Sınav Performans Paneli</h1>
+      <h1 className="text-3xl font-bold tracking-tight">👑 Başarı Tablosu</h1>
 
       <Card className="bg-muted/40">
         <CardHeader>
@@ -19,8 +19,8 @@ export function EmptyDashboard() {
         </CardHeader>
         <CardContent className="space-y-6">
           <p className="text-muted-foreground">
-            Sınav performans paneliniz şu anda boş görünüyor. Deneme sonuçlarınızı ekleyerek
-            performans grafiklerinizi görüntüleyebilirsiniz.
+            Başarı tablonuz şu anda boş görünüyor. Deneme sonuçlarınızı ekleyerek performans
+            grafiklerinizi görüntüleyebilirsiniz.
           </p>
 
           <div className="flex flex-col gap-4 sm:flex-row">

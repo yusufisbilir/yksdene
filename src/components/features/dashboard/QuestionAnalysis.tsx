@@ -2,7 +2,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { ChartContainer, ChartTooltipContent } from '@/components/ui/chart'
 import { examTemplates } from '@/constants/db.constants'
-import { ExamCategoryStatistics } from '@/types/db.types'
+import { ExamCategoryStatistics } from '@/types'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
 
 interface QuestionAnalysisProps {

@@ -1,7 +1,7 @@
 import { UnauthorizedError } from '@/utils/errors'
 import { supabaseServerClient } from '@/lib/supabaseServerClient'
 import { auth } from '@clerk/nextjs/server'
-import { ExamAttemptView } from '@/types/db.types'
+import { ExamAttemptView } from '@/types'
 
 export const examAttemptViewService = {
   async getExamAttemptView(): Promise<ExamAttemptView[]> {

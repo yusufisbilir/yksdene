@@ -14,7 +14,7 @@ const Dashboard = async () => {
 
   return (
     <article className="space-y-4 panel">
-      <h1 className="text-3xl font-bold tracking-tight">Sınav Performans Paneli</h1>
+      <h1 className="text-3xl font-bold tracking-tight">👑 Başarı Tablosu</h1>
       <StatisticsCards examTemplateStats={examTemplateStats} />
       <PerformanceTrends examTemplateStats={examTemplateStats} />
       <QuestionAnalysis examTemplateStats={examTemplateStats} />

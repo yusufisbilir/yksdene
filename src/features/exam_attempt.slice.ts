@@ -1,6 +1,6 @@
 import { API_ROUTES } from '@/constants/api.routes'
 import { apiSlice } from './api/apiSlice'
-import { ExamAttemptInsert, ExamAttemptView, SubjectResultInsert } from '@/types/db.types'
+import { ExamAttemptInsert, ExamAttemptView, SubjectResultInsert } from '@/types'
 
 export const examAttemptSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({

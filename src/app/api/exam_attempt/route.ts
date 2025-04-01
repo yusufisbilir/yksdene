@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { handleApiError } from '@/utils/handleApiError'
 import { examAttemptService } from '@/services/exam_attempt.service'
-import { createExamAttemptSchema, deleteExamAttemptSchema } from '@/types/db.types'
+import { createExamAttemptSchema, deleteExamAttemptSchema } from '@/types/examAttempt.schema'
 import { validateRequest } from '@/utils/validationErrors'
 
 export async function POST(request: NextRequest) {

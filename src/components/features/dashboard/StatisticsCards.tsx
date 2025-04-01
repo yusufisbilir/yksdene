@@ -1,7 +1,7 @@
 'use client'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { examTemplates } from '@/constants/db.constants'
-import { ExamCategoryStatistics } from '@/types/db.types'
+import { ExamCategoryStatistics } from '@/types'
 
 interface StatisticsCardsProps {
   examTemplateStats: ExamCategoryStatistics
