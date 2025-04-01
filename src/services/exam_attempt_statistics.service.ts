@@ -2,7 +2,7 @@ import { UnauthorizedError } from '@/utils/errors'
 import { auth } from '@clerk/nextjs/server'
 import { examAttemptViewService } from './exam_attempt_view.service'
 import { examTemplates } from '@/constants/db.constants'
-import { ExamCategoryStatistics, ExamTemplate } from '@/types/db.types'
+import { ExamCategoryStatistics, ExamTemplate } from '@/types'
 
 export const examAttemptStatisticsService = {
   async getExamAttemptStatistics(): Promise<ExamCategoryStatistics> {

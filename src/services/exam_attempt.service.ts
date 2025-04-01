@@ -1,7 +1,7 @@
 import { AppError, UnauthorizedError } from '@/utils/errors'
 import { supabaseServerClient } from '@/lib/supabaseServerClient'
 import { auth } from '@clerk/nextjs/server'
-import { ExamAttemptInsert, SubjectResultInsert } from '@/types/db.types'
+import { ExamAttemptInsert, SubjectResultInsert } from '@/types'
 
 export const examAttemptService = {
   async deleteExamAttempt(id: string) {

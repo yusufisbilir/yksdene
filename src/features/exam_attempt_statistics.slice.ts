@@ -1,6 +1,6 @@
 import { API_ROUTES } from '@/constants/api.routes'
 import { apiSlice } from './api/apiSlice'
-import { ExamCategoryStatistics } from '@/types/db.types'
+import { ExamCategoryStatistics } from '@/types'
 
 export const examAttemptViewStatisticsSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({

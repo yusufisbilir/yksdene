@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { format } from 'date-fns'
-import { examFormSchema, ExamFormValues } from '@/components/features/netTakip/types'
 import { examTemplates, subjects as dbSubjects } from '@/constants/db.constants'
 import { useCreateExamAttemptWithResultsMutation } from '@/features/exam_attempt.slice'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -29,6 +28,7 @@ import { TotalStats } from './TotalStats'
 import { SubjectResults } from './SubjectResults'
 import { useExamAttemptContext } from '@/contexts/ExamAttemptContext'
 import { calculateExamResults } from '@/utils/calculateExamResults'
+import { CreateExamAttemptInput, createExamAttemptSchema } from '@/types/examAttempt.schema'
 
 export function AddExamForm() {
   const { isAddingExamAttempt, setIsAddingExamAttempt } = useExamAttemptContext()
@@ -37,23 +37,25 @@ export function AddExamForm() {
 
   const defaultExamTemplate = examTemplates?.find((template) => template.name === 'TYT')?.id || ''
 
-  const form = useForm<ExamFormValues>({
-    resolver: zodResolver(examFormSchema),
+  const form = useForm<CreateExamAttemptInput>({
+    resolver: zodResolver(createExamAttemptSchema),
     defaultValues: {
-      examTemplate: defaultExamTemplate,
-      examName: '',
-      examDate: format(new Date(), 'yyyy-MM-dd'),
+      examAttempt: {
+        exam_template_id: defaultExamTemplate,
+        name: '',
+        date: format(new Date(), 'yyyy-MM-dd'),
+      },
       subjectResults: [],
     },
   })
 
-  const onSubmit = async (data: ExamFormValues) => {
+  const onSubmit = async (data: CreateExamAttemptInput) => {
     try {
       await createExamAttemptWithResults({
         examAttempt: {
-          name: data.examName,
-          date: data.examDate,
-          exam_template_id: data.examTemplate,
+          name: data.examAttempt.name,
+          date: data.examAttempt.date,
+          exam_template_id: data.examAttempt.exam_template_id,
         },
         subjectResults: data.subjectResults,
       }).unwrap()
@@ -61,9 +63,11 @@ export function AddExamForm() {
       // Reset form
       setIsAddingExamAttempt(false)
       form.reset({
-        examTemplate: defaultExamTemplate,
-        examName: '',
-        examDate: format(new Date(), 'yyyy-MM-dd'),
+        examAttempt: {
+          exam_template_id: defaultExamTemplate,
+          name: '',
+          date: format(new Date(), 'yyyy-MM-dd'),
+        },
         subjectResults: [],
       })
     } catch (error) {
@@ -71,7 +75,7 @@ export function AddExamForm() {
     }
   }
 
-  const examTemplate = form.watch('examTemplate')
+  const examTemplate = form.watch('examAttempt.exam_template_id')
   useEffect(() => {
     const filteredSubjects = dbSubjects.filter(
       (subject) => subject.exam_template_id === examTemplate,
@@ -85,14 +89,14 @@ export function AddExamForm() {
       })),
     )
     form.setValue(
-      'examName',
+      'examAttempt.name',
       `${examTemplates.find((template) => template.id === examTemplate)?.name} Denemesi`,
     )
   }, [examTemplate])
 
   useEffect(() => {
     if (isAddingExamAttempt) {
-      form.setValue('examTemplate', defaultExamTemplate)
+      form.setValue('examAttempt.exam_template_id', defaultExamTemplate)
 
       const filteredSubjects = dbSubjects.filter(
         (subject) => subject.exam_template_id === defaultExamTemplate,
@@ -106,7 +110,7 @@ export function AddExamForm() {
         })),
       )
       form.setValue(
-        'examName',
+        'examAttempt.name',
         `${examTemplates.find((template) => template.id === defaultExamTemplate)?.name} Denemesi`,
       )
     }
@@ -125,7 +129,7 @@ export function AddExamForm() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <FormField
                 control={form.control}
-                name="examTemplate"
+                name="examAttempt.exam_template_id"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Deneme Türü</FormLabel>
@@ -150,7 +154,7 @@ export function AddExamForm() {
 
               <FormField
                 control={form.control}
-                name="examName"
+                name="examAttempt.name"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Başlık</FormLabel>
@@ -164,7 +168,7 @@ export function AddExamForm() {
 
               <FormField
                 control={form.control}
-                name="examDate"
+                name="examAttempt.date"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Tarih</FormLabel>
@@ -186,7 +190,8 @@ export function AddExamForm() {
                 <SubjectResults
                   form={form}
                   subjects={dbSubjects?.filter(
-                    (subject) => form.watch('examTemplate') === subject.exam_template_id,
+                    (subject) =>
+                      form.watch('examAttempt.exam_template_id') === subject.exam_template_id,
                   )}
                 />
               </div>

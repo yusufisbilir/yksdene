@@ -1,6 +1,6 @@
-import { AddExamForm } from '@/components/features/netTakip/AddExamForm'
-import { ExamResultsList } from '@/components/features/netTakip/ExamResultsList'
-import Header from '@/components/features/netTakip/Header'
+import { AddExamForm } from '@/components/features/denemelerim/AddExamForm'
+import { ExamResultsList } from '@/components/features/denemelerim/ExamResultsList'
+import Header from '@/components/features/denemelerim/Header'
 
 export default function NetTakipPage() {
   return (
