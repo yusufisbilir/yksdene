@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
@@ -32,14 +32,15 @@ import { calculateExamResults } from '@/utils/calculateExamResults'
 
 export function AddExamForm() {
   const { isAddingExamAttempt, setIsAddingExamAttempt } = useExamAttemptContext()
-  const [subjects, setSubjects] = useState(dbSubjects)
   const [createExamAttemptWithResults, { isLoading: isLoadingCreateExamAttemptWithResults }] =
     useCreateExamAttemptWithResultsMutation()
+
+  const defaultExamTemplate = examTemplates?.find((template) => template.name === 'TYT')?.id || ''
 
   const form = useForm<ExamFormValues>({
     resolver: zodResolver(examFormSchema),
     defaultValues: {
-      examTemplate: examTemplates?.find((template) => template.name === 'TYT')?.id || '',
+      examTemplate: defaultExamTemplate,
       examName: '',
       examDate: format(new Date(), 'yyyy-MM-dd'),
       subjectResults: [],
@@ -59,37 +60,58 @@ export function AddExamForm() {
 
       // Reset form
       setIsAddingExamAttempt(false)
-      form.reset()
+      form.reset({
+        examTemplate: defaultExamTemplate,
+        examName: '',
+        examDate: format(new Date(), 'yyyy-MM-dd'),
+        subjectResults: [],
+      })
     } catch (error) {
       console.error('Failed to save exam results:', error)
     }
   }
 
+  const examTemplate = form.watch('examTemplate')
   useEffect(() => {
-    if (subjects) {
-      const initialSubjectResults = subjects.map((subject) => ({
+    const filteredSubjects = dbSubjects.filter(
+      (subject) => subject.exam_template_id === examTemplate,
+    )
+    form.setValue(
+      'subjectResults',
+      filteredSubjects.map((subject) => ({
         correct_count: 0,
         incorrect_count: 0,
         subject_id: subject.id,
-      }))
-      form.setValue('subjectResults', initialSubjectResults)
-    }
-  }, [subjects, form.setValue, form])
-
-  const examTemplate = form.watch('examTemplate')
+      })),
+    )
+    form.setValue(
+      'examName',
+      `${examTemplates.find((template) => template.id === examTemplate)?.name} Denemesi`,
+    )
+  }, [examTemplate])
 
   useEffect(() => {
-    if (examTemplate) {
+    if (isAddingExamAttempt) {
+      form.setValue('examTemplate', defaultExamTemplate)
+
+      // Form tekrar açıldığında subjectResults'ı hemen doldur
       const filteredSubjects = dbSubjects.filter(
-        (subject) => subject.exam_template_id === examTemplate,
+        (subject) => subject.exam_template_id === defaultExamTemplate,
       )
-      setSubjects(filteredSubjects)
+      form.setValue(
+        'subjectResults',
+        filteredSubjects.map((subject) => ({
+          correct_count: 0,
+          incorrect_count: 0,
+          subject_id: subject.id,
+        })),
+      )
       form.setValue(
         'examName',
-        `${examTemplates.find((template) => template.id === examTemplate)?.name} Denemesi`,
+        `${examTemplates.find((template) => template.id === defaultExamTemplate)?.name} Denemesi`,
       )
     }
-  }, [examTemplate, form])
+  }, [isAddingExamAttempt, defaultExamTemplate, form])
 
   if (!isAddingExamAttempt) return null
 
@@ -156,15 +178,20 @@ export function AddExamForm() {
               />
             </div>
 
-            {form.getValues('examTemplate') && subjects && (
+            {form.watch('subjectResults')?.length ? (
               <div className="space-y-4">
                 <div className="flex sm:flex-row flex-col items-center justify-between gap-2">
                   <h3 className="font-semibold">Sonuçlar</h3>
                   <TotalStats {...calculateExamResults(form.watch('subjectResults'))} />
                 </div>
-                <SubjectResults form={form} subjects={subjects} />
+                <SubjectResults
+                  form={form}
+                  subjects={dbSubjects?.filter(
+                    (subject) => form.watch('examTemplate') === subject.exam_template_id,
+                  )}
+                />
               </div>
-            )}
+            ) : null}
 
             <Button
               type="submit"

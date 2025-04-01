@@ -1,4 +1,3 @@
-import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
 import { UseFormReturn } from 'react-hook-form'
@@ -11,7 +10,7 @@ interface SubjectResultsProps {
 
 export function SubjectResults({ form, subjects }: SubjectResultsProps) {
   return (
-    <div className="space-y-4">
+    <div className="gap-y-8 sm:gap-x-6 xl:gap-x-20 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
       {subjects.map((subject) => {
         const subjectIndex = form
           .getValues('subjectResults')
@@ -20,7 +19,7 @@ export function SubjectResults({ form, subjects }: SubjectResultsProps) {
         return (
           <div key={subject.id} className="space-y-2">
             <div className="flex items-center gap-2">
-              <Label>{subject.name}</Label>
+              <h3 className="font-medium">{subject.name}</h3>
               <span className="text-sm text-muted-foreground ml-auto">
                 {subject.question_count} Soru
               </span>
@@ -33,6 +32,7 @@ export function SubjectResults({ form, subjects }: SubjectResultsProps) {
                   <FormItem>
                     <FormControl>
                       <Input
+                        className="bg-green-50 border-green-300"
                         type="number"
                         min="0"
                         max={subject.question_count}
@@ -62,6 +62,7 @@ export function SubjectResults({ form, subjects }: SubjectResultsProps) {
                   <FormItem>
                     <FormControl>
                       <Input
+                        className="bg-red-50 border-red-300"
                         type="number"
                         min="0"
                         max={subject.question_count}
