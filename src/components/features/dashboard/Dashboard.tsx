@@ -15,12 +15,12 @@ const Dashboard = async () => {
   }
 
   return (
-    <article className="space-y-4">
-      <h1 className="text-3xl font-bold tracking-tight">👑 Başarı Tablosu</h1>
+    <article className="space-y-6 px-2 sm:px-4 md:px-6">
+      <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">👑 Başarı Tablosu</h1>
 
       <Card>
         <CardHeader>
-          <CardTitle className="text-2xl">Ortalama Netler</CardTitle>
+          <CardTitle className="text-xl sm:text-2xl">Ortalama Netler</CardTitle>
         </CardHeader>
         <CardContent>
           <StatisticsCards examTemplateStats={examTemplateStats} />
@@ -29,16 +29,16 @@ const Dashboard = async () => {
 
       <Card>
         <CardHeader>
-          <CardTitle className="text-2xl">Denemelerim</CardTitle>
+          <CardTitle className="text-xl sm:text-2xl">Denemelerim</CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="overflow-x-auto">
           <ExamResultsList />
         </CardContent>
       </Card>
 
       <Card>
         <CardHeader>
-          <CardTitle className="text-2xl">Performans Takibi</CardTitle>
+          <CardTitle className="text-xl sm:text-2xl">Performans Takibi</CardTitle>
         </CardHeader>
         <CardContent>
           <PerformanceTrends examTemplateStats={examTemplateStats} />
@@ -47,7 +47,7 @@ const Dashboard = async () => {
 
       <Card>
         <CardHeader>
-          <CardTitle className="text-2xl">Soru Analizleri</CardTitle>
+          <CardTitle className="text-xl sm:text-2xl">Soru Analizleri</CardTitle>
         </CardHeader>
         <CardContent>
           <QuestionAnalysis examTemplateStats={examTemplateStats} />
