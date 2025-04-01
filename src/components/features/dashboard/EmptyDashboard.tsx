@@ -24,7 +24,7 @@ export function EmptyDashboard() {
           </p>
 
           <div className="flex flex-col gap-4 sm:flex-row">
-            <Link href={ROUTES.NET_TAKIP}>
+            <Link href={ROUTES.DENEMELERIM}>
               <Button className="flex items-center w-full gap-2 sm:w-auto">
                 <BookPlus className="w-4 h-4" />
                 Deneme Sonucu Ekle
