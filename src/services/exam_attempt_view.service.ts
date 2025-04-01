@@ -13,7 +13,7 @@ export const examAttemptViewService = {
     const { data, error } = await supabase
       .from('exam_attempt_view')
       .select('*')
-      .order('attempt_date', { ascending: false })
+      .order('created_at', { ascending: false })
 
     if (error) throw error
     return data || []
