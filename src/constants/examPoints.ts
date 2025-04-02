@@ -1,15 +1,15 @@
 export const BASE_POINTS_2024 = {
-  TYT: 144.95,
+  TYT: 144.945,
   SAY: 133.28,
   EA: 132.28,
   SOZ: 130.36,
 }
 
 export const TYT_COEFFICENTS_2024 = {
-  TURKCE: 2.91,
-  SOSYAL: 2.94,
-  MATEMATIK: 2.93,
-  FEN: 3.15,
+  TURKCE: 2.90845,
+  MATEMATIK: 2.9255,
+  SOSYAL: 2.93675,
+  FEN: 3.1482,
 }
 
 const AYT_SAY_KATSAYILARI = {
