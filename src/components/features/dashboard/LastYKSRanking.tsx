@@ -6,16 +6,6 @@ import React, { useEffect, useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { calculateTYTScores } from './calculate'
 
-type YKSResult = {
-  tytPuan: number
-  sayPuan: number | null
-  sozPuan: number | null
-  eaPuan: number | null
-  saySiralama: number | null
-  sozSiralama: number | null
-  eaSiralama: number | null
-}
-
 const tytTurkceId = 'ce164057-c0fb-4770-9951-bff7b6089537'
 const tytMatematikId = '58017200-0ff0-4aad-9f37-f5235989dc67'
 const tytFizikId = 'b4835e2c-cb12-4f58-9405-daada69fb473'
@@ -91,11 +81,7 @@ const LastYKSRanking = () => {
         <CardTitle className="text-2xl">2024 YKS Puan ve Sıralama</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="flex flex-col gap-4">
-          <span>TYT ham puanı: {tytResult?.rawScore}</span>
-          <span>TYT yerleştirme puanı: {tytResult?.placementScore}</span>
-        </div>
-        {/* <div className="overflow-x-auto">
+        <div className="overflow-x-auto">
           <table className="w-full border-collapse">
             <thead>
               <tr className="bg-primary text-white">
@@ -109,41 +95,14 @@ const LastYKSRanking = () => {
             <tbody>
               <tr className="bg-gray-100">
                 <td className="p-3 font-medium">TYT</td>
-                <td className="p-3">{yksResult.tytPuan.toFixed(3)}</td>
+                <td className="p-3">{tytResult?.rawScore?.toFixed(3)}</td>
                 <td className="p-3">-</td>
-                <td className="p-3">{yksResult.tytPuan.toFixed(3)}</td>
+                <td className="p-3">{tytResult?.placementScore?.toFixed(3)}</td>
                 <td className="p-3">-</td>
               </tr>
-              {yksResult.sayPuan && (
-                <tr className="bg-white">
-                  <td className="p-3 font-medium">SAY</td>
-                  <td className="p-3">{yksResult.sayPuan.toFixed(3)}</td>
-                  <td className="p-3">-</td>
-                  <td className="p-3">{yksResult.sayPuan.toFixed(3)}</td>
-                  <td className="p-3">{yksResult.saySiralama?.toLocaleString()}</td>
-                </tr>
-              )}
-              {yksResult.eaPuan && (
-                <tr className="bg-gray-100">
-                  <td className="p-3 font-medium">EA</td>
-                  <td className="p-3">{yksResult.eaPuan.toFixed(3)}</td>
-                  <td className="p-3">-</td>
-                  <td className="p-3">{yksResult.eaPuan.toFixed(3)}</td>
-                  <td className="p-3">{yksResult.eaSiralama?.toLocaleString()}</td>
-                </tr>
-              )}
-              {yksResult.sozPuan && (
-                <tr className="bg-white">
-                  <td className="p-3 font-medium">SÖZ</td>
-                  <td className="p-3">{yksResult.sozPuan.toFixed(3)}</td>
-                  <td className="p-3">-</td>
-                  <td className="p-3">{yksResult.sozPuan.toFixed(3)}</td>
-                  <td className="p-3">{yksResult.sozSiralama?.toLocaleString()}</td>
-                </tr>
-              )}
             </tbody>
           </table>
-        </div> */}
+        </div>
 
         <div className="mt-4 text-xs text-muted-foreground">
           <p>* 2024 YKS verileri kullanılarak hesaplanmıştır.</p>
