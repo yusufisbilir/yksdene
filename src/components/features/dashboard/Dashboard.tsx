@@ -5,6 +5,7 @@ import { EmptyDashboard } from './EmptyDashboard'
 import { examAttemptStatisticsService } from '@/services/exam_attempt_statistics.service'
 import { ExamResultsList } from '../denemelerim/ExamResultsList'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import LastYKSRanking from './LastYKSRanking'
 
 const Dashboard = async () => {
   const examTemplateStats = await examAttemptStatisticsService.getExamAttemptStatistics()
@@ -15,7 +16,7 @@ const Dashboard = async () => {
   }
 
   return (
-    <article className="space-y-6">
+    <article className="space-y-6 px-2 sm:px-4 md:px-6">
       <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">👑 Başarı Tablosu</h1>
 
       <Card>
@@ -26,6 +27,8 @@ const Dashboard = async () => {
           <StatisticsCards examTemplateStats={examTemplateStats} />
         </CardContent>
       </Card>
+
+      <LastYKSRanking />
 
       <Card>
         <CardHeader>
