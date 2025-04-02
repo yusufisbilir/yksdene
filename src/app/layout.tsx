@@ -28,8 +28,12 @@ export default function RootLayout({
     <ClerkProvider localization={trTR}>
       <html lang="tr">
         <body className={`${inter.className} root_layout_container`}>
-          <Analytics />
-          <SpeedInsights />
+          {process.env.NODE_ENV === 'production' && (
+            <>
+              <Analytics />
+              <SpeedInsights />
+            </>
+          )}
           <ReduxProvider>
             <PomodoroTimerProvider>
               <ExamTimerProvider>
