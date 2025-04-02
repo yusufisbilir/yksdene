@@ -34,81 +34,46 @@ const LastYKSRanking = () => {
   )
 
   const calculateTYT = () => {
-    const tytTurkceCorrect =
-      lastExamResults?.TYT?.subjectResults.find((result) => result.subject_id === tytTurkceId)
-        ?.correct_count ?? 0
-    const tytTurkceIncorrect =
-      lastExamResults?.TYT?.subjectResults.find((result) => result.subject_id === tytTurkceId)
-        ?.incorrect_count ?? 0
-    const tytMatematikCorrect =
-      lastExamResults?.TYT?.subjectResults.find((result) => result.subject_id === tytMatematikId)
-        ?.correct_count ?? 0
-    const tytMatematikIncorrect =
-      lastExamResults?.TYT?.subjectResults.find((result) => result.subject_id === tytMatematikId)
-        ?.incorrect_count ?? 0
-    const tytFizikCorrect =
-      lastExamResults?.TYT?.subjectResults.find((result) => result.subject_id === tytFizikId)
-        ?.correct_count ?? 0
-    const tytFizikIncorrect =
-      lastExamResults?.TYT?.subjectResults.find((result) => result.subject_id === tytFizikId)
-        ?.incorrect_count ?? 0
-    const tytFizikNet = tytFizikCorrect - tytFizikIncorrect * 0.25
-    const tytKimyaCorrect =
-      lastExamResults?.TYT?.subjectResults.find((result) => result.subject_id === tytKimyaId)
-        ?.correct_count ?? 0
-    const tytKimyaIncorrect =
-      lastExamResults?.TYT?.subjectResults.find((result) => result.subject_id === tytKimyaId)
-        ?.incorrect_count ?? 0
-    const tytKimyaNet = tytKimyaCorrect - tytKimyaIncorrect * 0.25
-    const tytBiyolojiCorrect =
-      lastExamResults?.TYT?.subjectResults.find((result) => result.subject_id === tytBiyolojiId)
-        ?.correct_count ?? 0
-    const tytBiyolojiIncorrect =
-      lastExamResults?.TYT?.subjectResults.find((result) => result.subject_id === tytBiyolojiId)
-        ?.incorrect_count ?? 0
-    const tytBiyolojiNet = tytBiyolojiCorrect - tytBiyolojiIncorrect * 0.25
-    const tytTarihCorrect =
-      lastExamResults?.TYT?.subjectResults.find((result) => result.subject_id === tytTarihId)
-        ?.correct_count ?? 0
-    const tytTarihIncorrect =
-      lastExamResults?.TYT?.subjectResults.find((result) => result.subject_id === tytTarihId)
-        ?.incorrect_count ?? 0
-    const tytTarihNet = tytTarihCorrect - tytTarihIncorrect * 0.25
-    const tytCografyaCorrect =
-      lastExamResults?.TYT?.subjectResults.find((result) => result.subject_id === tytCografyaId)
-        ?.correct_count ?? 0
-    const tytCografyaIncorrect =
-      lastExamResults?.TYT?.subjectResults.find((result) => result.subject_id === tytCografyaId)
-        ?.incorrect_count ?? 0
-    const tytCografyaNet = tytCografyaCorrect - tytCografyaIncorrect * 0.25
-    const tytDinCorrect =
-      lastExamResults?.TYT?.subjectResults.find((result) => result.subject_id === tytDinId)
-        ?.correct_count ?? 0
-    const tytDinIncorrect =
-      lastExamResults?.TYT?.subjectResults.find((result) => result.subject_id === tytDinId)
-        ?.incorrect_count ?? 0
-    const tytDinNet = tytDinCorrect - tytDinIncorrect * 0.25
-    const tytFelsefeCorrect =
-      lastExamResults?.TYT?.subjectResults.find((result) => result.subject_id === tytFelsefeId)
-        ?.correct_count ?? 0
-    const tytFelsefeIncorrect =
-      lastExamResults?.TYT?.subjectResults.find((result) => result.subject_id === tytFelsefeId)
-        ?.incorrect_count ?? 0
-    const tytFelsefeNet = tytFelsefeCorrect - tytFelsefeIncorrect * 0.25
-
-    const tytTurkceNet = tytTurkceCorrect - tytTurkceIncorrect * 0.25
-    const tytMatematikNet = tytMatematikCorrect - tytMatematikIncorrect * 0.25
-    const tytSosyalNet = tytTarihNet + tytCografyaNet + tytDinNet + tytFelsefeNet
-    const tytFenNet = tytFizikNet + tytKimyaNet + tytBiyolojiNet
-
-    console.log(tytTurkceNet, tytMatematikNet, tytSosyalNet, tytFenNet)
+    const tytTurkceNet = lastExamResults?.TYT?.subjectResults.reduce((acc, result) => {
+      if (result.subject_id === tytTurkceId) {
+        return acc + result.correct_count - result.incorrect_count * 0.25
+      }
+      return acc
+    }, 0)
+    const tytMatematikNet = lastExamResults?.TYT?.subjectResults.reduce((acc, result) => {
+      if (result.subject_id === tytMatematikId) {
+        return acc + result.correct_count - result.incorrect_count * 0.25
+      }
+      return acc
+    }, 0)
+    const tytSosyalNet = lastExamResults?.TYT?.subjectResults.reduce((acc, result) => {
+      if (
+        result.subject_id === tytTarihId ||
+        result.subject_id === tytCografyaId ||
+        result.subject_id === tytDinId ||
+        result.subject_id === tytFelsefeId
+      ) {
+        return acc + result.correct_count - result.incorrect_count * 0.25
+      }
+      return acc
+    }, 0)
+    const tytFenNet = lastExamResults?.TYT?.subjectResults.reduce((acc, result) => {
+      if (
+        result.subject_id === tytFizikId ||
+        result.subject_id === tytKimyaId ||
+        result.subject_id === tytBiyolojiId
+      ) {
+        return acc + result.correct_count - result.incorrect_count * 0.25
+      }
+      return acc
+    }, 0)
 
     if (tytTurkceNet || tytMatematikNet || tytSosyalNet || tytFenNet) {
       const tytResult = calculateTYTScores({
-        turkishNet: tytTurkceNet,
-        mathNet: tytMatematikNet,
-        scienceNet: tytSosyalNet,
-        socialStudiesNet: tytFenNet,
+        turkishNet: tytTurkceNet || 0,
+        mathNet: tytMatematikNet || 0,
+        scienceNet: tytSosyalNet || 0,
+        socialStudiesNet: tytFenNet || 0,
         grade: profile?.obp || 0,
         isGraduated: profile?.graduated || false,
       })
