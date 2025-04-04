@@ -105,6 +105,7 @@ export type Database = {
           created_at: string
           graduated: boolean
           id: string
+          name: string | null
           obp: number
           updated_at: string
         }
@@ -112,6 +113,7 @@ export type Database = {
           created_at?: string
           graduated?: boolean
           id: string
+          name?: string | null
           obp?: number
           updated_at?: string
         }
@@ -119,6 +121,7 @@ export type Database = {
           created_at?: string
           graduated?: boolean
           id?: string
+          name?: string | null
           obp?: number
           updated_at?: string
         }
