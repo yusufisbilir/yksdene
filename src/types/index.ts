@@ -12,9 +12,9 @@ export type ExamTemplateInsert = TablesInsert<'exam_templates'>
 export type ExamTemplateUpdate = TablesUpdate<'exam_templates'>
 
 // Profiles
-export type Profiles = Tables<'profiles'>
-export type ProfilesInsert = TablesInsert<'profiles'>
-export type ProfilesUpdate = TablesUpdate<'profiles'>
+export type Profile = Tables<'profiles'>
+export type ProfileInsert = TablesInsert<'profiles'>
+export type ProfileUpdate = TablesUpdate<'profiles'>
 
 // Subjects
 export type Subject = Tables<'subjects'>

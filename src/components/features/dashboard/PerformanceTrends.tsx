@@ -3,7 +3,15 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { ChartContainer, ChartTooltipContent } from '@/components/ui/chart'
 import { examTemplates } from '@/constants/db.constants'
 import { ExamCategoryStatistics } from '@/types'
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from 'recharts'
 
 interface PerformanceTrendsProps {
   examTemplateStats: ExamCategoryStatistics
@@ -11,7 +19,7 @@ interface PerformanceTrendsProps {
 
 const PerformanceTrends = ({ examTemplateStats }: PerformanceTrendsProps) => {
   return (
-    <div className="grid gap-4 md:grid-cols-2">
+    <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
       {Object.entries(examTemplateStats).map(([templateId, stats]: [string, any]) => {
         const template = examTemplates.find((t) => t.id === templateId)
         const chartData = stats.performanceTrend.map((trend: any) => ({
@@ -35,11 +43,11 @@ const PerformanceTrends = ({ examTemplateStats }: PerformanceTrendsProps) => {
                     color: '#3b82f6',
                   },
                 }}
-                className="h-[300px]"
+                className="h-[250px] w-full"
               >
-                <LineChart data={chartData}>
-                  <XAxis dataKey="date" />
-                  <YAxis width={60} />
+                <LineChart data={chartData} margin={{ top: 5, right: 5, left: 0, bottom: 5 }}>
+                  <XAxis dataKey="date" tick={false} />
+                  <YAxis width={40} tick={{ fontSize: 12 }} />
                   <CartesianGrid strokeDasharray="3 3" />
                   <Tooltip content={<ChartTooltipContent />} />
                   <Line
