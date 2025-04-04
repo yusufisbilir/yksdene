@@ -26,7 +26,10 @@ export const profileService = {
     const supabase = await supabaseServerClient()
     const { data, error } = await supabase
       .from('profiles')
-      .update(profileData)
+      .update({
+        obp: profileData.obp,
+        graduated: profileData.graduated,
+      })
       .eq('id', userId.toString())
       .select()
       .single()
