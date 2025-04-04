@@ -67,12 +67,35 @@ export async function POST(req: Request) {
           name: user?.first_name + ' ' + user?.last_name,
           graduated: false,
           obp: 80,
+          image_url: user?.image_url,
+          username: user?.username,
+          email: user?.email_addresses?.find(
+            (email) => email?.id === user?.primary_email_address_id,
+          )?.email_address,
         })
         .select()
         .single()
 
       if (error) throw error
     }
+
+    if (evt.type === 'user.updated') {
+      console.log('Updating profile for user:', user.id)
+      const { error } = await supabase
+        .from('profiles')
+        .update({
+          name: user?.first_name + ' ' + user?.last_name,
+          image_url: user?.image_url,
+          username: user?.username,
+          email: user?.email_addresses?.find(
+            (email) => email?.id === user?.primary_email_address_id,
+          )?.email_address,
+        })
+        .eq('id', user.id)
+
+      if (error) throw error
+    }
+
     if (evt.type === 'user.deleted') {
       console.log('Deleting profile for user:', user.id)
       const { error } = await supabase.from('profiles').delete().eq('id', user.id)
