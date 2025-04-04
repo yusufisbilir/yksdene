@@ -1,147 +1,51 @@
-import { TYT_COEFFICENTS_2024 } from '@/constants/examPoints'
-import { BASE_POINTS_2024 } from '@/constants/examPoints'
-
-interface CalculateTYTScoresParams {
-  turkishNet: number
-  mathNet: number
-  scienceNet: number
-  socialStudiesNet: number
-  grade: number
-  isGraduated: boolean
+export const BASE_POINTS_2024 = {
+  TYT: 144.945,
+  SAY: 133.284,
+  EA: 132.283,
+  SOZ: 130.358,
 }
 
-interface CalculateAYTScoresParams {
-  turkishNet: number
-  mathNet: number
-  scienceNet: number
-  socialStudiesNet: number
-  aytMathNet: number
-  aytPhysicsNet: number
-  aytChemistryNet: number
-  aytBiologyNet: number
-  aytLiteratureNet: number
-  aytHistory1Net: number
-  aytGeography1Net: number
-  aytHistory2Net: number
-  aytGeography2Net: number
-  aytPhilosophyNet: number
-  aytReligionNet: number
-  grade: number
-  isGraduated: boolean
+export const TYT_COEFFICENTS_2024 = {
+  TURKCE: 2.90845,
+  MATEMATIK: 2.9255,
+  SOSYAL: 2.93675,
+  FEN: 3.1482,
 }
 
-export function calculateTYTScores(params: CalculateTYTScoresParams): {
-  rawScore: number
-  placementScore: number
-} {
-  const { turkishNet, mathNet, scienceNet, socialStudiesNet, grade, isGraduated } = params
-  const graduationCoefficient = isGraduated ? 0.5 : 1
-  const diplomaContribution = 0.6 * grade * graduationCoefficient
-  const rawScore =
-    BASE_POINTS_2024.TYT +
-    TYT_COEFFICENTS_2024.TURKCE * turkishNet +
-    TYT_COEFFICENTS_2024.SOSYAL * socialStudiesNet +
-    TYT_COEFFICENTS_2024.MATEMATIK * mathNet +
-    TYT_COEFFICENTS_2024.FEN * scienceNet
-  const placementScore = rawScore + diplomaContribution
-
-  return {
-    rawScore: parseFloat(rawScore.toFixed(3)),
-    placementScore: parseFloat(placementScore.toFixed(3)),
-  }
+export const AYT_SAY_COEFFICENTS_2024 = {
+  TURKCE: 1.1067,
+  MATEMATIK: 1.113175,
+  SOSYAL: 1.11745,
+  FEN: 1.1979,
+  AYT_MATEMATIK: 3.189375,
+  AYT_FIZIK: 2.42635714286,
+  AYT_KIMYA: 3.07407692308,
+  AYT_BIYOLOJI: 2.50923076923,
 }
 
-// Calculate AYT scores
-export function calculateAYTScores(params: CalculateAYTScoresParams): {
-  sayRawScore: number
-  sayPlacementScore: number
-  eaRawScore: number
-  eaPlacementScore: number
-  sozRawScore: number
-  sozPlacementScore: number
-} {
-  const {
-    turkishNet,
-    mathNet,
-    scienceNet,
-    socialStudiesNet,
-    aytMathNet,
-    aytPhysicsNet,
-    aytChemistryNet,
-    aytBiologyNet,
-    aytLiteratureNet,
-    aytHistory1Net,
-    aytGeography1Net,
-    aytHistory2Net,
-    aytGeography2Net,
-    aytPhilosophyNet,
-    aytReligionNet,
-    grade,
-    isGraduated,
-  } = params
-
-  const graduationCoefficient = isGraduated ? 0.5 : 1
-  const diplomaContribution = 0.6 * grade * graduationCoefficient
-
-  const sayRawScore =
-    BASE_POINTS_2024.SAY +
-    1.11 * turkishNet +
-    1.12 * socialStudiesNet +
-    1.11 * mathNet +
-    1.2 * scienceNet +
-    3.19 * aytMathNet +
-    2.43 * aytPhysicsNet +
-    3.07 * aytChemistryNet +
-    2.51 * aytBiologyNet
-
-  const eaRawScore =
-    BASE_POINTS_2024.EA +
-    1.14 * turkishNet +
-    1.15 * socialStudiesNet +
-    1.15 * mathNet +
-    1.23 * scienceNet +
-    3.28 * aytMathNet +
-    2.83 * aytLiteratureNet +
-    2.38 * aytHistory1Net +
-    2.54 * aytGeography1Net
-
-  const sozRawScore =
-    BASE_POINTS_2024.SOZ +
-    1.23 * turkishNet +
-    1.24 * socialStudiesNet +
-    1.24 * mathNet +
-    1.33 * scienceNet +
-    3.06 * aytLiteratureNet +
-    2.57 * aytHistory1Net +
-    2.74 * aytGeography1Net +
-    3.16 * aytHistory2Net +
-    2.82 * aytGeography2Net +
-    3.85 * aytPhilosophyNet +
-    3.13 * aytReligionNet
-
-  const sayPlacementScore = sayRawScore + diplomaContribution
-  const eaPlacementScore = eaRawScore + diplomaContribution
-  const sozPlacementScore = sozRawScore + diplomaContribution
-
-  return {
-    sayRawScore: parseFloat(sayRawScore.toFixed(3)),
-    sayPlacementScore: parseFloat(sayPlacementScore.toFixed(3)),
-    eaRawScore: parseFloat(eaRawScore.toFixed(3)),
-    eaPlacementScore: parseFloat(eaPlacementScore.toFixed(3)),
-    sozRawScore: parseFloat(sozRawScore.toFixed(3)),
-    sozPlacementScore: parseFloat(sozPlacementScore.toFixed(3)),
-  }
+export const AYT_EA_COEFFICENTS_2024 = {
+  TURKCE: 1.1389,
+  MATEMATIK: 1.145575,
+  SOSYAL: 1.14995,
+  FEN: 1.23275,
+  AYT_MATEMATIK: 3.282175,
+  AYT_EDEBIYAT: 2.83175,
+  AYT_TARIH1: 2.377,
+  AYT_COGRAFYA1: 2.5365,
 }
 
-type ScoreType = 'tyt' | 'say' | 'soz' | 'ea'
-type RankingResult = number | string
-
-interface RankingRange {
-  tyt: number
-  say: number
-  soz: number
-  ea: number
-  range: number
+export const AYT_SOZ_COEFFICENTS_2024 = {
+  TURKCE: 1.23205,
+  MATEMATIK: 1.23925,
+  SOSYAL: 1.24405,
+  FEN: 1.3336,
+  AYT_EDEBIYAT: 3.06333333333,
+  AYT_TARIH1: 2.5715,
+  AYT_COGRAFYA1: 2.744,
+  AYT_TARIH2: 3.16009090909,
+  AYT_COGRAFYA2: 2.82045454545,
+  AYT_FELSEFE: 3.85041666667,
+  AYT_DIN: 3.131,
 }
 
 // Placement ranking calculation function
@@ -204,15 +108,157 @@ function getRawScoreRankRanges(score: number): RankingRange | null {
   return null
 }
 
+interface CalculateTYTScoresParams {
+  turkishNet: number
+  mathNet: number
+  scienceNet: number
+  socialStudiesNet: number
+  grade: number
+  isGraduated: boolean
+}
+
+export function calculateTYTScores(params: CalculateTYTScoresParams): {
+  rawScore: number
+  placementScore: number
+} {
+  const { turkishNet, mathNet, scienceNet, socialStudiesNet, grade, isGraduated } = params
+  const graduationCoefficient = isGraduated ? 0.5 : 1
+  const diplomaContribution = 0.6 * grade * graduationCoefficient
+  const rawScore =
+    BASE_POINTS_2024.TYT +
+    TYT_COEFFICENTS_2024.TURKCE * turkishNet +
+    TYT_COEFFICENTS_2024.SOSYAL * socialStudiesNet +
+    TYT_COEFFICENTS_2024.MATEMATIK * mathNet +
+    TYT_COEFFICENTS_2024.FEN * scienceNet
+  const placementScore = rawScore + diplomaContribution
+
+  return {
+    rawScore: parseFloat(rawScore.toFixed(3)),
+    placementScore: parseFloat(placementScore.toFixed(3)),
+  }
+}
+
+interface CalculateAYTScoresParams {
+  turkishNet: number
+  mathNet: number
+  scienceNet: number
+  socialStudiesNet: number
+  aytMathNet: number
+  aytPhysicsNet: number
+  aytChemistryNet: number
+  aytBiologyNet: number
+  aytLiteratureNet: number
+  aytHistory1Net: number
+  aytGeography1Net: number
+  aytHistory2Net: number
+  aytGeography2Net: number
+  aytPhilosophyNet: number
+  aytReligionNet: number
+  grade: number
+  isGraduated: boolean
+}
+
+// Calculate AYT scores
+export function calculateAYTScores(params: CalculateAYTScoresParams): {
+  sayRawScore: number
+  sayPlacementScore: number
+  eaRawScore: number
+  eaPlacementScore: number
+  sozRawScore: number
+  sozPlacementScore: number
+} {
+  const {
+    turkishNet,
+    mathNet,
+    scienceNet,
+    socialStudiesNet,
+    aytMathNet,
+    aytPhysicsNet,
+    aytChemistryNet,
+    aytBiologyNet,
+    aytLiteratureNet,
+    aytHistory1Net,
+    aytGeography1Net,
+    aytHistory2Net,
+    aytGeography2Net,
+    aytPhilosophyNet,
+    aytReligionNet,
+    grade,
+    isGraduated,
+  } = params
+
+  const graduationCoefficient = isGraduated ? 0.5 : 1
+  const diplomaContribution = 0.6 * grade * graduationCoefficient
+
+  const sayRawScore =
+    BASE_POINTS_2024.SAY +
+    AYT_SAY_COEFFICENTS_2024.TURKCE * turkishNet +
+    AYT_SAY_COEFFICENTS_2024.SOSYAL * socialStudiesNet +
+    AYT_SAY_COEFFICENTS_2024.MATEMATIK * mathNet +
+    AYT_SAY_COEFFICENTS_2024.FEN * scienceNet +
+    AYT_SAY_COEFFICENTS_2024.AYT_MATEMATIK * aytMathNet +
+    AYT_SAY_COEFFICENTS_2024.AYT_FIZIK * aytPhysicsNet +
+    AYT_SAY_COEFFICENTS_2024.AYT_KIMYA * aytChemistryNet +
+    AYT_SAY_COEFFICENTS_2024.AYT_BIYOLOJI * aytBiologyNet
+
+  const eaRawScore =
+    BASE_POINTS_2024.EA +
+    AYT_EA_COEFFICENTS_2024.TURKCE * turkishNet +
+    AYT_EA_COEFFICENTS_2024.MATEMATIK * mathNet +
+    AYT_EA_COEFFICENTS_2024.SOSYAL * socialStudiesNet +
+    AYT_EA_COEFFICENTS_2024.FEN * scienceNet +
+    AYT_EA_COEFFICENTS_2024.AYT_MATEMATIK * aytMathNet +
+    AYT_EA_COEFFICENTS_2024.AYT_EDEBIYAT * aytLiteratureNet +
+    AYT_EA_COEFFICENTS_2024.AYT_TARIH1 * aytHistory1Net +
+    AYT_EA_COEFFICENTS_2024.AYT_COGRAFYA1 * aytGeography1Net
+
+  const sozRawScore =
+    BASE_POINTS_2024.SOZ +
+    AYT_SOZ_COEFFICENTS_2024.TURKCE * turkishNet +
+    AYT_SOZ_COEFFICENTS_2024.SOSYAL * socialStudiesNet +
+    AYT_SOZ_COEFFICENTS_2024.MATEMATIK * mathNet +
+    AYT_SOZ_COEFFICENTS_2024.FEN * scienceNet +
+    AYT_SOZ_COEFFICENTS_2024.AYT_EDEBIYAT * aytLiteratureNet +
+    AYT_SOZ_COEFFICENTS_2024.AYT_TARIH1 * aytHistory1Net +
+    AYT_SOZ_COEFFICENTS_2024.AYT_COGRAFYA1 * aytGeography1Net +
+    AYT_SOZ_COEFFICENTS_2024.AYT_TARIH2 * aytHistory2Net +
+    AYT_SOZ_COEFFICENTS_2024.AYT_COGRAFYA2 * aytGeography2Net +
+    AYT_SOZ_COEFFICENTS_2024.AYT_FELSEFE * aytPhilosophyNet +
+    AYT_SOZ_COEFFICENTS_2024.AYT_DIN * aytReligionNet
+
+  const sayPlacementScore = sayRawScore + diplomaContribution
+  const eaPlacementScore = eaRawScore + diplomaContribution
+  const sozPlacementScore = sozRawScore + diplomaContribution
+
+  return {
+    sayRawScore: parseFloat(sayRawScore.toFixed(3)),
+    sayPlacementScore: parseFloat(sayPlacementScore.toFixed(3)),
+    eaRawScore: parseFloat(eaRawScore.toFixed(3)),
+    eaPlacementScore: parseFloat(eaPlacementScore.toFixed(3)),
+    sozRawScore: parseFloat(sozRawScore.toFixed(3)),
+    sozPlacementScore: parseFloat(sozPlacementScore.toFixed(3)),
+  }
+}
+
+interface RankingRange {
+  tyt: number
+  say: number
+  soz: number
+  ea: number
+  range: number
+}
+
+type ScoreType = 'tyt' | 'say' | 'soz' | 'ea'
+
 // Ranking calculation function (interpolation logic)
 function calculateRanking(
   score: number,
   scoreType: ScoreType,
   rankingFunction: (score: number) => RankingRange | null,
-): RankingResult {
+): number {
   // Check if the score is valid
   const lowerRange = rankingFunction(score)
-  if (!lowerRange) return '-'
+  if (!lowerRange) return 0
 
   // For the upper range, take a different score (20 points above)
   const upperRange = rankingFunction(score + 20)
@@ -229,36 +275,116 @@ function calculateRanking(
   return Math.round(lowerRange[scoreType] - interpolation)
 }
 
-// Raw rankings calculation functions
-export function calculateTytRawRanking(score: number): RankingResult {
-  return calculateRanking(score, 'tyt', getRawScoreRankRanges)
+type IParams = {
+  grade: number
+  isGraduated: boolean
+  tyt: {
+    turkishNet: number
+    mathNet: number
+    scienceNet: number
+    socialStudiesNet: number
+  }
+  ayt: {
+    aytMathNet: number
+    aytPhysicsNet: number
+    aytChemistryNet: number
+    aytBiologyNet: number
+    aytLiteratureNet: number
+    aytHistory1Net: number
+    aytGeography1Net: number
+    aytHistory2Net: number
+    aytGeography2Net: number
+    aytPhilosophyNet: number
+    aytReligionNet: number
+  }
 }
 
-export function calculateSayRawRanking(score: number): RankingResult {
-  return calculateRanking(score, 'say', getRawScoreRankRanges)
+interface Ranking {
+  ham: number
+  ham_sir: number
+  yer: number
+  yer_sir: number
 }
 
-export function calculateSozRawRanking(score: number): RankingResult {
-  return calculateRanking(score, 'soz', getRawScoreRankRanges)
+export interface YKSRanking {
+  tyt: Ranking
+  say: Ranking
+  ea: Ranking
+  soz: Ranking
 }
+export const getYKSRankTableData = (params: IParams) => {
+  const ranking: YKSRanking = {
+    tyt: {
+      ham: 0,
+      ham_sir: 0,
+      yer: 0,
+      yer_sir: 0,
+    },
+    say: {
+      ham: 0,
+      ham_sir: 0,
+      yer: 0,
+      yer_sir: 0,
+    },
+    ea: {
+      ham: 0,
+      ham_sir: 0,
+      yer: 0,
+      yer_sir: 0,
+    },
+    soz: {
+      ham: 0,
+      ham_sir: 0,
+      yer: 0,
+      yer_sir: 0,
+    },
+  }
 
-export function calculateEaRawRanking(score: number): RankingResult {
-  return calculateRanking(score, 'ea', getRawScoreRankRanges)
-}
+  // TYT raw and placement scores
+  const { rawScore: tytRaw, placementScore: tytPlacement } = calculateTYTScores({
+    ...params.tyt,
+    grade: params.grade,
+    isGraduated: params.isGraduated,
+  })
 
-// Placement rankings calculation functions
-export function calculateTytPlacementRanking(score: number): RankingResult {
-  return calculateRanking(score, 'tyt', getPlacementRankRanges)
-}
+  ranking.tyt.ham = tytRaw
+  ranking.tyt.yer = tytPlacement
 
-export function calculateSayPlacementRanking(score: number): RankingResult {
-  return calculateRanking(score, 'say', getPlacementRankRanges)
-}
+  // TYT raw and placement rankings
+  ranking.tyt.ham_sir = calculateRanking(ranking.tyt.ham, 'tyt', getRawScoreRankRanges)
+  ranking.tyt.yer_sir = calculateRanking(ranking.tyt.yer, 'tyt', getPlacementRankRanges)
 
-export function calculateSozPlacementRanking(score: number): RankingResult {
-  return calculateRanking(score, 'soz', getPlacementRankRanges)
-}
+  // AYT raw and placement scores
+  const {
+    sayRawScore,
+    sayPlacementScore,
+    eaRawScore,
+    eaPlacementScore,
+    sozRawScore,
+    sozPlacementScore,
+  } = calculateAYTScores({
+    ...params.ayt,
+    turkishNet: params.tyt.turkishNet,
+    mathNet: params.tyt.mathNet,
+    scienceNet: params.tyt.scienceNet,
+    socialStudiesNet: params.tyt.socialStudiesNet,
+    grade: params.grade,
+    isGraduated: params.isGraduated,
+  })
+  ranking.say.ham = sayRawScore
+  ranking.say.yer = sayPlacementScore
+  ranking.ea.ham = eaRawScore
+  ranking.ea.yer = eaPlacementScore
+  ranking.soz.ham = sozRawScore
+  ranking.soz.yer = sozPlacementScore
 
-export function calculateEaPlacementRanking(score: number): RankingResult {
-  return calculateRanking(score, 'ea', getPlacementRankRanges)
+  // AYT raw and placement rankings
+  ranking.say.ham_sir = calculateRanking(ranking.say.ham, 'say', getRawScoreRankRanges)
+  ranking.say.yer_sir = calculateRanking(ranking.say.yer, 'say', getPlacementRankRanges)
+  ranking.ea.ham_sir = calculateRanking(ranking.ea.ham, 'ea', getRawScoreRankRanges)
+  ranking.ea.yer_sir = calculateRanking(ranking.ea.yer, 'ea', getPlacementRankRanges)
+  ranking.soz.ham_sir = calculateRanking(ranking.soz.ham, 'soz', getRawScoreRankRanges)
+  ranking.soz.yer_sir = calculateRanking(ranking.soz.yer, 'soz', getPlacementRankRanges)
+
+  return ranking
 }

@@ -4,19 +4,9 @@ import { useGetProfileQuery } from '@/features/profile.slice'
 import { useGetLastExamResultsQuery } from '@/features/examResults.slice'
 import React, { useEffect, useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import {
-  calculateTYTScores,
-  calculateTytRawRanking,
-  calculateAYTScores,
-  calculateSayRawRanking,
-  calculateEaRawRanking,
-  calculateSozRawRanking,
-  calculateTytPlacementRanking,
-  calculateSayPlacementRanking,
-  calculateEaPlacementRanking,
-  calculateSozPlacementRanking,
-} from '@/utils/yksCalculator'
+import { getYKSRankTableData, YKSRanking } from '@/utils/yksCalculator'
 import { SubjectResult } from '@/types'
+import { LastExamResults } from '@/services/last_exam_results.service'
 
 // TYT Subject IDs
 const tytTurkishId = 'ce164057-c0fb-4770-9951-bff7b6089537'
@@ -50,264 +40,88 @@ const LastYKSRanking = () => {
   const { data: profile } = useGetProfileQuery()
   const { data: lastExamResults } = useGetLastExamResultsQuery()
 
-  // TYT results
-  const [tytResult, setTytResult] = useState<{ rawScore: number; placementScore: number } | null>(
-    null,
-  )
-  const [tytRanking, setTytRanking] = useState<{
-    rawRank: number | string
-    placementRank: number | string
-  }>({
-    rawRank: '-',
-    placementRank: '-',
-  })
-
-  // AYT results
-  const [aytResult, setAytResult] = useState<{
-    sayRawScore: number
-    sayPlacementScore: number
-    eaRawScore: number
-    eaPlacementScore: number
-    sozRawScore: number
-    sozPlacementScore: number
-  } | null>(null)
-
-  // AYT rankings
-  const [aytRanking, setAytRanking] = useState({
-    sayRawRank: '-' as number | string,
-    sayPlacementRank: '-' as number | string,
-    eaRawRank: '-' as number | string,
-    eaPlacementRank: '-' as number | string,
-    sozRawRank: '-' as number | string,
-    sozPlacementRank: '-' as number | string,
-  })
+  const [ranking, setRanking] = useState<YKSRanking | null>(null)
 
   const calculateScores = () => {
+    // Helper function to calculate net scores for subjects
+    const calculateNetScore = (examType: keyof LastExamResults, subjectIds: string | string[]) => {
+      const results = lastExamResults?.[examType]?.subjectResults || []
+      return (
+        results.reduce((acc: number, result: SubjectResult) => {
+          if (
+            Array.isArray(subjectIds)
+              ? subjectIds.includes(result.subject_id)
+              : result.subject_id === subjectIds
+          ) {
+            return acc + result.correct_count - result.incorrect_count * 0.25
+          }
+          return acc
+        }, 0) || 0
+      )
+    }
+
     // Calculate TYT nets
-    const tytTurkishNet = lastExamResults?.TYT?.subjectResults.reduce(
-      (acc: number, result: SubjectResult) => {
-        if (result.subject_id === tytTurkishId) {
-          return acc + result.correct_count - result.incorrect_count * 0.25
-        }
-        return acc
-      },
-      0,
-    )
-    const tytMathNet = lastExamResults?.TYT?.subjectResults.reduce(
-      (acc: number, result: SubjectResult) => {
-        if (result.subject_id === tytMathId) {
-          return acc + result.correct_count - result.incorrect_count * 0.25
-        }
-        return acc
-      },
-      0,
-    )
-    const tytSocialNet = lastExamResults?.TYT?.subjectResults.reduce(
-      (acc: number, result: SubjectResult) => {
-        if (
-          result.subject_id === tytHistoryId ||
-          result.subject_id === tytGeographyId ||
-          result.subject_id === tytReligionId ||
-          result.subject_id === tytPhilosophyId
-        ) {
-          return acc + result.correct_count - result.incorrect_count * 0.25
-        }
-        return acc
-      },
-      0,
-    )
-    const tytScienceNet = lastExamResults?.TYT?.subjectResults.reduce(
-      (acc: number, result: SubjectResult) => {
-        if (
-          result.subject_id === tytPhysicsId ||
-          result.subject_id === tytChemistryId ||
-          result.subject_id === tytBiologyId
-        ) {
-          return acc + result.correct_count - result.incorrect_count * 0.25
-        }
-        return acc
-      },
-      0,
-    )
+    const tytTurkishNet = calculateNetScore('TYT', tytTurkishId)
+    const tytMathNet = calculateNetScore('TYT', tytMathId)
+    const tytSocialNet = calculateNetScore('TYT', [
+      tytHistoryId,
+      tytGeographyId,
+      tytReligionId,
+      tytPhilosophyId,
+    ])
+    const tytScienceNet = calculateNetScore('TYT', [tytPhysicsId, tytChemistryId, tytBiologyId])
 
     // Calculate AYT nets
     const aytMathNet =
-      lastExamResults?.AYT_Sayisal?.subjectResults.reduce((acc: number, result: SubjectResult) => {
-        if (result.subject_id === aytMathScientificId) {
-          return acc + result.correct_count - result.incorrect_count * 0.25
-        }
-        return acc
-      }, 0) ||
-      lastExamResults?.AYT_EsitAgirlik?.subjectResults.reduce(
-        (acc: number, result: SubjectResult) => {
-          if (result.subject_id === aytMathEqualWeightId) {
-            return acc + result.correct_count - result.incorrect_count * 0.25
-          }
-          return acc
-        },
-        0,
-      ) ||
-      0
+      calculateNetScore('AYT_Sayisal', aytMathScientificId) ||
+      calculateNetScore('AYT_EsitAgirlik', aytMathEqualWeightId)
 
-    const aytPhysicsNet =
-      lastExamResults?.AYT_Sayisal?.subjectResults.reduce((acc: number, result: SubjectResult) => {
-        if (result.subject_id === aytPhysicsId) {
-          return acc + result.correct_count - result.incorrect_count * 0.25
-        }
-        return acc
-      }, 0) || 0
-
-    const aytChemistryNet =
-      lastExamResults?.AYT_Sayisal?.subjectResults.reduce((acc: number, result: SubjectResult) => {
-        if (result.subject_id === aytChemistryId) {
-          return acc + result.correct_count - result.incorrect_count * 0.25
-        }
-        return acc
-      }, 0) || 0
-
-    const aytBiologyNet =
-      lastExamResults?.AYT_Sayisal?.subjectResults.reduce((acc: number, result: SubjectResult) => {
-        if (result.subject_id === aytBiologyId) {
-          return acc + result.correct_count - result.incorrect_count * 0.25
-        }
-        return acc
-      }, 0) || 0
+    const aytPhysicsNet = calculateNetScore('AYT_Sayisal', aytPhysicsId)
+    const aytChemistryNet = calculateNetScore('AYT_Sayisal', aytChemistryId)
+    const aytBiologyNet = calculateNetScore('AYT_Sayisal', aytBiologyId)
 
     const aytLiteratureNet =
-      lastExamResults?.AYT_EsitAgirlik?.subjectResults.reduce(
-        (acc: number, result: SubjectResult) => {
-          if (result.subject_id === aytLiteratureEqualWeightId) {
-            return acc + result.correct_count - result.incorrect_count * 0.25
-          }
-          return acc
-        },
-        0,
-      ) ||
-      lastExamResults?.AYT_Sozel?.subjectResults.reduce((acc: number, result: SubjectResult) => {
-        if (result.subject_id === aytLiteratureVerbalId) {
-          return acc + result.correct_count - result.incorrect_count * 0.25
-        }
-        return acc
-      }, 0) ||
-      0
+      calculateNetScore('AYT_EsitAgirlik', aytLiteratureEqualWeightId) ||
+      calculateNetScore('AYT_Sozel', aytLiteratureVerbalId)
 
     const aytHistory1Net =
-      lastExamResults?.AYT_EsitAgirlik?.subjectResults.reduce(
-        (acc: number, result: SubjectResult) => {
-          if (result.subject_id === aytHistory1EqualWeightId) {
-            return acc + result.correct_count - result.incorrect_count * 0.25
-          }
-          return acc
-        },
-        0,
-      ) ||
-      lastExamResults?.AYT_Sozel?.subjectResults.reduce((acc: number, result: SubjectResult) => {
-        if (result.subject_id === aytHistory1VerbalId) {
-          return acc + result.correct_count - result.incorrect_count * 0.25
-        }
-        return acc
-      }, 0) ||
-      0
+      calculateNetScore('AYT_EsitAgirlik', aytHistory1EqualWeightId) ||
+      calculateNetScore('AYT_Sozel', aytHistory1VerbalId)
 
     const aytGeography1Net =
-      lastExamResults?.AYT_EsitAgirlik?.subjectResults.reduce(
-        (acc: number, result: SubjectResult) => {
-          if (result.subject_id === aytGeography1EqualWeightId) {
-            return acc + result.correct_count - result.incorrect_count * 0.25
-          }
-          return acc
+      calculateNetScore('AYT_EsitAgirlik', aytGeography1EqualWeightId) ||
+      calculateNetScore('AYT_Sozel', aytGeography1VerbalId)
+
+    const aytHistory2Net = calculateNetScore('AYT_Sozel', aytHistory2Id)
+    const aytGeography2Net = calculateNetScore('AYT_Sozel', aytGeography2Id)
+    const aytPhilosophyNet = calculateNetScore('AYT_Sozel', aytPhilosophyId)
+    const aytReligionNet = calculateNetScore('AYT_Sozel', aytReligionId)
+
+    setRanking(
+      getYKSRankTableData({
+        grade: profile?.obp || 0,
+        isGraduated: profile?.graduated || false,
+        tyt: {
+          turkishNet: tytTurkishNet || 0,
+          mathNet: tytMathNet || 0,
+          scienceNet: tytScienceNet || 0,
+          socialStudiesNet: tytSocialNet || 0,
         },
-        0,
-      ) ||
-      lastExamResults?.AYT_Sozel?.subjectResults.reduce((acc: number, result: SubjectResult) => {
-        if (result.subject_id === aytGeography1VerbalId) {
-          return acc + result.correct_count - result.incorrect_count * 0.25
-        }
-        return acc
-      }, 0) ||
-      0
-
-    const aytHistory2Net =
-      lastExamResults?.AYT_Sozel?.subjectResults.reduce((acc: number, result: SubjectResult) => {
-        if (result.subject_id === aytHistory2Id) {
-          return acc + result.correct_count - result.incorrect_count * 0.25
-        }
-        return acc
-      }, 0) || 0
-
-    const aytGeography2Net =
-      lastExamResults?.AYT_Sozel?.subjectResults.reduce((acc: number, result: SubjectResult) => {
-        if (result.subject_id === aytGeography2Id) {
-          return acc + result.correct_count - result.incorrect_count * 0.25
-        }
-        return acc
-      }, 0) || 0
-
-    const aytPhilosophyNet =
-      lastExamResults?.AYT_Sozel?.subjectResults.reduce((acc: number, result: SubjectResult) => {
-        if (result.subject_id === aytPhilosophyId) {
-          return acc + result.correct_count - result.incorrect_count * 0.25
-        }
-        return acc
-      }, 0) || 0
-
-    const aytReligionNet =
-      lastExamResults?.AYT_Sozel?.subjectResults.reduce((acc: number, result: SubjectResult) => {
-        if (result.subject_id === aytReligionId) {
-          return acc + result.correct_count - result.incorrect_count * 0.25
-        }
-        return acc
-      }, 0) || 0
-
-    if (tytTurkishNet || tytMathNet || tytSocialNet || tytScienceNet) {
-      // Calculate TYT scores
-      const tytResult = calculateTYTScores({
-        turkishNet: tytTurkishNet || 0,
-        mathNet: tytMathNet || 0,
-        scienceNet: tytScienceNet || 0,
-        socialStudiesNet: tytSocialNet || 0,
-        grade: profile?.obp || 0,
-        isGraduated: profile?.graduated || false,
-      })
-      setTytResult(tytResult)
-
-      // Calculate TYT rankings
-      const rawRank = calculateTytRawRanking(tytResult.rawScore)
-      const placementRank = calculateTytPlacementRanking(tytResult.placementScore)
-      setTytRanking({ rawRank, placementRank })
-
-      // Calculate AYT scores and rankings
-      const aytResult = calculateAYTScores({
-        turkishNet: tytTurkishNet || 0,
-        mathNet: tytMathNet || 0,
-        scienceNet: tytScienceNet || 0,
-        socialStudiesNet: tytSocialNet || 0,
-        aytMathNet,
-        aytPhysicsNet,
-        aytChemistryNet,
-        aytBiologyNet,
-        aytLiteratureNet,
-        aytHistory1Net,
-        aytGeography1Net,
-        aytHistory2Net,
-        aytGeography2Net,
-        aytPhilosophyNet,
-        aytReligionNet,
-        grade: profile?.obp || 0,
-        isGraduated: profile?.graduated || false,
-      })
-      setAytResult(aytResult)
-
-      // Calculate AYT rankings
-      setAytRanking({
-        sayRawRank: calculateSayRawRanking(aytResult.sayRawScore),
-        sayPlacementRank: calculateSayPlacementRanking(aytResult.sayPlacementScore),
-        eaRawRank: calculateEaRawRanking(aytResult.eaRawScore),
-        eaPlacementRank: calculateEaPlacementRanking(aytResult.eaPlacementScore),
-        sozRawRank: calculateSozRawRanking(aytResult.sozRawScore),
-        sozPlacementRank: calculateSozPlacementRanking(aytResult.sozPlacementScore),
-      })
-    }
+        ayt: {
+          aytMathNet,
+          aytPhysicsNet,
+          aytChemistryNet,
+          aytBiologyNet,
+          aytLiteratureNet,
+          aytHistory1Net,
+          aytGeography1Net,
+          aytHistory2Net,
+          aytGeography2Net,
+          aytPhilosophyNet,
+          aytReligionNet,
+        },
+      }),
+    )
   }
 
   useEffect(() => {
@@ -334,31 +148,31 @@ const LastYKSRanking = () => {
             <tbody>
               <tr className="bg-gray-100">
                 <td className="p-3 font-medium">TYT</td>
-                <td className="p-3">{tytResult?.rawScore?.toFixed(3)}</td>
-                <td className="p-3">{tytRanking.rawRank.toLocaleString('en-US')}</td>
-                <td className="p-3">{tytResult?.placementScore?.toFixed(3)}</td>
-                <td className="p-3">{tytRanking.placementRank.toLocaleString('en-US')}</td>
+                <td className="p-3">{ranking?.tyt.ham.toLocaleString()}</td>
+                <td className="p-3">{ranking?.tyt.ham_sir.toLocaleString()}</td>
+                <td className="p-3">{ranking?.tyt.yer.toLocaleString()}</td>
+                <td className="p-3">{ranking?.tyt.yer_sir.toLocaleString()}</td>
               </tr>
               <tr>
-                <td className="p-3 font-medium">Sayısal</td>
-                <td className="p-3">{aytResult?.sayRawScore?.toFixed(3)}</td>
-                <td className="p-3">{aytRanking.sayRawRank.toLocaleString('en-US')}</td>
-                <td className="p-3">{aytResult?.sayPlacementScore?.toFixed(3)}</td>
-                <td className="p-3">{aytRanking.sayPlacementRank.toLocaleString('en-US')}</td>
+                <td className="p-3 font-medium">SAY</td>
+                <td className="p-3">{ranking?.say.ham.toLocaleString()}</td>
+                <td className="p-3">{ranking?.say.ham_sir.toLocaleString()}</td>
+                <td className="p-3">{ranking?.say.yer.toLocaleString()}</td>
+                <td className="p-3">{ranking?.say.yer_sir.toLocaleString()}</td>
               </tr>
               <tr className="bg-gray-100">
-                <td className="p-3 font-medium">Eşit Ağırlık</td>
-                <td className="p-3">{aytResult?.eaRawScore?.toFixed(3)}</td>
-                <td className="p-3">{aytRanking.eaRawRank.toLocaleString('en-US')}</td>
-                <td className="p-3">{aytResult?.eaPlacementScore?.toFixed(3)}</td>
-                <td className="p-3">{aytRanking.eaPlacementRank.toLocaleString('en-US')}</td>
+                <td className="p-3 font-medium">EA</td>
+                <td className="p-3">{ranking?.ea.ham.toLocaleString()}</td>
+                <td className="p-3">{ranking?.ea.ham_sir.toLocaleString()}</td>
+                <td className="p-3">{ranking?.ea.yer.toLocaleString()}</td>
+                <td className="p-3">{ranking?.ea.yer_sir.toLocaleString()}</td>
               </tr>
               <tr>
-                <td className="p-3 font-medium">Sözel</td>
-                <td className="p-3">{aytResult?.sozRawScore?.toFixed(3)}</td>
-                <td className="p-3">{aytRanking.sozRawRank.toLocaleString('en-US')}</td>
-                <td className="p-3">{aytResult?.sozPlacementScore?.toFixed(3)}</td>
-                <td className="p-3">{aytRanking.sozPlacementRank.toLocaleString('en-US')}</td>
+                <td className="p-3 font-medium">SOZ</td>
+                <td className="p-3">{ranking?.soz.ham.toLocaleString()}</td>
+                <td className="p-3">{ranking?.soz.ham_sir.toLocaleString()}</td>
+                <td className="p-3">{ranking?.soz.yer.toLocaleString()}</td>
+                <td className="p-3">{ranking?.soz.yer_sir.toLocaleString()}</td>
               </tr>
             </tbody>
           </table>
