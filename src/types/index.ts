@@ -1,3 +1,4 @@
+import { z } from 'zod'
 import { Tables, TablesInsert, TablesUpdate } from './supabase.types'
 
 // Exam Attempts
@@ -54,3 +55,15 @@ export type ExamCategoryStatistics = {
     }[]
   }
 }
+
+export const obpGraduateFormSchema = z.object({
+  obp: z
+    .string()
+    .refine((val) => !isNaN(parseFloat(val)), { message: 'OBP geçerli bir sayı olmalıdır' })
+    .refine((val) => parseFloat(val) >= 50 && parseFloat(val) <= 100, {
+      message: 'OBP 50-100 arasında olmalıdır',
+    }),
+  graduated: z.boolean().default(false),
+})
+
+export type ProfileFormValues = z.infer<typeof obpGraduateFormSchema>
