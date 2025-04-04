@@ -64,6 +64,7 @@ export async function POST(req: Request) {
         .from('profiles')
         .insert({
           id: user.id,
+          name: user?.first_name + ' ' + user?.last_name,
           graduated: false,
           obp: 80,
         })

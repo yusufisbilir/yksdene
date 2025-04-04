@@ -1,7 +1,9 @@
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
 import { NextResponse } from 'next/server'
+import { ROUTES } from './constants/routes'
 
 const isPublicRoute = createRouteMatcher(['/api/webhooks(.*)'])
+const isAdminRoute = createRouteMatcher(['/admin(.*)'])
 
 export default clerkMiddleware(async (auth, req) => {
   if (isPublicRoute(req)) {
@@ -9,7 +11,17 @@ export default clerkMiddleware(async (auth, req) => {
   }
 
   const { userId } = await auth()
-  if (req.nextUrl.pathname.startsWith('/api/') && !userId) {
+
+  // Protect admin routes
+  if (isAdminRoute(req)) {
+    if (!userId || userId !== process.env.ADMIN_USER_ID) {
+      const homeURL = new URL(ROUTES.HOME, req.url)
+      return NextResponse.redirect(homeURL)
+    }
+  }
+
+  // Protect API routes
+  if (req.nextUrl.pathname.startsWith('/api/') && !userId && !isPublicRoute(req)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
