@@ -129,61 +129,59 @@ const LastYKSRanking = () => {
   }, [lastExamResults, profile])
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="text-2xl">Son YKS Sıralaması</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="overflow-x-auto">
-          <table className="w-full border-collapse">
-            <thead>
-              <tr className="bg-primary text-white">
-                <th className="p-3 text-left">Sınav</th>
-                <th className="p-3 text-left">Ham Puan</th>
-                <th className="p-3 text-left">Ham Sıralama</th>
-                <th className="p-3 text-left">Yerleştirme Puanı</th>
-                <th className="p-3 text-left">Yerleştirme Sıralama</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="bg-gray-100">
-                <td className="p-3 font-medium">TYT</td>
-                <td className="p-3">{ranking?.tyt.ham.toLocaleString()}</td>
-                <td className="p-3">{ranking?.tyt.ham_sir.toLocaleString()}</td>
-                <td className="p-3">{ranking?.tyt.yer.toLocaleString()}</td>
-                <td className="p-3">{ranking?.tyt.yer_sir.toLocaleString()}</td>
-              </tr>
-              <tr>
-                <td className="p-3 font-medium">SAY</td>
-                <td className="p-3">{ranking?.say.ham.toLocaleString()}</td>
-                <td className="p-3">{ranking?.say.ham_sir.toLocaleString()}</td>
-                <td className="p-3">{ranking?.say.yer.toLocaleString()}</td>
-                <td className="p-3">{ranking?.say.yer_sir.toLocaleString()}</td>
-              </tr>
-              <tr className="bg-gray-100">
-                <td className="p-3 font-medium">EA</td>
-                <td className="p-3">{ranking?.ea.ham.toLocaleString()}</td>
-                <td className="p-3">{ranking?.ea.ham_sir.toLocaleString()}</td>
-                <td className="p-3">{ranking?.ea.yer.toLocaleString()}</td>
-                <td className="p-3">{ranking?.ea.yer_sir.toLocaleString()}</td>
-              </tr>
-              <tr>
-                <td className="p-3 font-medium">SOZ</td>
-                <td className="p-3">{ranking?.soz.ham.toLocaleString()}</td>
-                <td className="p-3">{ranking?.soz.ham_sir.toLocaleString()}</td>
-                <td className="p-3">{ranking?.soz.yer.toLocaleString()}</td>
-                <td className="p-3">{ranking?.soz.yer_sir.toLocaleString()}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+    <div className="space-y-4">
+      <div className="overflow-x-auto">
+        <table className="w-full border-collapse">
+          <thead>
+            <tr className="bg-primary text-white">
+              <th className="p-3 text-left">Sınav</th>
+              <th className="p-3 text-left">Ham Puan</th>
+              <th className="p-3 text-left">Ham Sıralama</th>
+              <th className="p-3 text-left">Yerleştirme Puanı</th>
+              <th className="p-3 text-left">Yerleştirme Sıralama</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="bg-gray-100">
+              <td className="p-3 font-medium">TYT</td>
+              <td className="p-3">{ranking?.tyt.ham.toLocaleString()}</td>
+              <td className="p-3">{ranking?.tyt.ham_sir.toLocaleString()}</td>
+              <td className="p-3">{ranking?.tyt.yer.toLocaleString()}</td>
+              <td className="p-3">{ranking?.tyt.yer_sir.toLocaleString()}</td>
+            </tr>
+            <tr>
+              <td className="p-3 font-medium">SAY</td>
+              <td className="p-3">{ranking?.say.ham.toLocaleString()}</td>
+              <td className="p-3">{ranking?.say.ham_sir.toLocaleString()}</td>
+              <td className="p-3">{ranking?.say.yer.toLocaleString()}</td>
+              <td className="p-3">{ranking?.say.yer_sir.toLocaleString()}</td>
+            </tr>
+            <tr className="bg-gray-100">
+              <td className="p-3 font-medium">EA</td>
+              <td className="p-3">{ranking?.ea.ham.toLocaleString()}</td>
+              <td className="p-3">{ranking?.ea.ham_sir.toLocaleString()}</td>
+              <td className="p-3">{ranking?.ea.yer.toLocaleString()}</td>
+              <td className="p-3">{ranking?.ea.yer_sir.toLocaleString()}</td>
+            </tr>
+            <tr>
+              <td className="p-3 font-medium">SOZ</td>
+              <td className="p-3">{ranking?.soz.ham.toLocaleString()}</td>
+              <td className="p-3">{ranking?.soz.ham_sir.toLocaleString()}</td>
+              <td className="p-3">{ranking?.soz.yer.toLocaleString()}</td>
+              <td className="p-3">{ranking?.soz.yer_sir.toLocaleString()}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-        <div className="mt-4 text-xs text-muted-foreground">
-          <p>* 2024 YKS verileri kullanılarak son TYT ve AYT denemenize göre hesaplanmıştır.</p>
-          <p>* Diploma Notu: {profile?.obp || 0} puanı kullanılmıştır.</p>
-        </div>
-      </CardContent>
-    </Card>
+      <div className="mt-4 text-xs text-muted-foreground">
+        <p>* 2024 YKS verileri kullanılarak son TYT ve AYT denemenize göre hesaplanmıştır.</p>
+        <p>
+          * Diploma Notu: {profile?.obp || 0} puanı kullanılmıştır. Profil sayfasından obp puanını
+          ve mezun durumunu değiştirebilirsin.
+        </p>
+      </div>
+    </div>
   )
 }
 

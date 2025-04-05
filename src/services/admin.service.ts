@@ -1,14 +1,8 @@
 import { supabaseAdminClient } from '@/lib/supabaseAdminClient'
 import { Profile } from '@/types'
 
-interface UserExamCounts {
-  [userId: string]: {
-    TYT: number
-    AYT_Sayisal: number
-    AYT_EsitAgirlik: number
-    AYT_Sozel: number
-    // Add other categories if needed
-  }
+type TotalExamAttemptsPerUser = {
+  [userId: string]: number
 }
 
 export const adminService = {
@@ -27,39 +21,22 @@ export const adminService = {
     return data || []
   },
 
-  async getExamCountsPerUser(): Promise<UserExamCounts> {
+  async getTotalExamAttemptsPerUser(): Promise<TotalExamAttemptsPerUser> {
     const supabase = supabaseAdminClient
-    const { data, error } = await supabase
-      .from('exam_attempt_view')
-      .select('user_id, exam_category')
+    const { data, error } = await supabase.from('exam_attempts').select('user_id')
 
     if (error) {
-      console.error('Error fetching exam counts:', error)
-      throw new Error('Failed to fetch exam counts')
+      console.error('Error fetching total exam attempts:', error)
+      throw new Error('Failed to fetch total exam attempts')
     }
 
-    const counts: UserExamCounts = {}
+    const counts: TotalExamAttemptsPerUser = {}
     if (data) {
       for (const attempt of data) {
-        if (!counts[attempt.user_id]) {
-          counts[attempt.user_id] = {
-            TYT: 0,
-            AYT_Sayisal: 0,
-            AYT_EsitAgirlik: 0,
-            AYT_Sozel: 0,
-          }
-        }
-        if (
-          attempt.exam_category &&
-          counts[attempt.user_id][attempt.exam_category as keyof UserExamCounts[string]]
-        ) {
-          counts[attempt.user_id][attempt.exam_category as keyof UserExamCounts[string]]++
-        }
+        const userId = attempt.user_id
+        counts[userId] = (counts[userId] || 0) + 1
       }
     }
     return counts
   },
-
-  // Add other admin-specific data fetching functions here later
-  // e.g., getExamCountsPerUser()
 }

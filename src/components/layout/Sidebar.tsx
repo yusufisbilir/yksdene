@@ -3,11 +3,12 @@
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { getRouteName, ROUTES } from '@/constants/routes'
+import { getNavbarRoutes, getRouteName, RouteValue } from '@/constants/routes'
 import { UserMenu } from './UserMenu'
 
 const Sidebar = () => {
   const pathname = usePathname()
+
   const isActive = (path: string) => pathname === path
 
   return (
@@ -17,21 +18,19 @@ const Sidebar = () => {
       </Link>
 
       <div className="sidebar_links">
-        {Object.entries(ROUTES)
-          .filter(([key]) => key !== 'LOGIN')
-          .map(([key, value]) => (
-            <Link
-              key={key}
-              href={value}
-              className={cn(
-                'sidebar_link',
-                isActive(value) ? 'sidebar_link_active' : 'sidebar_link_inactive',
-              )}
-              suppressHydrationWarning
-            >
-              {getRouteName(value)}
-            </Link>
-          ))}
+        {getNavbarRoutes().map(({ key, value }: { key: string; value: RouteValue }) => (
+          <Link
+            key={key}
+            href={value}
+            className={cn(
+              'sidebar_link',
+              isActive(value) ? 'sidebar_link_active' : 'sidebar_link_inactive',
+            )}
+            suppressHydrationWarning
+          >
+            {getRouteName(value)}
+          </Link>
+        ))}
       </div>
 
       <UserMenu />

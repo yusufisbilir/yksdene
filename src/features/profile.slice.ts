@@ -1,6 +1,6 @@
 import { API_ROUTES } from '@/constants/api.routes'
 import { apiSlice } from './api/apiSlice'
-import { Profile } from '@/types'
+import { Profile, ProfileUpdate } from '@/types'
 
 export const profileSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -9,7 +9,16 @@ export const profileSlice = apiSlice.injectEndpoints({
       transformResponse: (response: { result: Profile }) => response.result,
       providesTags: ['Profile'],
     }),
+    updateProfile: builder.mutation<Profile, Partial<ProfileUpdate>>({
+      query: (profileData) => ({
+        url: API_ROUTES.PROFILE,
+        method: 'PUT',
+        body: profileData,
+      }),
+      transformResponse: (response: { result: Profile }) => response.result,
+      invalidatesTags: ['Profile'],
+    }),
   }),
 })
 
-export const { useGetProfileQuery } = profileSlice
+export const { useGetProfileQuery, useUpdateProfileMutation } = profileSlice

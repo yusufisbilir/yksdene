@@ -28,7 +28,14 @@ const Dashboard = async () => {
         </CardContent>
       </Card>
 
-      <LastYKSRanking />
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-xl sm:text-2xl">Son YKS Sıralaması</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <LastYKSRanking />
+        </CardContent>
+      </Card>
 
       <Card>
         <CardHeader>
