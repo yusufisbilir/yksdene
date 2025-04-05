@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@clerk/nextjs/server'
 import { UnauthorizedError } from '@/utils/errors'
 import { ZodError, ZodSchema } from 'zod'
+import { rateLimiterService } from './rate-limiter.service'
 
 function zodErrorHandler(error: ZodError) {
   return {
@@ -20,6 +21,20 @@ type ValidatedRequestHandler<T> = (
 
 type RequestHandler = (req: NextRequest, userId: string) => Promise<NextResponse>
 
+// Rate limit settings
+type RateLimitOptions = {
+  limit?: number
+  windowMs?: number
+  skipRateLimit?: boolean
+}
+
+// Default rate limit settings
+const DEFAULT_RATE_LIMIT_OPTIONS: Required<RateLimitOptions> = {
+  limit: 100, // 100 requests
+  windowMs: 60 * 1000, // per minute
+  skipRateLimit: false, // Rate limiting enabled by default
+}
+
 // Types for service handlers
 type ServiceWithAuthHandler<T> = (userId: string) => Promise<T>
 type AdminServiceHandler<T> = () => Promise<T>
@@ -29,35 +44,44 @@ type AdminServiceHandler<T> = () => Promise<T>
  */
 export const apiRequestValidator = {
   /**
-   * API-level: Validates authentication only
+   * API-level: Validates authentication only with optional rate limiting
    */
-  withAuth(request: NextRequest, handler: RequestHandler): Promise<NextResponse> {
-    return this._processRequest(request, handler)
+  withAuth(
+    request: NextRequest,
+    handler: RequestHandler,
+    options: RateLimitOptions = {},
+  ): Promise<NextResponse> {
+    return this._processRequest(request, handler, options)
   },
 
   /**
-   * API-level: Validates authentication and request body with Zod schema
+   * API-level: Validates authentication and request body with Zod schema and optional rate limiting
    */
   withValidation<T>(
     request: NextRequest,
     schema: ZodSchema<T>,
     handler: ValidatedRequestHandler<T>,
+    options: RateLimitOptions = {},
   ): Promise<NextResponse> {
-    return this._processRequest(request, async (req, userId) => {
-      try {
-        const body = await req.json()
-        const result = schema.safeParse(body)
+    return this._processRequest(
+      request,
+      async (req, userId) => {
+        try {
+          const body = await req.json()
+          const result = schema.safeParse(body)
 
-        if (!result.success) {
-          return NextResponse.json(zodErrorHandler(result.error), { status: 400 })
+          if (!result.success) {
+            return NextResponse.json(zodErrorHandler(result.error), { status: 400 })
+          }
+
+          return await handler(req, userId, result.data)
+        } catch (error) {
+          console.error('API Validation Error:', error)
+          return NextResponse.json({ error: 'İstek işlenirken hata oluştu' }, { status: 400 })
         }
-
-        return await handler(req, userId, result.data)
-      } catch (error) {
-        console.error('API Validation Error:', error)
-        return NextResponse.json({ error: 'İstek işlenirken hata oluştu' }, { status: 400 })
-      }
-    })
+      },
+      options,
+    )
   },
 
   /**
@@ -77,8 +101,29 @@ export const apiRequestValidator = {
   /**
    * Internal method to process API requests
    */
-  async _processRequest(request: NextRequest, handler: RequestHandler): Promise<NextResponse> {
+  async _processRequest(
+    request: NextRequest,
+    handler: RequestHandler,
+    options: RateLimitOptions = {},
+  ): Promise<NextResponse> {
     try {
+      // Merge with default options
+      const rateLimitOptions = { ...DEFAULT_RATE_LIMIT_OPTIONS, ...options }
+
+      // Check rate limits if not skipped
+      if (!rateLimitOptions.skipRateLimit) {
+        const rateLimitResponse = await rateLimiterService.check(
+          request,
+          rateLimitOptions.limit,
+          rateLimitOptions.windowMs,
+        )
+
+        // Return rate limit exceeded response if available
+        if (rateLimitResponse) {
+          return rateLimitResponse
+        }
+      }
+
       // Get authenticated user id
       const { userId } = await auth()
 

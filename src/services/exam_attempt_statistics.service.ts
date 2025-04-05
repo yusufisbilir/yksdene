@@ -1,7 +1,7 @@
 import { examAttemptViewService } from './exam_attempt_view.service'
 import { examTemplates } from '@/constants/db.constants'
 import { ExamCategoryStatistics, ExamTemplate } from '@/types'
-import { apiRequestValidator } from './requestValidator.service'
+import { apiRequestValidator } from './request-validator.service'
 
 export const examAttemptStatisticsService = {
   async getExamAttemptStatistics(): Promise<ExamCategoryStatistics> {

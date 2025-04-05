@@ -1,6 +1,6 @@
 import { supabaseAdminClient } from '@/lib/supabaseAdminClient'
 import { Profile } from '@/types'
-import { apiRequestValidator } from './requestValidator.service'
+import { apiRequestValidator } from './request-validator.service'
 
 type TotalExamAttemptsPerUser = {
   [userId: string]: number

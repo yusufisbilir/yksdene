@@ -1,6 +1,6 @@
 import { supabaseServerClient } from '@/lib/supabaseServerClient'
 import { ExamAttemptView } from '@/types'
-import { apiRequestValidator } from './requestValidator.service'
+import { apiRequestValidator } from './request-validator.service'
 
 export const examAttemptViewService = {
   async getExamAttemptView(): Promise<ExamAttemptView[]> {

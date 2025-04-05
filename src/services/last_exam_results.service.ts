@@ -1,7 +1,7 @@
 import { supabaseServerClient } from '@/lib/supabaseServerClient'
 import { ExamAttemptView, SubjectResult } from '@/types'
 import { examTemplates } from '@/constants/db.constants'
-import { apiRequestValidator } from './requestValidator.service'
+import { apiRequestValidator } from './request-validator.service'
 
 export interface LastExamResults {
   TYT?: ExamAttemptView & { subjectResults: SubjectResult[] }

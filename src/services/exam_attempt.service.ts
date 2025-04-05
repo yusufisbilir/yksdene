@@ -1,7 +1,7 @@
 import { AppError } from '@/utils/errors'
 import { supabaseServerClient } from '@/lib/supabaseServerClient'
 import { ExamAttemptInsert, SubjectResultInsert } from '@/types'
-import { apiRequestValidator } from './requestValidator.service'
+import { apiRequestValidator } from './request-validator.service'
 
 export const examAttemptService = {
   async deleteExamAttempt(id: string) {

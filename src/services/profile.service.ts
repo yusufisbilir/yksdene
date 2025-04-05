@@ -1,6 +1,6 @@
 import { supabaseServerClient } from '@/lib/supabaseServerClient'
 import { Profile, ProfileFormValues } from '@/types'
-import { apiRequestValidator } from './requestValidator.service'
+import { apiRequestValidator } from './request-validator.service'
 
 export const profileService = {
   async getProfile(): Promise<Profile | null> {
