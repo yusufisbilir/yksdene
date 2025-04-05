@@ -1,7 +1,7 @@
 import { AppError } from '@/utils/errors'
 import { NextResponse } from 'next/server'
 
-export function handleApiError(error: any) {
+export function handleApiError(error: any): NextResponse {
   console.error('API Hatası:', error)
 
   if (error instanceof AppError) {

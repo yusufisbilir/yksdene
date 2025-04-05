@@ -1,35 +1,33 @@
-import { AppError, UnauthorizedError } from '@/utils/errors'
+import { AppError } from '@/utils/errors'
 import { supabaseServerClient } from '@/lib/supabaseServerClient'
-import { auth } from '@clerk/nextjs/server'
 import { ExamAttemptInsert, SubjectResultInsert } from '@/types'
+import { apiRequestValidator } from './requestValidator.service'
 
 export const examAttemptService = {
   async deleteExamAttempt(id: string) {
-    const { userId } = await auth()
-    if (!userId) throw new UnauthorizedError('Yetkisiz erişim')
+    return apiRequestValidator.withServiceAuth(async (userId) => {
+      const supabase = await supabaseServerClient()
 
-    const supabase = await supabaseServerClient()
+      const { data, error } = await supabase.from('exam_attempts').delete().eq('id', id)
 
-    const { data, error } = await supabase.from('exam_attempts').delete().eq('id', id)
-
-    if (error) throw error
-    return data || []
+      if (error) throw error
+      return data || []
+    })
   },
 
   async _createExamAttempt(examAttempt: ExamAttemptInsert) {
-    const { userId } = await auth()
-    if (!userId) throw new UnauthorizedError('Yetkisiz erişim')
+    return apiRequestValidator.withServiceAuth(async (userId) => {
+      const supabase = await supabaseServerClient()
 
-    const supabase = await supabaseServerClient()
+      const { data, error } = await supabase
+        .from('exam_attempts')
+        .insert(examAttempt)
+        .select()
+        .single()
 
-    const { data, error } = await supabase
-      .from('exam_attempts')
-      .insert(examAttempt)
-      .select()
-      .single()
-
-    if (error) throw error
-    return data || []
+      if (error) throw error
+      return data || []
+    })
   },
 
   async createExamAttemptWithResults({
@@ -39,30 +37,35 @@ export const examAttemptService = {
     examAttempt: ExamAttemptInsert
     subjectResults: Omit<SubjectResultInsert, 'exam_attempt_id'>[]
   }) {
-    const { userId } = await auth()
-    if (!userId) throw new UnauthorizedError('Yetkisiz erişim')
+    return apiRequestValidator.withServiceAuth(async (userId) => {
+      const supabase = await supabaseServerClient()
 
-    const supabase = await supabaseServerClient()
+      // Ensure user_id is set to authenticated user
+      const examAttemptWithUserId = {
+        ...examAttempt,
+        user_id: userId,
+      }
 
-    // create exam attempt
-    const examAttemptData = await this._createExamAttempt(examAttempt)
+      // create exam attempt
+      const examAttemptData = await this._createExamAttempt(examAttemptWithUserId)
 
-    // inject subjects
-    const subjectResultsToInsert = subjectResults.map((result) => ({
-      ...result,
-      exam_attempt_id: examAttemptData.id,
-    }))
+      // inject subjects
+      const subjectResultsToInsert = subjectResults.map((result) => ({
+        ...result,
+        exam_attempt_id: examAttemptData.id,
+      }))
 
-    // insert subject results
-    const { error: subjectResultsError } = await supabase
-      .from('subject_results')
-      .insert(subjectResultsToInsert)
-      .select()
+      // insert subject results
+      const { error: subjectResultsError } = await supabase
+        .from('subject_results')
+        .insert(subjectResultsToInsert)
+        .select()
 
-    // Rollback by deleting the exam attempt
-    if (subjectResultsError) {
-      await supabase.from('exam_attempts').delete().eq('id', examAttemptData.id)
-      throw new AppError('Create subject results get error', 400)
-    }
+      // Rollback by deleting the exam attempt
+      if (subjectResultsError) {
+        await supabase.from('exam_attempts').delete().eq('id', examAttemptData.id)
+        throw new AppError('Create subject results get error', 400)
+      }
+    })
   },
 }

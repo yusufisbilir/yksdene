@@ -1,40 +1,33 @@
-import { UnauthorizedError } from '@/utils/errors'
 import { supabaseServerClient } from '@/lib/supabaseServerClient'
-import { auth } from '@clerk/nextjs/server'
 import { Profile, ProfileFormValues } from '@/types'
+import { apiRequestValidator } from './requestValidator.service'
 
 export const profileService = {
   async getProfile(): Promise<Profile | null> {
-    const { userId } = await auth()
-    if (!userId) throw new UnauthorizedError('Yetkisiz erişim')
+    return apiRequestValidator.withServiceAuth(async (userId) => {
+      const supabase = await supabaseServerClient()
+      const { data, error } = await supabase.from('profiles').select('*').eq('id', userId).single()
 
-    const supabase = await supabaseServerClient()
-    const { data, error } = await supabase
-      .from('profiles')
-      .select('*')
-      .eq('id', userId.toString())
-      .single()
-
-    if (error) throw error
-    return data
+      if (error) throw error
+      return data
+    })
   },
 
   async updateProfile(profileData: ProfileFormValues): Promise<Profile> {
-    const { userId } = await auth()
-    if (!userId) throw new UnauthorizedError('Yetkisiz erişim')
+    return apiRequestValidator.withServiceAuth(async (userId) => {
+      const supabase = await supabaseServerClient()
+      const { data, error } = await supabase
+        .from('profiles')
+        .update({
+          obp: profileData.obp,
+          graduated: profileData.graduated,
+        })
+        .eq('id', userId)
+        .select()
+        .single()
 
-    const supabase = await supabaseServerClient()
-    const { data, error } = await supabase
-      .from('profiles')
-      .update({
-        obp: profileData.obp,
-        graduated: profileData.graduated,
-      })
-      .eq('id', userId.toString())
-      .select()
-      .single()
-
-    if (error) throw error
-    return data
+      if (error) throw error
+      return data
+    })
   },
 }
