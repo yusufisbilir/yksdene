@@ -1,8 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@clerk/nextjs/server'
 import { UnauthorizedError } from '@/utils/errors'
-import { ZodSchema } from 'zod'
-import { zodErrorHandler } from '@/utils/validationErrors'
+import { ZodError, ZodSchema } from 'zod'
+
+function zodErrorHandler(error: ZodError) {
+  return {
+    success: false,
+    message: 'Validation error',
+    errors: error.format(),
+  }
+}
 
 // Types for API handlers
 type ValidatedRequestHandler<T> = (
