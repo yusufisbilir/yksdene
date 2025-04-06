@@ -1,12 +1,10 @@
 'use client'
 
 import { useGetProfileQuery } from '@/features/profile.slice'
-import { useGetLastExamResultsQuery } from '@/features/examResults.slice'
 import React, { useEffect, useState } from 'react'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { getYKSRankTableData, YKSRanking } from '@/utils/yksCalculator'
-import { SubjectResult } from '@/types'
-import { LastExamResults } from '@/services/last_exam_results.service'
+import { LastExamResults, SubjectResult } from '@/types'
+import { useGetLastExamResultsQuery } from '@/features/examAttempt.slice'
 
 // TYT Subject IDs
 const tytTurkishId = 'ce164057-c0fb-4770-9951-bff7b6089537'

@@ -1,9 +1,9 @@
 'use client'
 
-import { useGetExamAttemptViewQuery } from '@/features/exam_attempt_view.slice'
 import PageLoader from '@/components/shared/PageLoader'
 import ExamResultTable from '@/components/features/denemelerim/ExamResultTable'
 import EmptyExamAttempt from '@/components/features/denemelerim/EmptyExamAttempt'
+import { useGetExamAttemptViewQuery } from '@/features/examAttempt.slice'
 
 export function ExamResultsList() {
   const { data: results, isLoading: isLoadingExamAttemptViews } = useGetExamAttemptViewQuery()

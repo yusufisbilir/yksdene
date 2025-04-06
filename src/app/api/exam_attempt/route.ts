@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { handleApiError } from '@/utils/handleApiError'
-import { examAttemptService } from '@/services/exam_attempt.service'
 import { createExamAttemptSchema, deleteExamAttemptSchema } from '@/types/examAttempt.schema'
-import { apiRequestValidator } from '@/services/request-validator.service'
+import { apiRequestValidator } from '@/services/requestValidator.service'
+import { examAttemptService } from '@/services/examAttempt.service'
 
 // Rate limiting configuration for exam attempt endpoints
 const rateLimitConfig = {
