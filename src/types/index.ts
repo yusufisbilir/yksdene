@@ -27,6 +27,11 @@ export type SubjectResult = Tables<'subject_results'>
 export type SubjectResultInsert = TablesInsert<'subject_results'>
 export type SubjectResultUpdate = TablesUpdate<'subject_results'>
 
+// YKS Rankings
+export type YksRanking = Tables<'yks_rankings'>
+export type YksRankingInsert = TablesInsert<'yks_rankings'>
+export type YksRankingUpdate = TablesUpdate<'yks_rankings'>
+
 export const Exam = {
   tyt: 'tyt',
   ayt: 'ayt',

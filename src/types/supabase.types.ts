@@ -1,4 +1,10 @@
-export type Json = string | number | boolean | null | { [key: string]: Json | undefined } | Json[]
+export type Json =
+  | string
+  | number
+  | boolean
+  | null
+  | { [key: string]: Json | undefined }
+  | Json[]
 
 export type Database = {
   graphql_public: {
@@ -58,18 +64,18 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: 'exam_attempts_exam_template_id_fkey'
-            columns: ['exam_template_id']
+            foreignKeyName: "exam_attempts_exam_template_id_fkey"
+            columns: ["exam_template_id"]
             isOneToOne: false
-            referencedRelation: 'exam_templates'
-            referencedColumns: ['id']
+            referencedRelation: "exam_templates"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: 'exam_attempts_user_id_fkey'
-            columns: ['user_id']
+            foreignKeyName: "exam_attempts_user_id_fkey"
+            columns: ["user_id"]
             isOneToOne: false
-            referencedRelation: 'profiles'
-            referencedColumns: ['id']
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
           },
         ]
       }
@@ -105,11 +111,6 @@ export type Database = {
           obp: number
           updated_at: string
           username: string | null
-          bio: string | null
-          school: string | null
-          grade: string | null
-          target_university: string | null
-          target_department: string | null
         }
         Insert: {
           created_at?: string
@@ -121,11 +122,6 @@ export type Database = {
           obp?: number
           updated_at?: string
           username?: string | null
-          bio?: string | null
-          school?: string | null
-          grade?: string | null
-          target_university?: string | null
-          target_department?: string | null
         }
         Update: {
           created_at?: string
@@ -137,11 +133,6 @@ export type Database = {
           obp?: number
           updated_at?: string
           username?: string | null
-          bio?: string | null
-          school?: string | null
-          grade?: string | null
-          target_university?: string | null
-          target_department?: string | null
         }
         Relationships: []
       }
@@ -178,39 +169,39 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: 'subject_results_exam_attempt_id_fkey'
-            columns: ['exam_attempt_id']
+            foreignKeyName: "subject_results_exam_attempt_id_fkey"
+            columns: ["exam_attempt_id"]
             isOneToOne: false
-            referencedRelation: 'exam_attempt_view'
-            referencedColumns: ['attempt_id']
+            referencedRelation: "exam_attempt_view"
+            referencedColumns: ["attempt_id"]
           },
           {
-            foreignKeyName: 'subject_results_exam_attempt_id_fkey'
-            columns: ['exam_attempt_id']
+            foreignKeyName: "subject_results_exam_attempt_id_fkey"
+            columns: ["exam_attempt_id"]
             isOneToOne: false
-            referencedRelation: 'exam_attempt_view_dashboard'
-            referencedColumns: ['attempt_id']
+            referencedRelation: "exam_attempt_view_dashboard"
+            referencedColumns: ["attempt_id"]
           },
           {
-            foreignKeyName: 'subject_results_exam_attempt_id_fkey'
-            columns: ['exam_attempt_id']
+            foreignKeyName: "subject_results_exam_attempt_id_fkey"
+            columns: ["exam_attempt_id"]
             isOneToOne: false
-            referencedRelation: 'exam_attempts'
-            referencedColumns: ['id']
+            referencedRelation: "exam_attempts"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: 'subject_results_subject_id_fkey'
-            columns: ['subject_id']
+            foreignKeyName: "subject_results_subject_id_fkey"
+            columns: ["subject_id"]
             isOneToOne: false
-            referencedRelation: 'subjects'
-            referencedColumns: ['id']
+            referencedRelation: "subjects"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: 'subject_results_user_id_fkey'
-            columns: ['user_id']
+            foreignKeyName: "subject_results_user_id_fkey"
+            columns: ["user_id"]
             isOneToOne: false
-            referencedRelation: 'profiles'
-            referencedColumns: ['id']
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
           },
         ]
       }
@@ -241,11 +232,139 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: 'subjects_exam_template_id_fkey'
-            columns: ['exam_template_id']
+            foreignKeyName: "subjects_exam_template_id_fkey"
+            columns: ["exam_template_id"]
             isOneToOne: false
-            referencedRelation: 'exam_templates'
-            referencedColumns: ['id']
+            referencedRelation: "exam_templates"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      yks_rankings: {
+        Row: {
+          ayt_exam_attempt_id: string
+          created_at: string
+          ea_placement_rank: number
+          ea_placement_score: number
+          ea_raw_rank: number
+          ea_raw_score: number
+          graduated: boolean
+          id: string
+          obp: number
+          say_placement_rank: number
+          say_placement_score: number
+          say_raw_rank: number
+          say_raw_score: number
+          soz_placement_rank: number
+          soz_placement_score: number
+          soz_raw_rank: number
+          soz_raw_score: number
+          tyt_exam_attempt_id: string
+          tyt_placement_rank: number
+          tyt_placement_score: number
+          tyt_raw_rank: number
+          tyt_raw_score: number
+          user_id: string
+        }
+        Insert: {
+          ayt_exam_attempt_id: string
+          created_at?: string
+          ea_placement_rank: number
+          ea_placement_score: number
+          ea_raw_rank: number
+          ea_raw_score: number
+          graduated?: boolean
+          id: string
+          obp?: number
+          say_placement_rank: number
+          say_placement_score: number
+          say_raw_rank: number
+          say_raw_score: number
+          soz_placement_rank: number
+          soz_placement_score: number
+          soz_raw_rank: number
+          soz_raw_score: number
+          tyt_exam_attempt_id: string
+          tyt_placement_rank: number
+          tyt_placement_score: number
+          tyt_raw_rank: number
+          tyt_raw_score: number
+          user_id?: string
+        }
+        Update: {
+          ayt_exam_attempt_id?: string
+          created_at?: string
+          ea_placement_rank?: number
+          ea_placement_score?: number
+          ea_raw_rank?: number
+          ea_raw_score?: number
+          graduated?: boolean
+          id?: string
+          obp?: number
+          say_placement_rank?: number
+          say_placement_score?: number
+          say_raw_rank?: number
+          say_raw_score?: number
+          soz_placement_rank?: number
+          soz_placement_score?: number
+          soz_raw_rank?: number
+          soz_raw_score?: number
+          tyt_exam_attempt_id?: string
+          tyt_placement_rank?: number
+          tyt_placement_score?: number
+          tyt_raw_rank?: number
+          tyt_raw_score?: number
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "yks_rankings_ayt_exam_attempt_id_fkey"
+            columns: ["ayt_exam_attempt_id"]
+            isOneToOne: false
+            referencedRelation: "exam_attempt_view"
+            referencedColumns: ["attempt_id"]
+          },
+          {
+            foreignKeyName: "yks_rankings_ayt_exam_attempt_id_fkey"
+            columns: ["ayt_exam_attempt_id"]
+            isOneToOne: false
+            referencedRelation: "exam_attempt_view_dashboard"
+            referencedColumns: ["attempt_id"]
+          },
+          {
+            foreignKeyName: "yks_rankings_ayt_exam_attempt_id_fkey"
+            columns: ["ayt_exam_attempt_id"]
+            isOneToOne: false
+            referencedRelation: "exam_attempts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "yks_rankings_tyt_exam_attempt_id_fkey"
+            columns: ["tyt_exam_attempt_id"]
+            isOneToOne: false
+            referencedRelation: "exam_attempt_view"
+            referencedColumns: ["attempt_id"]
+          },
+          {
+            foreignKeyName: "yks_rankings_tyt_exam_attempt_id_fkey"
+            columns: ["tyt_exam_attempt_id"]
+            isOneToOne: false
+            referencedRelation: "exam_attempt_view_dashboard"
+            referencedColumns: ["attempt_id"]
+          },
+          {
+            foreignKeyName: "yks_rankings_tyt_exam_attempt_id_fkey"
+            columns: ["tyt_exam_attempt_id"]
+            isOneToOne: false
+            referencedRelation: "exam_attempts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "yks_rankings_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
           },
         ]
       }
@@ -268,11 +387,11 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: 'exam_attempts_user_id_fkey'
-            columns: ['user_id']
+            foreignKeyName: "exam_attempts_user_id_fkey"
+            columns: ["user_id"]
             isOneToOne: false
-            referencedRelation: 'profiles'
-            referencedColumns: ['id']
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
           },
         ]
       }
@@ -293,21 +412,18 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: 'exam_attempts_user_id_fkey'
-            columns: ['user_id']
+            foreignKeyName: "exam_attempts_user_id_fkey"
+            columns: ["user_id"]
             isOneToOne: false
-            referencedRelation: 'profiles'
-            referencedColumns: ['id']
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
           },
         ]
       }
     }
     Functions: {
       calculate_subject_net: {
-        Args: {
-          correct_count: number
-          incorrect_count: number
-        }
+        Args: { correct_count: number; incorrect_count: number }
         Returns: number
       }
       requesting_user_id: {
@@ -324,91 +440,116 @@ export type Database = {
   }
 }
 
-type PublicSchema = Database[Extract<keyof Database, 'public'>]
+type DefaultSchema = Database[Extract<keyof Database, "public">]
 
 export type Tables<
-  PublicTableNameOrOptions extends
-    | keyof (PublicSchema['Tables'] & PublicSchema['Views'])
+  DefaultSchemaTableNameOrOptions extends
+    | keyof (DefaultSchema["Tables"] & DefaultSchema["Views"])
     | { schema: keyof Database },
-  TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
-    ? keyof (Database[PublicTableNameOrOptions['schema']]['Tables'] &
-        Database[PublicTableNameOrOptions['schema']]['Views'])
+  TableName extends DefaultSchemaTableNameOrOptions extends {
+    schema: keyof Database
+  }
+    ? keyof (Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
+        Database[DefaultSchemaTableNameOrOptions["schema"]]["Views"])
     : never = never,
-> = PublicTableNameOrOptions extends { schema: keyof Database }
-  ? (Database[PublicTableNameOrOptions['schema']]['Tables'] &
-      Database[PublicTableNameOrOptions['schema']]['Views'])[TableName] extends {
+> = DefaultSchemaTableNameOrOptions extends { schema: keyof Database }
+  ? (Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
+      Database[DefaultSchemaTableNameOrOptions["schema"]]["Views"])[TableName] extends {
       Row: infer R
     }
     ? R
     : never
-  : PublicTableNameOrOptions extends keyof (PublicSchema['Tables'] & PublicSchema['Views'])
-  ? (PublicSchema['Tables'] & PublicSchema['Views'])[PublicTableNameOrOptions] extends {
-      Row: infer R
-    }
-    ? R
+  : DefaultSchemaTableNameOrOptions extends keyof (DefaultSchema["Tables"] &
+        DefaultSchema["Views"])
+    ? (DefaultSchema["Tables"] &
+        DefaultSchema["Views"])[DefaultSchemaTableNameOrOptions] extends {
+        Row: infer R
+      }
+      ? R
+      : never
     : never
-  : never
 
 export type TablesInsert<
-  PublicTableNameOrOptions extends keyof PublicSchema['Tables'] | { schema: keyof Database },
-  TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
-    ? keyof Database[PublicTableNameOrOptions['schema']]['Tables']
+  DefaultSchemaTableNameOrOptions extends
+    | keyof DefaultSchema["Tables"]
+    | { schema: keyof Database },
+  TableName extends DefaultSchemaTableNameOrOptions extends {
+    schema: keyof Database
+  }
+    ? keyof Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
     : never = never,
-> = PublicTableNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicTableNameOrOptions['schema']]['Tables'][TableName] extends {
+> = DefaultSchemaTableNameOrOptions extends { schema: keyof Database }
+  ? Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
       Insert: infer I
     }
     ? I
     : never
-  : PublicTableNameOrOptions extends keyof PublicSchema['Tables']
-  ? PublicSchema['Tables'][PublicTableNameOrOptions] extends {
-      Insert: infer I
-    }
-    ? I
+  : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
+    ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
+        Insert: infer I
+      }
+      ? I
+      : never
     : never
-  : never
 
 export type TablesUpdate<
-  PublicTableNameOrOptions extends keyof PublicSchema['Tables'] | { schema: keyof Database },
-  TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
-    ? keyof Database[PublicTableNameOrOptions['schema']]['Tables']
+  DefaultSchemaTableNameOrOptions extends
+    | keyof DefaultSchema["Tables"]
+    | { schema: keyof Database },
+  TableName extends DefaultSchemaTableNameOrOptions extends {
+    schema: keyof Database
+  }
+    ? keyof Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
     : never = never,
-> = PublicTableNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicTableNameOrOptions['schema']]['Tables'][TableName] extends {
+> = DefaultSchemaTableNameOrOptions extends { schema: keyof Database }
+  ? Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
       Update: infer U
     }
     ? U
     : never
-  : PublicTableNameOrOptions extends keyof PublicSchema['Tables']
-  ? PublicSchema['Tables'][PublicTableNameOrOptions] extends {
-      Update: infer U
-    }
-    ? U
+  : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
+    ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
+        Update: infer U
+      }
+      ? U
+      : never
     : never
-  : never
 
 export type Enums<
-  PublicEnumNameOrOptions extends keyof PublicSchema['Enums'] | { schema: keyof Database },
-  EnumName extends PublicEnumNameOrOptions extends { schema: keyof Database }
-    ? keyof Database[PublicEnumNameOrOptions['schema']]['Enums']
+  DefaultSchemaEnumNameOrOptions extends
+    | keyof DefaultSchema["Enums"]
+    | { schema: keyof Database },
+  EnumName extends DefaultSchemaEnumNameOrOptions extends {
+    schema: keyof Database
+  }
+    ? keyof Database[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"]
     : never = never,
-> = PublicEnumNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicEnumNameOrOptions['schema']]['Enums'][EnumName]
-  : PublicEnumNameOrOptions extends keyof PublicSchema['Enums']
-  ? PublicSchema['Enums'][PublicEnumNameOrOptions]
-  : never
+> = DefaultSchemaEnumNameOrOptions extends { schema: keyof Database }
+  ? Database[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"][EnumName]
+  : DefaultSchemaEnumNameOrOptions extends keyof DefaultSchema["Enums"]
+    ? DefaultSchema["Enums"][DefaultSchemaEnumNameOrOptions]
+    : never
 
 export type CompositeTypes<
   PublicCompositeTypeNameOrOptions extends
-    | keyof PublicSchema['CompositeTypes']
+    | keyof DefaultSchema["CompositeTypes"]
     | { schema: keyof Database },
   CompositeTypeName extends PublicCompositeTypeNameOrOptions extends {
     schema: keyof Database
   }
-    ? keyof Database[PublicCompositeTypeNameOrOptions['schema']]['CompositeTypes']
+    ? keyof Database[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
     : never = never,
 > = PublicCompositeTypeNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicCompositeTypeNameOrOptions['schema']]['CompositeTypes'][CompositeTypeName]
-  : PublicCompositeTypeNameOrOptions extends keyof PublicSchema['CompositeTypes']
-  ? PublicSchema['CompositeTypes'][PublicCompositeTypeNameOrOptions]
-  : never
+  ? Database[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
+  : PublicCompositeTypeNameOrOptions extends keyof DefaultSchema["CompositeTypes"]
+    ? DefaultSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
+    : never
+
+export const Constants = {
+  graphql_public: {
+    Enums: {},
+  },
+  public: {
+    Enums: {},
+  },
+} as const
