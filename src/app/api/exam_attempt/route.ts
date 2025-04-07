@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { handleApiError } from '@/utils/handleApiError'
-import { createExamAttemptSchema, deleteExamAttemptSchema } from '@/types/examAttempt.schema'
+import { createExamAttemptSchema, deleteExamAttemptSchema } from '@/types'
 import { apiRequestValidator } from '@/services/requestValidator.service'
 import { examAttemptService } from '@/services/examAttempt.service'
 

@@ -28,7 +28,7 @@ import { TotalStats } from './TotalStats'
 import { SubjectResults } from './SubjectResults'
 import { useExamAttemptContext } from '@/contexts/ExamAttemptContext'
 import { calculateExamResults } from '@/utils/calculateExamResults'
-import { CreateExamAttemptInput, createExamAttemptSchema } from '@/types/examAttempt.schema'
+import { CreateExamAttemptInput, createExamAttemptSchema } from '@/types'
 
 export function AddExamForm() {
   const { isAddingExamAttempt, setIsAddingExamAttempt } = useExamAttemptContext()

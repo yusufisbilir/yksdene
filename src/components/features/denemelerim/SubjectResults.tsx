@@ -2,7 +2,7 @@ import { Input } from '@/components/ui/input'
 import { FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
 import { UseFormReturn } from 'react-hook-form'
 import { Subject } from '@/types'
-import { CreateExamAttemptInput } from '@/types/examAttempt.schema'
+import { CreateExamAttemptInput } from '@/types'
 
 interface SubjectResultsProps {
   form: UseFormReturn<CreateExamAttemptInput>
