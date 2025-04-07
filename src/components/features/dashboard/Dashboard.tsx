@@ -2,13 +2,13 @@ import StatisticsCards from './StatisticsCards'
 import PerformanceTrends from './PerformanceTrends'
 import QuestionAnalysis from './QuestionAnalysis'
 import { EmptyDashboard } from './EmptyDashboard'
-import { examAttemptStatisticsService } from '@/services/exam_attempt_statistics.service'
 import { ExamResultsList } from '../denemelerim/ExamResultsList'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import LastYKSRanking from './LastYKSRanking'
+import { examAttemptService } from '@/services/examAttempt.service'
 
 const Dashboard = async () => {
-  const examTemplateStats = await examAttemptStatisticsService.getExamAttemptStatistics()
+  const examTemplateStats = await examAttemptService.getExamAttemptStatistics()
   const hasStats = Object.keys(examTemplateStats).length > 0
 
   if (!hasStats) {

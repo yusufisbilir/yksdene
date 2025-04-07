@@ -67,3 +67,10 @@ export const obpGraduateFormSchema = z.object({
 })
 
 export type ProfileFormValues = z.infer<typeof obpGraduateFormSchema>
+
+export interface LastExamResults {
+  TYT?: ExamAttemptView & { subjectResults: SubjectResult[] }
+  AYT_Sayisal?: ExamAttemptView & { subjectResults: SubjectResult[] }
+  AYT_EsitAgirlik?: ExamAttemptView & { subjectResults: SubjectResult[] }
+  AYT_Sozel?: ExamAttemptView & { subjectResults: SubjectResult[] }
+}

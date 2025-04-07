@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@clerk/nextjs/server'
 import { UnauthorizedError } from '@/utils/errors'
 import { ZodError, ZodSchema } from 'zod'
-import { rateLimiterService } from './rate-limiter.service'
+import { rateLimiterService } from './rateLimiter'
 
 function zodErrorHandler(error: ZodError) {
   return {

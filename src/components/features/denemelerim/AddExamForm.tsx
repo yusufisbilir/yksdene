@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { format } from 'date-fns'
 import { examTemplates, subjects as dbSubjects } from '@/constants/db.constants'
-import { useCreateExamAttemptWithResultsMutation } from '@/features/exam_attempt.slice'
+import { useCreateExamAttemptWithResultsMutation } from '@/features/examAttempt.slice'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import {
   Form,

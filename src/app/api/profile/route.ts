@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { handleApiError } from '@/utils/handleApiError'
 import { profileService } from '@/services/profile.service'
-import { apiRequestValidator } from '@/services/request-validator.service'
+import { apiRequestValidator } from '@/services/requestValidator.service'
 
 // Rate limiting configuration for profile endpoints
 const rateLimitConfig = {
