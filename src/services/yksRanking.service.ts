@@ -571,7 +571,11 @@ export const yksRankingService = {
   async getYKSRanking(): Promise<YksRanking[]> {
     return apiRequestValidator.withServiceAuth(async (userId) => {
       const supabase = await supabaseServerClient()
-      const { data, error } = await supabase.from('yks_rankings').select('*').eq('user_id', userId)
+      const { data, error } = await supabase
+        .from('yks_rankings')
+        .select('*')
+        .eq('user_id', userId)
+        .order('created_at', { ascending: false })
 
       if (error) throw error
       return data || []
