@@ -1,4 +1,14 @@
-import { YKSRanking } from '@/types'
+import {
+  LastExamResults,
+  SubjectResult,
+  YksRanking,
+  YksRankingInsertWithoutId,
+  YKSRankingTable,
+} from '@/types'
+import { examAttemptService } from '@/services/examAttempt.service'
+import { profileService } from './profile.service'
+import { apiRequestValidator } from './requestValidator.service'
+import { supabaseServerClient } from '@/lib/supabaseServerClient'
 
 const BASE_POINTS_2024 = {
   TYT: 144.945,
@@ -109,9 +119,39 @@ type getYKSRankTableDataProps = {
     aytPhilosophyNet: number
     aytReligionNet: number
   }
+  TYT_id?: string
+  AYT_id?: string
 }
 
 type ScoreType = 'tyt' | 'say' | 'soz' | 'ea'
+
+// TYT Subject IDs
+const tytTurkishId = 'ce164057-c0fb-4770-9951-bff7b6089537'
+const tytMathId = '58017200-0ff0-4aad-9f37-f5235989dc67'
+const tytPhysicsId = 'b4835e2c-cb12-4f58-9405-daada69fb473'
+const tytChemistryId = '18400b98-faeb-4f7b-bc87-5f8d798e0e6b'
+const tytBiologyId = '441fd0c8-dbea-4141-a89a-048e6330a1e4'
+const tytHistoryId = 'fbb509ba-431d-400f-bde4-c0f64c2c1508'
+const tytGeographyId = 'b07f1bcc-2422-47e4-b56b-a5d1f413b0f7'
+const tytPhilosophyId = '8c22c4e2-8fa0-4d68-9dbd-6a423588de60'
+const tytReligionId = '6a897488-1ca9-407c-93ba-6ad502496448'
+
+// AYT Subject IDs
+const aytMathScientificId = 'ef4a20d5-b3c7-4942-90f4-78f4c7dc7eca'
+const aytMathEqualWeightId = '80221e43-18c3-4573-8b85-ce8946a40d5a'
+const aytPhysicsId = '0888bbac-dafd-48e1-a500-69a3366758e3'
+const aytChemistryId = '0563701e-d3ac-45f8-98fd-33eb57d65957'
+const aytBiologyId = '78697ab9-b0cf-4bb6-ad91-d99928555168'
+const aytLiteratureEqualWeightId = '79fd2f86-6ef6-4509-8edb-0a351572af4a'
+const aytLiteratureVerbalId = '3e094f1d-79c3-4b83-b9c3-5f704ed8900c'
+const aytHistory1EqualWeightId = '570b09a7-cae9-41fe-ba2c-5cda0f56c91b'
+const aytHistory1VerbalId = '80253263-9278-4dc4-9065-bf88589f5854'
+const aytGeography1EqualWeightId = '409f2a31-3572-442a-86eb-22b9e2628edf'
+const aytGeography1VerbalId = '949c9c11-bb12-4941-9db7-1be437e072f3'
+const aytHistory2Id = 'e7bf9c65-0e9a-47a7-b1c6-6b21035e3d9a'
+const aytGeography2Id = '7bbc8221-a156-4da2-bf6b-bd24f4954150'
+const aytPhilosophyId = 'a62143b7-8ddf-45fb-80e0-f24c79cdb59d'
+const aytReligionId = 'b4765b3e-b009-483a-b1e8-b5c7433ed2cc'
 
 export const yksRankingService = {
   _getPlacementRankRanges(score: number): RankingRange | null {
@@ -285,8 +325,96 @@ export const yksRankingService = {
     // Round the result
     return Math.round(lowerRange[scoreType] - interpolation)
   },
-  getYKSRankTableData(params: getYKSRankTableDataProps) {
-    const ranking: YKSRanking = {
+  _calculateNetScores(
+    lastExamResults: LastExamResults,
+    obp: number,
+    graduated: boolean,
+  ): getYKSRankTableDataProps {
+    // Helper function to calculate net scores for subjects
+    const calculateNetScore = (examType: keyof LastExamResults, subjectIds: string | string[]) => {
+      const results =
+        lastExamResults?.[examType] && typeof lastExamResults[examType] !== 'string'
+          ? lastExamResults[examType].subjectResults
+          : []
+      return (
+        results.reduce((acc: number, result: SubjectResult) => {
+          if (
+            Array.isArray(subjectIds)
+              ? subjectIds.includes(result.subject_id)
+              : result.subject_id === subjectIds
+          ) {
+            return acc + result.correct_count - result.incorrect_count * 0.25
+          }
+          return acc
+        }, 0) || 0
+      )
+    }
+
+    // Calculate TYT nets
+    const tytTurkishNet = calculateNetScore('TYT', tytTurkishId)
+    const tytMathNet = calculateNetScore('TYT', tytMathId)
+    const tytSocialNet = calculateNetScore('TYT', [
+      tytHistoryId,
+      tytGeographyId,
+      tytReligionId,
+      tytPhilosophyId,
+    ])
+    const tytScienceNet = calculateNetScore('TYT', [tytPhysicsId, tytChemistryId, tytBiologyId])
+
+    // Calculate AYT nets
+    const aytMathNet =
+      calculateNetScore('AYT_Sayisal', aytMathScientificId) ||
+      calculateNetScore('AYT_EsitAgirlik', aytMathEqualWeightId)
+
+    const aytPhysicsNet = calculateNetScore('AYT_Sayisal', aytPhysicsId)
+    const aytChemistryNet = calculateNetScore('AYT_Sayisal', aytChemistryId)
+    const aytBiologyNet = calculateNetScore('AYT_Sayisal', aytBiologyId)
+
+    const aytLiteratureNet =
+      calculateNetScore('AYT_EsitAgirlik', aytLiteratureEqualWeightId) ||
+      calculateNetScore('AYT_Sozel', aytLiteratureVerbalId)
+
+    const aytHistory1Net =
+      calculateNetScore('AYT_EsitAgirlik', aytHistory1EqualWeightId) ||
+      calculateNetScore('AYT_Sozel', aytHistory1VerbalId)
+
+    const aytGeography1Net =
+      calculateNetScore('AYT_EsitAgirlik', aytGeography1EqualWeightId) ||
+      calculateNetScore('AYT_Sozel', aytGeography1VerbalId)
+
+    const aytHistory2Net = calculateNetScore('AYT_Sozel', aytHistory2Id)
+    const aytGeography2Net = calculateNetScore('AYT_Sozel', aytGeography2Id)
+    const aytPhilosophyNet = calculateNetScore('AYT_Sozel', aytPhilosophyId)
+    const aytReligionNet = calculateNetScore('AYT_Sozel', aytReligionId)
+
+    return {
+      grade: obp,
+      isGraduated: graduated,
+      tyt: {
+        turkishNet: tytTurkishNet || 0,
+        mathNet: tytMathNet || 0,
+        scienceNet: tytScienceNet || 0,
+        socialStudiesNet: tytSocialNet || 0,
+      },
+      ayt: {
+        aytMathNet,
+        aytPhysicsNet,
+        aytChemistryNet,
+        aytBiologyNet,
+        aytLiteratureNet,
+        aytHistory1Net,
+        aytGeography1Net,
+        aytHistory2Net,
+        aytGeography2Net,
+        aytPhilosophyNet,
+        aytReligionNet,
+      },
+      TYT_id: lastExamResults?.TYT_id,
+      AYT_id: lastExamResults?.AYT_id,
+    }
+  },
+  async _getYKSRankTableData(params: getYKSRankTableDataProps): Promise<YksRankingInsertWithoutId> {
+    const ranking: YKSRankingTable = {
       tyt: {
         ham: 0,
         ham_sir: 0,
@@ -391,6 +519,62 @@ export const yksRankingService = {
       this._getPlacementRankRanges,
     )
 
-    return ranking
+    return {
+      tyt_exam_attempt_id: params.TYT_id ?? null,
+      ayt_exam_attempt_id: params.AYT_id ?? null,
+      graduated: params.isGraduated,
+      obp: params.grade,
+      tyt_raw_score: ranking.tyt.ham,
+      tyt_raw_rank: ranking.tyt.ham_sir,
+      tyt_placement_score: ranking.tyt.yer,
+      tyt_placement_rank: ranking.tyt.yer_sir,
+      say_raw_score: ranking.say.ham,
+      say_raw_rank: ranking.say.ham_sir,
+      say_placement_score: ranking.say.yer,
+      say_placement_rank: ranking.say.yer_sir,
+      ea_raw_score: ranking.ea.ham,
+      ea_raw_rank: ranking.ea.ham_sir,
+      ea_placement_score: ranking.ea.yer,
+      ea_placement_rank: ranking.ea.yer_sir,
+      soz_raw_score: ranking.soz.ham,
+      soz_raw_rank: ranking.soz.ham_sir,
+      soz_placement_score: ranking.soz.yer,
+      soz_placement_rank: ranking.soz.yer_sir,
+    }
+  },
+  async _prepareYKSRanking(): Promise<YksRankingInsertWithoutId> {
+    const lastExamResults = await examAttemptService.getLastExamResults()
+    const profile = await profileService.getProfile()
+    const calculatedScores = this._calculateNetScores(
+      lastExamResults,
+      profile?.obp ?? 80,
+      profile?.graduated ?? false,
+    )
+    const YKSRanking = await this._getYKSRankTableData(calculatedScores)
+    return YKSRanking
+  },
+  // run this function after saved new exam attempt
+  async calculateAndsaveYKSRanking() {
+    apiRequestValidator.withServiceAuth(async (userId) => {
+      const supabase = await supabaseServerClient()
+      const preparedData = await this._prepareYKSRanking()
+      console.log(preparedData)
+
+      const { data, error } = await supabase.from('yks_rankings').insert(preparedData)
+
+      if (error) throw error
+      return data
+    })
+  },
+
+  // read yks ranking table
+  async getYKSRanking(): Promise<YksRanking[]> {
+    return apiRequestValidator.withServiceAuth(async (userId) => {
+      const supabase = await supabaseServerClient()
+      const { data, error } = await supabase.from('yks_rankings').select('*').eq('user_id', userId)
+
+      if (error) throw error
+      return data || []
+    })
   },
 }

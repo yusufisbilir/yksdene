@@ -32,6 +32,8 @@ export type YksRanking = Tables<'yks_rankings'>
 export type YksRankingInsert = TablesInsert<'yks_rankings'>
 export type YksRankingUpdate = TablesUpdate<'yks_rankings'>
 
+export type YksRankingInsertWithoutId = Omit<YksRankingInsert, 'id'>
+
 export const Exam = {
   tyt: 'tyt',
   ayt: 'ayt',
@@ -78,6 +80,8 @@ export interface LastExamResults {
   AYT_Sayisal?: ExamAttemptView & { subjectResults: SubjectResult[] }
   AYT_EsitAgirlik?: ExamAttemptView & { subjectResults: SubjectResult[] }
   AYT_Sozel?: ExamAttemptView & { subjectResults: SubjectResult[] }
+  TYT_id?: string
+  AYT_id?: string
 }
 
 export const deleteExamAttemptSchema = z.object({
@@ -113,7 +117,7 @@ interface Ranking {
   yer_sir: number
 }
 
-export interface YKSRanking {
+export interface YKSRankingTable {
   tyt: Ranking
   say: Ranking
   ea: Ranking

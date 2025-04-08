@@ -1,12 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { handleApiError } from '@/utils/handleApiError'
 import { apiRequestValidator } from '@/services/requestValidator.service'
-import { examAttemptService } from '@/services/examAttempt.service'
+import { yksRankingService } from '@/services/yksRanking.service'
 
 export async function GET(request: NextRequest) {
   return apiRequestValidator.withAuth(request, async (req, userId) => {
+    console.log('userId', userId)
     try {
-      const result = await examAttemptService.getLastExamResults()
+      const result = await yksRankingService.getYKSRanking()
       return NextResponse.json({ result })
     } catch (error) {
       return handleApiError(error)

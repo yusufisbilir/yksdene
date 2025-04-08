@@ -242,7 +242,7 @@ export type Database = {
       }
       yks_rankings: {
         Row: {
-          ayt_exam_attempt_id: string
+          ayt_exam_attempt_id: string | null
           created_at: string
           ea_placement_rank: number
           ea_placement_score: number
@@ -259,7 +259,7 @@ export type Database = {
           soz_placement_score: number
           soz_raw_rank: number
           soz_raw_score: number
-          tyt_exam_attempt_id: string
+          tyt_exam_attempt_id: string | null
           tyt_placement_rank: number
           tyt_placement_score: number
           tyt_raw_rank: number
@@ -267,14 +267,14 @@ export type Database = {
           user_id: string
         }
         Insert: {
-          ayt_exam_attempt_id: string
+          ayt_exam_attempt_id?: string | null
           created_at?: string
           ea_placement_rank: number
           ea_placement_score: number
           ea_raw_rank: number
           ea_raw_score: number
           graduated?: boolean
-          id: string
+          id?: string
           obp?: number
           say_placement_rank: number
           say_placement_score: number
@@ -284,7 +284,7 @@ export type Database = {
           soz_placement_score: number
           soz_raw_rank: number
           soz_raw_score: number
-          tyt_exam_attempt_id: string
+          tyt_exam_attempt_id?: string | null
           tyt_placement_rank: number
           tyt_placement_score: number
           tyt_raw_rank: number
@@ -292,7 +292,7 @@ export type Database = {
           user_id?: string
         }
         Update: {
-          ayt_exam_attempt_id?: string
+          ayt_exam_attempt_id?: string | null
           created_at?: string
           ea_placement_rank?: number
           ea_placement_score?: number
@@ -309,7 +309,7 @@ export type Database = {
           soz_placement_score?: number
           soz_raw_rank?: number
           soz_raw_score?: number
-          tyt_exam_attempt_id?: string
+          tyt_exam_attempt_id?: string | null
           tyt_placement_rank?: number
           tyt_placement_score?: number
           tyt_raw_rank?: number

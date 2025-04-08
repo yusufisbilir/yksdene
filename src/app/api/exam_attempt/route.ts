@@ -3,6 +3,7 @@ import { handleApiError } from '@/utils/handleApiError'
 import { createExamAttemptSchema, deleteExamAttemptSchema } from '@/types'
 import { apiRequestValidator } from '@/services/requestValidator.service'
 import { examAttemptService } from '@/services/examAttempt.service'
+import { yksRankingService } from '@/services/yksRanking.service'
 
 // Rate limiting configuration for exam attempt endpoints
 const rateLimitConfig = {
@@ -17,6 +18,7 @@ export async function POST(request: NextRequest) {
     async (req, userId, validatedData) => {
       try {
         const result = await examAttemptService.createExamAttemptWithResults(validatedData)
+        await yksRankingService.calculateAndsaveYKSRanking()
         return NextResponse.json({ result }, { status: 201 })
       } catch (error) {
         return handleApiError(error)
