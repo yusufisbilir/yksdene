@@ -105,3 +105,17 @@ export const createExamAttemptSchema = z.object({
 
 export type DeleteExamAttemptInput = z.infer<typeof deleteExamAttemptSchema>
 export type CreateExamAttemptInput = z.infer<typeof createExamAttemptSchema>
+
+interface Ranking {
+  ham: number
+  ham_sir: number
+  yer: number
+  yer_sir: number
+}
+
+export interface YKSRanking {
+  tyt: Ranking
+  say: Ranking
+  ea: Ranking
+  soz: Ranking
+}

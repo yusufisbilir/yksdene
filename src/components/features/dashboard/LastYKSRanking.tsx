@@ -2,8 +2,8 @@
 
 import { useGetProfileQuery } from '@/features/profile.slice'
 import React, { useEffect, useState } from 'react'
-import { getYKSRankTableData, YKSRanking } from '@/utils/yksCalculator'
-import { LastExamResults, SubjectResult } from '@/types'
+import { yksRankingService } from '@/services/yksRanking.service'
+import { LastExamResults, SubjectResult, YKSRanking } from '@/types'
 import { useGetLastExamResultsQuery } from '@/features/examAttempt.slice'
 
 // TYT Subject IDs
@@ -96,7 +96,7 @@ const LastYKSRanking = () => {
     const aytReligionNet = calculateNetScore('AYT_Sozel', aytReligionId)
 
     setRanking(
-      getYKSRankTableData({
+      yksRankingService.getYKSRankTableData({
         grade: profile?.obp || 0,
         isGraduated: profile?.graduated || false,
         tyt: {
