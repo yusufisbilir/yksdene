@@ -12,7 +12,9 @@ import {
   Tooltip,
   ResponsiveContainer,
   Legend,
+  ReferenceDot,
 } from 'recharts'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
 const LastYKSRanking = () => {
   const { data: results, isLoading: isLoadingYKSRanking } = useGetYKSRankingQuery()
@@ -20,10 +22,10 @@ const LastYKSRanking = () => {
   if (isLoadingYKSRanking) {
     return <PageLoader />
   }
+
   const lineChartData = () => {
     if (!results || results.length === 0) return []
 
-    // Sonuçları tarihe göre sırala, en eskiden en yeniye doğru
     const sortedResults = [...results].sort(
       (a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime(),
     )
@@ -35,6 +37,86 @@ const LastYKSRanking = () => {
       EA: result.ea_placement_rank || 0,
       SOZ: result.soz_placement_rank || 0,
     }))
+  }
+
+  const findBestAndWorst = (data: Array<Record<string, any>>, field: string) => {
+    if (!data || data.length === 0)
+      return { best: null, worst: null, bestIndex: -1, worstIndex: -1 }
+
+    let bestRank = Infinity
+    let worstRank = 0
+    let bestIndex = -1
+    let worstIndex = -1
+
+    data.forEach((item: Record<string, any>, index: number) => {
+      if (item[field] > 0) {
+        if (item[field] < bestRank) {
+          bestRank = item[field]
+          bestIndex = index
+        }
+        if (item[field] > worstRank) {
+          worstRank = item[field]
+          worstIndex = index
+        }
+      }
+    })
+
+    return {
+      best: bestRank === Infinity ? null : bestRank,
+      worst: worstRank === 0 ? null : worstRank,
+      bestIndex,
+      worstIndex,
+    }
+  }
+
+  const chartData = lineChartData()
+  const tytStats = findBestAndWorst(chartData, 'TYT')
+  const sayStats = findBestAndWorst(chartData, 'SAY')
+  const eaStats = findBestAndWorst(chartData, 'EA')
+  const sozStats = findBestAndWorst(chartData, 'SOZ')
+
+  const renderSingleChart = (dataKey: string, label: string, color: string, stats: any) => {
+    return (
+      <div style={{ width: '100%', height: 300 }} className="mb-4">
+        <ResponsiveContainer>
+          <LineChart data={chartData} margin={{ top: 10, right: 30, left: 20, bottom: 30 }}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="date" />
+            <YAxis
+              tickFormatter={(value) => value.toLocaleString('tr-TR')}
+              domain={['dataMax', 'dataMin']}
+              label={{ value: 'Sıralama', angle: -90, position: 'insideLeft' }}
+            />
+            <Tooltip
+              formatter={(value) => value.toLocaleString('tr-TR')}
+              labelFormatter={(label) => `Tarih: ${label}`}
+            />
+            <Legend />
+
+            <Line
+              type="monotone"
+              dataKey={dataKey}
+              name={`${label} Sıralaması`}
+              stroke={color}
+              strokeWidth={2}
+              dot={{ r: 5 }}
+              activeDot={{ r: 8 }}
+            />
+
+            {stats.best && stats.bestIndex >= 0 && (
+              <ReferenceDot
+                x={chartData[stats.bestIndex].date}
+                y={stats.best}
+                r={8}
+                fill={color}
+                stroke="none"
+                fillOpacity={0.6}
+              />
+            )}
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
+    )
   }
 
   return (
@@ -88,63 +170,42 @@ const LastYKSRanking = () => {
           <CardTitle>Yerleştirme Sıralamaları Gelişimi</CardTitle>
         </CardHeader>
         <CardContent>
-          <div style={{ width: '100%', height: 350 }}>
-            <ResponsiveContainer>
-              <LineChart
-                data={lineChartData()}
-                margin={{ top: 10, right: 30, left: 20, bottom: 30 }}
-              >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="date" />
-                <YAxis
-                  tickFormatter={(value) => value.toLocaleString('tr-TR')}
-                  domain={['dataMax', 'dataMin']}
-                  label={{ value: 'Sıralama', angle: -90, position: 'insideLeft' }}
-                />
-                <Tooltip
-                  formatter={(value) => value.toLocaleString('tr-TR')}
-                  labelFormatter={(label) => `Tarih: ${label}`}
-                />
-                <Legend />
-                <Line
-                  type="monotone"
-                  dataKey="TYT"
-                  name="TYT Sıralaması"
-                  stroke="#8884d8"
-                  strokeWidth={2}
-                  dot={{ r: 5 }}
-                  activeDot={{ r: 8 }}
-                />
-                <Line
-                  type="monotone"
-                  dataKey="SAY"
-                  name="SAY Sıralaması"
-                  stroke="#82ca9d"
-                  strokeWidth={2}
-                  dot={{ r: 5 }}
-                  activeDot={{ r: 8 }}
-                />
-                <Line
-                  type="monotone"
-                  dataKey="EA"
-                  name="EA Sıralaması"
-                  stroke="#ffc658"
-                  strokeWidth={2}
-                  dot={{ r: 5 }}
-                  activeDot={{ r: 8 }}
-                />
-                <Line
-                  type="monotone"
-                  dataKey="SOZ"
-                  name="SOZ Sıralaması"
-                  stroke="#ff8042"
-                  strokeWidth={2}
-                  dot={{ r: 5 }}
-                  activeDot={{ r: 8 }}
-                />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
+          <Tabs defaultValue="tyt" className="w-full">
+            <TabsList className="grid grid-cols-4 mb-6">
+              <TabsTrigger value="tyt">TYT</TabsTrigger>
+              <TabsTrigger value="say">SAY</TabsTrigger>
+              <TabsTrigger value="ea">EA</TabsTrigger>
+              <TabsTrigger value="soz">SOZ</TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="tyt" className="mt-0">
+              {renderSingleChart('TYT', 'TYT', '#8884d8', tytStats)}
+              <div className="text-xs mt-2">
+                <p>• En iyi TYT sıralaması: {tytStats.best?.toLocaleString() || 'Veri yok'}</p>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="say" className="mt-0">
+              {renderSingleChart('SAY', 'Sayısal', '#82ca9d', sayStats)}
+              <div className="text-xs mt-2">
+                <p>• En iyi SAY sıralaması: {sayStats.best?.toLocaleString() || 'Veri yok'}</p>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="ea" className="mt-0">
+              {renderSingleChart('EA', 'Eşit Ağırlık', '#ffc658', eaStats)}
+              <div className="text-xs mt-2">
+                <p>• En iyi EA sıralaması: {eaStats.best?.toLocaleString() || 'Veri yok'}</p>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="soz" className="mt-0">
+              {renderSingleChart('SOZ', 'Sözel', '#ff8042', sozStats)}
+              <div className="text-xs mt-2">
+                <p>• En iyi SOZ sıralaması: {sozStats.best?.toLocaleString() || 'Veri yok'}</p>
+              </div>
+            </TabsContent>
+          </Tabs>
         </CardContent>
       </Card>
 
