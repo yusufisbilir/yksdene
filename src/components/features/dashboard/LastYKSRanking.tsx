@@ -15,6 +15,7 @@ import {
   ReferenceDot,
 } from 'recharts'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { ArrowUpIcon, ArrowDownIcon, MinusIcon } from 'lucide-react'
 
 const LastYKSRanking = () => {
   const { data: results, isLoading: isLoadingYKSRanking } = useGetYKSRankingQuery()
@@ -69,11 +70,112 @@ const LastYKSRanking = () => {
     }
   }
 
+  const calculateChange = (
+    current: number,
+    previous: number,
+  ): { value: number; percentage: number; isPositive: boolean } => {
+    if (!current || !previous) return { value: 0, percentage: 0, isPositive: false }
+
+    const diff = previous - current
+    const percentage = previous > 0 ? (Math.abs(diff) / previous) * 100 : 0
+
+    return {
+      value: Math.abs(diff),
+      percentage: Math.round(percentage * 100) / 100,
+      isPositive: diff > 0,
+    }
+  }
+
   const chartData = lineChartData()
   const tytStats = findBestAndWorst(chartData, 'TYT')
   const sayStats = findBestAndWorst(chartData, 'SAY')
   const eaStats = findBestAndWorst(chartData, 'EA')
   const sozStats = findBestAndWorst(chartData, 'SOZ')
+
+  // Son iki sınav sonucunu alalım (sıralı veride sondan başa doğru)
+  const sortedResults = [...(results || [])].sort(
+    (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
+  )
+
+  const latestResult = sortedResults[0] || null
+  const previousResult = sortedResults[1] || null
+
+  const tytChange = calculateChange(
+    latestResult?.tyt_placement_rank || 0,
+    previousResult?.tyt_placement_rank || 0,
+  )
+
+  const sayChange = calculateChange(
+    latestResult?.say_placement_rank || 0,
+    previousResult?.say_placement_rank || 0,
+  )
+
+  const eaChange = calculateChange(
+    latestResult?.ea_placement_rank || 0,
+    previousResult?.ea_placement_rank || 0,
+  )
+
+  const sozChange = calculateChange(
+    latestResult?.soz_placement_rank || 0,
+    previousResult?.soz_placement_rank || 0,
+  )
+
+  const renderChangeCard = (
+    title: string,
+    currentRank: number,
+    change: { value: number; percentage: number; isPositive: boolean },
+    color: string,
+  ) => {
+    return (
+      <Card className="overflow-hidden">
+        <div className="border-l-4 h-full" style={{ borderColor: color }}>
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="font-medium text-md">{title}</h3>
+              <div
+                className={`flex items-center font-medium text-xs ${
+                  change.isPositive
+                    ? 'text-green-600'
+                    : change.value === 0
+                    ? 'text-gray-500'
+                    : 'text-red-600'
+                }`}
+              >
+                {change.value > 0 ? (
+                  <>
+                    {change.isPositive ? (
+                      <ArrowUpIcon className="mr-1 h-4 w-4" />
+                    ) : (
+                      <ArrowDownIcon className="mr-1 h-4 w-4" />
+                    )}
+                    {change.percentage.toFixed(1)}%
+                  </>
+                ) : (
+                  <MinusIcon className="h-4 w-4" />
+                )}
+              </div>
+            </div>
+            <div className="flex flex-col">
+              <p className="text-sm font-bold">{currentRank.toLocaleString()}</p>
+              {change.value > 0 && (
+                <div className="mt-3 rounded-md py-1 px-2 bg-gray-50">
+                  <p
+                    className={`font-medium text-xl ${
+                      change.isPositive ? 'text-green-600' : 'text-red-600'
+                    }`}
+                  >
+                    {change.isPositive
+                      ? `${change.value.toLocaleString()} kişinin önüne geçtin! 👏`
+                      : `${change.value.toLocaleString()} kişi senin önüne geçti.`}
+                  </p>
+                </div>
+              )}
+            </div>
+          </CardContent>
+        </div>
+      </Card>
+    )
+  }
 
   const renderSingleChart = (dataKey: string, label: string, color: string, stats: any) => {
     return (
@@ -121,6 +223,35 @@ const LastYKSRanking = () => {
 
   return (
     <div className="space-y-6">
+      {previousResult && (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+          {renderChangeCard(
+            'TYT Sıralaması',
+            latestResult?.tyt_placement_rank || 0,
+            tytChange,
+            '#8884d8',
+          )}
+          {renderChangeCard(
+            'SAY Sıralaması',
+            latestResult?.say_placement_rank || 0,
+            sayChange,
+            '#82ca9d',
+          )}
+          {renderChangeCard(
+            'EA Sıralaması',
+            latestResult?.ea_placement_rank || 0,
+            eaChange,
+            '#ffc658',
+          )}
+          {renderChangeCard(
+            'SOZ Sıralaması',
+            latestResult?.soz_placement_rank || 0,
+            sozChange,
+            '#ff8042',
+          )}
+        </div>
+      )}
+
       <div className="overflow-x-auto">
         <table className="w-full border-collapse">
           <thead>
