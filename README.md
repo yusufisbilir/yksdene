@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎯 YKS Dene - Ultimate University Entrance Exam Preparation Platform
 
-## Getting Started
+[yksdene.com](https://yksdene.com)
 
-First, run the development server:
+**YKS Dene** is a comprehensive web application designed to help students effectively prepare for the **Turkish University Entrance Exam (YKS)**. With powerful tools and intuitive features, students can **track**, **analyze**, and **improve** their performance with ease.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- 📊 **Performance Tracking**  
+  Daily, weekly, and monthly tracking of scores and progress with detailed analytics.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- 🎯 **Target Setting**  
+  Set specific net score goals and monitor your progress toward achieving them.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- 📈 **Real Ranking Predictions**  
+  Get accurate predictions of your national ranking based on real-time performance data.
 
-## Learn More
+- ⏱ **Specialized ÖSYM Clock**  
+  Practice under real exam conditions with a clock that mimics the official ÖSYM timing system.
 
-To learn more about Next.js, take a look at the following resources:
+- 📚 **Subject Analytics**  
+  Identify your strengths and weaknesses through detailed reports by subject and topic.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- 👤 **User Profiles**  
+  Create and manage your student profile, including **OBP (High School GPA)** integration.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- 🏆 **Competitive Practice Exams**  
+  Join daily exams and climb the leaderboard with others in real time.
 
-## Deploy on Vercel
+## 🛠 Tech Stack
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Frontend:** [Next.js](https://nextjs.org/) + [TypeScript](https://www.typescriptlang.org/)
+- **State Management:** [Redux Toolkit](https://redux-toolkit.js.org/)
+- **Backend-as-a-Service:** [Supabase](https://supabase.com/)
+- **Authentication:** [Clerk](https://clerk.dev/)
+- **Deployment:** [Vercel](https://vercel.com/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **Data Visualization:** [Recharts](https://recharts.org/)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📌 Purpose
+
+This platform aims to provide **a complete solution** for students preparing for the YKS exam, by combining all essential tools for:
+
+- Smart study planning
+- Performance monitoring
+- Data-driven improvement
+
+## 🔗 Live Demo
+
+👉 [yksdene.com](https://yksdene.com)
+
+---
+
+Yusuf İşbilir
