@@ -1,133 +1,257 @@
 'use client'
 
-import { useGetProfileQuery } from '@/features/profile.slice'
-import React, { useEffect, useState } from 'react'
-import { getYKSRankTableData, YKSRanking } from '@/utils/yksCalculator'
-import { LastExamResults, SubjectResult } from '@/types'
-import { useGetLastExamResultsQuery } from '@/features/examAttempt.slice'
-
-// TYT Subject IDs
-const tytTurkishId = 'ce164057-c0fb-4770-9951-bff7b6089537'
-const tytMathId = '58017200-0ff0-4aad-9f37-f5235989dc67'
-const tytPhysicsId = 'b4835e2c-cb12-4f58-9405-daada69fb473'
-const tytChemistryId = '18400b98-faeb-4f7b-bc87-5f8d798e0e6b'
-const tytBiologyId = '441fd0c8-dbea-4141-a89a-048e6330a1e4'
-const tytHistoryId = 'fbb509ba-431d-400f-bde4-c0f64c2c1508'
-const tytGeographyId = 'b07f1bcc-2422-47e4-b56b-a5d1f413b0f7'
-const tytPhilosophyId = '8c22c4e2-8fa0-4d68-9dbd-6a423588de60'
-const tytReligionId = '6a897488-1ca9-407c-93ba-6ad502496448'
-
-// AYT Subject IDs
-const aytMathScientificId = 'ef4a20d5-b3c7-4942-90f4-78f4c7dc7eca'
-const aytMathEqualWeightId = '80221e43-18c3-4573-8b85-ce8946a40d5a'
-const aytPhysicsId = '0888bbac-dafd-48e1-a500-69a3366758e3'
-const aytChemistryId = '0563701e-d3ac-45f8-98fd-33eb57d65957'
-const aytBiologyId = '78697ab9-b0cf-4bb6-ad91-d99928555168'
-const aytLiteratureEqualWeightId = '79fd2f86-6ef6-4509-8edb-0a351572af4a'
-const aytLiteratureVerbalId = '3e094f1d-79c3-4b83-b9c3-5f704ed8900c'
-const aytHistory1EqualWeightId = '570b09a7-cae9-41fe-ba2c-5cda0f56c91b'
-const aytHistory1VerbalId = '80253263-9278-4dc4-9065-bf88589f5854'
-const aytGeography1EqualWeightId = '409f2a31-3572-442a-86eb-22b9e2628edf'
-const aytGeography1VerbalId = '949c9c11-bb12-4941-9db7-1be437e072f3'
-const aytHistory2Id = 'e7bf9c65-0e9a-47a7-b1c6-6b21035e3d9a'
-const aytGeography2Id = '7bbc8221-a156-4da2-bf6b-bd24f4954150'
-const aytPhilosophyId = 'a62143b7-8ddf-45fb-80e0-f24c79cdb59d'
-const aytReligionId = 'b4765b3e-b009-483a-b1e8-b5c7433ed2cc'
+import PageLoader from '@/components/shared/PageLoader'
+import { useGetYKSRankingQuery } from '@/features/examAttempt.slice'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  Legend,
+  ReferenceDot,
+} from 'recharts'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { ArrowUpIcon, ArrowDownIcon, MinusIcon } from 'lucide-react'
 
 const LastYKSRanking = () => {
-  const { data: profile } = useGetProfileQuery()
-  const { data: lastExamResults } = useGetLastExamResultsQuery()
+  const { data: results, isLoading: isLoadingYKSRanking } = useGetYKSRankingQuery()
 
-  const [ranking, setRanking] = useState<YKSRanking | null>(null)
+  if (isLoadingYKSRanking) {
+    return <PageLoader />
+  }
 
-  const calculateScores = () => {
-    // Helper function to calculate net scores for subjects
-    const calculateNetScore = (examType: keyof LastExamResults, subjectIds: string | string[]) => {
-      const results = lastExamResults?.[examType]?.subjectResults || []
-      return (
-        results.reduce((acc: number, result: SubjectResult) => {
-          if (
-            Array.isArray(subjectIds)
-              ? subjectIds.includes(result.subject_id)
-              : result.subject_id === subjectIds
-          ) {
-            return acc + result.correct_count - result.incorrect_count * 0.25
-          }
-          return acc
-        }, 0) || 0
-      )
+  const lineChartData = () => {
+    if (!results || results.length === 0) return []
+
+    const sortedResults = [...results].sort(
+      (a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime(),
+    )
+
+    return sortedResults.map((result) => ({
+      date: new Date(result.created_at).toLocaleDateString('tr-TR'),
+      TYT: result.tyt_placement_rank || 0,
+      SAY: result.say_placement_rank || 0,
+      EA: result.ea_placement_rank || 0,
+      SOZ: result.soz_placement_rank || 0,
+    }))
+  }
+
+  const findBestAndWorst = (data: Array<Record<string, any>>, field: string) => {
+    if (!data || data.length === 0)
+      return { best: null, worst: null, bestIndex: -1, worstIndex: -1 }
+
+    let bestRank = Infinity
+    let worstRank = 0
+    let bestIndex = -1
+    let worstIndex = -1
+
+    data.forEach((item: Record<string, any>, index: number) => {
+      if (item[field] > 0) {
+        if (item[field] < bestRank) {
+          bestRank = item[field]
+          bestIndex = index
+        }
+        if (item[field] > worstRank) {
+          worstRank = item[field]
+          worstIndex = index
+        }
+      }
+    })
+
+    return {
+      best: bestRank === Infinity ? null : bestRank,
+      worst: worstRank === 0 ? null : worstRank,
+      bestIndex,
+      worstIndex,
     }
+  }
 
-    // Calculate TYT nets
-    const tytTurkishNet = calculateNetScore('TYT', tytTurkishId)
-    const tytMathNet = calculateNetScore('TYT', tytMathId)
-    const tytSocialNet = calculateNetScore('TYT', [
-      tytHistoryId,
-      tytGeographyId,
-      tytReligionId,
-      tytPhilosophyId,
-    ])
-    const tytScienceNet = calculateNetScore('TYT', [tytPhysicsId, tytChemistryId, tytBiologyId])
+  const calculateChange = (
+    current: number,
+    previous: number,
+  ): { value: number; percentage: number; isPositive: boolean } => {
+    if (!current || !previous) return { value: 0, percentage: 0, isPositive: false }
 
-    // Calculate AYT nets
-    const aytMathNet =
-      calculateNetScore('AYT_Sayisal', aytMathScientificId) ||
-      calculateNetScore('AYT_EsitAgirlik', aytMathEqualWeightId)
+    const diff = previous - current
+    const percentage = previous > 0 ? (Math.abs(diff) / previous) * 100 : 0
 
-    const aytPhysicsNet = calculateNetScore('AYT_Sayisal', aytPhysicsId)
-    const aytChemistryNet = calculateNetScore('AYT_Sayisal', aytChemistryId)
-    const aytBiologyNet = calculateNetScore('AYT_Sayisal', aytBiologyId)
+    return {
+      value: Math.abs(diff),
+      percentage: Math.round(percentage * 100) / 100,
+      isPositive: diff > 0,
+    }
+  }
 
-    const aytLiteratureNet =
-      calculateNetScore('AYT_EsitAgirlik', aytLiteratureEqualWeightId) ||
-      calculateNetScore('AYT_Sozel', aytLiteratureVerbalId)
+  const chartData = lineChartData()
+  const tytStats = findBestAndWorst(chartData, 'TYT')
+  const sayStats = findBestAndWorst(chartData, 'SAY')
+  const eaStats = findBestAndWorst(chartData, 'EA')
+  const sozStats = findBestAndWorst(chartData, 'SOZ')
 
-    const aytHistory1Net =
-      calculateNetScore('AYT_EsitAgirlik', aytHistory1EqualWeightId) ||
-      calculateNetScore('AYT_Sozel', aytHistory1VerbalId)
+  // Son iki sınav sonucunu alalım (sıralı veride sondan başa doğru)
+  const sortedResults = [...(results || [])].sort(
+    (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
+  )
 
-    const aytGeography1Net =
-      calculateNetScore('AYT_EsitAgirlik', aytGeography1EqualWeightId) ||
-      calculateNetScore('AYT_Sozel', aytGeography1VerbalId)
+  const latestResult = sortedResults[0] || null
+  const previousResult = sortedResults[1] || null
 
-    const aytHistory2Net = calculateNetScore('AYT_Sozel', aytHistory2Id)
-    const aytGeography2Net = calculateNetScore('AYT_Sozel', aytGeography2Id)
-    const aytPhilosophyNet = calculateNetScore('AYT_Sozel', aytPhilosophyId)
-    const aytReligionNet = calculateNetScore('AYT_Sozel', aytReligionId)
+  const tytChange = calculateChange(
+    latestResult?.tyt_placement_rank || 0,
+    previousResult?.tyt_placement_rank || 0,
+  )
 
-    setRanking(
-      getYKSRankTableData({
-        grade: profile?.obp || 0,
-        isGraduated: profile?.graduated || false,
-        tyt: {
-          turkishNet: tytTurkishNet || 0,
-          mathNet: tytMathNet || 0,
-          scienceNet: tytScienceNet || 0,
-          socialStudiesNet: tytSocialNet || 0,
-        },
-        ayt: {
-          aytMathNet,
-          aytPhysicsNet,
-          aytChemistryNet,
-          aytBiologyNet,
-          aytLiteratureNet,
-          aytHistory1Net,
-          aytGeography1Net,
-          aytHistory2Net,
-          aytGeography2Net,
-          aytPhilosophyNet,
-          aytReligionNet,
-        },
-      }),
+  const sayChange = calculateChange(
+    latestResult?.say_placement_rank || 0,
+    previousResult?.say_placement_rank || 0,
+  )
+
+  const eaChange = calculateChange(
+    latestResult?.ea_placement_rank || 0,
+    previousResult?.ea_placement_rank || 0,
+  )
+
+  const sozChange = calculateChange(
+    latestResult?.soz_placement_rank || 0,
+    previousResult?.soz_placement_rank || 0,
+  )
+
+  const renderChangeCard = (
+    title: string,
+    currentRank: number,
+    change: { value: number; percentage: number; isPositive: boolean },
+    color: string,
+  ) => {
+    return (
+      <Card className="overflow-hidden">
+        <div className="border-l-4 h-full" style={{ borderColor: color }}>
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="font-medium text-md">{title}</h3>
+              <div
+                className={`flex items-center font-medium text-xs ${
+                  change.isPositive
+                    ? 'text-green-600'
+                    : change.value === 0
+                    ? 'text-gray-500'
+                    : 'text-red-600'
+                }`}
+              >
+                {change.value > 0 ? (
+                  <>
+                    {change.isPositive ? (
+                      <ArrowUpIcon className="mr-1 h-4 w-4" />
+                    ) : (
+                      <ArrowDownIcon className="mr-1 h-4 w-4" />
+                    )}
+                    {change.percentage.toFixed(1)}%
+                  </>
+                ) : (
+                  <MinusIcon className="h-4 w-4" />
+                )}
+              </div>
+            </div>
+            <div className="flex flex-col">
+              <p className="text-sm font-bold">{currentRank.toLocaleString()}</p>
+              {change.value > 0 && (
+                <div className="mt-3 rounded-md py-1 px-2 bg-gray-50">
+                  <p
+                    className={`font-medium text-xl ${
+                      change.isPositive ? 'text-green-600' : 'text-red-600'
+                    }`}
+                  >
+                    {change.isPositive
+                      ? `${change.value.toLocaleString()} kişinin önüne geçtin! 👏`
+                      : `${change.value.toLocaleString()} kişi senin önüne geçti.`}
+                  </p>
+                </div>
+              )}
+            </div>
+          </CardContent>
+        </div>
+      </Card>
     )
   }
 
-  useEffect(() => {
-    if (lastExamResults) calculateScores()
-  }, [lastExamResults, profile])
+  const renderSingleChart = (dataKey: string, label: string, color: string, stats: any) => {
+    return (
+      <div style={{ width: '100%', height: 300 }} className="mb-4">
+        <ResponsiveContainer>
+          <LineChart data={chartData} margin={{ top: 10, right: 30, left: 20, bottom: 30 }}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="date" />
+            <YAxis
+              tickFormatter={(value) => value.toLocaleString('tr-TR')}
+              domain={['dataMax', 'dataMin']}
+              label={{ value: 'Sıralama', angle: -90, position: 'insideLeft' }}
+            />
+            <Tooltip
+              formatter={(value) => value.toLocaleString('tr-TR')}
+              labelFormatter={(label) => `Tarih: ${label}`}
+            />
+            <Legend />
+
+            <Line
+              type="monotone"
+              dataKey={dataKey}
+              name={`${label} Sıralaması`}
+              stroke={color}
+              strokeWidth={2}
+              dot={{ r: 5 }}
+              activeDot={{ r: 8 }}
+            />
+
+            {stats.best && stats.bestIndex >= 0 && (
+              <ReferenceDot
+                x={chartData[stats.bestIndex].date}
+                y={stats.best}
+                r={8}
+                fill={color}
+                stroke="none"
+                fillOpacity={0.6}
+              />
+            )}
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
+    )
+  }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
+      {previousResult && (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+          {renderChangeCard(
+            'TYT Sıralaması',
+            latestResult?.tyt_placement_rank || 0,
+            tytChange,
+            '#8884d8',
+          )}
+          {renderChangeCard(
+            'SAY Sıralaması',
+            latestResult?.say_placement_rank || 0,
+            sayChange,
+            '#82ca9d',
+          )}
+          {renderChangeCard(
+            'EA Sıralaması',
+            latestResult?.ea_placement_rank || 0,
+            eaChange,
+            '#ffc658',
+          )}
+          {renderChangeCard(
+            'SOZ Sıralaması',
+            latestResult?.soz_placement_rank || 0,
+            sozChange,
+            '#ff8042',
+          )}
+        </div>
+      )}
+
       <div className="overflow-x-auto">
         <table className="w-full border-collapse">
           <thead>
@@ -142,41 +266,85 @@ const LastYKSRanking = () => {
           <tbody>
             <tr className="bg-gray-100">
               <td className="p-3 font-medium">TYT</td>
-              <td className="p-3">{ranking?.tyt.ham.toLocaleString()}</td>
-              <td className="p-3">{ranking?.tyt.ham_sir.toLocaleString()}</td>
-              <td className="p-3">{ranking?.tyt.yer.toLocaleString()}</td>
-              <td className="p-3">{ranking?.tyt.yer_sir.toLocaleString()}</td>
+              <td className="p-3">{results?.[0]?.tyt_raw_score.toLocaleString()}</td>
+              <td className="p-3">{results?.[0]?.tyt_raw_rank.toLocaleString()}</td>
+              <td className="p-3">{results?.[0]?.tyt_placement_score.toLocaleString()}</td>
+              <td className="p-3">{results?.[0]?.tyt_placement_rank.toLocaleString()}</td>
             </tr>
             <tr>
               <td className="p-3 font-medium">SAY</td>
-              <td className="p-3">{ranking?.say.ham.toLocaleString()}</td>
-              <td className="p-3">{ranking?.say.ham_sir.toLocaleString()}</td>
-              <td className="p-3">{ranking?.say.yer.toLocaleString()}</td>
-              <td className="p-3">{ranking?.say.yer_sir.toLocaleString()}</td>
+              <td className="p-3">{results?.[0]?.say_raw_score.toLocaleString()}</td>
+              <td className="p-3">{results?.[0]?.say_raw_rank.toLocaleString()}</td>
+              <td className="p-3">{results?.[0]?.say_placement_score.toLocaleString()}</td>
+              <td className="p-3">{results?.[0]?.say_placement_rank.toLocaleString()}</td>
             </tr>
             <tr className="bg-gray-100">
               <td className="p-3 font-medium">EA</td>
-              <td className="p-3">{ranking?.ea.ham.toLocaleString()}</td>
-              <td className="p-3">{ranking?.ea.ham_sir.toLocaleString()}</td>
-              <td className="p-3">{ranking?.ea.yer.toLocaleString()}</td>
-              <td className="p-3">{ranking?.ea.yer_sir.toLocaleString()}</td>
+              <td className="p-3">{results?.[0]?.ea_raw_score.toLocaleString()}</td>
+              <td className="p-3">{results?.[0]?.ea_raw_rank.toLocaleString()}</td>
+              <td className="p-3">{results?.[0]?.ea_placement_score.toLocaleString()}</td>
+              <td className="p-3">{results?.[0]?.ea_placement_rank.toLocaleString()}</td>
             </tr>
             <tr>
               <td className="p-3 font-medium">SOZ</td>
-              <td className="p-3">{ranking?.soz.ham.toLocaleString()}</td>
-              <td className="p-3">{ranking?.soz.ham_sir.toLocaleString()}</td>
-              <td className="p-3">{ranking?.soz.yer.toLocaleString()}</td>
-              <td className="p-3">{ranking?.soz.yer_sir.toLocaleString()}</td>
+              <td className="p-3">{results?.[0]?.soz_raw_score.toLocaleString()}</td>
+              <td className="p-3">{results?.[0]?.soz_raw_rank.toLocaleString()}</td>
+              <td className="p-3">{results?.[0]?.soz_placement_score.toLocaleString()}</td>
+              <td className="p-3">{results?.[0]?.soz_placement_rank.toLocaleString()}</td>
             </tr>
           </tbody>
         </table>
       </div>
 
+      <Card>
+        <CardHeader>
+          <CardTitle>Yerleştirme Sıralamaları Gelişimi</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <Tabs defaultValue="tyt" className="w-full">
+            <TabsList className="grid grid-cols-4 mb-6">
+              <TabsTrigger value="tyt">TYT</TabsTrigger>
+              <TabsTrigger value="say">SAY</TabsTrigger>
+              <TabsTrigger value="ea">EA</TabsTrigger>
+              <TabsTrigger value="soz">SOZ</TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="tyt" className="mt-0">
+              {renderSingleChart('TYT', 'TYT', '#8884d8', tytStats)}
+              <div className="text-xs mt-2">
+                <p>• En iyi TYT sıralaması: {tytStats.best?.toLocaleString() || 'Veri yok'}</p>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="say" className="mt-0">
+              {renderSingleChart('SAY', 'Sayısal', '#82ca9d', sayStats)}
+              <div className="text-xs mt-2">
+                <p>• En iyi SAY sıralaması: {sayStats.best?.toLocaleString() || 'Veri yok'}</p>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="ea" className="mt-0">
+              {renderSingleChart('EA', 'Eşit Ağırlık', '#ffc658', eaStats)}
+              <div className="text-xs mt-2">
+                <p>• En iyi EA sıralaması: {eaStats.best?.toLocaleString() || 'Veri yok'}</p>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="soz" className="mt-0">
+              {renderSingleChart('SOZ', 'Sözel', '#ff8042', sozStats)}
+              <div className="text-xs mt-2">
+                <p>• En iyi SOZ sıralaması: {sozStats.best?.toLocaleString() || 'Veri yok'}</p>
+              </div>
+            </TabsContent>
+          </Tabs>
+        </CardContent>
+      </Card>
+
       <div className="mt-4 text-xs text-muted-foreground">
         <p>* 2024 YKS verileri kullanılarak son TYT ve AYT denemenize göre hesaplanmıştır.</p>
         <p>
-          * Diploma Notu: {profile?.obp || 0} puanı kullanılmıştır. Profil sayfasından obp puanını
-          ve mezun durumunu değiştirebilirsin.
+          * Diploma Notu: {results?.[0]?.obp || 80} puanı kullanılmıştır. Profil sayfasından obp
+          puanını ve mezun durumunu değiştirebilirsin.
         </p>
       </div>
     </div>

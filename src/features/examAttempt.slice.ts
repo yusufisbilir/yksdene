@@ -4,8 +4,8 @@ import {
   ExamAttemptInsert,
   ExamAttemptView,
   ExamCategoryStatistics,
-  LastExamResults,
   SubjectResultInsert,
+  YksRanking,
 } from '@/types'
 
 export const examAttemptSlice = apiSlice.injectEndpoints({
@@ -46,9 +46,9 @@ export const examAttemptSlice = apiSlice.injectEndpoints({
       providesTags: ['ExamAttempts'],
     }),
 
-    getLastExamResults: builder.query<LastExamResults, void>({
-      query: () => API_ROUTES.LAST_EXAM_RESULTS,
-      transformResponse: (response: { result: LastExamResults }) => response.result,
+    getYKSRanking: builder.query<YksRanking[], void>({
+      query: () => API_ROUTES.YKS_RANKING,
+      transformResponse: (response: { result: YksRanking[] }) => response.result,
       providesTags: ['ExamAttempts'],
     }),
   }),
@@ -58,6 +58,6 @@ export const {
   useDeleteExamAttemptMutation,
   useCreateExamAttemptWithResultsMutation,
   useGetExamAttemptViewQuery,
+  useGetYKSRankingQuery,
   useGetExamAttemptStatisticsQuery,
-  useGetLastExamResultsQuery,
 } = examAttemptSlice

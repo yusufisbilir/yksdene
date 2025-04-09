@@ -117,6 +117,12 @@ export const examAttemptService = {
             category: template.category,
           })),
         }
+
+        if (template.category === 'TYT') {
+          results.TYT_id = lastAttempt.attempt_id
+        } else {
+          results.AYT_id = lastAttempt.attempt_id
+        }
       }
 
       return results
