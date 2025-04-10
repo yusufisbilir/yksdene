@@ -32,6 +32,7 @@ export const RankingChart = ({ dataKey, label, color, stats, chartData }: Rankin
           <YAxis
             tickFormatter={(value) => value.toLocaleString('tr-TR')}
             domain={['dataMax', 'dataMin']}
+            reversed={true}
           />
           <Tooltip
             formatter={(value) => value.toLocaleString('tr-TR')}
