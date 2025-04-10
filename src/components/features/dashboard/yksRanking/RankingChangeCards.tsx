@@ -1,5 +1,3 @@
-'use client'
-
 import { Card, CardContent } from '@/components/ui/card'
 import { ArrowUpIcon, ArrowDownIcon, MinusIcon } from 'lucide-react'
 import { RankingChange } from './YKSRankingProvider'

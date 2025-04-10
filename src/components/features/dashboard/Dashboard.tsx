@@ -13,13 +13,13 @@ const Dashboard = () => {
 }
 
 const DashboardContainer = async () => {
-  const { examAttemptStats, hasStats, yksRanking } = await DashboardDataProvider.getStats()
+  const { examAttemptStats, hasStats, yksRankingData } = await DashboardDataProvider.getStats()
 
   if (!hasStats) {
     return <EmptyDashboard />
   }
 
-  return <DashboardView examAttemptStats={examAttemptStats} yksRanking={yksRanking} />
+  return <DashboardView examAttemptStats={examAttemptStats} yksRankingData={yksRankingData} />
 }
 
 export default Dashboard

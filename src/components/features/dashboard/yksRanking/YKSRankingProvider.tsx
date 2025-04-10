@@ -1,5 +1,3 @@
-'use client'
-
 import { YksRanking } from '@/types'
 
 export interface RankingStat {
