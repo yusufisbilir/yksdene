@@ -16,18 +16,13 @@ import {
 } from 'recharts'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { ArrowUpIcon, ArrowDownIcon, MinusIcon } from 'lucide-react'
+import { YksRanking } from '@/types'
 
-const LastYKSRanking = () => {
-  const { data: results, isLoading: isLoadingYKSRanking } = useGetYKSRankingQuery()
-
-  if (isLoadingYKSRanking) {
-    return <PageLoader />
-  }
-
+const LastYKSRanking = ({ yksRanking }: { yksRanking: YksRanking[] }) => {
   const lineChartData = () => {
-    if (!results || results.length === 0) return []
+    if (!yksRanking || yksRanking.length === 0) return []
 
-    const sortedResults = [...results].sort(
+    const sortedResults = [...yksRanking].sort(
       (a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime(),
     )
 
@@ -93,7 +88,7 @@ const LastYKSRanking = () => {
   const sozStats = findBestAndWorst(chartData, 'SOZ')
 
   // Son iki sınav sonucunu alalım (sıralı veride sondan başa doğru)
-  const sortedResults = [...(results || [])].sort(
+  const sortedResults = [...(yksRanking || [])].sort(
     (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
   )
 
@@ -266,31 +261,31 @@ const LastYKSRanking = () => {
           <tbody>
             <tr className="bg-gray-100">
               <td className="p-3 font-medium">TYT</td>
-              <td className="p-3">{results?.[0]?.tyt_raw_score.toLocaleString()}</td>
-              <td className="p-3">{results?.[0]?.tyt_raw_rank.toLocaleString()}</td>
-              <td className="p-3">{results?.[0]?.tyt_placement_score.toLocaleString()}</td>
-              <td className="p-3">{results?.[0]?.tyt_placement_rank.toLocaleString()}</td>
+              <td className="p-3">{yksRanking?.[0]?.tyt_raw_score.toLocaleString()}</td>
+              <td className="p-3">{yksRanking?.[0]?.tyt_raw_rank.toLocaleString()}</td>
+              <td className="p-3">{yksRanking?.[0]?.tyt_placement_score.toLocaleString()}</td>
+              <td className="p-3">{yksRanking?.[0]?.tyt_placement_rank.toLocaleString()}</td>
             </tr>
             <tr>
               <td className="p-3 font-medium">SAY</td>
-              <td className="p-3">{results?.[0]?.say_raw_score.toLocaleString()}</td>
-              <td className="p-3">{results?.[0]?.say_raw_rank.toLocaleString()}</td>
-              <td className="p-3">{results?.[0]?.say_placement_score.toLocaleString()}</td>
-              <td className="p-3">{results?.[0]?.say_placement_rank.toLocaleString()}</td>
+              <td className="p-3">{yksRanking?.[0]?.say_raw_score.toLocaleString()}</td>
+              <td className="p-3">{yksRanking?.[0]?.say_raw_rank.toLocaleString()}</td>
+              <td className="p-3">{yksRanking?.[0]?.say_placement_score.toLocaleString()}</td>
+              <td className="p-3">{yksRanking?.[0]?.say_placement_rank.toLocaleString()}</td>
             </tr>
             <tr className="bg-gray-100">
               <td className="p-3 font-medium">EA</td>
-              <td className="p-3">{results?.[0]?.ea_raw_score.toLocaleString()}</td>
-              <td className="p-3">{results?.[0]?.ea_raw_rank.toLocaleString()}</td>
-              <td className="p-3">{results?.[0]?.ea_placement_score.toLocaleString()}</td>
-              <td className="p-3">{results?.[0]?.ea_placement_rank.toLocaleString()}</td>
+              <td className="p-3">{yksRanking?.[0]?.ea_raw_score.toLocaleString()}</td>
+              <td className="p-3">{yksRanking?.[0]?.ea_raw_rank.toLocaleString()}</td>
+              <td className="p-3">{yksRanking?.[0]?.ea_placement_score.toLocaleString()}</td>
+              <td className="p-3">{yksRanking?.[0]?.ea_placement_rank.toLocaleString()}</td>
             </tr>
             <tr>
               <td className="p-3 font-medium">SOZ</td>
-              <td className="p-3">{results?.[0]?.soz_raw_score.toLocaleString()}</td>
-              <td className="p-3">{results?.[0]?.soz_raw_rank.toLocaleString()}</td>
-              <td className="p-3">{results?.[0]?.soz_placement_score.toLocaleString()}</td>
-              <td className="p-3">{results?.[0]?.soz_placement_rank.toLocaleString()}</td>
+              <td className="p-3">{yksRanking?.[0]?.soz_raw_score.toLocaleString()}</td>
+              <td className="p-3">{yksRanking?.[0]?.soz_raw_rank.toLocaleString()}</td>
+              <td className="p-3">{yksRanking?.[0]?.soz_placement_score.toLocaleString()}</td>
+              <td className="p-3">{yksRanking?.[0]?.soz_placement_rank.toLocaleString()}</td>
             </tr>
           </tbody>
         </table>
@@ -343,7 +338,7 @@ const LastYKSRanking = () => {
       <div className="mt-4 text-xs text-muted-foreground">
         <p>* 2024 YKS verileri kullanılarak son TYT ve AYT denemenize göre hesaplanmıştır.</p>
         <p>
-          * Diploma Notu: {results?.[0]?.obp || 80} puanı kullanılmıştır. Profil sayfasından obp
+          * Diploma Notu: {yksRanking?.[0]?.obp || 80} puanı kullanılmıştır. Profil sayfasından obp
           puanını ve mezun durumunu değiştirebilirsin.
         </p>
       </div>

@@ -2,25 +2,13 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { ChartContainer, ChartTooltipContent } from '@/components/ui/chart'
 import { examTemplates } from '@/constants/db.constants'
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
 import { ExamCategoryStatistics } from '@/types'
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-} from 'recharts'
 
-interface QuestionAnalysisProps {
-  examTemplateStats: ExamCategoryStatistics
-}
-
-const QuestionAnalysis = ({ examTemplateStats }: QuestionAnalysisProps) => {
+const QuestionAnalysis = ({ examAttemptStats }: { examAttemptStats: ExamCategoryStatistics }) => {
   return (
     <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
-      {Object.entries(examTemplateStats).map(([templateId, stats]: [string, any]) => {
+      {Object.entries(examAttemptStats).map(([templateId, stats]: [string, any]) => {
         const template = examTemplates.find((t) => t.id === templateId)
         const chartData = stats.performanceTrend.map((trend: any) => ({
           date: new Date(trend.date).toLocaleDateString('tr-TR'),
