@@ -13,8 +13,7 @@ const Dashboard = () => {
 }
 
 const DashboardContainer = async () => {
-  const { examAttemptStats, hasStats } = await DashboardDataProvider.getExamAttemptStats()
-  const { yksRanking } = await DashboardDataProvider.getYKSRanking()
+  const { examAttemptStats, hasStats, yksRanking } = await DashboardDataProvider.getStats()
 
   if (!hasStats) {
     return <EmptyDashboard />

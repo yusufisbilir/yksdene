@@ -3,8 +3,8 @@ import PerformanceTrends from './PerformanceTrends'
 import QuestionAnalysis from './QuestionAnalysis'
 import { ExamResultsList } from '../denemelerim/ExamResultsList'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import LastYKSRanking from './LastYKSRanking'
 import { ExamCategoryStatistics, YksRanking } from '@/types'
+import LastYKSRanking from './yksRanking/LastYKSRanking'
 
 interface DashboardViewProps {
   examAttemptStats: ExamCategoryStatistics
@@ -15,15 +15,6 @@ const DashboardView = ({ examAttemptStats, yksRanking }: DashboardViewProps) => 
   return (
     <article className="space-y-6 px-2 sm:px-4 md:px-6">
       <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">👑 Başarı Tablosu</h1>
-
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-xl sm:text-2xl">Ortalama Netler</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <StatisticsCards examAttemptStats={examAttemptStats} />
-        </CardContent>
-      </Card>
 
       <Card>
         <CardHeader>
@@ -40,6 +31,15 @@ const DashboardView = ({ examAttemptStats, yksRanking }: DashboardViewProps) => 
         </CardHeader>
         <CardContent className="overflow-x-auto">
           <ExamResultsList />
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-xl sm:text-2xl">Ortalama Netler</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <StatisticsCards examAttemptStats={examAttemptStats} />
         </CardContent>
       </Card>
 

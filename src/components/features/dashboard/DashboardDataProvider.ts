@@ -3,21 +3,15 @@ import { yksRankingService } from '@/services/yksRanking.service'
 import { ExamCategoryStatistics, YksRanking } from '@/types'
 
 export class DashboardDataProvider {
-  static async getExamAttemptStats(): Promise<{
+  static async getStats(): Promise<{
     examAttemptStats: ExamCategoryStatistics
     hasStats: boolean
+    yksRanking: YksRanking[]
   }> {
     const examAttemptStats = await examAttemptService.getExamAttemptStatistics()
     const hasStats = Object.keys(examAttemptStats).length > 0
-
-    return { examAttemptStats, hasStats }
-  }
-
-  static async getYKSRanking(): Promise<{
-    yksRanking: YksRanking[]
-  }> {
     const yksRanking = await yksRankingService.getYKSRanking()
 
-    return { yksRanking: yksRanking ?? [] }
+    return { examAttemptStats, hasStats, yksRanking }
   }
 }
