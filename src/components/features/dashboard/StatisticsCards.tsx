@@ -2,14 +2,10 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { examTemplates } from '@/constants/db.constants'
 import { ExamCategoryStatistics } from '@/types'
 
-interface StatisticsCardsProps {
-  examTemplateStats: ExamCategoryStatistics
-}
-
-const StatisticsCards = ({ examTemplateStats }: StatisticsCardsProps) => {
+const StatisticsCards = ({ examAttemptStats }: { examAttemptStats: ExamCategoryStatistics }) => {
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-      {Object.entries(examTemplateStats).map(([templateId, stats]: [string, any]) => {
+      {Object.entries(examAttemptStats).map(([templateId, stats]: [string, any]) => {
         const template = examTemplates.find((t) => t.id === templateId)
         return (
           <Card key={templateId}>
