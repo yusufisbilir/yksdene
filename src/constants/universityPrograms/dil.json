@@ -1,0 +1,4671 @@
+[
+  {
+    "programID": "203910830",
+    "uniAdi": "KOÇ ÜNİVERSİTESİ",
+    "bolumAdi": "İnsani Bilimler ve Edebiyat Fakültesi",
+    "siralama": "389",
+    "puan": "527,78573"
+  },
+  {
+    "programID": "202190179",
+    "uniAdi": "İHSAN DOĞRAMACI BİLKENT ÜNİVERSİTESİ",
+    "bolumAdi": "İnsani Bilimler ve Edebiyat Fakültesi",
+    "siralama": "791",
+    "puan": "517,85884"
+  },
+  {
+    "programID": "102270025",
+    "uniAdi": "BOĞAZİÇİ ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "1.691",
+    "puan": "502,49169"
+  },
+  {
+    "programID": "202110938",
+    "uniAdi": "İHSAN DOĞRAMACI BİLKENT ÜNİVERSİTESİ",
+    "bolumAdi": "İnsani Bilimler ve Edebiyat Fakültesi",
+    "siralama": "1.707",
+    "puan": "502,20617"
+  },
+  {
+    "programID": "202110902",
+    "uniAdi": "İHSAN DOĞRAMACI BİLKENT ÜNİVERSİTESİ",
+    "bolumAdi": "İnsani Bilimler ve Edebiyat Fakültesi",
+    "siralama": "2.067",
+    "puan": "497,42915"
+  },
+  {
+    "programID": "102210135",
+    "uniAdi": "BOĞAZİÇİ ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "2.380",
+    "puan": "493,95966"
+  },
+  {
+    "programID": "102270026",
+    "uniAdi": "BOĞAZİÇİ ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "2.617",
+    "puan": "490,75839"
+  },
+  {
+    "programID": "206190363",
+    "uniAdi": "YEDİTEPE ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "2.858",
+    "puan": "488,33729"
+  },
+  {
+    "programID": "102210056",
+    "uniAdi": "BOĞAZİÇİ ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "3.123",
+    "puan": "485,69547"
+  },
+  {
+    "programID": "205410486",
+    "uniAdi": "TOBB EKONOMİ VE TEKNOLOJİ ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "3.304",
+    "puan": "484,05916"
+  },
+  {
+    "programID": "108410054",
+    "uniAdi": "ORTA DOĞU TEKNİK ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "3.376",
+    "puan": "483,29456"
+  },
+  {
+    "programID": "108410072",
+    "uniAdi": "ORTA DOĞU TEKNİK ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "3.423",
+    "puan": "482,84532"
+  },
+  {
+    "programID": "104890460",
+    "uniAdi": "HACETTEPE ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "3.558",
+    "puan": "481,53245"
+  },
+  {
+    "programID": "104010025",
+    "uniAdi": "GALATASARAY ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "3.686",
+    "puan": "480,32843"
+  },
+  {
+    "programID": "203590168",
+    "uniAdi": "İZMİR EKONOMİ ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "3.822",
+    "puan": "479,22014"
+  },
+  {
+    "programID": "206110062",
+    "uniAdi": "YEDİTEPE ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "3.844",
+    "puan": "479,07027"
+  },
+  {
+    "programID": "206110202",
+    "uniAdi": "YEDİTEPE ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "3.943",
+    "puan": "478,2205"
+  },
+  {
+    "programID": "104810274",
+    "uniAdi": "HACETTEPE ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "3.970",
+    "puan": "477,99643"
+  },
+  {
+    "programID": "104810105",
+    "uniAdi": "HACETTEPE ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "4.545",
+    "puan": "473,65076"
+  },
+  {
+    "programID": "105690658",
+    "uniAdi": "İSTANBUL ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "4.660",
+    "puan": "472,85366"
+  },
+  {
+    "programID": "202510061",
+    "uniAdi": "İSTANBUL BİLGİ ÜNİVERSİTESİ",
+    "bolumAdi": "Sosyal ve Beşeri Bilimler Fakültesi",
+    "siralama": "4.729",
+    "puan": "472,34732"
+  },
+  {
+    "programID": "200590250",
+    "uniAdi": "BAHÇEŞEHİR ÜNİVERSİTESİ",
+    "bolumAdi": "İktisadi, İdari ve Sosyal Bilimler Fakültesi",
+    "siralama": "5.239",
+    "puan": "468,77803"
+  },
+  {
+    "programID": "203910831",
+    "uniAdi": "KOÇ ÜNİVERSİTESİ",
+    "bolumAdi": "İnsani Bilimler ve Edebiyat Fakültesi",
+    "siralama": "5.540",
+    "puan": "466,68102"
+  },
+  {
+    "programID": "206710232",
+    "uniAdi": "TED ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "5.544",
+    "puan": "466,64047"
+  },
+  {
+    "programID": "110110022",
+    "uniAdi": "YILDIZ TEKNİK ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "5.585",
+    "puan": "466,34002"
+  },
+  {
+    "programID": "107290342",
+    "uniAdi": "MARMARA ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "5.588",
+    "puan": "466,32073"
+  },
+  {
+    "programID": "202590196",
+    "uniAdi": "İSTANBUL BİLGİ ÜNİVERSİTESİ",
+    "bolumAdi": "Sosyal ve Beşeri Bilimler Fakültesi",
+    "siralama": "5.671",
+    "puan": "465,83896"
+  },
+  {
+    "programID": "206190327",
+    "uniAdi": "YEDİTEPE ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "5.699",
+    "puan": "465,70338"
+  },
+  {
+    "programID": "103490363",
+    "uniAdi": "EGE ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "5.791",
+    "puan": "465,14816"
+  },
+  {
+    "programID": "104110306",
+    "uniAdi": "GAZİ ÜNİVERSİTESİ",
+    "bolumAdi": "Gazi Eğitim Fakültesi",
+    "siralama": "6.014",
+    "puan": "463,82076"
+  },
+  {
+    "programID": "104810098",
+    "uniAdi": "HACETTEPE ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "6.033",
+    "puan": "463,70273"
+  },
+  {
+    "programID": "107210102",
+    "uniAdi": "MARMARA ÜNİVERSİTESİ",
+    "bolumAdi": "Atatürk Eğitim Fakültesi",
+    "siralama": "6.594",
+    "puan": "460,4851"
+  },
+  {
+    "programID": "202210342",
+    "uniAdi": "İSTANBUL 29 MAYIS ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "6.617",
+    "puan": "460,36621"
+  },
+  {
+    "programID": "206710437",
+    "uniAdi": "TED ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "6.705",
+    "puan": "459,95874"
+  },
+  {
+    "programID": "408810693",
+    "uniAdi": "ULUSLARARASI SARAYBOSNA ÜNİVERSİTESİ",
+    "bolumAdi": "Sanat ve Sosyal Bilimler Fakültesi",
+    "siralama": "6.731",
+    "puan": "459,86785"
+  },
+  {
+    "programID": "200690490",
+    "uniAdi": "BAŞKENT ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "6.772",
+    "puan": "459,64926"
+  },
+  {
+    "programID": "200511117",
+    "uniAdi": "BAHÇEŞEHİR ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Bilimleri Fakültesi",
+    "siralama": "6.825",
+    "puan": "459,38834"
+  },
+  {
+    "programID": "206090361",
+    "uniAdi": "YAŞAR ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "6.959",
+    "puan": "458,59813"
+  },
+  {
+    "programID": "104810044",
+    "uniAdi": "HACETTEPE ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "7.049",
+    "puan": "458,15457"
+  },
+  {
+    "programID": "103190561",
+    "uniAdi": "DOKUZ EYLÜL ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "7.063",
+    "puan": "458,08564"
+  },
+  {
+    "programID": "105610185",
+    "uniAdi": "İSTANBUL ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "7.229",
+    "puan": "457,22896"
+  },
+  {
+    "programID": "103110106",
+    "uniAdi": "DOKUZ EYLÜL ÜNİVERSİTESİ",
+    "bolumAdi": "Buca Eğitim Fakültesi",
+    "siralama": "7.565",
+    "puan": "455,48121"
+  },
+  {
+    "programID": "201190055",
+    "uniAdi": "ÇANKAYA ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "7.583",
+    "puan": "455,38749"
+  },
+  {
+    "programID": "101010122",
+    "uniAdi": "ANADOLU ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "7.611",
+    "puan": "455,27252"
+  },
+  {
+    "programID": "201990497",
+    "uniAdi": "HALİÇ ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "7.727",
+    "puan": "454,73827"
+  },
+  {
+    "programID": "101110193",
+    "uniAdi": "ANKARA ÜNİVERSİTESİ",
+    "bolumAdi": "Dil ve Tarih Coğrafya Fakültesi",
+    "siralama": "8.187",
+    "puan": "452,51578"
+  },
+  {
+    "programID": "200611222",
+    "uniAdi": "BAŞKENT ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "8.253",
+    "puan": "452,14812"
+  },
+  {
+    "programID": "103410087",
+    "uniAdi": "EGE ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "8.432",
+    "puan": "451,20182"
+  },
+  {
+    "programID": "100710012",
+    "uniAdi": "AKDENİZ ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "8.525",
+    "puan": "450,7902"
+  },
+  {
+    "programID": "111610449",
+    "uniAdi": "İSTANBUL ÜNİVERSİTESİ-CERRAHPAŞA",
+    "bolumAdi": "Hasan Ali Yücel Eğitim Fakültesi",
+    "siralama": "8.635",
+    "puan": "450,25202"
+  },
+  {
+    "programID": "110190095",
+    "uniAdi": "YILDIZ TEKNİK ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "8.686",
+    "puan": "450,04507"
+  },
+  {
+    "programID": "104890458",
+    "uniAdi": "HACETTEPE ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "8.709",
+    "puan": "449,93766"
+  },
+  {
+    "programID": "102270027",
+    "uniAdi": "BOĞAZİÇİ ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "8.877",
+    "puan": "449,01398"
+  },
+  {
+    "programID": "103810462",
+    "uniAdi": "ESKİŞEHİR OSMANGAZİ ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "8.993",
+    "puan": "448,49806"
+  },
+  {
+    "programID": "203111263",
+    "uniAdi": "İSTANBUL MEDİPOL ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "9.232",
+    "puan": "447,48088"
+  },
+  {
+    "programID": "204790531",
+    "uniAdi": "İSTANBUL OKAN ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "9.370",
+    "puan": "446,87261"
+  },
+  {
+    "programID": "109710066",
+    "uniAdi": "BURSA ULUDAĞ ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "9.539",
+    "puan": "446,04257"
+  },
+  {
+    "programID": "104890457",
+    "uniAdi": "HACETTEPE ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "9.709",
+    "puan": "445,35768"
+  },
+  {
+    "programID": "208450826",
+    "uniAdi": "İSTİNYE ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "9.762",
+    "puan": "445,14601"
+  },
+  {
+    "programID": "206010054",
+    "uniAdi": "YAŞAR ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "9.876",
+    "puan": "444,6461"
+  },
+  {
+    "programID": "200290157",
+    "uniAdi": "ATILIM ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "9.964",
+    "puan": "444,28079"
+  },
+  {
+    "programID": "201110023",
+    "uniAdi": "ÇANKAYA ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "10.036",
+    "puan": "443,98514"
+  },
+  {
+    "programID": "105410239",
+    "uniAdi": "İSTANBUL MEDENİYET ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Bilimleri Fakültesi",
+    "siralama": "10.524",
+    "puan": "442,12481"
+  },
+  {
+    "programID": "200611294",
+    "uniAdi": "BAŞKENT ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "10.814",
+    "puan": "441,03412"
+  },
+  {
+    "programID": "103410042",
+    "uniAdi": "EGE ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "10.910",
+    "puan": "440,74009"
+  },
+  {
+    "programID": "102710042",
+    "uniAdi": "ÇANAKKALE ONSEKİZ MART ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "10.932",
+    "puan": "440,66337"
+  },
+  {
+    "programID": "101110024",
+    "uniAdi": "ANKARA ÜNİVERSİTESİ",
+    "bolumAdi": "Dil ve Tarih Coğrafya Fakültesi",
+    "siralama": "10.953",
+    "puan": "440,57261"
+  },
+  {
+    "programID": "108210108",
+    "uniAdi": "ONDOKUZ MAYIS ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "10.983",
+    "puan": "440,44787"
+  },
+  {
+    "programID": "101110227",
+    "uniAdi": "ANKARA ÜNİVERSİTESİ",
+    "bolumAdi": "Dil ve Tarih Coğrafya Fakültesi",
+    "siralama": "11.319",
+    "puan": "439,16176"
+  },
+  {
+    "programID": "105610079",
+    "uniAdi": "İSTANBUL ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "11.338",
+    "puan": "439,10542"
+  },
+  {
+    "programID": "105690744",
+    "uniAdi": "İSTANBUL ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "11.599",
+    "puan": "438,12933"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "UFUK ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "11.843",
+    "puan": "437,19114"
+  },
+  {
+    "programID": "209510036",
+    "uniAdi": "ANKARA BİLİM ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "11.900",
+    "puan": "436,96631"
+  },
+  {
+    "programID": "203210025",
+    "uniAdi": "İSTANBUL SABAHATTİN ZAİM ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "12.158",
+    "puan": "435,94364"
+  },
+  {
+    "programID": "107290340",
+    "uniAdi": "MARMARA ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "12.305",
+    "puan": "435,49334"
+  },
+  {
+    "programID": "110090094",
+    "uniAdi": "ANKARA YILDIRIM BEYAZIT ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "12.348",
+    "puan": "435,35413"
+  },
+  {
+    "programID": "101110299",
+    "uniAdi": "ANKARA ÜNİVERSİTESİ",
+    "bolumAdi": "Dil ve Tarih Coğrafya Fakültesi",
+    "siralama": "12.396",
+    "puan": "435,16013"
+  },
+  {
+    "programID": "202410644",
+    "uniAdi": "İSTANBUL AYDIN ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "12.427",
+    "puan": "435,06068"
+  },
+  {
+    "programID": "201490091",
+    "uniAdi": "FATİH SULTAN MEHMET VAKIF ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "12.706",
+    "puan": "434,12124"
+  },
+  {
+    "programID": "102910085",
+    "uniAdi": "ÇUKUROVA ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "12.766",
+    "puan": "433,89227"
+  },
+  {
+    "programID": "100710754",
+    "uniAdi": "AKDENİZ ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "12.772",
+    "puan": "433,88029"
+  },
+  {
+    "programID": "204790533",
+    "uniAdi": "İSTANBUL OKAN ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "12.836",
+    "puan": "433,60938"
+  },
+  {
+    "programID": "107290339",
+    "uniAdi": "MARMARA ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "12.851",
+    "puan": "433,56751"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "KOCAELİ ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "12.868",
+    "puan": "433,50613"
+  },
+  {
+    "programID": "101110209",
+    "uniAdi": "ANKARA ÜNİVERSİTESİ",
+    "bolumAdi": "Dil ve Tarih Coğrafya Fakültesi",
+    "siralama": "12.916",
+    "puan": "433,37736"
+  },
+  {
+    "programID": "202210386",
+    "uniAdi": "İSTANBUL 29 MAYIS ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "12.974",
+    "puan": "433,1273"
+  },
+  {
+    "programID": "107610037",
+    "uniAdi": "MUĞLA SITKI KOÇMAN ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "13.220",
+    "puan": "432,32457"
+  },
+  {
+    "programID": "102410206",
+    "uniAdi": "BURSA TEKNİK ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "13.282",
+    "puan": "432,08075"
+  },
+  {
+    "programID": "103490362",
+    "uniAdi": "EGE ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "13.312",
+    "puan": "431,98897"
+  },
+  {
+    "programID": "204110456",
+    "uniAdi": "MALTEPE ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "13.326",
+    "puan": "431,92762"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "MERSİN ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "13.378",
+    "puan": "431,7679"
+  },
+  {
+    "programID": "110910014",
+    "uniAdi": "ANKARA SOSYAL BİLİMLER ÜNİVERSİTESİ",
+    "bolumAdi": "Yabancı Diller Fakültesi",
+    "siralama": "13.388",
+    "puan": "431,73936"
+  },
+  {
+    "programID": "111110071",
+    "uniAdi": "İZMİR DEMOKRASİ ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "13.558",
+    "puan": "431,16981"
+  },
+  {
+    "programID": "203090125",
+    "uniAdi": "İSTANBUL KÜLTÜR ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "13.728",
+    "puan": "430,57337"
+  },
+  {
+    "programID": "105611535",
+    "uniAdi": "İSTANBUL ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "13.731",
+    "puan": "430,56985"
+  },
+  {
+    "programID": "207650941",
+    "uniAdi": "BİRUNİ ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "13.799",
+    "puan": "430,37738"
+  },
+  {
+    "programID": "206552533",
+    "uniAdi": "ÜSKÜDAR ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "13.809",
+    "puan": "430,33077"
+  },
+  {
+    "programID": "108610025",
+    "uniAdi": "PAMUKKALE ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "13.832",
+    "puan": "430,27366"
+  },
+  {
+    "programID": "104810089",
+    "uniAdi": "HACETTEPE ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "13.877",
+    "puan": "430,1148"
+  },
+  {
+    "programID": "105611526",
+    "uniAdi": "İSTANBUL ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "13.985",
+    "puan": "429,72318"
+  },
+  {
+    "programID": "103510068",
+    "uniAdi": "ERCİYES ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "14.009",
+    "puan": "429,63472"
+  },
+  {
+    "programID": "101510214",
+    "uniAdi": "BALIKESİR ÜNİVERSİTESİ",
+    "bolumAdi": "Necatibey Eğitim Fakültesi",
+    "siralama": "14.011",
+    "puan": "429,62613"
+  },
+  {
+    "programID": "103110203",
+    "uniAdi": "DOKUZ EYLÜL ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "14.178",
+    "puan": "429,07161"
+  },
+  {
+    "programID": "204712207",
+    "uniAdi": "İSTANBUL OKAN ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "14.245",
+    "puan": "428,85512"
+  },
+  {
+    "programID": "203010063",
+    "uniAdi": "İSTANBUL KÜLTÜR ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "14.318",
+    "puan": "428,60051"
+  },
+  {
+    "programID": "100390139",
+    "uniAdi": "AYDIN ADNAN MENDERES ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "14.370",
+    "puan": "428,46093"
+  },
+  {
+    "programID": "104810035",
+    "uniAdi": "HACETTEPE ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "14.546",
+    "puan": "427,93334"
+  },
+  {
+    "programID": "109210838",
+    "uniAdi": "SÜLEYMAN DEMİREL ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "14.659",
+    "puan": "427,58801"
+  },
+  {
+    "programID": "210301221",
+    "uniAdi": "İSTANBUL BEYKENT ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "14.688",
+    "puan": "427,50039"
+  },
+  {
+    "programID": "202190180",
+    "uniAdi": "İHSAN DOĞRAMACI BİLKENT ÜNİVERSİTESİ",
+    "bolumAdi": "İnsani Bilimler ve Edebiyat Fakültesi",
+    "siralama": "15.057",
+    "puan": "426,27252"
+  },
+  {
+    "programID": "208450824",
+    "uniAdi": "İSTİNYE ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "15.091",
+    "puan": "426,17524"
+  },
+  {
+    "programID": "201290313",
+    "uniAdi": "DOĞUŞ ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "15.111",
+    "puan": "426,09691"
+  },
+  {
+    "programID": "101110236",
+    "uniAdi": "ANKARA ÜNİVERSİTESİ",
+    "bolumAdi": "Dil ve Tarih Coğrafya Fakültesi",
+    "siralama": "15.245",
+    "puan": "425,73493"
+  },
+  {
+    "programID": "111790331",
+    "uniAdi": "ANKARA HACI BAYRAM VELİ ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "15.252",
+    "puan": "425,68809"
+  },
+  {
+    "programID": "105610167",
+    "uniAdi": "İSTANBUL ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "15.256",
+    "puan": "425,66502"
+  },
+  {
+    "programID": "107690225",
+    "uniAdi": "MUĞLA SITKI KOÇMAN ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "15.283",
+    "puan": "425,5501"
+  },
+  {
+    "programID": "105610201",
+    "uniAdi": "İSTANBUL ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "15.561",
+    "puan": "424,67823"
+  },
+  {
+    "programID": "103010328",
+    "uniAdi": "DİCLE ÜNİVERSİTESİ",
+    "bolumAdi": "Ziya Gökalp Eğitim Fakültesi",
+    "siralama": "15.572",
+    "puan": "424,65422"
+  },
+  {
+    "programID": "200210025",
+    "uniAdi": "ATILIM ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "15.600",
+    "puan": "424,58801"
+  },
+  {
+    "programID": "110510142",
+    "uniAdi": "ALANYA ALAADDİN KEYKUBAT ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "15.685",
+    "puan": "424,3469"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "İSTANBUL AYDIN ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "15.898",
+    "puan": "423,6698"
+  },
+  {
+    "programID": "105610061",
+    "uniAdi": "İSTANBUL ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "15.960",
+    "puan": "423,51546"
+  },
+  {
+    "programID": "202210348",
+    "uniAdi": "İSTANBUL 29 MAYIS ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "16.158",
+    "puan": "422,89676"
+  },
+  {
+    "programID": "107010113",
+    "uniAdi": "NECMETTİN ERBAKAN ÜNİVERSİTESİ",
+    "bolumAdi": "Ahmet Keleşoğlu Eğitim Fakültesi",
+    "siralama": "16.226",
+    "puan": "422,70844"
+  },
+  {
+    "programID": "100110045",
+    "uniAdi": "BOLU ABANT İZZET BAYSAL ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "16.262",
+    "puan": "422,61238"
+  },
+  {
+    "programID": "105611111",
+    "uniAdi": "İSTANBUL ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "16.266",
+    "puan": "422,5954"
+  },
+  {
+    "programID": "202410768",
+    "uniAdi": "İSTANBUL AYDIN ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "16.396",
+    "puan": "422,1867"
+  },
+  {
+    "programID": "102710175",
+    "uniAdi": "ÇANAKKALE ONSEKİZ MART ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "16.503",
+    "puan": "421,84345"
+  },
+  {
+    "programID": "209310010",
+    "uniAdi": "İSTANBUL ATLAS ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "16.512",
+    "puan": "421,82644"
+  },
+  {
+    "programID": "204790529",
+    "uniAdi": "İSTANBUL OKAN ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "16.531",
+    "puan": "421,77019"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "KTO KARATAY ÜNİVERSİTESİ",
+    "bolumAdi": "İktisadi, İdari ve Sosyal Bilimler Fakültesi",
+    "siralama": "16.596",
+    "puan": "421,57429"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "ANKARA SOSYAL BİLİMLER ÜNİVERSİTESİ",
+    "bolumAdi": "Yabancı Diller Fakültesi",
+    "siralama": "16.791",
+    "puan": "421,04299"
+  },
+  {
+    "programID": "108810562",
+    "uniAdi": "SAKARYA ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi (Hendek)",
+    "siralama": "16.804",
+    "puan": "420,98873"
+  },
+  {
+    "programID": "105690656",
+    "uniAdi": "İSTANBUL ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "17.046",
+    "puan": "420,2771"
+  },
+  {
+    "programID": "201910024",
+    "uniAdi": "HALİÇ ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "17.176",
+    "puan": "419,85327"
+  },
+  {
+    "programID": "206010981",
+    "uniAdi": "YAŞAR ÜNİVERSİTESİ",
+    "bolumAdi": "Uygulamalı Bilimler Yüksekokulu",
+    "siralama": "17.184",
+    "puan": "419,83758"
+  },
+  {
+    "programID": "104210508",
+    "uniAdi": "GAZİANTEP ÜNİVERSİTESİ",
+    "bolumAdi": "Gaziantep Eğitim Fakültesi",
+    "siralama": "17.285",
+    "puan": "419,54362"
+  },
+  {
+    "programID": "109410863",
+    "uniAdi": "TRAKYA ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "17.350",
+    "puan": "419,36495"
+  },
+  {
+    "programID": "101110148",
+    "uniAdi": "ANKARA ÜNİVERSİTESİ",
+    "bolumAdi": "Dil ve Tarih Coğrafya Fakültesi",
+    "siralama": "17.495",
+    "puan": "418,93291"
+  },
+  {
+    "programID": "209010074",
+    "uniAdi": "FENERBAHÇE ÜNİVERSİTESİ",
+    "bolumAdi": "İktisadi, İdari ve Sosyal Bilimler Fakültesi",
+    "siralama": "17.551",
+    "puan": "418,78589"
+  },
+  {
+    "programID": "101190421",
+    "uniAdi": "ANKARA ÜNİVERSİTESİ",
+    "bolumAdi": "Dil ve Tarih Coğrafya Fakültesi",
+    "siralama": "17.888",
+    "puan": "417,72862"
+  },
+  {
+    "programID": "202790579",
+    "uniAdi": "İSTANBUL GELİŞİM ÜNİVERSİTESİ",
+    "bolumAdi": "Uygulamalı Bilimler Fakültesi",
+    "siralama": "18.099",
+    "puan": "417,12468"
+  },
+  {
+    "programID": "105610264",
+    "uniAdi": "İSTANBUL ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "18.120",
+    "puan": "417,06778"
+  },
+  {
+    "programID": "201210049",
+    "uniAdi": "DOĞUŞ ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "18.178",
+    "puan": "416,91179"
+  },
+  {
+    "programID": "210301207",
+    "uniAdi": "İSTANBUL BEYKENT ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "18.279",
+    "puan": "416,63646"
+  },
+  {
+    "programID": "209310048",
+    "uniAdi": "İSTANBUL ATLAS ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "18.331",
+    "puan": "416,48953"
+  },
+  {
+    "programID": "104810256",
+    "uniAdi": "HACETTEPE ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "18.335",
+    "puan": "416,47847"
+  },
+  {
+    "programID": "101190429",
+    "uniAdi": "ANKARA ÜNİVERSİTESİ",
+    "bolumAdi": "Açık ve Uzaktan Eğitim Fakültesi",
+    "siralama": "18.422",
+    "puan": "416,20257"
+  },
+  {
+    "programID": "107210235",
+    "uniAdi": "MARMARA ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "18.489",
+    "puan": "415,96564"
+  },
+  {
+    "programID": "206290198",
+    "uniAdi": "İSTANBUL YENİ YÜZYIL ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "18.625",
+    "puan": "415,53352"
+  },
+  {
+    "programID": "202390197",
+    "uniAdi": "İSTANBUL AREL ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "18.635",
+    "puan": "415,49497"
+  },
+  {
+    "programID": "210401858",
+    "uniAdi": "İSTANBUL NİŞANTAŞI ÜNİVERSİTESİ",
+    "bolumAdi": "İktisadi, İdari ve Sosyal Bilimler Fakültesi",
+    "siralama": "18.737",
+    "puan": "415,20984"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "MANİSA CELÂL BAYAR ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "18.892",
+    "puan": "414,70012"
+  },
+  {
+    "programID": "203211095",
+    "uniAdi": "İSTANBUL SABAHATTİN ZAİM ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "18.919",
+    "puan": "414,61783"
+  },
+  {
+    "programID": "102710051",
+    "uniAdi": "ÇANAKKALE ONSEKİZ MART ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "18.987",
+    "puan": "414,4266"
+  },
+  {
+    "programID": "105490062",
+    "uniAdi": "İSTANBUL MEDENİYET ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "19.070",
+    "puan": "414,22162"
+  },
+  {
+    "programID": "101110272",
+    "uniAdi": "ANKARA ÜNİVERSİTESİ",
+    "bolumAdi": "Dil ve Tarih Coğrafya Fakültesi",
+    "siralama": "19.099",
+    "puan": "414,15646"
+  },
+  {
+    "programID": "108890289",
+    "uniAdi": "SAKARYA ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "19.146",
+    "puan": "414,02701"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "İSTANBUL SAĞLIK VE TEKNOLOJİ ÜNİVERSİTESİ",
+    "bolumAdi": "İktisadi, İdari ve Sosyal Bilimler Fakültesi",
+    "siralama": "19.226",
+    "puan": "413,83873"
+  },
+  {
+    "programID": "205090226",
+    "uniAdi": "İSTANBUL TOPKAPI ÜNİVERSİTESİ",
+    "bolumAdi": "İktisadi, İdari ve Sosyal Bilimler Fakültesi",
+    "siralama": "19.253",
+    "puan": "413,76145"
+  },
+  {
+    "programID": "103310528",
+    "uniAdi": "DÜZCE ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "19.290",
+    "puan": "413,67321"
+  },
+  {
+    "programID": "408810691",
+    "uniAdi": "ULUSLARARASI SARAYBOSNA ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "19.331",
+    "puan": "413,52847"
+  },
+  {
+    "programID": "300190404",
+    "uniAdi": "DOĞU AKDENİZ ÜNİVERSİTESİ",
+    "bolumAdi": "Fen ve Edebiyat Fakültesi",
+    "siralama": "19.363",
+    "puan": "413,45581"
+  },
+  {
+    "programID": "108010288",
+    "uniAdi": "NEVŞEHİR HACI BEKTAŞ VELİ ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "19.448",
+    "puan": "413,2296"
+  },
+  {
+    "programID": "206210088",
+    "uniAdi": "İSTANBUL YENİ YÜZYIL ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "19.510",
+    "puan": "413,05662"
+  },
+  {
+    "programID": "112110998",
+    "uniAdi": "TRABZON ÜNİVERSİTESİ",
+    "bolumAdi": "Fatih Eğitim Fakültesi",
+    "siralama": "19.592",
+    "puan": "412,86184"
+  },
+  {
+    "programID": "101110015",
+    "uniAdi": "ANKARA ÜNİVERSİTESİ",
+    "bolumAdi": "Dil ve Tarih Coğrafya Fakültesi",
+    "siralama": "19.601",
+    "puan": "412,84735"
+  },
+  {
+    "programID": "107210086",
+    "uniAdi": "MARMARA ÜNİVERSİTESİ",
+    "bolumAdi": "Atatürk Eğitim Fakültesi",
+    "siralama": "19.694",
+    "puan": "412,63161"
+  },
+  {
+    "programID": "100490219",
+    "uniAdi": "AFYON KOCATEPE ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "20.168",
+    "puan": "411,28276"
+  },
+  {
+    "programID": "202391011",
+    "uniAdi": "İSTANBUL AREL ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "20.291",
+    "puan": "410,94932"
+  },
+  {
+    "programID": "101110218",
+    "uniAdi": "ANKARA ÜNİVERSİTESİ",
+    "bolumAdi": "Dil ve Tarih Coğrafya Fakültesi",
+    "siralama": "20.296",
+    "puan": "410,93466"
+  },
+  {
+    "programID": "107610443",
+    "uniAdi": "MUĞLA SITKI KOÇMAN ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "20.365",
+    "puan": "410,74313"
+  },
+  {
+    "programID": "108290530",
+    "uniAdi": "ONDOKUZ MAYIS ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "20.376",
+    "puan": "410,71262"
+  },
+  {
+    "programID": "202110717",
+    "uniAdi": "İHSAN DOĞRAMACI BİLKENT ÜNİVERSİTESİ",
+    "bolumAdi": "İnsani Bilimler ve Edebiyat Fakültesi",
+    "siralama": "20.406",
+    "puan": "410,62089"
+  },
+  {
+    "programID": "107310049",
+    "uniAdi": "BURDUR MEHMET AKİF ERSOY ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "20.427",
+    "puan": "410,58651"
+  },
+  {
+    "programID": "111110090",
+    "uniAdi": "İZMİR DEMOKRASİ ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "20.468",
+    "puan": "410,4793"
+  },
+  {
+    "programID": "105761193",
+    "uniAdi": "İZMİR KATİP ÇELEBİ ÜNİVERSİTESİ",
+    "bolumAdi": "Sosyal ve Beşeri Bilimler Fakültesi",
+    "siralama": "20.478",
+    "puan": "410,46736"
+  },
+  {
+    "programID": "201610821",
+    "uniAdi": "HASAN KALYONCU ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "20.485",
+    "puan": "410,45622"
+  },
+  {
+    "programID": "103410033",
+    "uniAdi": "EGE ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "20.621",
+    "puan": "410,06496"
+  },
+  {
+    "programID": "106910125",
+    "uniAdi": "KOCAELİ ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "20.634",
+    "puan": "410,03311"
+  },
+  {
+    "programID": "210401837",
+    "uniAdi": "İSTANBUL NİŞANTAŞI ÜNİVERSİTESİ",
+    "bolumAdi": "İktisadi, İdari ve Sosyal Bilimler Fakültesi",
+    "siralama": "20.640",
+    "puan": "410,01308"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "İSTANBUL AYDIN ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "20.737",
+    "puan": "409,77805"
+  },
+  {
+    "programID": "202712513",
+    "uniAdi": "İSTANBUL GELİŞİM ÜNİVERSİTESİ",
+    "bolumAdi": "İktisadi, İdari ve Sosyal Bilimler Fakültesi",
+    "siralama": "20.759",
+    "puan": "409,70637"
+  },
+  {
+    "programID": "111790360",
+    "uniAdi": "ANKARA HACI BAYRAM VELİ ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "20.918",
+    "puan": "409,30517"
+  },
+  {
+    "programID": "100910231",
+    "uniAdi": "AMASYA ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "20.960",
+    "puan": "409,21131"
+  },
+  {
+    "programID": "109190032",
+    "uniAdi": "SİNOP ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "21.258",
+    "puan": "408,32098"
+  },
+  {
+    "programID": "108410539",
+    "uniAdi": "ORTA DOĞU TEKNİK ÜNİVERSİTESİ",
+    "bolumAdi": "ODTÜ Kuzey Kıbrıs Kampusu (KKTC-Güzelyurt)",
+    "siralama": "21.315",
+    "puan": "408,14697"
+  },
+  {
+    "programID": "109490283",
+    "uniAdi": "TRAKYA ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "21.382",
+    "puan": "407,96206"
+  },
+  {
+    "programID": "108410063",
+    "uniAdi": "ORTA DOĞU TEKNİK ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "21.470",
+    "puan": "407,7128"
+  },
+  {
+    "programID": "100890090",
+    "uniAdi": "AKSARAY ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "21.588",
+    "puan": "407,42475"
+  },
+  {
+    "programID": "103190560",
+    "uniAdi": "DOKUZ EYLÜL ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "21.743",
+    "puan": "407,02849"
+  },
+  {
+    "programID": "110210578",
+    "uniAdi": "VAN YÜZÜNCÜ YIL ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "21.963",
+    "puan": "406,53232"
+  },
+  {
+    "programID": "100310573",
+    "uniAdi": "AYDIN ADNAN MENDERES ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "22.177",
+    "puan": "405,98804"
+  },
+  {
+    "programID": "205090029",
+    "uniAdi": "İSTANBUL TOPKAPI ÜNİVERSİTESİ",
+    "bolumAdi": "İktisadi, İdari ve Sosyal Bilimler Fakültesi",
+    "siralama": "22.224",
+    "puan": "405,89518"
+  },
+  {
+    "programID": "104890596",
+    "uniAdi": "HACETTEPE ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "22.273",
+    "puan": "405,78459"
+  },
+  {
+    "programID": "202712531",
+    "uniAdi": "İSTANBUL GELİŞİM ÜNİVERSİTESİ",
+    "bolumAdi": "İktisadi, İdari ve Sosyal Bilimler Fakültesi",
+    "siralama": "22.298",
+    "puan": "405,69099"
+  },
+  {
+    "programID": "210301263",
+    "uniAdi": "İSTANBUL BEYKENT ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "22.313",
+    "puan": "405,65738"
+  },
+  {
+    "programID": "105490190",
+    "uniAdi": "İSTANBUL MEDENİYET ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "22.356",
+    "puan": "405,55753"
+  },
+  {
+    "programID": "110670190",
+    "uniAdi": "BANDIRMA ONYEDİ EYLÜL ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "22.714",
+    "puan": "404,61297"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "BOLU ABANT İZZET BAYSAL ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "22.779",
+    "puan": "404,45754"
+  },
+  {
+    "programID": "210401844",
+    "uniAdi": "İSTANBUL NİŞANTAŞI ÜNİVERSİTESİ",
+    "bolumAdi": "İktisadi, İdari ve Sosyal Bilimler Fakültesi",
+    "siralama": "22.847",
+    "puan": "404,27623"
+  },
+  {
+    "programID": "104590159",
+    "uniAdi": "GİRESUN ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "22.941",
+    "puan": "403,96912"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "SAMSUN ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "22.958",
+    "puan": "403,92688"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "SELÇUK ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "23.011",
+    "puan": "403,81229"
+  },
+  {
+    "programID": "102610713",
+    "uniAdi": "SİVAS CUMHURİYET ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "23.080",
+    "puan": "403,6329"
+  },
+  {
+    "programID": "110910147",
+    "uniAdi": "ANKARA SOSYAL BİLİMLER ÜNİVERSİTESİ",
+    "bolumAdi": "Yabancı Diller Fakültesi",
+    "siralama": "23.090",
+    "puan": "403,61343"
+  },
+  {
+    "programID": "108610122",
+    "uniAdi": "PAMUKKALE ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "23.095",
+    "puan": "403,60058"
+  },
+  {
+    "programID": "210000507",
+    "uniAdi": "MUDANYA ÜNİVERSİTESİ",
+    "bolumAdi": "Sanat ve Sosyal Bilimler Fakültesi",
+    "siralama": "23.213",
+    "puan": "403,29129"
+  },
+  {
+    "programID": "101690096",
+    "uniAdi": "BARTIN ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "23.307",
+    "puan": "403,04688"
+  },
+  {
+    "programID": "100710869",
+    "uniAdi": "AKDENİZ ÜNİVERSİTESİ",
+    "bolumAdi": "Turizm Fakültesi",
+    "siralama": "23.320",
+    "puan": "402,99615"
+  },
+  {
+    "programID": "101410375",
+    "uniAdi": "ATATÜRK ÜNİVERSİTESİ",
+    "bolumAdi": "Kazım Karabekir Eğitim Fakültesi",
+    "siralama": "23.553",
+    "puan": "402,44708"
+  },
+  {
+    "programID": "105310055",
+    "uniAdi": "İNÖNÜ ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "23.579",
+    "puan": "402,39457"
+  },
+  {
+    "programID": "108190145",
+    "uniAdi": "NİĞDE ÖMER HALİSDEMİR ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "23.613",
+    "puan": "402,31054"
+  },
+  {
+    "programID": "111610422",
+    "uniAdi": "İSTANBUL ÜNİVERSİTESİ-CERRAHPAŞA",
+    "bolumAdi": "Hasan Ali Yücel Eğitim Fakültesi",
+    "siralama": "23.617",
+    "puan": "402,30167"
+  },
+  {
+    "programID": "111610397",
+    "uniAdi": "İSTANBUL ÜNİVERSİTESİ-CERRAHPAŞA",
+    "bolumAdi": "Hasan Ali Yücel Eğitim Fakültesi",
+    "siralama": "23.811",
+    "puan": "401,80923"
+  },
+  {
+    "programID": "210402558",
+    "uniAdi": "İSTANBUL NİŞANTAŞI ÜNİVERSİTESİ",
+    "bolumAdi": "Uygulamalı Bilimler Yüksekokulu",
+    "siralama": "23.842",
+    "puan": "401,73805"
+  },
+  {
+    "programID": "200590264",
+    "uniAdi": "BAHÇEŞEHİR ÜNİVERSİTESİ",
+    "bolumAdi": "İktisadi, İdari ve Sosyal Bilimler Fakültesi",
+    "siralama": "23.874",
+    "puan": "401,66194"
+  },
+  {
+    "programID": "201050717",
+    "uniAdi": "ÇAĞ ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "23.895",
+    "puan": "401,61312"
+  },
+  {
+    "programID": "104110193",
+    "uniAdi": "GAZİ ÜNİVERSİTESİ",
+    "bolumAdi": "Gazi Eğitim Fakültesi",
+    "siralama": "23.915",
+    "puan": "401,5718"
+  },
+  {
+    "programID": "300110079",
+    "uniAdi": "DOĞU AKDENİZ ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "24.548",
+    "puan": "399,82131"
+  },
+  {
+    "programID": "202210340",
+    "uniAdi": "İSTANBUL 29 MAYIS ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "24.688",
+    "puan": "399,51639"
+  },
+  {
+    "programID": "101010088",
+    "uniAdi": "ANADOLU ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "24.933",
+    "puan": "398,98203"
+  },
+  {
+    "programID": "104390117",
+    "uniAdi": "TOKAT GAZİOSMANPAŞA ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "24.978",
+    "puan": "398,87048"
+  },
+  {
+    "programID": "103510156",
+    "uniAdi": "ERCİYES ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "25.033",
+    "puan": "398,72264"
+  },
+  {
+    "programID": "103990109",
+    "uniAdi": "FIRAT ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "25.297",
+    "puan": "398,10549"
+  },
+  {
+    "programID": "103510147",
+    "uniAdi": "ERCİYES ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "25.536",
+    "puan": "397,49388"
+  },
+  {
+    "programID": "102590461",
+    "uniAdi": "MANİSA CELÂL BAYAR ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "25.696",
+    "puan": "397,09716"
+  },
+  {
+    "programID": "105690809",
+    "uniAdi": "İSTANBUL ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "25.730",
+    "puan": "396,99434"
+  },
+  {
+    "programID": "104110272",
+    "uniAdi": "GAZİ ÜNİVERSİTESİ",
+    "bolumAdi": "Gazi Eğitim Fakültesi",
+    "siralama": "26.044",
+    "puan": "396,25384"
+  },
+  {
+    "programID": "106090102",
+    "uniAdi": "KAHRAMANMARAŞ SÜTÇÜ İMAM ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "26.113",
+    "puan": "396,06036"
+  },
+  {
+    "programID": "105090091",
+    "uniAdi": "HARRAN ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "26.123",
+    "puan": "396,04098"
+  },
+  {
+    "programID": "101010907",
+    "uniAdi": "ANADOLU ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "26.159",
+    "puan": "395,97495"
+  },
+  {
+    "programID": "100710675",
+    "uniAdi": "AKDENİZ ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "26.280",
+    "puan": "395,68158"
+  },
+  {
+    "programID": "103190649",
+    "uniAdi": "DOKUZ EYLÜL ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "26.399",
+    "puan": "395,4114"
+  },
+  {
+    "programID": "107910273",
+    "uniAdi": "TEKİRDAĞ NAMIK KEMAL ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "26.828",
+    "puan": "394,43114"
+  },
+  {
+    "programID": "107710018",
+    "uniAdi": "HATAY MUSTAFA KEMAL ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "26.961",
+    "puan": "394,13584"
+  },
+  {
+    "programID": "101011023",
+    "uniAdi": "ANADOLU ÜNİVERSİTESİ",
+    "bolumAdi": "Turizm Fakültesi",
+    "siralama": "27.028",
+    "puan": "393,9898"
+  },
+  {
+    "programID": "102390068",
+    "uniAdi": "YOZGAT BOZOK ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "27.252",
+    "puan": "393,5049"
+  },
+  {
+    "programID": "105610219",
+    "uniAdi": "İSTANBUL ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "27.352",
+    "puan": "393,20135"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "TRABZON ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "27.385",
+    "puan": "393,13042"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "KÜTAHYA DUMLUPINAR ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "27.450",
+    "puan": "392,949"
+  },
+  {
+    "programID": "103110972",
+    "uniAdi": "DOKUZ EYLÜL ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "27.620",
+    "puan": "392,51449"
+  },
+  {
+    "programID": "109710012",
+    "uniAdi": "BURSA ULUDAĞ ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "27.637",
+    "puan": "392,48491"
+  },
+  {
+    "programID": "111790430",
+    "uniAdi": "ANKARA HACI BAYRAM VELİ ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "27.736",
+    "puan": "392,25663"
+  },
+  {
+    "programID": "202412164",
+    "uniAdi": "İSTANBUL AYDIN ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "27.752",
+    "puan": "392,20525"
+  },
+  {
+    "programID": "103490442",
+    "uniAdi": "EGE ÜNİVERSİTESİ",
+    "bolumAdi": "Çeşme Turizm Fakültesi",
+    "siralama": "27.841",
+    "puan": "391,96091"
+  },
+  {
+    "programID": "100790417",
+    "uniAdi": "AKDENİZ ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "28.183",
+    "puan": "391,11133"
+  },
+  {
+    "programID": "103690063",
+    "uniAdi": "ERZİNCAN BİNALİ YILDIRIM ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "28.258",
+    "puan": "390,93431"
+  },
+  {
+    "programID": "108911717",
+    "uniAdi": "SELÇUK ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "28.321",
+    "puan": "390,81917"
+  },
+  {
+    "programID": "103110081",
+    "uniAdi": "DOKUZ EYLÜL ÜNİVERSİTESİ",
+    "bolumAdi": "Buca Eğitim Fakültesi",
+    "siralama": "28.574",
+    "puan": "390,17326"
+  },
+  {
+    "programID": "100190271",
+    "uniAdi": "BOLU ABANT İZZET BAYSAL ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "28.614",
+    "puan": "390,1031"
+  },
+  {
+    "programID": "202110683",
+    "uniAdi": "İHSAN DOĞRAMACI BİLKENT ÜNİVERSİTESİ",
+    "bolumAdi": "İnsani Bilimler ve Edebiyat Fakültesi",
+    "siralama": "28.620",
+    "puan": "390,09769"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "SÜLEYMAN DEMİREL ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "28.642",
+    "puan": "390,03431"
+  },
+  {
+    "programID": "203910829",
+    "uniAdi": "KOÇ ÜNİVERSİTESİ",
+    "bolumAdi": "İnsani Bilimler ve Edebiyat Fakültesi",
+    "siralama": "28.878",
+    "puan": "389,51224"
+  },
+  {
+    "programID": "106210186",
+    "uniAdi": "KARADENİZ TEKNİK ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "28.966",
+    "puan": "389,28783"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "MERSİN ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "29.260",
+    "puan": "388,57175"
+  },
+  {
+    "programID": "101010104",
+    "uniAdi": "ANADOLU ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "29.271",
+    "puan": "388,54561"
+  },
+  {
+    "programID": "101890245",
+    "uniAdi": "BAYBURT ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "29.410",
+    "puan": "388,2573"
+  },
+  {
+    "programID": "100490277",
+    "uniAdi": "AFYON KOCATEPE ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "29.504",
+    "puan": "388,02567"
+  },
+  {
+    "programID": "210402565",
+    "uniAdi": "İSTANBUL NİŞANTAŞI ÜNİVERSİTESİ",
+    "bolumAdi": "Uygulamalı Bilimler Yüksekokulu",
+    "siralama": "29.633",
+    "puan": "387,72874"
+  },
+  {
+    "programID": "111711631",
+    "uniAdi": "ANKARA HACI BAYRAM VELİ ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "29.798",
+    "puan": "387,35807"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "İSTANBUL AYDIN ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "29.998",
+    "puan": "386,84974"
+  },
+  {
+    "programID": "200511126",
+    "uniAdi": "BAHÇEŞEHİR ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Bilimleri Fakültesi",
+    "siralama": "30.150",
+    "puan": "386,47868"
+  },
+  {
+    "programID": "203111281",
+    "uniAdi": "İSTANBUL MEDİPOL ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "30.282",
+    "puan": "386,10344"
+  },
+  {
+    "programID": "106770737",
+    "uniAdi": "KIRKLARELİ ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "30.456",
+    "puan": "385,69098"
+  },
+  {
+    "programID": "300310023",
+    "uniAdi": "LEFKE AVRUPA ÜNİVERSİTESİ",
+    "bolumAdi": "Dr. Fazıl Küçük Eğitim Fakültesi",
+    "siralama": "30.600",
+    "puan": "385,34149"
+  },
+  {
+    "programID": "203851892",
+    "uniAdi": "KAPADOKYA ÜNİVERSİTESİ",
+    "bolumAdi": "Beşeri Bilimler Fakültesi",
+    "siralama": "30.726",
+    "puan": "385,00217"
+  },
+  {
+    "programID": "110410227",
+    "uniAdi": "ADANA ALPARSLAN TÜRKEŞ BİLİM VE TEKNOLOJİ ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "30.784",
+    "puan": "384,84698"
+  },
+  {
+    "programID": "111710148",
+    "uniAdi": "ANKARA HACI BAYRAM VELİ ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "30.804",
+    "puan": "384,80048"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "TOROS ÜNİVERSİTESİ",
+    "bolumAdi": "İktisadi, İdari ve Sosyal Bilimler Fakültesi",
+    "siralama": "31.010",
+    "puan": "384,37049"
+  },
+  {
+    "programID": "101190427",
+    "uniAdi": "ANKARA ÜNİVERSİTESİ",
+    "bolumAdi": "Açık ve Uzaktan Eğitim Fakültesi",
+    "siralama": "31.013",
+    "puan": "384,36278"
+  },
+  {
+    "programID": "202210393",
+    "uniAdi": "İSTANBUL 29 MAYIS ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "31.141",
+    "puan": "384,07095"
+  },
+  {
+    "programID": "103290218",
+    "uniAdi": "KÜTAHYA DUMLUPINAR ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "31.187",
+    "puan": "383,93571"
+  },
+  {
+    "programID": "105610122",
+    "uniAdi": "İSTANBUL ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "31.457",
+    "puan": "383,34047"
+  },
+  {
+    "programID": "108010464",
+    "uniAdi": "NEVŞEHİR HACI BEKTAŞ VELİ ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "31.687",
+    "puan": "382,76837"
+  },
+  {
+    "programID": "109710057",
+    "uniAdi": "BURSA ULUDAĞ ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "31.788",
+    "puan": "382,58173"
+  },
+  {
+    "programID": "105710139",
+    "uniAdi": "İZMİR KATİP ÇELEBİ ÜNİVERSİTESİ",
+    "bolumAdi": "Turizm Fakültesi",
+    "siralama": "31.917",
+    "puan": "382,28696"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "KIRIKKALE ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "32.002",
+    "puan": "382,11839"
+  },
+  {
+    "programID": "109090064",
+    "uniAdi": "SİİRT ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "32.038",
+    "puan": "382,04447"
+  },
+  {
+    "programID": "107890029",
+    "uniAdi": "MUŞ ALPARSLAN ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "32.328",
+    "puan": "381,36526"
+  },
+  {
+    "programID": "103810083",
+    "uniAdi": "ESKİŞEHİR OSMANGAZİ ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "32.478",
+    "puan": "381,03701"
+  },
+  {
+    "programID": "103510129",
+    "uniAdi": "ERCİYES ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "32.582",
+    "puan": "380,80045"
+  },
+  {
+    "programID": "203851837",
+    "uniAdi": "KAPADOKYA ÜNİVERSİTESİ",
+    "bolumAdi": "Beşeri Bilimler Fakültesi",
+    "siralama": "32.745",
+    "puan": "380,43918"
+  },
+  {
+    "programID": "107690294",
+    "uniAdi": "MUĞLA SITKI KOÇMAN ÜNİVERSİTESİ",
+    "bolumAdi": "Turizm Fakültesi",
+    "siralama": "32.800",
+    "puan": "380,3286"
+  },
+  {
+    "programID": "108890246",
+    "uniAdi": "SAKARYA ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "32.946",
+    "puan": "379,99778"
+  },
+  {
+    "programID": "107390091",
+    "uniAdi": "BURDUR MEHMET AKİF ERSOY ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "33.278",
+    "puan": "379,32207"
+  },
+  {
+    "programID": "108390153",
+    "uniAdi": "ORDU ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "33.383",
+    "puan": "379,08751"
+  },
+  {
+    "programID": "101110245",
+    "uniAdi": "ANKARA ÜNİVERSİTESİ",
+    "bolumAdi": "Dil ve Tarih Coğrafya Fakültesi",
+    "siralama": "33.527",
+    "puan": "378,80119"
+  },
+  {
+    "programID": "103510174",
+    "uniAdi": "ERCİYES ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "33.735",
+    "puan": "378,31838"
+  },
+  {
+    "programID": "202190203",
+    "uniAdi": "İHSAN DOĞRAMACI BİLKENT ÜNİVERSİTESİ",
+    "bolumAdi": "İnsani Bilimler ve Edebiyat Fakültesi",
+    "siralama": "33.784",
+    "puan": "378,18661"
+  },
+  {
+    "programID": "101690109",
+    "uniAdi": "BARTIN ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "33.963",
+    "puan": "377,79221"
+  },
+  {
+    "programID": "300510048",
+    "uniAdi": "YAKIN DOĞU ÜNİVERSİTESİ",
+    "bolumAdi": "Atatürk Eğitim Fakültesi",
+    "siralama": "34.132",
+    "puan": "377,43438"
+  },
+  {
+    "programID": "104210032",
+    "uniAdi": "GAZİANTEP ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "34.417",
+    "puan": "376,82546"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "AMASYA ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "34.522",
+    "puan": "376,60071"
+  },
+  {
+    "programID": "202210343",
+    "uniAdi": "İSTANBUL 29 MAYIS ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "35.127",
+    "puan": "375,22168"
+  },
+  {
+    "programID": "300290398",
+    "uniAdi": "GİRNE AMERİKAN ÜNİVERSİTESİ",
+    "bolumAdi": "Beşeri Bilimler Fakültesi",
+    "siralama": "35.300",
+    "puan": "374,86025"
+  },
+  {
+    "programID": "101190430",
+    "uniAdi": "ANKARA ÜNİVERSİTESİ",
+    "bolumAdi": "Açık ve Uzaktan Eğitim Fakültesi",
+    "siralama": "35.588",
+    "puan": "374,17883"
+  },
+  {
+    "programID": "104890561",
+    "uniAdi": "HACETTEPE ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "35.600",
+    "puan": "374,16379"
+  },
+  {
+    "programID": "106770734",
+    "uniAdi": "KIRKLARELİ ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "35.607",
+    "puan": "374,15537"
+  },
+  {
+    "programID": "107610019",
+    "uniAdi": "MUĞLA SITKI KOÇMAN ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "35.841",
+    "puan": "373,62019"
+  },
+  {
+    "programID": "100310652",
+    "uniAdi": "AYDIN ADNAN MENDERES ÜNİVERSİTESİ",
+    "bolumAdi": "Turizm Fakültesi (Kuşadası)",
+    "siralama": "35.872",
+    "puan": "373,54577"
+  },
+  {
+    "programID": "110310435",
+    "uniAdi": "ZONGULDAK BÜLENT ECEVİT ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "36.075",
+    "puan": "373,10431"
+  },
+  {
+    "programID": "201490082",
+    "uniAdi": "FATİH SULTAN MEHMET VAKIF ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "36.174",
+    "puan": "372,86904"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "UŞAK ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "36.178",
+    "puan": "372,85816"
+  },
+  {
+    "programID": "206710241",
+    "uniAdi": "TED ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "36.333",
+    "puan": "372,52735"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "ATATÜRK ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "36.422",
+    "puan": "372,322"
+  },
+  {
+    "programID": "100711204",
+    "uniAdi": "AKDENİZ ÜNİVERSİTESİ",
+    "bolumAdi": "Manavgat Turizm Fakültesi",
+    "siralama": "36.824",
+    "puan": "371,4179"
+  },
+  {
+    "programID": "108090092",
+    "uniAdi": "NEVŞEHİR HACI BEKTAŞ VELİ ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "36.832",
+    "puan": "371,40059"
+  },
+  {
+    "programID": "104970176",
+    "uniAdi": "HAKKARİ ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "37.257",
+    "puan": "370,50133"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "DİCLE ÜNİVERSİTESİ",
+    "bolumAdi": "Sezai Karakoç Edebiyat Fakültesi",
+    "siralama": "37.268",
+    "puan": "370,4682"
+  },
+  {
+    "programID": "202210344",
+    "uniAdi": "İSTANBUL 29 MAYIS ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "37.413",
+    "puan": "370,15717"
+  },
+  {
+    "programID": "300410701",
+    "uniAdi": "ULUSLARARASI KIBRIS ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "37.849",
+    "puan": "369,11321"
+  },
+  {
+    "programID": "105610131",
+    "uniAdi": "İSTANBUL ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "38.085",
+    "puan": "368,63581"
+  },
+  {
+    "programID": "105610088",
+    "uniAdi": "İSTANBUL ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "38.376",
+    "puan": "368,06208"
+  },
+  {
+    "programID": "300210615",
+    "uniAdi": "GİRNE AMERİKAN ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "38.711",
+    "puan": "367,30102"
+  },
+  {
+    "programID": "107710503",
+    "uniAdi": "HATAY MUSTAFA KEMAL ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "38.742",
+    "puan": "367,22956"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "KTO KARATAY ÜNİVERSİTESİ",
+    "bolumAdi": "İktisadi, İdari ve Sosyal Bilimler Fakültesi",
+    "siralama": "38.746",
+    "puan": "367,22352"
+  },
+  {
+    "programID": "108610794",
+    "uniAdi": "PAMUKKALE ÜNİVERSİTESİ",
+    "bolumAdi": "Turizm Fakültesi",
+    "siralama": "39.288",
+    "puan": "366,10075"
+  },
+  {
+    "programID": "101490364",
+    "uniAdi": "ATATÜRK ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "39.352",
+    "puan": "365,95639"
+  },
+  {
+    "programID": "102610158",
+    "uniAdi": "SİVAS CUMHURİYET ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "39.429",
+    "puan": "365,76528"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "KTO KARATAY ÜNİVERSİTESİ",
+    "bolumAdi": "İktisadi, İdari ve Sosyal Bilimler Fakültesi",
+    "siralama": "39.499",
+    "puan": "365,62227"
+  },
+  {
+    "programID": "105310479",
+    "uniAdi": "İNÖNÜ ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "39.621",
+    "puan": "365,36573"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "NİĞDE ÖMER HALİSDEMİR ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "39.956",
+    "puan": "364,62175"
+  },
+  {
+    "programID": "206111042",
+    "uniAdi": "YEDİTEPE ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "40.008",
+    "puan": "364,52543"
+  },
+  {
+    "programID": "200390214",
+    "uniAdi": "AVRASYA ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "40.044",
+    "puan": "364,45146"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "GAZİANTEP İSLAM BİLİM VE TEKNOLOJİ ÜNİVERSİTESİ",
+    "bolumAdi": "İktisadi, İdari ve Sosyal Bilimler Fakültesi",
+    "siralama": "40.172",
+    "puan": "364,20399"
+  },
+  {
+    "programID": "104510435",
+    "uniAdi": "GİRESUN ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "40.328",
+    "puan": "363,8789"
+  },
+  {
+    "programID": "202410653",
+    "uniAdi": "İSTANBUL AYDIN ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "40.394",
+    "puan": "363,73099"
+  },
+  {
+    "programID": "108210029",
+    "uniAdi": "ONDOKUZ MAYIS ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "40.411",
+    "puan": "363,69727"
+  },
+  {
+    "programID": "109490281",
+    "uniAdi": "TRAKYA ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "40.412",
+    "puan": "363,69535"
+  },
+  {
+    "programID": "300710964",
+    "uniAdi": "GİRNE ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "40.464",
+    "puan": "363,5769"
+  },
+  {
+    "programID": "105611341",
+    "uniAdi": "İSTANBUL ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "40.699",
+    "puan": "363,09417"
+  },
+  {
+    "programID": "101110351",
+    "uniAdi": "ANKARA ÜNİVERSİTESİ",
+    "bolumAdi": "Dil ve Tarih Coğrafya Fakültesi",
+    "siralama": "40.824",
+    "puan": "362,82811"
+  },
+  {
+    "programID": "101110103",
+    "uniAdi": "ANKARA ÜNİVERSİTESİ",
+    "bolumAdi": "Dil ve Tarih Coğrafya Fakültesi",
+    "siralama": "41.099",
+    "puan": "362,23938"
+  },
+  {
+    "programID": "200310412",
+    "uniAdi": "AVRASYA ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "41.454",
+    "puan": "361,49113"
+  },
+  {
+    "programID": "100890063",
+    "uniAdi": "AKSARAY ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "41.576",
+    "puan": "361,25039"
+  },
+  {
+    "programID": "106211042",
+    "uniAdi": "KARADENİZ TEKNİK ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "41.644",
+    "puan": "361,09634"
+  },
+  {
+    "programID": "105611623",
+    "uniAdi": "İSTANBUL ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "41.647",
+    "puan": "361,08318"
+  },
+  {
+    "programID": "110210172",
+    "uniAdi": "VAN YÜZÜNCÜ YIL ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "42.121",
+    "puan": "360,10869"
+  },
+  {
+    "programID": "101190432",
+    "uniAdi": "ANKARA ÜNİVERSİTESİ",
+    "bolumAdi": "Açık ve Uzaktan Eğitim Fakültesi",
+    "siralama": "42.282",
+    "puan": "359,76101"
+  },
+  {
+    "programID": "110910168",
+    "uniAdi": "ANKARA SOSYAL BİLİMLER ÜNİVERSİTESİ",
+    "bolumAdi": "ASBÜ-Kuzey Kıbrıs Yerleşkesi (KKTC-Lefkoşa)",
+    "siralama": "42.704",
+    "puan": "358,83963"
+  },
+  {
+    "programID": "100310873",
+    "uniAdi": "AYDIN ADNAN MENDERES ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "43.437",
+    "puan": "357,29045"
+  },
+  {
+    "programID": "206190364",
+    "uniAdi": "YEDİTEPE ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "43.490",
+    "puan": "357,19535"
+  },
+  {
+    "programID": "101510523",
+    "uniAdi": "BALIKESİR ÜNİVERSİTESİ",
+    "bolumAdi": "Turizm Fakültesi",
+    "siralama": "43.629",
+    "puan": "356,93231"
+  },
+  {
+    "programID": "102910022",
+    "uniAdi": "ÇUKUROVA ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "43.726",
+    "puan": "356,72439"
+  },
+  {
+    "programID": "107490302",
+    "uniAdi": "MERSİN ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "44.021",
+    "puan": "356,09562"
+  },
+  {
+    "programID": "205410495",
+    "uniAdi": "TOBB EKONOMİ VE TEKNOLOJİ ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "44.082",
+    "puan": "355,97539"
+  },
+  {
+    "programID": "104110209",
+    "uniAdi": "GAZİ ÜNİVERSİTESİ",
+    "bolumAdi": "Gazi Eğitim Fakültesi",
+    "siralama": "44.349",
+    "puan": "355,43049"
+  },
+  {
+    "programID": "109410854",
+    "uniAdi": "TRAKYA ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "44.352",
+    "puan": "355,41924"
+  },
+  {
+    "programID": "107490303",
+    "uniAdi": "MERSİN ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "44.389",
+    "puan": "355,3416"
+  },
+  {
+    "programID": "104310597",
+    "uniAdi": "TOKAT GAZİOSMANPAŞA ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "44.418",
+    "puan": "355,28535"
+  },
+  {
+    "programID": "100310097",
+    "uniAdi": "AYDIN ADNAN MENDERES ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "44.486",
+    "puan": "355,13442"
+  },
+  {
+    "programID": "206010063",
+    "uniAdi": "YAŞAR ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "44.619",
+    "puan": "354,89094"
+  },
+  {
+    "programID": "301410015",
+    "uniAdi": "ADA KENT ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "44.782",
+    "puan": "354,53743"
+  },
+  {
+    "programID": "204110041",
+    "uniAdi": "MALTEPE ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "45.002",
+    "puan": "354,09351"
+  },
+  {
+    "programID": "106090171",
+    "uniAdi": "KAHRAMANMARAŞ SÜTÇÜ İMAM ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "45.008",
+    "puan": "354,08574"
+  },
+  {
+    "programID": "107410763",
+    "uniAdi": "MERSİN ÜNİVERSİTESİ",
+    "bolumAdi": "Turizm Fakültesi",
+    "siralama": "45.041",
+    "puan": "354,01822"
+  },
+  {
+    "programID": "108710396",
+    "uniAdi": "RECEP TAYYİP ERDOĞAN ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "45.054",
+    "puan": "353,97568"
+  },
+  {
+    "programID": "102890284",
+    "uniAdi": "ÇANKIRI KARATEKİN ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "45.386",
+    "puan": "353,30794"
+  },
+  {
+    "programID": "106390073",
+    "uniAdi": "KARAMANOĞLU MEHMETBEY ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "45.398",
+    "puan": "353,28324"
+  },
+  {
+    "programID": "106110212",
+    "uniAdi": "KARABÜK ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "45.412",
+    "puan": "353,25501"
+  },
+  {
+    "programID": "203852041",
+    "uniAdi": "KAPADOKYA ÜNİVERSİTESİ",
+    "bolumAdi": "Uygulamalı Bilimler Yüksekokulu",
+    "siralama": "45.462",
+    "puan": "353,15665"
+  },
+  {
+    "programID": "301310056",
+    "uniAdi": "ULUSLARARASI FİNAL ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Bilimleri Fakültesi",
+    "siralama": "45.703",
+    "puan": "352,65273"
+  },
+  {
+    "programID": "107390301",
+    "uniAdi": "BURDUR MEHMET AKİF ERSOY ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "45.746",
+    "puan": "352,54817"
+  },
+  {
+    "programID": "101190422",
+    "uniAdi": "ANKARA ÜNİVERSİTESİ",
+    "bolumAdi": "Dil ve Tarih Coğrafya Fakültesi",
+    "siralama": "45.940",
+    "puan": "352,16796"
+  },
+  {
+    "programID": "103990378",
+    "uniAdi": "FIRAT ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "46.028",
+    "puan": "352,0066"
+  },
+  {
+    "programID": "300590390",
+    "uniAdi": "YAKIN DOĞU ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "46.077",
+    "puan": "351,91747"
+  },
+  {
+    "programID": "108810102",
+    "uniAdi": "SAKARYA ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "46.315",
+    "puan": "351,45453"
+  },
+  {
+    "programID": "200610084",
+    "uniAdi": "BAŞKENT ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "46.345",
+    "puan": "351,40263"
+  },
+  {
+    "programID": "202210349",
+    "uniAdi": "İSTANBUL 29 MAYIS ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "46.624",
+    "puan": "350,86987"
+  },
+  {
+    "programID": "111570392",
+    "uniAdi": "MALATYA TURGUT ÖZAL ÜNİVERSİTESİ",
+    "bolumAdi": "Sosyal ve Beşeri Bilimler Fakültesi",
+    "siralama": "46.630",
+    "puan": "350,86666"
+  },
+  {
+    "programID": "200690491",
+    "uniAdi": "BAŞKENT ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "46.853",
+    "puan": "350,39882"
+  },
+  {
+    "programID": "108610476",
+    "uniAdi": "PAMUKKALE ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "47.222",
+    "puan": "349,62451"
+  },
+  {
+    "programID": "105490155",
+    "uniAdi": "İSTANBUL MEDENİYET ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "47.258",
+    "puan": "349,55099"
+  },
+  {
+    "programID": "102690212",
+    "uniAdi": "SİVAS CUMHURİYET ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "47.485",
+    "puan": "349,13298"
+  },
+  {
+    "programID": "300211401",
+    "uniAdi": "GİRNE AMERİKAN ÜNİVERSİTESİ",
+    "bolumAdi": "Beşeri Bilimler Fakültesi",
+    "siralama": "47.646",
+    "puan": "348,74916"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "ANKARA HACI BAYRAM VELİ ÜNİVERSİTESİ",
+    "bolumAdi": "Turizm Fakültesi",
+    "siralama": "47.796",
+    "puan": "348,47153"
+  },
+  {
+    "programID": "105610176",
+    "uniAdi": "İSTANBUL ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "47.923",
+    "puan": "348,19893"
+  },
+  {
+    "programID": "103730107",
+    "uniAdi": "ERZURUM TEKNİK ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "47.928",
+    "puan": "348,19044"
+  },
+  {
+    "programID": "100190151",
+    "uniAdi": "BOLU ABANT İZZET BAYSAL ÜNİVERSİTESİ",
+    "bolumAdi": "Turizm Fakültesi",
+    "siralama": "48.013",
+    "puan": "347,98178"
+  },
+  {
+    "programID": "100790419",
+    "uniAdi": "AKDENİZ ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "48.248",
+    "puan": "347,45539"
+  },
+  {
+    "programID": "206111112",
+    "uniAdi": "YEDİTEPE ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "48.272",
+    "puan": "347,42066"
+  },
+  {
+    "programID": "206290199",
+    "uniAdi": "İSTANBUL YENİ YÜZYIL ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "48.440",
+    "puan": "347,05334"
+  },
+  {
+    "programID": "101190204",
+    "uniAdi": "ANKARA ÜNİVERSİTESİ",
+    "bolumAdi": "Dil ve Tarih Coğrafya Fakültesi",
+    "siralama": "48.814",
+    "puan": "346,27778"
+  },
+  {
+    "programID": "300210572",
+    "uniAdi": "GİRNE AMERİKAN ÜNİVERSİTESİ",
+    "bolumAdi": "Beşeri Bilimler Fakültesi",
+    "siralama": "48.852",
+    "puan": "346,20083"
+  },
+  {
+    "programID": "207650943",
+    "uniAdi": "BİRUNİ ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "49.250",
+    "puan": "345,40334"
+  },
+  {
+    "programID": "107190074",
+    "uniAdi": "MARDİN ARTUKLU ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "49.522",
+    "puan": "344,86138"
+  },
+  {
+    "programID": "103690172",
+    "uniAdi": "ERZİNCAN BİNALİ YILDIRIM ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "49.637",
+    "puan": "344,61043"
+  },
+  {
+    "programID": "108210083",
+    "uniAdi": "ONDOKUZ MAYIS ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "49.776",
+    "puan": "344,30302"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "OSMANİYE KORKUT ATA ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "49.797",
+    "puan": "344,25032"
+  },
+  {
+    "programID": "102390058",
+    "uniAdi": "YOZGAT BOZOK ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "50.393",
+    "puan": "343,10357"
+  },
+  {
+    "programID": "300290346",
+    "uniAdi": "GİRNE AMERİKAN ÜNİVERSİTESİ",
+    "bolumAdi": "Beşeri Bilimler Fakültesi",
+    "siralama": "50.755",
+    "puan": "342,41749"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "OSMANİYE KORKUT ATA ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "51.259",
+    "puan": "341,41709"
+  },
+  {
+    "programID": "107290506",
+    "uniAdi": "MARMARA ÜNİVERSİTESİ",
+    "bolumAdi": "Atatürk Eğitim Fakültesi",
+    "siralama": "51.710",
+    "puan": "340,50811"
+  },
+  {
+    "programID": "108990380",
+    "uniAdi": "SELÇUK ÜNİVERSİTESİ",
+    "bolumAdi": "Turizm Fakültesi",
+    "siralama": "51.755",
+    "puan": "340,41538"
+  },
+  {
+    "programID": "107910316",
+    "uniAdi": "TEKİRDAĞ NAMIK KEMAL ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "51.796",
+    "puan": "340,34893"
+  },
+  {
+    "programID": "203590169",
+    "uniAdi": "İZMİR EKONOMİ ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "51.867",
+    "puan": "340,22579"
+  },
+  {
+    "programID": "206110195",
+    "uniAdi": "YEDİTEPE ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "52.306",
+    "puan": "339,40541"
+  },
+  {
+    "programID": "101490467",
+    "uniAdi": "ATATÜRK ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "52.367",
+    "puan": "339,26352"
+  },
+  {
+    "programID": "206552534",
+    "uniAdi": "ÜSKÜDAR ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "52.474",
+    "puan": "339,04637"
+  },
+  {
+    "programID": "300110061",
+    "uniAdi": "DOĞU AKDENİZ ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "52.684",
+    "puan": "338,58787"
+  },
+  {
+    "programID": "101370248",
+    "uniAdi": "ARTVİN ÇORUH ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "52.752",
+    "puan": "338,46079"
+  },
+  {
+    "programID": "108211196",
+    "uniAdi": "ONDOKUZ MAYIS ÜNİVERSİTESİ",
+    "bolumAdi": "Turizm Fakültesi (Bafra)",
+    "siralama": "53.043",
+    "puan": "337,87443"
+  },
+  {
+    "programID": "107010016",
+    "uniAdi": "NECMETTİN ERBAKAN ÜNİVERSİTESİ",
+    "bolumAdi": "Ahmet Keleşoğlu Eğitim Fakültesi",
+    "siralama": "53.143",
+    "puan": "337,62896"
+  },
+  {
+    "programID": "108010031",
+    "uniAdi": "NEVŞEHİR HACI BEKTAŞ VELİ ÜNİVERSİTESİ",
+    "bolumAdi": "Turizm Fakültesi",
+    "siralama": "53.313",
+    "puan": "337,28572"
+  },
+  {
+    "programID": "111790330",
+    "uniAdi": "ANKARA HACI BAYRAM VELİ ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "53.416",
+    "puan": "337,0905"
+  },
+  {
+    "programID": "111890177",
+    "uniAdi": "SAKARYA UYGULAMALI BİLİMLER ÜNİVERSİTESİ",
+    "bolumAdi": "Turizm Fakültesi (Sapanca)",
+    "siralama": "53.775",
+    "puan": "336,41155"
+  },
+  {
+    "programID": "100290057",
+    "uniAdi": "ADIYAMAN ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "53.874",
+    "puan": "336,20903"
+  },
+  {
+    "programID": "105610149",
+    "uniAdi": "İSTANBUL ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "54.099",
+    "puan": "335,75884"
+  },
+  {
+    "programID": "201610848",
+    "uniAdi": "HASAN KALYONCU ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "54.485",
+    "puan": "334,9638"
+  },
+  {
+    "programID": "103510192",
+    "uniAdi": "ERCİYES ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "54.892",
+    "puan": "334,17155"
+  },
+  {
+    "programID": "104790124",
+    "uniAdi": "GÜMÜŞHANE ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "55.166",
+    "puan": "333,64082"
+  },
+  {
+    "programID": "101010131",
+    "uniAdi": "ANADOLU ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "55.173",
+    "puan": "333,6274"
+  },
+  {
+    "programID": "101790103",
+    "uniAdi": "BATMAN ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "55.209",
+    "puan": "333,55266"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "MARDİN ARTUKLU ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "55.476",
+    "puan": "333,03391"
+  },
+  {
+    "programID": "108010419",
+    "uniAdi": "NEVŞEHİR HACI BEKTAŞ VELİ ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "55.656",
+    "puan": "332,69398"
+  },
+  {
+    "programID": "112270818",
+    "uniAdi": "KAHRAMANMARAŞ İSTİKLAL ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "56.069",
+    "puan": "331,93831"
+  },
+  {
+    "programID": "300510242",
+    "uniAdi": "YAKIN DOĞU ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "56.248",
+    "puan": "331,56481"
+  },
+  {
+    "programID": "107910264",
+    "uniAdi": "TEKİRDAĞ NAMIK KEMAL ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "56.834",
+    "puan": "330,34905"
+  },
+  {
+    "programID": "101190619",
+    "uniAdi": "ANKARA ÜNİVERSİTESİ",
+    "bolumAdi": "Dil ve Tarih Coğrafya Fakültesi",
+    "siralama": "56.940",
+    "puan": "330,13079"
+  },
+  {
+    "programID": "103590181",
+    "uniAdi": "ERCİYES ÜNİVERSİTESİ",
+    "bolumAdi": "Turizm Fakültesi",
+    "siralama": "57.431",
+    "puan": "329,16454"
+  },
+  {
+    "programID": "112572424",
+    "uniAdi": "ISPARTA UYGULAMALI BİLİMLER ÜNİVERSİTESİ",
+    "bolumAdi": "Turizm Fakültesi (Eğirdir)",
+    "siralama": "58.127",
+    "puan": "327,84613"
+  },
+  {
+    "programID": "109590016",
+    "uniAdi": "MUNZUR ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "58.290",
+    "puan": "327,51019"
+  },
+  {
+    "programID": "107090216",
+    "uniAdi": "NECMETTİN ERBAKAN ÜNİVERSİTESİ",
+    "bolumAdi": "Ahmet Keleşoğlu Eğitim Fakültesi",
+    "siralama": "58.389",
+    "puan": "327,30052"
+  },
+  {
+    "programID": "206090362",
+    "uniAdi": "YAŞAR ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "58.423",
+    "puan": "327,24146"
+  },
+  {
+    "programID": "108910216",
+    "uniAdi": "SELÇUK ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "58.537",
+    "puan": "327,01073"
+  },
+  {
+    "programID": "102010101",
+    "uniAdi": "BİNGÖL ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "59.869",
+    "puan": "324,47617"
+  },
+  {
+    "programID": "101110042",
+    "uniAdi": "ANKARA ÜNİVERSİTESİ",
+    "bolumAdi": "Dil ve Tarih Coğrafya Fakültesi",
+    "siralama": "60.117",
+    "puan": "323,98497"
+  },
+  {
+    "programID": "206710438",
+    "uniAdi": "TED ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "60.276",
+    "puan": "323,6917"
+  },
+  {
+    "programID": "102910076",
+    "uniAdi": "ÇUKUROVA ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "60.339",
+    "puan": "323,54473"
+  },
+  {
+    "programID": "108090093",
+    "uniAdi": "NEVŞEHİR HACI BEKTAŞ VELİ ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "60.790",
+    "puan": "322,61144"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "İSTANBUL AYDIN ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "60.874",
+    "puan": "322,45994"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "BİNGÖL ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "61.051",
+    "puan": "322,10501"
+  },
+  {
+    "programID": "105910119",
+    "uniAdi": "KAFKAS ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "61.123",
+    "puan": "321,97235"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "KIRIKKALE ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "61.131",
+    "puan": "321,96187"
+  },
+  {
+    "programID": "100410933",
+    "uniAdi": "AFYON KOCATEPE ÜNİVERSİTESİ",
+    "bolumAdi": "Turizm Fakültesi",
+    "siralama": "61.577",
+    "puan": "321,07171"
+  },
+  {
+    "programID": "100710066",
+    "uniAdi": "AKDENİZ ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "61.808",
+    "puan": "320,61655"
+  },
+  {
+    "programID": "101110184",
+    "uniAdi": "ANKARA ÜNİVERSİTESİ",
+    "bolumAdi": "Dil ve Tarih Coğrafya Fakültesi",
+    "siralama": "62.273",
+    "puan": "319,67566"
+  },
+  {
+    "programID": "106770726",
+    "uniAdi": "KIRKLARELİ ÜNİVERSİTESİ",
+    "bolumAdi": "Turizm Fakültesi",
+    "siralama": "62.799",
+    "puan": "318,64069"
+  },
+  {
+    "programID": "206011007",
+    "uniAdi": "YAŞAR ÜNİVERSİTESİ",
+    "bolumAdi": "Uygulamalı Bilimler Yüksekokulu",
+    "siralama": "63.233",
+    "puan": "317,78987"
+  },
+  {
+    "programID": "107010388",
+    "uniAdi": "NECMETTİN ERBAKAN ÜNİVERSİTESİ",
+    "bolumAdi": "Turizm Fakültesi",
+    "siralama": "63.396",
+    "puan": "317,48128"
+  },
+  {
+    "programID": "107890050",
+    "uniAdi": "MUŞ ALPARSLAN ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "63.947",
+    "puan": "316,49901"
+  },
+  {
+    "programID": "109290320",
+    "uniAdi": "SÜLEYMAN DEMİREL ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "63.949",
+    "puan": "316,49613"
+  },
+  {
+    "programID": "102190024",
+    "uniAdi": "BİTLİS EREN ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "64.133",
+    "puan": "316,18225"
+  },
+  {
+    "programID": "110390137",
+    "uniAdi": "ZONGULDAK BÜLENT ECEVİT ÜNİVERSİTESİ",
+    "bolumAdi": "Karadeniz Ereğli Turizm Fakültesi",
+    "siralama": "64.346",
+    "puan": "315,79753"
+  },
+  {
+    "programID": "108910279",
+    "uniAdi": "SELÇUK ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "64.761",
+    "puan": "315,02663"
+  },
+  {
+    "programID": "210000514",
+    "uniAdi": "MUDANYA ÜNİVERSİTESİ",
+    "bolumAdi": "Sanat ve Sosyal Bilimler Fakültesi",
+    "siralama": "64.808",
+    "puan": "314,94681"
+  },
+  {
+    "programID": "101190217",
+    "uniAdi": "ANKARA ÜNİVERSİTESİ",
+    "bolumAdi": "Dil ve Tarih Coğrafya Fakültesi",
+    "siralama": "64.979",
+    "puan": "314,66983"
+  },
+  {
+    "programID": "101410278",
+    "uniAdi": "ATATÜRK ÜNİVERSİTESİ",
+    "bolumAdi": "Kazım Karabekir Eğitim Fakültesi",
+    "siralama": "64.986",
+    "puan": "314,6536"
+  },
+  {
+    "programID": "100590075",
+    "uniAdi": "AĞRI İBRAHİM ÇEÇEN ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "65.256",
+    "puan": "314,17077"
+  },
+  {
+    "programID": "108910349",
+    "uniAdi": "SELÇUK ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "66.073",
+    "puan": "312,63292"
+  },
+  {
+    "programID": "101110175",
+    "uniAdi": "ANKARA ÜNİVERSİTESİ",
+    "bolumAdi": "Dil ve Tarih Coğrafya Fakültesi",
+    "siralama": "66.567",
+    "puan": "311,71728"
+  },
+  {
+    "programID": "210401872",
+    "uniAdi": "İSTANBUL NİŞANTAŞI ÜNİVERSİTESİ",
+    "bolumAdi": "İktisadi, İdari ve Sosyal Bilimler Fakültesi",
+    "siralama": "66.588",
+    "puan": "311,68238"
+  },
+  {
+    "programID": "101990052",
+    "uniAdi": "BİLECİK ŞEYH EDEBALİ ÜNİVERSİTESİ",
+    "bolumAdi": "Uygulamalı Bilimler Fakültesi",
+    "siralama": "66.831",
+    "puan": "311,21924"
+  },
+  {
+    "programID": "110090093",
+    "uniAdi": "ANKARA YILDIRIM BEYAZIT ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "67.064",
+    "puan": "310,82399"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "ARDAHAN ÜNİVERSİTESİ",
+    "bolumAdi": "İnsani Bilimler ve Edebiyat Fakültesi",
+    "siralama": "67.414",
+    "puan": "310,19037"
+  },
+  {
+    "programID": "210401865",
+    "uniAdi": "İSTANBUL NİŞANTAŞI ÜNİVERSİTESİ",
+    "bolumAdi": "İktisadi, İdari ve Sosyal Bilimler Fakültesi",
+    "siralama": "67.481",
+    "puan": "310,05777"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "SİİRT ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "67.846",
+    "puan": "309,36702"
+  },
+  {
+    "programID": "104890554",
+    "uniAdi": "HACETTEPE ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "67.971",
+    "puan": "309,11352"
+  },
+  {
+    "programID": "409610531",
+    "uniAdi": "ULUSLARARASI BALKAN ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "68.086",
+    "puan": "308,90733"
+  },
+  {
+    "programID": "107010749",
+    "uniAdi": "NECMETTİN ERBAKAN ÜNİVERSİTESİ",
+    "bolumAdi": "Sosyal ve Beşeri Bilimler Fakültesi",
+    "siralama": "68.485",
+    "puan": "308,19251"
+  },
+  {
+    "programID": "105490211",
+    "uniAdi": "İSTANBUL MEDENİYET ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "68.699",
+    "puan": "307,8229"
+  },
+  {
+    "programID": "105290042",
+    "uniAdi": "IĞDIR ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "68.802",
+    "puan": "307,64064"
+  },
+  {
+    "programID": "108990298",
+    "uniAdi": "SELÇUK ÜNİVERSİTESİ",
+    "bolumAdi": "Beyşehir Ali Akkanat Turizm Fakültesi",
+    "siralama": "69.540",
+    "puan": "306,34051"
+  },
+  {
+    "programID": "101190528",
+    "uniAdi": "ANKARA ÜNİVERSİTESİ",
+    "bolumAdi": "Dil ve Tarih Coğrafya Fakültesi",
+    "siralama": "69.717",
+    "puan": "305,99936"
+  },
+  {
+    "programID": "203090127",
+    "uniAdi": "İSTANBUL KÜLTÜR ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "69.956",
+    "puan": "305,55313"
+  },
+  {
+    "programID": "105690823",
+    "uniAdi": "İSTANBUL ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "70.072",
+    "puan": "305,34666"
+  },
+  {
+    "programID": "108911268",
+    "uniAdi": "SELÇUK ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "70.310",
+    "puan": "304,89504"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "AĞRI İBRAHİM ÇEÇEN ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "70.612",
+    "puan": "304,36632"
+  },
+  {
+    "programID": "203211326",
+    "uniAdi": "İSTANBUL SABAHATTİN ZAİM ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "70.613",
+    "puan": "304,36627"
+  },
+  {
+    "programID": "105610325",
+    "uniAdi": "İSTANBUL ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "71.038",
+    "puan": "303,62578"
+  },
+  {
+    "programID": "201190056",
+    "uniAdi": "ÇANKAYA ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "71.192",
+    "puan": "303,36934"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "SİNOP ÜNİVERSİTESİ",
+    "bolumAdi": "Turizm Fakültesi",
+    "siralama": "71.272",
+    "puan": "303,21746"
+  },
+  {
+    "programID": "103010258",
+    "uniAdi": "DİCLE ÜNİVERSİTESİ",
+    "bolumAdi": "Ziya Gökalp Eğitim Fakültesi",
+    "siralama": "71.462",
+    "puan": "302,8893"
+  },
+  {
+    "programID": "100210283",
+    "uniAdi": "ADIYAMAN ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "71.983",
+    "puan": "301,90464"
+  },
+  {
+    "programID": "204712216",
+    "uniAdi": "İSTANBUL OKAN ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "72.877",
+    "puan": "300,2574"
+  },
+  {
+    "programID": "105990135",
+    "uniAdi": "KAFKAS ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "72.919",
+    "puan": "300,18889"
+  },
+  {
+    "programID": "106190085",
+    "uniAdi": "KARABÜK ÜNİVERSİTESİ",
+    "bolumAdi": "Safranbolu Turizm Fakültesi",
+    "siralama": "73.842",
+    "puan": "298,50231"
+  },
+  {
+    "programID": "107290450",
+    "uniAdi": "MARMARA ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "74.245",
+    "puan": "297,79929"
+  },
+  {
+    "programID": "101110121",
+    "uniAdi": "ANKARA ÜNİVERSİTESİ",
+    "bolumAdi": "Dil ve Tarih Coğrafya Fakültesi",
+    "siralama": "74.367",
+    "puan": "297,56099"
+  },
+  {
+    "programID": "100890060",
+    "uniAdi": "AKSARAY ÜNİVERSİTESİ",
+    "bolumAdi": "Turizm Fakültesi",
+    "siralama": "74.438",
+    "puan": "297,43494"
+  },
+  {
+    "programID": "101410039",
+    "uniAdi": "ATATÜRK ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "74.467",
+    "puan": "297,35985"
+  },
+  {
+    "programID": "201650171",
+    "uniAdi": "HASAN KALYONCU ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "74.547",
+    "puan": "297,22507"
+  },
+  {
+    "programID": "209310011",
+    "uniAdi": "İSTANBUL ATLAS ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "74.549",
+    "puan": "297,22248"
+  },
+  {
+    "programID": "206710521",
+    "uniAdi": "TED ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "74.978",
+    "puan": "296,45475"
+  },
+  {
+    "programID": "104810202",
+    "uniAdi": "HACETTEPE ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "75.190",
+    "puan": "296,05346"
+  },
+  {
+    "programID": "110790032",
+    "uniAdi": "İSKENDERUN TEKNİK ÜNİVERSİTESİ",
+    "bolumAdi": "Turizm Fakültesi",
+    "siralama": "75.979",
+    "puan": "294,73428"
+  },
+  {
+    "programID": "105690963",
+    "uniAdi": "İSTANBUL ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "76.098",
+    "puan": "294,50937"
+  },
+  {
+    "programID": "202590197",
+    "uniAdi": "İSTANBUL BİLGİ ÜNİVERSİTESİ",
+    "bolumAdi": "Sosyal ve Beşeri Bilimler Fakültesi",
+    "siralama": "76.175",
+    "puan": "294,3617"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "KIRIKKALE ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "76.209",
+    "puan": "294,31385"
+  },
+  {
+    "programID": "300111438",
+    "uniAdi": "DOĞU AKDENİZ ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "77.242",
+    "puan": "292,59618"
+  },
+  {
+    "programID": "300310932",
+    "uniAdi": "LEFKE AVRUPA ÜNİVERSİTESİ",
+    "bolumAdi": "Dr. Fazıl Küçük Eğitim Fakültesi",
+    "siralama": "77.623",
+    "puan": "291,93351"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "KARAMANOĞLU MEHMETBEY ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "77.820",
+    "puan": "291,56307"
+  },
+  {
+    "programID": "106410396",
+    "uniAdi": "KASTAMONU ÜNİVERSİTESİ",
+    "bolumAdi": "Turizm Fakültesi",
+    "siralama": "79.016",
+    "puan": "289,5589"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "İSTANBUL SAĞLIK VE TEKNOLOJİ ÜNİVERSİTESİ",
+    "bolumAdi": "İktisadi, İdari ve Sosyal Bilimler Fakültesi",
+    "siralama": "79.260",
+    "puan": "289,15066"
+  },
+  {
+    "programID": "206190362",
+    "uniAdi": "YEDİTEPE ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "79.652",
+    "puan": "288,45417"
+  },
+  {
+    "programID": "202410026",
+    "uniAdi": "İSTANBUL AYDIN ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "79.711",
+    "puan": "288,32492"
+  },
+  {
+    "programID": "209510037",
+    "uniAdi": "ANKARA BİLİM ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "80.757",
+    "puan": "286,50546"
+  },
+  {
+    "programID": "403910264",
+    "uniAdi": "HOCA AHMET YESEVİ ULUSLARARASI TÜRK-KAZAK ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "81.176",
+    "puan": "285,85255"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "SELÇUK ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "82.550",
+    "puan": "283,453"
+  },
+  {
+    "programID": "102610097",
+    "uniAdi": "SİVAS CUMHURİYET ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "83.143",
+    "puan": "282,38032"
+  },
+  {
+    "programID": "102610149",
+    "uniAdi": "SİVAS CUMHURİYET ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "83.385",
+    "puan": "281,95427"
+  },
+  {
+    "programID": "405210292",
+    "uniAdi": "KIRGIZİSTAN-TÜRKİYE MANAS ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "83.881",
+    "puan": "281,14257"
+  },
+  {
+    "programID": "107190037",
+    "uniAdi": "MARDİN ARTUKLU ÜNİVERSİTESİ",
+    "bolumAdi": "Turizm Fakültesi",
+    "siralama": "84.373",
+    "puan": "280,22338"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "ONDOKUZ MAYIS ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "84.522",
+    "puan": "280,00279"
+  },
+  {
+    "programID": "101490366",
+    "uniAdi": "ATATÜRK ÜNİVERSİTESİ",
+    "bolumAdi": "Turizm Fakültesi",
+    "siralama": "85.020",
+    "puan": "279,22094"
+  },
+  {
+    "programID": "101411091",
+    "uniAdi": "ATATÜRK ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "85.104",
+    "puan": "279,07409"
+  },
+  {
+    "programID": "109410306",
+    "uniAdi": "TRAKYA ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "85.592",
+    "puan": "278,30402"
+  },
+  {
+    "programID": "108990381",
+    "uniAdi": "SELÇUK ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "87.117",
+    "puan": "275,80973"
+  },
+  {
+    "programID": "405210274",
+    "uniAdi": "KIRGIZİSTAN-TÜRKİYE MANAS ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "87.866",
+    "puan": "274,63401"
+  },
+  {
+    "programID": "102890056",
+    "uniAdi": "ÇANKIRI KARATEKİN ÜNİVERSİTESİ",
+    "bolumAdi": "Ilgaz Turizm ve Otelcilik Yüksekokulu",
+    "siralama": "88.034",
+    "puan": "274,33712"
+  },
+  {
+    "programID": "209310049",
+    "uniAdi": "İSTANBUL ATLAS ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "88.158",
+    "puan": "274,13686"
+  },
+  {
+    "programID": "202210341",
+    "uniAdi": "İSTANBUL 29 MAYIS ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "88.439",
+    "puan": "273,69268"
+  },
+  {
+    "programID": "200690489",
+    "uniAdi": "BAŞKENT ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "88.607",
+    "puan": "273,40636"
+  },
+  {
+    "programID": "101410357",
+    "uniAdi": "ATATÜRK ÜNİVERSİTESİ",
+    "bolumAdi": "Kazım Karabekir Eğitim Fakültesi",
+    "siralama": "88.726",
+    "puan": "273,22456"
+  },
+  {
+    "programID": "101110166",
+    "uniAdi": "ANKARA ÜNİVERSİTESİ",
+    "bolumAdi": "Dil ve Tarih Coğrafya Fakültesi",
+    "siralama": "90.098",
+    "puan": "270,97631"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "FIRAT ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "91.840",
+    "puan": "268,24359"
+  },
+  {
+    "programID": "106390220",
+    "uniAdi": "KARAMANOĞLU MEHMETBEY ÜNİVERSİTESİ",
+    "bolumAdi": "Uygulamalı Bilimler Fakültesi",
+    "siralama": "92.108",
+    "puan": "267,83547"
+  },
+  {
+    "programID": "105690657",
+    "uniAdi": "İSTANBUL ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "92.465",
+    "puan": "267,2242"
+  },
+  {
+    "programID": "203211319",
+    "uniAdi": "İSTANBUL SABAHATTİN ZAİM ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "92.543",
+    "puan": "267,1009"
+  },
+  {
+    "programID": "109490282",
+    "uniAdi": "TRAKYA ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "93.924",
+    "puan": "264,98347"
+  },
+  {
+    "programID": "208450827",
+    "uniAdi": "İSTİNYE ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "94.951",
+    "puan": "263,31281"
+  },
+  {
+    "programID": "200610206",
+    "uniAdi": "BAŞKENT ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "95.043",
+    "puan": "263,18289"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "GAZİANTEP İSLAM BİLİM VE TEKNOLOJİ ÜNİVERSİTESİ",
+    "bolumAdi": "İktisadi, İdari ve Sosyal Bilimler Fakültesi",
+    "siralama": "95.258",
+    "puan": "262,79138"
+  },
+  {
+    "programID": "104790031",
+    "uniAdi": "GÜMÜŞHANE ÜNİVERSİTESİ",
+    "bolumAdi": "Turizm Fakültesi",
+    "siralama": "95.752",
+    "puan": "262,02687"
+  },
+  {
+    "programID": "104910079",
+    "uniAdi": "HAKKARİ ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "96.006",
+    "puan": "261,68087"
+  },
+  {
+    "programID": "107210014",
+    "uniAdi": "MARMARA ÜNİVERSİTESİ",
+    "bolumAdi": "Atatürk Eğitim Fakültesi",
+    "siralama": "96.121",
+    "puan": "261,50353"
+  },
+  {
+    "programID": "300290399",
+    "uniAdi": "GİRNE AMERİKAN ÜNİVERSİTESİ",
+    "bolumAdi": "Beşeri Bilimler Fakültesi",
+    "siralama": "96.776",
+    "puan": "260,48978"
+  },
+  {
+    "programID": "204190404",
+    "uniAdi": "MALTEPE ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "97.081",
+    "puan": "260,04004"
+  },
+  {
+    "programID": "300290425",
+    "uniAdi": "GİRNE AMERİKAN ÜNİVERSİTESİ",
+    "bolumAdi": "Beşeri Bilimler Fakültesi",
+    "siralama": "97.085",
+    "puan": "260,03076"
+  },
+  {
+    "programID": "209010075",
+    "uniAdi": "FENERBAHÇE ÜNİVERSİTESİ",
+    "bolumAdi": "İktisadi, İdari ve Sosyal Bilimler Fakültesi",
+    "siralama": "97.370",
+    "puan": "259,61071"
+  },
+  {
+    "programID": "200610075",
+    "uniAdi": "BAŞKENT ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "98.055",
+    "puan": "258,53557"
+  },
+  {
+    "programID": "110910161",
+    "uniAdi": "ANKARA SOSYAL BİLİMLER ÜNİVERSİTESİ",
+    "bolumAdi": "ASBÜ-Kuzey Kıbrıs Yerleşkesi (KKTC-Lefkoşa)",
+    "siralama": "98.275",
+    "puan": "258,18947"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "HARRAN ÜNİVERSİTESİ",
+    "bolumAdi": "Turizm Fakültesi",
+    "siralama": "98.284",
+    "puan": "258,18039"
+  },
+  {
+    "programID": "405210344",
+    "uniAdi": "KIRGIZİSTAN-TÜRKİYE MANAS ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "98.345",
+    "puan": "258,09576"
+  },
+  {
+    "programID": "105090242",
+    "uniAdi": "HARRAN ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "98.577",
+    "puan": "257,71175"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "KIRIKKALE ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "99.025",
+    "puan": "257,02355"
+  },
+  {
+    "programID": "101190216",
+    "uniAdi": "ANKARA ÜNİVERSİTESİ",
+    "bolumAdi": "Dil ve Tarih Coğrafya Fakültesi",
+    "siralama": "99.511",
+    "puan": "256,3"
+  },
+  {
+    "programID": "101790163",
+    "uniAdi": "BATMAN ÜNİVERSİTESİ",
+    "bolumAdi": "Turizm Fakültesi",
+    "siralama": "99.550",
+    "puan": "256,24001"
+  },
+  {
+    "programID": "101370286",
+    "uniAdi": "ARTVİN ÇORUH ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "100.935",
+    "puan": "254,16664"
+  },
+  {
+    "programID": "100290059",
+    "uniAdi": "ADIYAMAN ÜNİVERSİTESİ",
+    "bolumAdi": "Turizm Fakültesi",
+    "siralama": "100.994",
+    "puan": "254,06151"
+  },
+  {
+    "programID": "103090289",
+    "uniAdi": "DİCLE ÜNİVERSİTESİ",
+    "bolumAdi": "Sezai Karakoç Edebiyat Fakültesi",
+    "siralama": "101.632",
+    "puan": "253,14221"
+  },
+  {
+    "programID": "300510736",
+    "uniAdi": "YAKIN DOĞU ÜNİVERSİTESİ",
+    "bolumAdi": "Atatürk Eğitim Fakültesi",
+    "siralama": "101.848",
+    "puan": "252,83377"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "TOROS ÜNİVERSİTESİ",
+    "bolumAdi": "İktisadi, İdari ve Sosyal Bilimler Fakültesi",
+    "siralama": "102.069",
+    "puan": "252,49993"
+  },
+  {
+    "programID": "206210325",
+    "uniAdi": "İSTANBUL YENİ YÜZYIL ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "103.079",
+    "puan": "251,07218"
+  },
+  {
+    "programID": "101110342",
+    "uniAdi": "ANKARA ÜNİVERSİTESİ",
+    "bolumAdi": "Dil ve Tarih Coğrafya Fakültesi",
+    "siralama": "103.431",
+    "puan": "250,55209"
+  },
+  {
+    "programID": "110090221",
+    "uniAdi": "ANKARA YILDIRIM BEYAZIT ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "103.527",
+    "puan": "250,42697"
+  },
+  {
+    "programID": "205490114",
+    "uniAdi": "TOBB EKONOMİ VE TEKNOLOJİ ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "104.395",
+    "puan": "249,14297"
+  },
+  {
+    "programID": "206710479",
+    "uniAdi": "TED ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "105.532",
+    "puan": "247,52544"
+  },
+  {
+    "programID": "409610549",
+    "uniAdi": "ULUSLARARASI BALKAN ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "106.788",
+    "puan": "245,68955"
+  },
+  {
+    "programID": "206090360",
+    "uniAdi": "YAŞAR ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "106.921",
+    "puan": "245,50114"
+  },
+  {
+    "programID": "301310065",
+    "uniAdi": "ULUSLARARASI FİNAL ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Bilimleri Fakültesi",
+    "siralama": "107.508",
+    "puan": "244,62858"
+  },
+  {
+    "programID": "101410048",
+    "uniAdi": "ATATÜRK ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "107.520",
+    "puan": "244,61138"
+  },
+  {
+    "programID": "205090233",
+    "uniAdi": "İSTANBUL TOPKAPI ÜNİVERSİTESİ",
+    "bolumAdi": "İktisadi, İdari ve Sosyal Bilimler Fakültesi",
+    "siralama": "108.210",
+    "puan": "243,67659"
+  },
+  {
+    "programID": "204790534",
+    "uniAdi": "İSTANBUL OKAN ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "108.511",
+    "puan": "243,301"
+  },
+  {
+    "programID": "206011167",
+    "uniAdi": "YAŞAR ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "108.871",
+    "puan": "242,75041"
+  },
+  {
+    "programID": "103110018",
+    "uniAdi": "DOKUZ EYLÜL ÜNİVERSİTESİ",
+    "bolumAdi": "Buca Eğitim Fakültesi",
+    "siralama": "109.372",
+    "puan": "242,0778"
+  },
+  {
+    "programID": "201110474",
+    "uniAdi": "ÇANKAYA ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "110.117",
+    "puan": "241,02365"
+  },
+  {
+    "programID": "405210283",
+    "uniAdi": "KIRGIZİSTAN-TÜRKİYE MANAS ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "110.434",
+    "puan": "240,56311"
+  },
+  {
+    "programID": "110910154",
+    "uniAdi": "ANKARA SOSYAL BİLİMLER ÜNİVERSİTESİ",
+    "bolumAdi": "ASBÜ-Kuzey Kıbrıs Yerleşkesi (KKTC-Lefkoşa)",
+    "siralama": "110.782",
+    "puan": "240,10495"
+  },
+  {
+    "programID": "403910255",
+    "uniAdi": "HOCA AHMET YESEVİ ULUSLARARASI TÜRK-KAZAK ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "111.931",
+    "puan": "238,44995"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "KARAMANOĞLU MEHMETBEY ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "112.511",
+    "puan": "237,64376"
+  },
+  {
+    "programID": "301310047",
+    "uniAdi": "ULUSLARARASI FİNAL ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Bilimleri Fakültesi",
+    "siralama": "114.151",
+    "puan": "235,3994"
+  },
+  {
+    "programID": "107110157",
+    "uniAdi": "MARDİN ARTUKLU ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "114.352",
+    "puan": "235,11736"
+  },
+  {
+    "programID": "109410254",
+    "uniAdi": "TRAKYA ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "114.640",
+    "puan": "234,73147"
+  },
+  {
+    "programID": "105910146",
+    "uniAdi": "KAFKAS ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "115.311",
+    "puan": "233,86725"
+  },
+  {
+    "programID": "202510758",
+    "uniAdi": "İSTANBUL BİLGİ ÜNİVERSİTESİ",
+    "bolumAdi": "Sosyal ve Beşeri Bilimler Fakültesi",
+    "siralama": "115.657",
+    "puan": "233,42113"
+  },
+  {
+    "programID": "408810329",
+    "uniAdi": "ULUSLARARASI SARAYBOSNA ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "116.580",
+    "puan": "232,14221"
+  },
+  {
+    "programID": "201290432",
+    "uniAdi": "DOĞUŞ ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "117.126",
+    "puan": "231,40536"
+  },
+  {
+    "programID": "202790580",
+    "uniAdi": "İSTANBUL GELİŞİM ÜNİVERSİTESİ",
+    "bolumAdi": "Uygulamalı Bilimler Fakültesi",
+    "siralama": "117.710",
+    "puan": "230,62485"
+  },
+  {
+    "programID": "108411097",
+    "uniAdi": "ORTA DOĞU TEKNİK ÜNİVERSİTESİ",
+    "bolumAdi": "ODTÜ Kuzey Kıbrıs Kampusu (KKTC-Güzelyurt)",
+    "siralama": "118.049",
+    "puan": "230,14595"
+  },
+  {
+    "programID": "300210103",
+    "uniAdi": "GİRNE AMERİKAN ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "118.207",
+    "puan": "229,91919"
+  },
+  {
+    "programID": "102190155",
+    "uniAdi": "BİTLİS EREN ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "119.256",
+    "puan": "228,5008"
+  },
+  {
+    "programID": "300410022",
+    "uniAdi": "ULUSLARARASI KIBRIS ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "120.046",
+    "puan": "227,42618"
+  },
+  {
+    "programID": "109790542",
+    "uniAdi": "BURSA ULUDAĞ ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "120.656",
+    "puan": "226,66899"
+  },
+  {
+    "programID": "200511108",
+    "uniAdi": "BAHÇEŞEHİR ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Bilimleri Fakültesi",
+    "siralama": "122.698",
+    "puan": "223,98504"
+  },
+  {
+    "programID": "408810722",
+    "uniAdi": "ULUSLARARASI SARAYBOSNA ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "124.334",
+    "puan": "221,79878"
+  },
+  {
+    "programID": "108910252",
+    "uniAdi": "SELÇUK ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "125.117",
+    "puan": "220,76857"
+  },
+  {
+    "programID": "202390198",
+    "uniAdi": "İSTANBUL AREL ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "127.030",
+    "puan": "218,288"
+  },
+  {
+    "programID": "201990727",
+    "uniAdi": "HALİÇ ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "127.122",
+    "puan": "218,14092"
+  },
+  {
+    "programID": "102090189",
+    "uniAdi": "BİNGÖL ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "128.708",
+    "puan": "215,93238"
+  },
+  {
+    "programID": "202210345",
+    "uniAdi": "İSTANBUL 29 MAYIS ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "129.458",
+    "puan": "214,86628"
+  },
+  {
+    "programID": "209510035",
+    "uniAdi": "ANKARA BİLİM ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "130.027",
+    "puan": "214,07769"
+  },
+  {
+    "programID": "109410263",
+    "uniAdi": "TRAKYA ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "130.173",
+    "puan": "213,85669"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "KTO KARATAY ÜNİVERSİTESİ",
+    "bolumAdi": "İktisadi, İdari ve Sosyal Bilimler Fakültesi",
+    "siralama": "130.977",
+    "puan": "212,75289"
+  },
+  {
+    "programID": "203851893",
+    "uniAdi": "KAPADOKYA ÜNİVERSİTESİ",
+    "bolumAdi": "Beşeri Bilimler Fakültesi",
+    "siralama": "131.074",
+    "puan": "212,61772"
+  },
+  {
+    "programID": "206010999",
+    "uniAdi": "YAŞAR ÜNİVERSİTESİ",
+    "bolumAdi": "Uygulamalı Bilimler Yüksekokulu",
+    "siralama": "131.606",
+    "puan": "211,81167"
+  },
+  {
+    "programID": "204790532",
+    "uniAdi": "İSTANBUL OKAN ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "132.274",
+    "puan": "210,91611"
+  },
+  {
+    "programID": "201050718",
+    "uniAdi": "ÇAĞ ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "132.536",
+    "puan": "210,54434"
+  },
+  {
+    "programID": "201290425",
+    "uniAdi": "DOĞUŞ ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "132.589",
+    "puan": "210,49006"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "KIRIKKALE ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "133.308",
+    "puan": "209,45361"
+  },
+  {
+    "programID": "102090063",
+    "uniAdi": "BİNGÖL ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "133.435",
+    "puan": "209,27306"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "ARDAHAN ÜNİVERSİTESİ",
+    "bolumAdi": "İnsani Bilimler ve Edebiyat Fakültesi",
+    "siralama": "133.612",
+    "puan": "209,03614"
+  },
+  {
+    "programID": "203851838",
+    "uniAdi": "KAPADOKYA ÜNİVERSİTESİ",
+    "bolumAdi": "Beşeri Bilimler Fakültesi",
+    "siralama": "133.882",
+    "puan": "208,68056"
+  },
+  {
+    "programID": "208450825",
+    "uniAdi": "İSTİNYE ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "134.736",
+    "puan": "207,43913"
+  },
+  {
+    "programID": "203090139",
+    "uniAdi": "İSTANBUL KÜLTÜR ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "134.757",
+    "puan": "207,4149"
+  },
+  {
+    "programID": "200610199",
+    "uniAdi": "BAŞKENT ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "134.903",
+    "puan": "207,18017"
+  },
+  {
+    "programID": "100510208",
+    "uniAdi": "AĞRI İBRAHİM ÇEÇEN ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "135.560",
+    "puan": "206,23948"
+  },
+  {
+    "programID": "105910401",
+    "uniAdi": "KAFKAS ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "136.904",
+    "puan": "204,18317"
+  },
+  {
+    "programID": "201910015",
+    "uniAdi": "HALİÇ ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "138.125",
+    "puan": "202,29412"
+  },
+  {
+    "programID": "300710973",
+    "uniAdi": "GİRNE ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "139.810",
+    "puan": "199,62989"
+  },
+  {
+    "programID": "200590257",
+    "uniAdi": "BAHÇEŞEHİR ÜNİVERSİTESİ",
+    "bolumAdi": "İktisadi, İdari ve Sosyal Bilimler Fakültesi",
+    "siralama": "139.834",
+    "puan": "199,59105"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "KİLİS 7 ARALIK ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "140.258",
+    "puan": "198,9256"
+  },
+  {
+    "programID": "206190328",
+    "uniAdi": "YEDİTEPE ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "140.332",
+    "puan": "198,78338"
+  },
+  {
+    "programID": "103590346",
+    "uniAdi": "ERCİYES ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "140.735",
+    "puan": "198,11052"
+  },
+  {
+    "programID": "201490083",
+    "uniAdi": "FATİH SULTAN MEHMET VAKIF ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "141.087",
+    "puan": "197,50647"
+  },
+  {
+    "programID": "408810038",
+    "uniAdi": "ULUSLARARASI SARAYBOSNA ÜNİVERSİTESİ",
+    "bolumAdi": "Sanat ve Sosyal Bilimler Fakültesi",
+    "siralama": "141.909",
+    "puan": "196,10067"
+  },
+  {
+    "programID": "300290424",
+    "uniAdi": "GİRNE AMERİKAN ÜNİVERSİTESİ",
+    "bolumAdi": "Beşeri Bilimler Fakültesi",
+    "siralama": "142.099",
+    "puan": "195,76001"
+  },
+  {
+    "programID": "300210024",
+    "uniAdi": "GİRNE AMERİKAN ÜNİVERSİTESİ",
+    "bolumAdi": "Beşeri Bilimler Fakültesi",
+    "siralama": "142.714",
+    "puan": "194,62663"
+  },
+  {
+    "programID": "300290397",
+    "uniAdi": "GİRNE AMERİKAN ÜNİVERSİTESİ",
+    "bolumAdi": "Beşeri Bilimler Fakültesi",
+    "siralama": "143.094",
+    "puan": "193,85927"
+  },
+  {
+    "programID": "300590423",
+    "uniAdi": "YAKIN DOĞU ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "143.169",
+    "puan": "193,67656"
+  },
+  {
+    "programID": "408810736",
+    "uniAdi": "ULUSLARARASI SARAYBOSNA ÜNİVERSİTESİ",
+    "bolumAdi": "Sanat ve Sosyal Bilimler Fakültesi",
+    "siralama": "143.775",
+    "puan": "192,37786"
+  },
+  {
+    "programID": "202712522",
+    "uniAdi": "İSTANBUL GELİŞİM ÜNİVERSİTESİ",
+    "bolumAdi": "İktisadi, İdari ve Sosyal Bilimler Fakültesi",
+    "siralama": "144.018",
+    "puan": "191,95082"
+  },
+  {
+    "programID": "300210015",
+    "uniAdi": "GİRNE AMERİKAN ÜNİVERSİTESİ",
+    "bolumAdi": "Beşeri Bilimler Fakültesi",
+    "siralama": "144.081",
+    "puan": "191,82769"
+  },
+  {
+    "programID": "210402572",
+    "uniAdi": "İSTANBUL NİŞANTAŞI ÜNİVERSİTESİ",
+    "bolumAdi": "Uygulamalı Bilimler Yüksekokulu",
+    "siralama": "145.213",
+    "puan": "189,51205"
+  },
+  {
+    "programID": "200290264",
+    "uniAdi": "ATILIM ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "145.455",
+    "puan": "188,96723"
+  },
+  {
+    "programID": "202391018",
+    "uniAdi": "İSTANBUL AREL ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "146.591",
+    "puan": "186,4282"
+  },
+  {
+    "programID": "201990720",
+    "uniAdi": "HALİÇ ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "146.639",
+    "puan": "186,30896"
+  },
+  {
+    "programID": "101410084",
+    "uniAdi": "ATATÜRK ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "146.789",
+    "puan": "185,90339"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "KTO KARATAY ÜNİVERSİTESİ",
+    "bolumAdi": "İktisadi, İdari ve Sosyal Bilimler Fakültesi",
+    "siralama": "147.335",
+    "puan": "184,5257"
+  },
+  {
+    "programID": "301410059",
+    "uniAdi": "ADA KENT ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "148.148",
+    "puan": "182,37635"
+  },
+  {
+    "programID": "202390619",
+    "uniAdi": "İSTANBUL AREL ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "148.284",
+    "puan": "181,97058"
+  },
+  {
+    "programID": "200390221",
+    "uniAdi": "AVRASYA ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "148.829",
+    "puan": "180,3604"
+  },
+  {
+    "programID": "203010054",
+    "uniAdi": "İSTANBUL KÜLTÜR ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "148.871",
+    "puan": "180,23119"
+  },
+  {
+    "programID": "103590351",
+    "uniAdi": "ERCİYES ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "149.115",
+    "puan": "179,49116"
+  },
+  {
+    "programID": "107110193",
+    "uniAdi": "MARDİN ARTUKLU ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "149.173",
+    "puan": "179,31454"
+  },
+  {
+    "programID": "201490092",
+    "uniAdi": "FATİH SULTAN MEHMET VAKIF ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "149.571",
+    "puan": "178,0438"
+  },
+  {
+    "programID": "201910518",
+    "uniAdi": "HALİÇ ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "149.594",
+    "puan": "177,99308"
+  },
+  {
+    "programID": "108470064",
+    "uniAdi": "ORTA DOĞU TEKNİK ÜNİVERSİTESİ",
+    "bolumAdi": "ODTÜ Kuzey Kıbrıs Kampusu (KKTC-Güzelyurt)",
+    "siralama": "149.637",
+    "puan": "177,87159"
+  },
+  {
+    "programID": "300190405",
+    "uniAdi": "DOĞU AKDENİZ ÜNİVERSİTESİ",
+    "bolumAdi": "Fen ve Edebiyat Fakültesi",
+    "siralama": "149.720",
+    "puan": "177,57136"
+  },
+  {
+    "programID": "203852048",
+    "uniAdi": "KAPADOKYA ÜNİVERSİTESİ",
+    "bolumAdi": "Uygulamalı Bilimler Yüksekokulu",
+    "siralama": "149.828",
+    "puan": "177,2125"
+  },
+  {
+    "programID": "409610522",
+    "uniAdi": "ULUSLARARASI BALKAN ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "149.919",
+    "puan": "176,89171"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "İSTANBUL AYDIN ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "150.278",
+    "puan": "175,57902"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "İSTANBUL AYDIN ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "150.486",
+    "puan": "174,81935"
+  },
+  {
+    "programID": "200390154",
+    "uniAdi": "AVRASYA ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "150.548",
+    "puan": "174,59157"
+  },
+  {
+    "programID": "110290248",
+    "uniAdi": "VAN YÜZÜNCÜ YIL ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "151.172",
+    "puan": "171,83267"
+  },
+  {
+    "programID": "210301270",
+    "uniAdi": "İSTANBUL BEYKENT ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "151.197",
+    "puan": "171,69489"
+  },
+  {
+    "programID": "300510745",
+    "uniAdi": "YAKIN DOĞU ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "151.214",
+    "puan": "171,63672"
+  },
+  {
+    "programID": "200210034",
+    "uniAdi": "ATILIM ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "151.357",
+    "puan": "170,86748"
+  },
+  {
+    "programID": "202391025",
+    "uniAdi": "İSTANBUL AREL ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "151.403",
+    "puan": "170,66151"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "KTO KARATAY ÜNİVERSİTESİ",
+    "bolumAdi": "İktisadi, İdari ve Sosyal Bilimler Fakültesi",
+    "siralama": "151.543",
+    "puan": "169,97656"
+  },
+  {
+    "programID": "300290423",
+    "uniAdi": "GİRNE AMERİKAN ÜNİVERSİTESİ",
+    "bolumAdi": "Beşeri Bilimler Fakültesi",
+    "siralama": "151.551",
+    "puan": "169,91907"
+  },
+  {
+    "programID": "205090030",
+    "uniAdi": "İSTANBUL TOPKAPI ÜNİVERSİTESİ",
+    "bolumAdi": "İktisadi, İdari ve Sosyal Bilimler Fakültesi",
+    "siralama": "151.735",
+    "puan": "168,93828"
+  },
+  {
+    "programID": "300210096",
+    "uniAdi": "GİRNE AMERİKAN ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "152.543",
+    "puan": "163,80326"
+  },
+  {
+    "programID": "210301228",
+    "uniAdi": "İSTANBUL BEYKENT ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "152.547",
+    "puan": "163,78635"
+  },
+  {
+    "programID": "202412243",
+    "uniAdi": "İSTANBUL AYDIN ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "152.648",
+    "puan": "163,04939"
+  },
+  {
+    "programID": "300190403",
+    "uniAdi": "DOĞU AKDENİZ ÜNİVERSİTESİ",
+    "bolumAdi": "Fen ve Edebiyat Fakültesi",
+    "siralama": "152.676",
+    "puan": "162,7814"
+  },
+  {
+    "programID": "* Eski Kod",
+    "uniAdi": "UFUK ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "152.813",
+    "puan": "161,55774"
+  },
+  {
+    "programID": "202712558",
+    "uniAdi": "İSTANBUL GELİŞİM ÜNİVERSİTESİ",
+    "bolumAdi": "İktisadi, İdari ve Sosyal Bilimler Fakültesi",
+    "siralama": "152.848",
+    "puan": "161,15748"
+  },
+  {
+    "programID": "210401851",
+    "uniAdi": "İSTANBUL NİŞANTAŞI ÜNİVERSİTESİ",
+    "bolumAdi": "İktisadi, İdari ve Sosyal Bilimler Fakültesi",
+    "siralama": "152.952",
+    "puan": "159,95124"
+  },
+  {
+    "programID": "210301214",
+    "uniAdi": "İSTANBUL BEYKENT ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "152.960",
+    "puan": "159,87281"
+  },
+  {
+    "programID": "204790530",
+    "uniAdi": "İSTANBUL OKAN ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "153.034",
+    "puan": "159,16805"
+  },
+  {
+    "programID": "203211111",
+    "uniAdi": "İSTANBUL SABAHATTİN ZAİM ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "153.545",
+    "puan": "147,47769"
+  },
+  {
+    "programID": "108910394",
+    "uniAdi": "SELÇUK ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "153.628",
+    "puan": "139,53356"
+  },
+  {
+    "programID": "100790539",
+    "uniAdi": "AKDENİZ ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "Dolmadı",
+    "puan": "Dolmadı"
+  },
+  {
+    "programID": "101090527",
+    "uniAdi": "ANADOLU ÜNİVERSİTESİ",
+    "bolumAdi": "Turizm Fakültesi",
+    "siralama": "Dolmadı",
+    "puan": "Dolmadı"
+  },
+  {
+    "programID": "110910385",
+    "uniAdi": "ANKARA SOSYAL BİLİMLER ÜNİVERSİTESİ",
+    "bolumAdi": "Yabancı Diller Fakültesi",
+    "siralama": "Dolmadı",
+    "puan": "Dolmadı"
+  },
+  {
+    "programID": "110090214",
+    "uniAdi": "ANKARA YILDIRIM BEYAZIT ÜNİVERSİTESİ",
+    "bolumAdi": "İnsan ve Toplum Bilimleri Fakültesi",
+    "siralama": "Dolmadı",
+    "puan": "Dolmadı"
+  },
+  {
+    "programID": "101790205",
+    "uniAdi": "BATMAN ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "Dolmadı",
+    "puan": "Dolmadı"
+  },
+  {
+    "programID": "103090324",
+    "uniAdi": "DİCLE ÜNİVERSİTESİ",
+    "bolumAdi": "Sezai Karakoç Edebiyat Fakültesi",
+    "siralama": "Dolmadı",
+    "puan": "Dolmadı"
+  },
+  {
+    "programID": "103590182",
+    "uniAdi": "ERCİYES ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "Dolmadı",
+    "puan": "Dolmadı"
+  },
+  {
+    "programID": "103590448",
+    "uniAdi": "ERCİYES ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "Dolmadı",
+    "puan": "Dolmadı"
+  },
+  {
+    "programID": "300290422",
+    "uniAdi": "GİRNE AMERİKAN ÜNİVERSİTESİ",
+    "bolumAdi": "Beşeri Bilimler Fakültesi",
+    "siralama": "Dolmadı",
+    "puan": "Dolmadı"
+  },
+  {
+    "programID": "105690893",
+    "uniAdi": "İSTANBUL ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "Dolmadı",
+    "puan": "Dolmadı"
+  },
+  {
+    "programID": "105690900",
+    "uniAdi": "İSTANBUL ÜNİVERSİTESİ",
+    "bolumAdi": "Edebiyat Fakültesi",
+    "siralama": "Dolmadı",
+    "puan": "Dolmadı"
+  },
+  {
+    "programID": "105990284",
+    "uniAdi": "KAFKAS ÜNİVERSİTESİ",
+    "bolumAdi": "Fen-Edebiyat Fakültesi",
+    "siralama": "Dolmadı",
+    "puan": "Dolmadı"
+  },
+  {
+    "programID": "108290425",
+    "uniAdi": "ONDOKUZ MAYIS ÜNİVERSİTESİ",
+    "bolumAdi": "Eğitim Fakültesi",
+    "siralama": "Dolmadı",
+    "puan": "Dolmadı"
+  }
+]
