@@ -1,8 +1,8 @@
 import { Suspense } from 'react'
-import { EmptyDashboard } from './EmptyDashboard'
-import DashboardSkeleton from './DashboardSkeleton'
 import { DashboardDataProvider } from './DashboardDataProvider'
+import DashboardSkeleton from './DashboardSkeleton'
 import DashboardView from './DashboardView'
+import { EmptyDashboard } from './EmptyDashboard'
 
 const Dashboard = () => {
   return (
@@ -13,13 +13,13 @@ const Dashboard = () => {
 }
 
 const DashboardContainer = async () => {
-  const { examAttemptStats, hasStats, yksRankingData } = await DashboardDataProvider.getStats()
+  const { hasExamAttempts } = await DashboardDataProvider.getStats()
 
-  if (!hasStats) {
+  if (!hasExamAttempts) {
     return <EmptyDashboard />
   }
 
-  return <DashboardView examAttemptStats={examAttemptStats} yksRankingData={yksRankingData} />
+  return <DashboardView />
 }
 
 export default Dashboard

@@ -2,15 +2,16 @@
 
 import PageLoader from '@/components/shared/PageLoader'
 import { useGetExamAttemptStatisticsQuery } from '@/features/examAttempt.slice'
-import PerformanceTrendsView from './ui/PerformanceTrendsView'
+import AverageResultsView from './ui/AverageResultsView'
 
-const PerformanceTrends = () => {
+const AverageResults = () => {
   const { data: examAttemptStats } = useGetExamAttemptStatisticsQuery()
 
   if (!examAttemptStats) {
     return <PageLoader />
   }
-  return <PerformanceTrendsView examAttemptStats={examAttemptStats} />
+
+  return <AverageResultsView examAttemptStats={examAttemptStats} />
 }
 
-export default PerformanceTrends
+export default AverageResults

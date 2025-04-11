@@ -1,6 +1,5 @@
 'use client'
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import {
   LineChart,
@@ -12,7 +11,9 @@ import {
   ResponsiveContainer,
   ReferenceDot,
 } from 'recharts'
-import { RankingStat } from './YKSRankingProvider'
+import { RankingStat, YKSRankingProvider } from './YKSRankingProvider'
+import { useGetYKSRankingQuery } from '@/features/examAttempt.slice'
+import PageLoader from '@/components/shared/PageLoader'
 
 interface RankingChartProps {
   dataKey: string
@@ -65,21 +66,16 @@ export const RankingChart = ({ dataKey, label, color, stats, chartData }: Rankin
   )
 }
 
-interface RankingChartsProps {
-  chartData: Array<Record<string, any>>
-  tytStats: RankingStat
-  sayStats: RankingStat
-  eaStats: RankingStat
-  sozStats: RankingStat
-}
+export const RankingCharts = () => {
+  const { data: yksRanking } = useGetYKSRankingQuery()
 
-export const RankingCharts = ({
-  chartData,
-  tytStats,
-  sayStats,
-  eaStats,
-  sozStats,
-}: RankingChartsProps) => {
+  const { chartData, tytStats, sayStats, eaStats, sozStats } =
+    YKSRankingProvider.processRankingData(yksRanking ?? [])
+
+  if (!yksRanking) {
+    return <PageLoader />
+  }
+
   return (
     <Tabs defaultValue="tyt" className="w-full">
       <TabsList className="grid grid-cols-4 mb-6">

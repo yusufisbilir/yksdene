@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { examTemplates } from '@/constants/db.constants'
 import { ExamCategoryStatistics } from '@/types'
 
-const StatisticsCards = ({ examAttemptStats }: { examAttemptStats: ExamCategoryStatistics }) => {
+const AverageResultsView = ({ examAttemptStats }: { examAttemptStats: ExamCategoryStatistics }) => {
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
       {Object.entries(examAttemptStats).map(([templateId, stats]: [string, any]) => {
@@ -26,4 +26,4 @@ const StatisticsCards = ({ examAttemptStats }: { examAttemptStats: ExamCategoryS
   )
 }
 
-export default StatisticsCards
+export default AverageResultsView
