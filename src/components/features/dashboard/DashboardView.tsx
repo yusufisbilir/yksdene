@@ -6,11 +6,21 @@ import LastRankingChange from './LastRankingChange'
 import PerformanceTrends from './PerformanceTrends'
 import QuestionAnalysis from './QuestionAnalysis'
 import { RankingCharts } from './RankingCharts'
+import DashboardProfile from './DashboardProfile'
 
 export default function DashboardView() {
   return (
     <article className="px-2 space-y-6 sm:px-4 md:px-6">
       <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">👑 Başarı Tablosu</h1>
+
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-xl sm:text-2xl">Profil</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <DashboardProfile />
+        </CardContent>
+      </Card>
 
       <Card>
         <CardHeader>
