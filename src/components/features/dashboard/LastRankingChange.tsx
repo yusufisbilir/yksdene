@@ -3,13 +3,14 @@
 import PageLoader from '@/components/shared/PageLoader'
 import { useGetYKSRankingQuery } from '@/features/examAttempt.slice'
 import LastRankingChangeView from './ui/LastRankingChangeView'
-import { YKSRankingProvider } from './YKSRankingProvider'
+import { processYKSRanking } from '@/utils/processYKSRanking'
 
 export default function LastRankingChange() {
   const { data: yksRanking } = useGetYKSRankingQuery()
 
-  const { latestResult, tytChange, sayChange, eaChange, sozChange } =
-    YKSRankingProvider.processRankingData(yksRanking ?? [])
+  const { latestResult, tytChange, sayChange, eaChange, sozChange } = processYKSRanking(
+    yksRanking ?? [],
+  )
 
   if (!yksRanking || !latestResult) {
     return <PageLoader />

@@ -11,7 +11,7 @@ import {
   ResponsiveContainer,
   ReferenceDot,
 } from 'recharts'
-import { RankingStat, YKSRankingProvider } from './YKSRankingProvider'
+import { RankingStat, processYKSRanking } from '@/utils/processYKSRanking'
 import { useGetYKSRankingQuery } from '@/features/examAttempt.slice'
 import PageLoader from '@/components/shared/PageLoader'
 
@@ -69,8 +69,7 @@ export const RankingChart = ({ dataKey, label, color, stats, chartData }: Rankin
 export const RankingCharts = () => {
   const { data: yksRanking } = useGetYKSRankingQuery()
 
-  const { chartData, tytStats, sayStats, eaStats, sozStats } =
-    YKSRankingProvider.processRankingData(yksRanking ?? [])
+  const { chartData, tytStats, sayStats, eaStats, sozStats } = processYKSRanking(yksRanking ?? [])
 
   if (!yksRanking) {
     return <PageLoader />

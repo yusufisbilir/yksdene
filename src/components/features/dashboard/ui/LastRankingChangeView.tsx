@@ -1,6 +1,6 @@
 import { Card, CardContent } from '@/components/ui/card'
 import { ArrowDownIcon, ArrowUpIcon, MinusIcon } from 'lucide-react'
-import { ProcessedRankingData, RankingChange } from '../YKSRankingProvider'
+import { ProcessedRankingData, RankingChange } from '@/utils/processYKSRanking'
 
 interface RankingChangeCardProps {
   title: string

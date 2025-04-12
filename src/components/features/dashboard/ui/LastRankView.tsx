@@ -1,4 +1,4 @@
-import { ProcessedRankingData } from '../YKSRankingProvider'
+import { ProcessedRankingData } from '@/utils/processYKSRanking'
 
 const LastRankView = ({ latestResult }: { latestResult: ProcessedRankingData['latestResult'] }) => {
   return (
