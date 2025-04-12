@@ -10,7 +10,7 @@ const QuestionAnalysisView = ({
   examAttemptStats: ExamCategoryStatistics
 }) => {
   return (
-    <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
+    <div className="w-full space-y-4">
       {Object.entries(examAttemptStats).map(([templateId, stats]: [string, any]) => {
         const template = examTemplates.find((t) => t.id === templateId)
         const chartData = stats.performanceTrend.map((trend: any) => ({
