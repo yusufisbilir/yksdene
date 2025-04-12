@@ -6,13 +6,15 @@ export const ROUTES = {
   POMODORO: '/pomodoro',
   PROFILE: '/profil',
   YKS_OBP: '/yks_obp',
+  PROFILE_TARGETS: '/profil/hedefler',
+  CLERK_TARGETS: '/hedefler',
 } as const
 
 export type RouteValue = (typeof ROUTES)[keyof typeof ROUTES]
 
 export const getNavbarRoutes = () => {
   return Object.entries(ROUTES)
-    .filter(([key]) => key !== 'YKS_OBP')
+    .filter(([key]) => key !== 'YKS_OBP' && key !== 'PROFILE_TARGETS' && key !== 'CLERK_TARGETS')
     .map(([key, value]) => ({ key, value }))
 }
 
@@ -32,6 +34,10 @@ export const getRouteName = (route: RouteValue) => {
       return 'Profil'
     case ROUTES.YKS_OBP:
       return 'YKS OBP'
+    case ROUTES.PROFILE_TARGETS:
+      return 'Üniversite Hedefi'
+    case ROUTES.CLERK_TARGETS:
+      return 'Üniversite Hedefi'
     default:
       // if route is not in ROUTES, this will throw an error
       const exhaustiveCheck: never = route

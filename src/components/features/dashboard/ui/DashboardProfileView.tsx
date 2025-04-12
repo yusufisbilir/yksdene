@@ -9,8 +9,12 @@ import {
   Landmark,
   UserIcon,
   Users,
+  Edit,
 } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import { ROUTES } from '@/constants/routes'
 
 export default function DashboardProfileView({
   profile,
@@ -128,14 +132,21 @@ export default function DashboardProfileView({
           </div>
 
           {/* Negative Feedback - When student needs to improve */}
-          <div className="flex items-center gap-2 p-3 border border-red-100 rounded-lg bg-red-50/50 dark:bg-red-950/20 dark:border-red-900/50">
+          {/* <div className="flex items-center gap-2 p-3 border border-red-100 rounded-lg bg-red-50/50 dark:bg-red-950/20 dark:border-red-900/50">
             <CircleDashed className="flex-shrink-0 w-5 h-5 text-red-600" />
 
             <p className="text-sm italic text-red-800 dark:text-red-300">
               "Şu an netlerin yeterli değil ama unutma, başarı sabırla gelir. Devam et!"
             </p>
-          </div>
+          </div> */}
         </div>
+        {/* Edit Targets Button */}
+        <Link href={ROUTES.PROFILE_TARGETS} className=" self-end">
+          <Button size="sm" variant="outline" className="flex items-center gap-1 text-xs shadow-sm">
+            <Edit className="w-3 h-3" />
+            Üniversite Hedefini Düzenle
+          </Button>
+        </Link>
       </div>
     </div>
   )
