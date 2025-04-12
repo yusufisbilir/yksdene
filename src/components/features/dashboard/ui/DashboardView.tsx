@@ -1,12 +1,12 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { ExamResultsList } from '../denemelerim/ExamResultsList'
-import AverageResults from './AverageResults'
-import LastRank from './LastRank'
-import LastRankingChange from './LastRankingChange'
-import PerformanceTrends from './PerformanceTrends'
-import QuestionAnalysis from './QuestionAnalysis'
-import { RankingCharts } from './RankingCharts'
-import DashboardProfile from './DashboardProfile'
+import { ExamResultsList } from '../../denemelerim/ExamResultsList'
+import AverageResults from '../AverageResults'
+import LastRank from '../LastRank'
+import LastRankingChange from '../LastRankingChange'
+import PerformanceTrends from '../PerformanceTrends'
+import QuestionAnalysis from '../QuestionAnalysis'
+import { RankingCharts } from '../RankingCharts'
+import DashboardProfile from '../DashboardProfile'
 
 export default function DashboardView() {
   return (

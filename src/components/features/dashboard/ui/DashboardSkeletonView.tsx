@@ -1,22 +1,22 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
 
-const DashboardSkeleton = () => {
+export default function DashboardSkeletonView() {
   return (
-    <article className="space-y-6 px-2 sm:px-4 md:px-6">
-      <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">👑 Başarı Tablosu</h1>
+    <article className="px-2 space-y-6 sm:px-4 md:px-6">
+      <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">👑 Başarı Tablosu</h1>
 
       {/* YKS Ranking Change Cards Skeleton */}
       <Card>
         <CardHeader>
           <CardTitle className="text-xl sm:text-2xl">
-            <Skeleton className="h-7 w-64" />
+            <Skeleton className="w-64 h-7" />
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2">
             {[...Array(4)].map((_, i) => (
-              <Skeleton key={i} className="h-24 w-full" />
+              <Skeleton key={i} className="w-full h-24" />
             ))}
           </div>
         </CardContent>
@@ -26,11 +26,11 @@ const DashboardSkeleton = () => {
       <Card>
         <CardHeader>
           <CardTitle className="text-xl sm:text-2xl">
-            <Skeleton className="h-7 w-56" />
+            <Skeleton className="w-56 h-7" />
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <Skeleton className="h-48 w-full" />
+          <Skeleton className="w-full h-48" />
         </CardContent>
       </Card>
 
@@ -42,7 +42,7 @@ const DashboardSkeleton = () => {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <Skeleton className="h-72 w-full" />
+          <Skeleton className="w-full h-72" />
         </CardContent>
       </Card>
 
@@ -50,11 +50,11 @@ const DashboardSkeleton = () => {
       <Card>
         <CardHeader>
           <CardTitle className="text-xl sm:text-2xl">
-            <Skeleton className="h-7 w-48" />
+            <Skeleton className="w-48 h-7" />
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <Skeleton className="h-40 w-full" />
+          <Skeleton className="w-full h-40" />
         </CardContent>
       </Card>
 
@@ -66,9 +66,9 @@ const DashboardSkeleton = () => {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
             {[...Array(4)].map((_, i) => (
-              <Skeleton key={i} className="h-24 w-full" />
+              <Skeleton key={i} className="w-full h-24" />
             ))}
           </div>
         </CardContent>
@@ -78,11 +78,11 @@ const DashboardSkeleton = () => {
       <Card>
         <CardHeader>
           <CardTitle className="text-xl sm:text-2xl">
-            <Skeleton className="h-7 w-56" />
+            <Skeleton className="w-56 h-7" />
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <Skeleton className="h-64 w-full" />
+          <Skeleton className="w-full h-64" />
         </CardContent>
       </Card>
 
@@ -94,11 +94,9 @@ const DashboardSkeleton = () => {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <Skeleton className="h-64 w-full" />
+          <Skeleton className="w-full h-64" />
         </CardContent>
       </Card>
     </article>
   )
 }
-
-export default DashboardSkeleton

@@ -1,22 +1,22 @@
 import { Suspense } from 'react'
 import { DashboardDataProvider } from './DashboardDataProvider'
-import DashboardSkeleton from './DashboardSkeleton'
-import DashboardView from './DashboardView'
-import { EmptyDashboard } from './EmptyDashboard'
+import DashboardSkeletonView from './ui/DashboardSkeletonView'
+import DashboardView from './ui/DashboardView'
+import EmptyDashboardView from './ui/EmptyDashboardView'
 
 const Dashboard = () => {
   return (
-    <Suspense fallback={<DashboardSkeleton />}>
+    <Suspense fallback={<DashboardSkeletonView />}>
       <DashboardContainer />
     </Suspense>
   )
 }
 
 const DashboardContainer = async () => {
-  const { hasExamAttempts } = await DashboardDataProvider.getStats()
+  const hasExamAttempts = await DashboardDataProvider.getHasExamAttempts()
 
   if (!hasExamAttempts) {
-    return <EmptyDashboard />
+    return <EmptyDashboardView />
   }
 
   return <DashboardView />
