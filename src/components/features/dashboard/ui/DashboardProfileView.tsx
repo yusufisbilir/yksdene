@@ -65,15 +65,13 @@ export default function DashboardProfileView({
         {/* Stats Section - Rankings and Scores */}
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           {/* Last Ranking */}
-          {profile.obp && (
-            <div className="flex items-center gap-3 p-3 border border-green-100 rounded-lg shadow-sm bg-green-50 dark:bg-green-950/30 dark:border-green-900">
-              <Users className="w-5 h-5 text-green-600" />
-              <div>
-                <span className="text-sm text-muted-foreground">Son Sıralama</span>
-                <p className="font-semibold">{'999'}</p>
-              </div>
+          <div className="flex items-center gap-3 p-3 border border-green-100 rounded-lg shadow-sm bg-green-50 dark:bg-green-950/30 dark:border-green-900">
+            <Users className="w-5 h-5 text-green-600" />
+            <div>
+              <span className="text-sm text-muted-foreground">Son Sıralama</span>
+              <p className="font-semibold">{'999'}</p>
             </div>
-          )}
+          </div>
 
           {/* Last Score */}
           <div className="flex items-center gap-3 p-3 border border-green-100 rounded-lg shadow-sm bg-green-50 dark:bg-green-950/30 dark:border-green-900">
