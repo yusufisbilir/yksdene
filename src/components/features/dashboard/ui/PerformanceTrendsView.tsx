@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { ChartContainer, ChartTooltipContent } from '@/components/ui/chart'
 import { examTemplates } from '@/constants/db.constants'
 import { ExamCategoryStatistics } from '@/types'
-import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts'
+import { CartesianGrid, Legend, Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts'
 
 const PerformanceTrendsView = ({
   examAttemptStats,
@@ -13,7 +13,7 @@ const PerformanceTrendsView = ({
     <div className="w-full space-y-4">
       {Object.entries(examAttemptStats).map(([templateId, stats]: [string, any]) => {
         const template = examTemplates.find((t) => t.id === templateId)
-        const chartData = stats.performanceTrend.map((trend: any) => ({
+        const chartData = [...stats.performanceTrend].reverse().map((trend: any) => ({
           date: new Date(trend.date).toLocaleDateString('tr-TR'),
           net_score: trend.net_score,
           correct: trend.correct,
@@ -36,16 +36,23 @@ const PerformanceTrendsView = ({
                 }}
                 className="h-[250px] w-full"
               >
-                <LineChart data={chartData} margin={{ top: 5, right: 5, left: 0, bottom: 5 }}>
+                <LineChart data={chartData} margin={{ top: 20, right: 20, left: 0, bottom: 0 }}>
                   <XAxis dataKey="date" tick={false} />
                   <YAxis width={40} tick={{ fontSize: 12 }} />
                   <CartesianGrid strokeDasharray="3 3" />
                   <Tooltip content={<ChartTooltipContent />} />
+                  <Legend verticalAlign="bottom" height={36} />
                   <Line
                     type="monotone"
                     dataKey="net_score"
+                    name="Net Puan"
                     stroke="var(--color-net_score)"
                     strokeWidth={2}
+                    label={{
+                      position: 'top',
+                      fill: 'var(--color-net_score)',
+                      fontSize: 10,
+                    }}
                   />
                 </LineChart>
               </ChartContainer>
