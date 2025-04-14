@@ -1,6 +1,6 @@
 import { API_ROUTES } from '@/constants/api.routes'
 import { apiSlice } from './api/apiSlice'
-import { Profile, ProfileUpdate } from '@/types'
+import { Profile, ProfilesUniversityProgramView, ProfileUpdate } from '@/types'
 
 export const profileSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -18,7 +18,16 @@ export const profileSlice = apiSlice.injectEndpoints({
       transformResponse: (response: { result: Profile }) => response.result,
       invalidatesTags: ['Profile'],
     }),
+    getProfileWithUniversityProgram: builder.query<ProfilesUniversityProgramView, void>({
+      query: () => API_ROUTES.PROFILE_WITH_UNIVERSITY_PROGRAM,
+      transformResponse: (response: { result: ProfilesUniversityProgramView }) => response.result,
+      providesTags: ['Profile'],
+    }),
   }),
 })
 
-export const { useGetProfileQuery, useUpdateProfileMutation } = profileSlice
+export const {
+  useGetProfileQuery,
+  useUpdateProfileMutation,
+  useGetProfileWithUniversityProgramQuery,
+} = profileSlice

@@ -1,31 +1,7 @@
-'use client'
 import { Button } from '@/components/ui/button'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { SignInButton } from '@clerk/nextjs'
 import { BarChart2, Clock, TargetIcon, TrendingUp, User, Users, CheckCircle } from 'lucide-react'
-import {
-  CartesianGrid,
-  Line,
-  LineChart,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from 'recharts'
-
-const data = [
-  { name: 'Ocak', net: 40 },
-  { name: 'Şubat', net: 50 },
-  { name: 'Mart', net: 80 },
-  { name: 'Nisan', net: 95 },
-]
 
 const features = [
   {
@@ -64,11 +40,11 @@ const features = [
   },
 ]
 
-const PublicDashboard = () => {
+export default function PublicDashboardView() {
   return (
     <section className="space-y-6 panel">
       <div className="space-y-2 text-center">
-        <h1 className="text-3xl font-bold tracking-tight">Hoş Geldiiiin! 🎉</h1>
+        <h1 className="text-3xl font-bold tracking-tight">Hoş Geldin! 🎉</h1>
         <p className="text-muted-foreground">
           Gerçekçi şekilde denemeler çöz. Netlerini kaydet. Gelişiminle fark yarat.
         </p>
@@ -184,5 +160,3 @@ const PublicDashboard = () => {
     </section>
   )
 }
-
-export default PublicDashboard

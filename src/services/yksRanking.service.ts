@@ -558,7 +558,6 @@ export const yksRankingService = {
     apiRequestValidator.withServiceAuth(async (userId) => {
       const supabase = await supabaseServerClient()
       const preparedData = await this._prepareYKSRanking()
-      console.log(preparedData)
 
       const { data, error } = await supabase.from('yks_rankings').insert(preparedData)
 

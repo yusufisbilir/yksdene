@@ -77,6 +77,13 @@ export type Database = {
             referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "exam_attempts_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles_university_programs_view"
+            referencedColumns: ["profile_id"]
+          },
         ]
       }
       exam_templates: {
@@ -109,6 +116,7 @@ export type Database = {
           image_url: string | null
           name: string | null
           obp: number
+          university_program: string | null
           updated_at: string
           username: string | null
         }
@@ -120,6 +128,7 @@ export type Database = {
           image_url?: string | null
           name?: string | null
           obp?: number
+          university_program?: string | null
           updated_at?: string
           username?: string | null
         }
@@ -131,10 +140,26 @@ export type Database = {
           image_url?: string | null
           name?: string | null
           obp?: number
+          university_program?: string | null
           updated_at?: string
           username?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "profiles_university_program_fkey"
+            columns: ["university_program"]
+            isOneToOne: false
+            referencedRelation: "profiles_university_programs_view"
+            referencedColumns: ["university_program_id"]
+          },
+          {
+            foreignKeyName: "profiles_university_program_fkey"
+            columns: ["university_program"]
+            isOneToOne: false
+            referencedRelation: "university_programs"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       subject_results: {
         Row: {
@@ -203,6 +228,13 @@ export type Database = {
             referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "subject_results_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles_university_programs_view"
+            referencedColumns: ["profile_id"]
+          },
         ]
       }
       subjects: {
@@ -239,6 +271,39 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      university_programs: {
+        Row: {
+          category: Database["public"]["Enums"]["exam_category"]
+          department: string
+          description: string | null
+          id: string
+          program: string
+          rank: number | null
+          score: number | null
+          university: string
+        }
+        Insert: {
+          category: Database["public"]["Enums"]["exam_category"]
+          department: string
+          description?: string | null
+          id: string
+          program: string
+          rank?: number | null
+          score?: number | null
+          university: string
+        }
+        Update: {
+          category?: Database["public"]["Enums"]["exam_category"]
+          department?: string
+          description?: string | null
+          id?: string
+          program?: string
+          rank?: number | null
+          score?: number | null
+          university?: string
+        }
+        Relationships: []
       }
       yks_rankings: {
         Row: {
@@ -366,6 +431,13 @@ export type Database = {
             referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "yks_rankings_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles_university_programs_view"
+            referencedColumns: ["profile_id"]
+          },
         ]
       }
     }
@@ -393,6 +465,13 @@ export type Database = {
             referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "exam_attempts_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles_university_programs_view"
+            referencedColumns: ["profile_id"]
+          },
         ]
       }
       exam_attempt_view_dashboard: {
@@ -418,6 +497,51 @@ export type Database = {
             referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "exam_attempts_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles_university_programs_view"
+            referencedColumns: ["profile_id"]
+          },
+        ]
+      }
+      profiles_university_programs_view: {
+        Row: {
+          category: Database["public"]["Enums"]["exam_category"] | null
+          created_at: string | null
+          department: string | null
+          description: string | null
+          email: string | null
+          graduated: boolean | null
+          image_url: string | null
+          name: string | null
+          obp: number | null
+          profile_id: string | null
+          program: string | null
+          rank: number | null
+          score: number | null
+          university: string | null
+          university_program: string | null
+          university_program_id: string | null
+          updated_at: string | null
+          username: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "profiles_university_program_fkey"
+            columns: ["university_program"]
+            isOneToOne: false
+            referencedRelation: "profiles_university_programs_view"
+            referencedColumns: ["university_program_id"]
+          },
+          {
+            foreignKeyName: "profiles_university_program_fkey"
+            columns: ["university_program"]
+            isOneToOne: false
+            referencedRelation: "university_programs"
+            referencedColumns: ["id"]
+          },
         ]
       }
     }
@@ -432,7 +556,7 @@ export type Database = {
       }
     }
     Enums: {
-      [_ in never]: never
+      exam_category: "say" | "soz" | "ea" | "dil" | "tyt"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -550,6 +674,8 @@ export const Constants = {
     Enums: {},
   },
   public: {
-    Enums: {},
+    Enums: {
+      exam_category: ["say", "soz", "ea", "dil", "tyt"],
+    },
   },
 } as const
