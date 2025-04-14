@@ -1,6 +1,4 @@
 'use client'
-
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import {
   LineChart,
@@ -12,7 +10,7 @@ import {
   ResponsiveContainer,
   ReferenceDot,
 } from 'recharts'
-import { RankingStat } from './YKSRankingProvider'
+import { RankingStat } from '@/utils/processYKSRanking'
 
 interface RankingChartProps {
   dataKey: string
@@ -32,6 +30,7 @@ export const RankingChart = ({ dataKey, label, color, stats, chartData }: Rankin
           <YAxis
             tickFormatter={(value) => value.toLocaleString('tr-TR')}
             domain={['dataMax', 'dataMin']}
+            reversed={true}
           />
           <Tooltip
             formatter={(value) => value.toLocaleString('tr-TR')}
@@ -64,7 +63,7 @@ export const RankingChart = ({ dataKey, label, color, stats, chartData }: Rankin
   )
 }
 
-interface RankingChartsProps {
+interface RankingChartsViewProps {
   chartData: Array<Record<string, any>>
   tytStats: RankingStat
   sayStats: RankingStat
@@ -72,13 +71,13 @@ interface RankingChartsProps {
   sozStats: RankingStat
 }
 
-export const RankingCharts = ({
+const RankingChartsView = ({
   chartData,
   tytStats,
   sayStats,
   eaStats,
   sozStats,
-}: RankingChartsProps) => {
+}: RankingChartsViewProps) => {
   return (
     <Tabs defaultValue="tyt" className="w-full">
       <TabsList className="grid grid-cols-4 mb-6">
@@ -96,7 +95,7 @@ export const RankingCharts = ({
           stats={tytStats}
           chartData={chartData}
         />
-        <div className="text-xs mt-2">
+        <div className="mt-2 text-xs">
           <p>• En iyi TYT sıralaması: {tytStats.best?.toLocaleString() || 'Veri yok'}</p>
         </div>
       </TabsContent>
@@ -109,7 +108,7 @@ export const RankingCharts = ({
           stats={sayStats}
           chartData={chartData}
         />
-        <div className="text-xs mt-2">
+        <div className="mt-2 text-xs">
           <p>• En iyi SAY sıralaması: {sayStats.best?.toLocaleString() || 'Veri yok'}</p>
         </div>
       </TabsContent>
@@ -122,7 +121,7 @@ export const RankingCharts = ({
           stats={eaStats}
           chartData={chartData}
         />
-        <div className="text-xs mt-2">
+        <div className="mt-2 text-xs">
           <p>• En iyi EA sıralaması: {eaStats.best?.toLocaleString() || 'Veri yok'}</p>
         </div>
       </TabsContent>
@@ -135,10 +134,12 @@ export const RankingCharts = ({
           stats={sozStats}
           chartData={chartData}
         />
-        <div className="text-xs mt-2">
+        <div className="mt-2 text-xs">
           <p>• En iyi SOZ sıralaması: {sozStats.best?.toLocaleString() || 'Veri yok'}</p>
         </div>
       </TabsContent>
     </Tabs>
   )
 }
+
+export default RankingChartsView

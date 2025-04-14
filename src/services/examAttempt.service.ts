@@ -194,4 +194,10 @@ export const examAttemptService = {
       return statsByTemplate
     })
   },
+
+  // utils
+  async hasExamAttempts(): Promise<boolean> {
+    const examAttemptStats = await this.getExamAttemptStatistics()
+    return Object.keys(examAttemptStats).length > 0
+  },
 }

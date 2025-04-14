@@ -1,17 +1,17 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { BarChart2, BookPlus, Rocket } from 'lucide-react'
-import Link from 'next/link'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { ROUTES } from '@/constants/routes'
+import { BarChart2, Rocket } from 'lucide-react'
+import Link from 'next/link'
 
-export function EmptyDashboard() {
+export default function EmptyDashboardView() {
   return (
     <Card className="container p-8 space-y-8 text-center border-dashed border-primary/50">
       <h1 className="text-4xl font-extrabold tracking-tight text-primary">
         🚀 Başarıya Giden Yolda İlk Adım!
       </h1>
 
-      <Card className="bg-gradient-to-br from-primary/10 via-background to-secondary/10 shadow-lg">
+      <Card className="shadow-lg bg-gradient-to-br from-primary/10 via-background to-secondary/10">
         <CardHeader>
           <CardTitle className="flex items-center justify-center gap-3 text-2xl font-semibold">
             <BarChart2 className="w-7 h-7 text-primary" />
@@ -19,7 +19,7 @@ export function EmptyDashboard() {
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
-          <p className="text-lg text-muted-foreground max-w-xl mx-auto">
+          <p className="max-w-xl mx-auto text-lg text-muted-foreground">
             Harika bir başlangıç yaptın! 🎉 Başarı tablon şu an boş, ama endişelenme. İlk deneme
             sonucunu ekleyerek gelişimini takip etmeye başla ve hedeflerine ne kadar yaklaştığını
             gör!

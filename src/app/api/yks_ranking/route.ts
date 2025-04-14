@@ -5,7 +5,6 @@ import { yksRankingService } from '@/services/yksRanking.service'
 
 export async function GET(request: NextRequest) {
   return apiRequestValidator.withAuth(request, async (req, userId) => {
-    console.log('userId', userId)
     try {
       const result = await yksRankingService.getYKSRanking()
       return NextResponse.json({ result })

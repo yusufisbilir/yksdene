@@ -5,4 +5,5 @@ export const API_ROUTES = {
   EXAM_ATTEMPT_STATISTICS: '/exam_attempt_statistics',
   PROFILE: '/profile',
   YKS_RANKING: '/yks_ranking',
+  PROFILE_WITH_UNIVERSITY_PROGRAM: '/profile_with_university_program',
 } as const

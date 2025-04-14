@@ -1,6 +1,6 @@
 import { Card, CardContent } from '@/components/ui/card'
-import { ArrowUpIcon, ArrowDownIcon, MinusIcon } from 'lucide-react'
-import { RankingChange } from './YKSRankingProvider'
+import { ArrowDownIcon, ArrowUpIcon, MinusIcon } from 'lucide-react'
+import { ProcessedRankingData, RankingChange } from '@/utils/processYKSRanking'
 
 interface RankingChangeCardProps {
   title: string
@@ -66,49 +66,54 @@ export const RankingChangeCard = ({
   )
 }
 
-interface RankingChangeCardsGridProps {
-  latestResult: any
+interface LastRankingChangeViewProps {
+  latestResult: ProcessedRankingData['latestResult']
   tytChange: RankingChange
   sayChange: RankingChange
   eaChange: RankingChange
   sozChange: RankingChange
 }
 
-export const RankingChangeCardsGrid = ({
+const LastRankingChangeView = ({
   latestResult,
   tytChange,
   sayChange,
   eaChange,
   sozChange,
-}: RankingChangeCardsGridProps) => {
-  if (!latestResult) return null
-
+}: LastRankingChangeViewProps) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
-      <RankingChangeCard
-        title="TYT Sıralaması"
-        currentRank={latestResult?.tyt_placement_rank || 0}
-        change={tytChange}
-        color="#8884d8"
-      />
-      <RankingChangeCard
-        title="SAY Sıralaması"
-        currentRank={latestResult?.say_placement_rank || 0}
-        change={sayChange}
-        color="#82ca9d"
-      />
-      <RankingChangeCard
-        title="EA Sıralaması"
-        currentRank={latestResult?.ea_placement_rank || 0}
-        change={eaChange}
-        color="#ffc658"
-      />
-      <RankingChangeCard
-        title="SOZ Sıralaması"
-        currentRank={latestResult?.soz_placement_rank || 0}
-        change={sozChange}
-        color="#ff8042"
-      />
+    <div className="space-y-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+        <RankingChangeCard
+          title="TYT Sıralaması"
+          currentRank={latestResult?.tyt_placement_rank || 0}
+          change={tytChange}
+          color="#8884d8"
+        />
+        <RankingChangeCard
+          title="SAY Sıralaması"
+          currentRank={latestResult?.say_placement_rank || 0}
+          change={sayChange}
+          color="#82ca9d"
+        />
+        <RankingChangeCard
+          title="EA Sıralaması"
+          currentRank={latestResult?.ea_placement_rank || 0}
+          change={eaChange}
+          color="#ffc658"
+        />
+        <RankingChangeCard
+          title="SOZ Sıralaması"
+          currentRank={latestResult?.soz_placement_rank || 0}
+          change={sozChange}
+          color="#ff8042"
+        />
+      </div>
+      <p className="text-xs text-muted-foreground">
+        * Yeni eklediğiniz TYT ve AYT denemenize göre hesaplanmıştır.
+      </p>
     </div>
   )
 }
+
+export default LastRankingChangeView
