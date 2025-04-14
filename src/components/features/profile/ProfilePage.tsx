@@ -2,8 +2,8 @@
 
 import { UserProfile } from '@clerk/nextjs'
 import { FileChartColumn } from 'lucide-react'
-import ProfileUpdateOptions from './ProfileUpdateOptions'
 import { ROUTES } from '@/constants/routes'
+import ProfileTargets from './ProfileTargets'
 
 export function ProfilePage() {
   return (
@@ -13,7 +13,7 @@ export function ProfilePage() {
         labelIcon={<FileChartColumn className="w-4 h-4" />}
         url={ROUTES.CLERK_TARGETS}
       >
-        <ProfileUpdateOptions />
+        <ProfileTargets />
       </UserProfile.Page>
     </UserProfile>
   )

@@ -109,6 +109,7 @@ export type Database = {
           image_url: string | null
           name: string | null
           obp: number
+          university_program: string | null
           updated_at: string
           username: string | null
         }
@@ -120,6 +121,7 @@ export type Database = {
           image_url?: string | null
           name?: string | null
           obp?: number
+          university_program?: string | null
           updated_at?: string
           username?: string | null
         }
@@ -131,10 +133,19 @@ export type Database = {
           image_url?: string | null
           name?: string | null
           obp?: number
+          university_program?: string | null
           updated_at?: string
           username?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "profiles_university_program_fkey"
+            columns: ["university_program"]
+            isOneToOne: false
+            referencedRelation: "university_programs"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       subject_results: {
         Row: {
@@ -239,6 +250,39 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      university_programs: {
+        Row: {
+          category: Database["public"]["Enums"]["exam_category"]
+          department: string
+          description: string | null
+          id: string
+          program: string
+          rank: number | null
+          score: number | null
+          university: string
+        }
+        Insert: {
+          category: Database["public"]["Enums"]["exam_category"]
+          department: string
+          description?: string | null
+          id?: string
+          program: string
+          rank?: number | null
+          score?: number | null
+          university: string
+        }
+        Update: {
+          category?: Database["public"]["Enums"]["exam_category"]
+          department?: string
+          description?: string | null
+          id?: string
+          program?: string
+          rank?: number | null
+          score?: number | null
+          university?: string
+        }
+        Relationships: []
       }
       yks_rankings: {
         Row: {
@@ -432,7 +476,7 @@ export type Database = {
       }
     }
     Enums: {
-      [_ in never]: never
+      exam_category: "say" | "soz" | "ea" | "dil" | "tyt"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -550,6 +594,8 @@ export const Constants = {
     Enums: {},
   },
   public: {
-    Enums: {},
+    Enums: {
+      exam_category: ["say", "soz", "ea", "dil", "tyt"],
+    },
   },
 } as const

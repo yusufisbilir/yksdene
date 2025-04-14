@@ -34,6 +34,8 @@ export type YksRankingUpdate = TablesUpdate<'yks_rankings'>
 
 export type YksRankingInsertWithoutId = Omit<YksRankingInsert, 'id'>
 
+export type UniversityProgram = Tables<'university_programs'>
+
 export const Exam = {
   tyt: 'tyt',
   ayt: 'ayt',
@@ -63,7 +65,7 @@ export type ExamCategoryStatistics = {
   }
 }
 
-export const obpGraduateFormSchema = z.object({
+export const updateProfileSchema = z.object({
   obp: z
     .string()
     .refine((val) => !isNaN(parseFloat(val)), { message: 'OBP geçerli bir sayı olmalıdır' })
@@ -71,9 +73,10 @@ export const obpGraduateFormSchema = z.object({
       message: 'OBP 50-100 arasında olmalıdır',
     }),
   graduated: z.boolean().default(false),
+  university_program: z.string().uuid('Geçerli bir UUID girin').optional(),
 })
 
-export type ProfileFormValues = z.infer<typeof obpGraduateFormSchema>
+export type UpdateProfileValues = z.infer<typeof updateProfileSchema>
 
 export interface LastExamResults {
   TYT?: ExamAttemptView & { subjectResults: SubjectResult[] }
