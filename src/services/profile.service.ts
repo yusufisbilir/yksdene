@@ -1,5 +1,5 @@
 import { supabaseServerClient } from '@/lib/supabaseServerClient'
-import { Profile, ProfileUpdate } from '@/types'
+import { Profile, ProfilesUniversityProgramView, ProfileUpdate } from '@/types'
 import { apiRequestValidator } from './requestValidator.service'
 
 export const profileService = {
@@ -27,6 +27,19 @@ export const profileService = {
         .select()
         .single()
 
+      if (error) throw error
+      return data
+    })
+  },
+
+  async getProfileWithUniversityProgram(): Promise<ProfilesUniversityProgramView | null> {
+    return apiRequestValidator.withServiceAuth(async (userId) => {
+      const supabase = await supabaseServerClient()
+      const { data, error } = await supabase
+        .from('profiles_university_programs_view')
+        .select('*')
+        .eq('profile_id', userId)
+        .single()
       if (error) throw error
       return data
     })

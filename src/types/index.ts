@@ -32,6 +32,8 @@ export type YksRanking = Tables<'yks_rankings'>
 export type YksRankingInsert = TablesInsert<'yks_rankings'>
 export type YksRankingUpdate = TablesUpdate<'yks_rankings'>
 
+export type ProfilesUniversityProgramView = Tables<'profiles_university_programs_view'>
+
 export type YksRankingInsertWithoutId = Omit<YksRankingInsert, 'id'>
 
 export type UniversityProgram = Tables<'university_programs'>
