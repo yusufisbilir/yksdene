@@ -5,12 +5,12 @@ import { useGetProfileWithUniversityProgramQuery } from '@/features/profile.slic
 import DashboardProfileView from './ui/DashboardProfileView'
 import { useGetYKSRankingQuery } from '@/features/examAttempt.slice'
 import { ProfilesUniversityProgramView, YksRanking } from '@/types'
+import EmptyDashboardProfileView from './ui/EmptyDashboardProfileView'
 
 export default function DashboardProfile() {
-  const { data: yksRanking } = useGetYKSRankingQuery()
-  const { data: profileWithUniversityProgram } = useGetProfileWithUniversityProgramQuery()
-
-  console.log(profileWithUniversityProgram)
+  const { data: yksRanking, isLoading: isYksRankingLoading } = useGetYKSRankingQuery()
+  const { data: profileWithUniversityProgram, isLoading: isProfileWithUniversityProgramLoading } =
+    useGetProfileWithUniversityProgramQuery()
 
   const getLastRanking = (
     profileWithUniversityProgram: ProfilesUniversityProgramView,
@@ -54,8 +54,12 @@ export default function DashboardProfile() {
     }
   }
 
-  if (!profileWithUniversityProgram || !yksRanking) {
+  if (isProfileWithUniversityProgramLoading || isYksRankingLoading || !yksRanking) {
     return <PageLoader />
+  }
+
+  if (!profileWithUniversityProgram?.university_program) {
+    return <EmptyDashboardProfileView />
   }
 
   return (
