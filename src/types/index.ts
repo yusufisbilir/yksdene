@@ -73,7 +73,7 @@ export const updateProfileSchema = z.object({
       message: 'OBP 50-100 arasında olmalıdır',
     }),
   graduated: z.boolean().default(false),
-  university_program: z.string().uuid('Geçerli bir UUID girin').optional(),
+  university_program: z.string().optional(),
 })
 
 export type UpdateProfileValues = z.infer<typeof updateProfileSchema>

@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { toast } from 'sonner'
 import { useGetProfileQuery, useUpdateProfileMutation } from '@/features/profile.slice'
 import { Profile, UniversityProgram, updateProfileSchema, UpdateProfileValues } from '@/types'
@@ -33,18 +33,31 @@ import universityPrograms from '@/constants/universityPrograms/universityProgram
 export default function ProfileTargets() {
   const router = useRouter()
   const [searchQuery, setSearchQuery] = useState('')
+  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState('')
   const [filteredPrograms, setFilteredPrograms] = useState<UniversityProgram[]>([])
   const [isDialogOpen, setIsDialogOpen] = useState(false)
 
-  const programsData: UniversityProgram[] = universityPrograms
+  const programsData: UniversityProgram[] = universityPrograms as UniversityProgram[]
 
+  // Debounce searchQuery
   useEffect(() => {
-    if (searchQuery.trim() === '') {
+    const timer = setTimeout(() => {
+      setDebouncedSearchQuery(searchQuery)
+    }, 300)
+
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [searchQuery])
+
+  // Use debounced search query for filtering
+  useEffect(() => {
+    if (debouncedSearchQuery.trim() === '') {
       setFilteredPrograms([])
       return
     }
 
-    const query = searchQuery.toLowerCase().trim()
+    const query = debouncedSearchQuery.toLowerCase().trim()
 
     const searchTerms = query.split(/\s+/).filter((term) => term.length > 0)
 
@@ -77,10 +90,10 @@ export default function ProfileTargets() {
           )
         })
       })
-      .slice(0, 50)
+      .slice(0, 200)
 
     setFilteredPrograms(results)
-  }, [searchQuery, programsData])
+  }, [debouncedSearchQuery, programsData])
 
   const { data: profile, isLoading } = useGetProfileQuery()
 
@@ -216,6 +229,9 @@ export default function ProfileTargets() {
                             onChange={(e) => setSearchQuery(e.target.value)}
                             className="w-full"
                           />
+                          {searchQuery.trim() !== '' && debouncedSearchQuery !== searchQuery && (
+                            <div className="text-xs text-muted-foreground">Aranıyor...</div>
+                          )}
                           <ScrollArea className="h-[300px]">
                             {filteredPrograms.length > 0 ? (
                               <div className="space-y-1">
@@ -235,7 +251,7 @@ export default function ProfileTargets() {
                                   </div>
                                 ))}
                               </div>
-                            ) : searchQuery.trim() !== '' ? (
+                            ) : debouncedSearchQuery.trim() !== '' ? (
                               <div className="p-2 text-center text-muted-foreground">
                                 Sonuç bulunamadı.
                               </div>
