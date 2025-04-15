@@ -29,11 +29,14 @@ import { SubjectResults } from './SubjectResults'
 import { useExamAttemptContext } from '@/contexts/ExamAttemptContext'
 import { calculateExamResults } from '@/utils/calculateExamResults'
 import { CreateExamAttemptInput, createExamAttemptSchema } from '@/types'
+import { useRouter } from 'next/navigation'
+import { ROUTES } from '@/constants/routes'
 
 export function AddExamForm() {
   const { isAddingExamAttempt, setIsAddingExamAttempt } = useExamAttemptContext()
   const [createExamAttemptWithResults, { isLoading: isLoadingCreateExamAttemptWithResults }] =
     useCreateExamAttemptWithResultsMutation()
+  const router = useRouter()
 
   const defaultExamTemplate = examTemplates?.find((template) => template.name === 'TYT')?.id || ''
 
@@ -70,6 +73,7 @@ export function AddExamForm() {
         },
         subjectResults: [],
       })
+      router.push(ROUTES.HOME)
     } catch (error) {
       console.error('Failed to save exam results:', error)
     }
@@ -183,10 +187,6 @@ export function AddExamForm() {
 
             {form.watch('subjectResults')?.length ? (
               <div className="space-y-4">
-                <div className="flex sm:flex-row flex-col items-center justify-between gap-2">
-                  <h3 className="font-semibold">Sonuçlar</h3>
-                  <TotalStats {...calculateExamResults(form.watch('subjectResults'))} />
-                </div>
                 <SubjectResults
                   form={form}
                   subjects={dbSubjects?.filter(
@@ -194,6 +194,7 @@ export function AddExamForm() {
                       form.watch('examAttempt.exam_template_id') === subject.exam_template_id,
                   )}
                 />
+                <TotalStats {...calculateExamResults(form.watch('subjectResults'))} />
               </div>
             ) : null}
 

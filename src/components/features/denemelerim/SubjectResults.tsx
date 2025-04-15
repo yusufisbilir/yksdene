@@ -21,9 +21,7 @@ export function SubjectResults({ form, subjects }: SubjectResultsProps) {
           <div key={subject.id} className="space-y-2">
             <div className="flex items-center gap-2">
               <h3 className="font-medium">{subject.name}</h3>
-              <span className="text-sm text-muted-foreground ml-auto">
-                {subject.question_count} Soru
-              </span>
+              <span className="text-xs text-gray-400 ml-auto">{subject.question_count} Soru</span>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <FormField
