@@ -4,7 +4,7 @@ import { apiRequestValidator } from './requestValidator.service'
 
 export const profileService = {
   async getProfile(): Promise<Profile | null> {
-    return apiRequestValidator.withServiceAuth(async (userId) => {
+    return await apiRequestValidator.withServiceAuth(async (userId) => {
       const supabase = await supabaseServerClient()
       const { data, error } = await supabase.from('profiles').select('*').eq('id', userId).single()
 
@@ -14,7 +14,7 @@ export const profileService = {
   },
 
   async updateProfile(profileData: ProfileUpdate): Promise<Profile> {
-    return apiRequestValidator.withServiceAuth(async (userId) => {
+    return await apiRequestValidator.withServiceAuth(async (userId) => {
       const supabase = await supabaseServerClient()
       const { data, error } = await supabase
         .from('profiles')
@@ -33,7 +33,7 @@ export const profileService = {
   },
 
   async getProfileWithUniversityProgram(): Promise<ProfilesUniversityProgramView | null> {
-    return apiRequestValidator.withServiceAuth(async (userId) => {
+    return await apiRequestValidator.withServiceAuth(async (userId) => {
       const supabase = await supabaseServerClient()
       const { data, error } = await supabase
         .from('profiles_university_programs_view')
@@ -46,7 +46,7 @@ export const profileService = {
   },
 
   async getIsPremium(): Promise<boolean> {
-    return apiRequestValidator.withServiceAuth(async (userId) => {
+    return await apiRequestValidator.withServiceAuth(async (userId) => {
       const supabase = await supabaseServerClient()
       const { data, error } = await supabase
         .from('profiles')

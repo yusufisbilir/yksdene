@@ -50,7 +50,7 @@ export default function PublicDashboardView() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6">
         <Card className="relative overflow-hidden transition-all duration-300 border-2 shadow-lg border-primary/20 group hover:border-primary/30 hover:shadow-xl bg-card">
           <div className="absolute inset-0 opacity-50 bg-gradient-to-br from-primary/5 to-primary/10"></div>
           <div className="absolute w-40 h-40 rounded-full -top-20 -right-20 bg-primary/10 blur-3xl"></div>
@@ -103,44 +103,6 @@ export default function PublicDashboardView() {
               </div>
             </div>
           </div>
-        </Card>
-        <Card className="overflow-hidden">
-          <CardHeader className="p-6 pb-0">
-            <CardTitle>Gelecek özellikler</CardTitle>
-            <CardDescription>Kahveni yudumla ve gelişimini seyret. ☕️</CardDescription>
-          </CardHeader>
-          <CardContent className="p-6">
-            <ul className="space-y-2">
-              <li className="flex items-start">
-                <CheckCircle className="w-5 h-5 mr-2 text-primary shrink-0" />
-                <span>Deneme netlerinle gerçek sıralamanı öğren</span>
-              </li>
-              <li className="flex items-start">
-                <CheckCircle className="w-5 h-5 mr-2 text-primary shrink-0" />
-                <span>Girmek istediğin bölümü seçip hayallerine ne kadar yaklaştığını izle</span>
-              </li>
-              <li className="flex items-start">
-                <CheckCircle className="w-5 h-5 mr-2 text-primary shrink-0" />
-                <span>Günlük denemelere kayıt ol ve sıralamalarda yarış</span>
-              </li>
-              <li className="flex items-start">
-                <CheckCircle className="w-5 h-5 mr-2 text-primary shrink-0" />
-                <span>Başarı tablosunda yerini al</span>
-              </li>
-              <li className="flex items-start">
-                <CheckCircle className="w-5 h-5 mr-2 text-primary shrink-0" />
-                <span>Sınav profili oluştur</span>
-              </li>
-              <li className="flex items-start">
-                <CheckCircle className="w-5 h-5 mr-2 text-primary shrink-0" />
-                <span>Diğer sınav öğrencileriyle sosyalleş</span>
-              </li>
-              <li className="flex items-start">
-                <CheckCircle className="w-5 h-5 mr-2 text-primary shrink-0" />
-                <span>Birlikte sınav odaklı bir sosyal medya olmayalım mı?</span>
-              </li>
-            </ul>
-          </CardContent>
         </Card>
       </div>
 
