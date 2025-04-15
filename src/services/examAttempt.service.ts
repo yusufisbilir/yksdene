@@ -10,6 +10,7 @@ import {
 import { examTemplates } from '@/constants/db.constants'
 import { apiRequestValidator } from './requestValidator.service'
 import { AppError } from '@/utils/errors'
+import { profileService } from './profile.service'
 
 export const examAttemptService = {
   // Create
@@ -28,6 +29,18 @@ export const examAttemptService = {
     })
   },
 
+  async _examAttemptCount(userId: string): Promise<number> {
+    const supabase = await supabaseServerClient()
+    const { count, error } = await supabase
+      .from('exam_attempts')
+      .select('*', { count: 'exact', head: true })
+      .eq('user_id', userId)
+
+    if (error) throw error
+    return count ?? 0
+  },
+
+  // src/services/examAttempt.service.ts
   async createExamAttemptWithResults({
     examAttempt,
     subjectResults,
@@ -37,6 +50,18 @@ export const examAttemptService = {
   }) {
     return apiRequestValidator.withServiceAuth(async (userId) => {
       const supabase = await supabaseServerClient()
+
+      // Get count of user's exam attempts
+      const count = await this._examAttemptCount(userId)
+      const isPremium = await profileService.getIsPremium()
+
+      // Check if user has reached free limit
+      if (!isPremium && count >= 5) {
+        throw new AppError(
+          'Ücretsiz kullanıcılar yalnızca 5 deneme yapabilir. Premium üyelik alarak deneme sayısını artırabilirsiniz.',
+          403,
+        )
+      }
 
       // Ensure user_id is set to authenticated user
       const examAttemptWithUserId = {

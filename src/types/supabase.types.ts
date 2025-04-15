@@ -114,6 +114,7 @@ export type Database = {
           graduated: boolean
           id: string
           image_url: string | null
+          is_premium: boolean
           name: string | null
           obp: number
           university_program: string | null
@@ -126,6 +127,7 @@ export type Database = {
           graduated?: boolean
           id: string
           image_url?: string | null
+          is_premium?: boolean
           name?: string | null
           obp?: number
           university_program?: string | null
@@ -138,6 +140,7 @@ export type Database = {
           graduated?: boolean
           id?: string
           image_url?: string | null
+          is_premium?: boolean
           name?: string | null
           obp?: number
           university_program?: string | null
