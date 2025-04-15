@@ -117,7 +117,7 @@ export default function DashboardProfileView({
                 <p className="text-xl font-semibold">{profile?.university}</p>
 
                 {/* Department Info */}
-                <p className="text-lg font-medium">{profile?.department}</p>
+                <p className="text-lg font-medium">{profile?.program}</p>
                 {/* Required Score and Ranking */}
                 <div className="flex items-center self-end gap-2">
                   <Crosshair className="w-5 text-orange-600" />
