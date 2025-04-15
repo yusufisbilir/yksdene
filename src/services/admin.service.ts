@@ -8,7 +8,7 @@ type TotalExamAttemptsPerUser = {
 
 export const adminService = {
   async getAllUsers(): Promise<Profile[]> {
-    return apiRequestValidator.withAdminAuth(async () => {
+    return await apiRequestValidator.withAdminAuth(async () => {
       const supabase = supabaseAdminClient
 
       const { data, error } = await supabase
@@ -25,7 +25,7 @@ export const adminService = {
   },
 
   async getTotalExamAttemptsPerUser(): Promise<TotalExamAttemptsPerUser> {
-    return apiRequestValidator.withAdminAuth(async () => {
+    return await apiRequestValidator.withAdminAuth(async () => {
       const supabase = supabaseAdminClient
       const { data, error } = await supabase.from('exam_attempts').select('user_id')
 

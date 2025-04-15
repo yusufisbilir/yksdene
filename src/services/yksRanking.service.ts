@@ -555,7 +555,7 @@ export const yksRankingService = {
   },
   // run this function after saved new exam attempt
   async calculateAndsaveYKSRanking() {
-    apiRequestValidator.withServiceAuth(async (userId) => {
+    await apiRequestValidator.withServiceAuth(async (userId) => {
       const supabase = await supabaseServerClient()
       const preparedData = await this._prepareYKSRanking()
 
@@ -568,7 +568,7 @@ export const yksRankingService = {
 
   // read yks ranking table
   async getYKSRanking(): Promise<YksRanking[]> {
-    return apiRequestValidator.withServiceAuth(async (userId) => {
+    return await apiRequestValidator.withServiceAuth(async (userId) => {
       const supabase = await supabaseServerClient()
       const { data, error } = await supabase
         .from('yks_rankings')

@@ -15,7 +15,7 @@ import { profileService } from './profile.service'
 export const examAttemptService = {
   // Create
   async _createExamAttempt(examAttempt: ExamAttemptInsert) {
-    return apiRequestValidator.withServiceAuth(async (userId) => {
+    return await apiRequestValidator.withServiceAuth(async (userId) => {
       const supabase = await supabaseServerClient()
 
       const { data, error } = await supabase
@@ -48,7 +48,7 @@ export const examAttemptService = {
     examAttempt: ExamAttemptInsert
     subjectResults: Omit<SubjectResultInsert, 'exam_attempt_id'>[]
   }) {
-    return apiRequestValidator.withServiceAuth(async (userId) => {
+    return await apiRequestValidator.withServiceAuth(async (userId) => {
       const supabase = await supabaseServerClient()
 
       // Get count of user's exam attempts
@@ -94,7 +94,7 @@ export const examAttemptService = {
 
   // Delete
   async deleteExamAttempt(id: string) {
-    return apiRequestValidator.withServiceAuth(async (userId) => {
+    return await apiRequestValidator.withServiceAuth(async (userId) => {
       const supabase = await supabaseServerClient()
 
       const { data, error } = await supabase.from('exam_attempts').delete().eq('id', id)
@@ -106,7 +106,7 @@ export const examAttemptService = {
 
   // Read
   async getLastExamResults(): Promise<LastExamResults> {
-    return apiRequestValidator.withServiceAuth(async (userId) => {
+    return await apiRequestValidator.withServiceAuth(async (userId) => {
       const supabase = await supabaseServerClient()
       const results: LastExamResults = {}
 
@@ -155,7 +155,7 @@ export const examAttemptService = {
   },
 
   async getExamAttemptView(): Promise<ExamAttemptView[]> {
-    return apiRequestValidator.withServiceAuth(async (userId) => {
+    return await apiRequestValidator.withServiceAuth(async (userId) => {
       const supabase = await supabaseServerClient()
 
       const { data, error } = await supabase
@@ -169,7 +169,7 @@ export const examAttemptService = {
   },
 
   async getExamAttemptStatistics(): Promise<ExamCategoryStatistics> {
-    return apiRequestValidator.withServiceAuth(async (userId) => {
+    return await apiRequestValidator.withServiceAuth(async (userId) => {
       const attempts = await this.getExamAttemptView()
 
       if (attempts.length === 0) {
