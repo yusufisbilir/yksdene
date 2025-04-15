@@ -29,6 +29,7 @@ import {
 } from '@/components/ui/dialog'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import universityPrograms from '@/constants/universityPrograms/universityPrograms.json'
+import { ROUTES } from '@/constants/routes'
 
 export default function ProfileTargets() {
   const router = useRouter()
@@ -122,7 +123,7 @@ export default function ProfileTargets() {
     try {
       await updateProfile(updatedProfile).unwrap()
       toast.success('Profil bilgileri güncellendi')
-      router.refresh()
+      router.push(ROUTES.HOME)
     } catch (error) {
       toast.error(error instanceof Error ? error.message : 'Profil güncellenirken bir hata oluştu')
     }
