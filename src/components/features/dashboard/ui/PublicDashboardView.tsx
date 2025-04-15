@@ -43,6 +43,14 @@ const features = [
 export default function PublicDashboardView() {
   return (
     <section className="space-y-6 panel">
+      <div className="w-full p-4 mb-4 text-center text-white bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg shadow-md">
+        <div className="flex flex-col items-center justify-center gap-2 md:flex-row">
+          <span className="font-bold">🎉 Sınırlı bir süre için ÖZEL!</span>
+          <span>
+            Premium hesap tamamen <span className="font-bold underline">ÜCRETSİZ</span>
+          </span>
+        </div>
+      </div>
       <div className="space-y-2 text-center">
         <h1 className="text-3xl font-bold tracking-tight">Hoş Geldin! 🎉</h1>
         <p className="text-muted-foreground">

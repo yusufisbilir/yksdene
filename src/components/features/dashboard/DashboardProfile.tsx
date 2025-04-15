@@ -1,7 +1,10 @@
 'use client'
 
 import PageLoader from '@/components/shared/PageLoader'
-import { useGetProfileWithUniversityProgramQuery } from '@/features/profile.slice'
+import {
+  useGetProfileQuery,
+  useGetProfileWithUniversityProgramQuery,
+} from '@/features/profile.slice'
 import DashboardProfileView from './ui/DashboardProfileView'
 import { useGetYKSRankingQuery } from '@/features/examAttempt.slice'
 import { ProfilesUniversityProgramView, YksRanking } from '@/types'
@@ -11,6 +14,7 @@ export default function DashboardProfile() {
   const { data: yksRanking, isLoading: isYksRankingLoading } = useGetYKSRankingQuery()
   const { data: profileWithUniversityProgram, isLoading: isProfileWithUniversityProgramLoading } =
     useGetProfileWithUniversityProgramQuery()
+  const { data: profile } = useGetProfileQuery()
 
   const getLastRanking = (
     profileWithUniversityProgram: ProfilesUniversityProgramView,
@@ -71,6 +75,7 @@ export default function DashboardProfile() {
         (getLastRanking(profileWithUniversityProgram, yksRanking) ?? 0) <=
         (profileWithUniversityProgram?.rank ?? 0)
       }
+      isPremium={profile?.is_premium ?? false}
     />
   )
 }
