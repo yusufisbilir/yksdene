@@ -97,7 +97,7 @@ export default function DashboardProfileView({
       </div>
 
       {/* Profile Details - University, Department, and Feedback */}
-      <div className="flex flex-col flex-grow gap-4 text-center md:text-left">
+      <div className="flex flex-col flex-grow gap-4 text-left">
         {/* University and Department Information */}
         <div className="grid grid-cols-1 gap-3">
           {/* University, Department and Target Field */}
@@ -114,16 +114,17 @@ export default function DashboardProfileView({
               <Landmark className="w-5 h-5 text-orange-600 mt-0.5" />
               <div className="flex flex-col w-full gap-2">
                 <span className="text-xs text-muted-foreground">Üniversite</span>
-                <p className="text-xl font-semibold">{profile?.university}</p>
+                <p className="text-sm sm:text-xl font-semibold">{profile?.university}</p>
 
                 {/* Department Info */}
-                <p className="text-lg font-medium">{profile?.program}</p>
+                <p className="text-sm sm:text-lg font-medium">{profile?.program}</p>
                 {/* Required Score and Ranking */}
-                <div className="flex items-center self-end gap-2">
+                <div className="flex items-center sm:self-end gap-2">
                   <Crosshair className="w-5 text-orange-600" />
-                  <p className="text-muted-foreground">{`${profile?.rank?.toLocaleString()} ranking | ${
-                    profile.score
-                  } points`}</p>
+                  <div className="flex flex-col gap-1">
+                    <p className="text-sm sm:text-base text-muted-foreground">{`${profile?.rank?.toLocaleString()} sıralama`}</p>
+                    <p className="text-sm sm:text-base text-muted-foreground">{`${profile.score} puan`}</p>
+                  </div>
                 </div>
               </div>
             </div>
