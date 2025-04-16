@@ -1,5 +1,5 @@
 import { supabaseAdminClient } from '@/lib/supabaseAdminClient'
-import { Profile } from '@/types'
+import { Profile, ProfilesUniversityProgramView } from '@/types'
 import { apiRequestValidator } from './requestValidator.service'
 
 type TotalExamAttemptsPerUser = {
@@ -42,6 +42,15 @@ export const adminService = {
         }
       }
       return counts
+    })
+  },
+
+  async getAllProfilesWithUniversityProgram(): Promise<ProfilesUniversityProgramView[] | null> {
+    return await apiRequestValidator.withAdminAuth(async () => {
+      const supabase = await supabaseAdminClient
+      const { data, error } = await supabase.from('profiles_university_programs_view').select('*')
+      if (error) throw error
+      return data
     })
   },
 }

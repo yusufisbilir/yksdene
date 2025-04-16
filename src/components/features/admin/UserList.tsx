@@ -3,18 +3,21 @@ import { TableBody, TableCell, TableRow } from '@/components/ui/table'
 import { Table, TableHead } from '@/components/ui/table'
 import { TableHeader } from '@/components/ui/table'
 import { adminService } from '@/services/admin.service'
-import { Profile } from '@/types'
+import { ProfilesUniversityProgramView, UniversityProgram } from '@/types'
+import universityPrograms from '@/constants/universityPrograms/universityPrograms.json'
 
 interface UserListProps {
-  users: Profile[]
+  userProfiles: ProfilesUniversityProgramView[]
   examCounts: Awaited<ReturnType<typeof adminService.getTotalExamAttemptsPerUser>>
 }
 
-export function UserList({ users, examCounts }: UserListProps) {
+export function UserList({ userProfiles, examCounts }: UserListProps) {
+  const programsData: UniversityProgram[] = universityPrograms as UniversityProgram[]
+
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Kullanıcı Listesi ({users.length})</CardTitle>
+        <CardTitle>Kullanıcı Listesi ({userProfiles.length})</CardTitle>
       </CardHeader>
       <CardContent>
         <Table>
@@ -23,24 +26,36 @@ export function UserList({ users, examCounts }: UserListProps) {
               <TableHead>Name</TableHead>
               <TableHead>UserName</TableHead>
               <TableHead>ID</TableHead>
-              <TableHead>Mezun</TableHead>
-              <TableHead>OBP</TableHead>
+              <TableHead>University</TableHead>
+              <TableHead>Program</TableHead>
               <TableHead>Oluşturulma</TableHead>
               <TableHead className="text-center">Deneme</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {users.map((user) => {
-              const count = examCounts[user.id]
+            {userProfiles.map((userProfile) => {
+              const count = examCounts[userProfile?.profile_id ?? '']
               return (
-                <TableRow key={user.id}>
-                  <TableCell className="font-mono text-xs">{user.name}</TableCell>
-                  <TableCell>{user?.username ?? '-'}</TableCell>
-                  <TableCell>{user.id}</TableCell>
-                  <TableCell>{user.graduated ? 'Evet' : 'Hayır'}</TableCell>
-                  <TableCell>{user.obp}</TableCell>
+                <TableRow key={userProfile.profile_id}>
+                  <TableCell className="font-mono text-xs">{userProfile.name}</TableCell>
+                  <TableCell>{userProfile?.username ?? '-'}</TableCell>
+                  <TableCell>{userProfile.profile_id}</TableCell>
                   <TableCell>
-                    {user.created_at ? new Date(user.created_at).toLocaleDateString() : '-'}
+                    {
+                      programsData?.find((program) => program.id === userProfile.university_program)
+                        ?.university
+                    }
+                  </TableCell>
+                  <TableCell>
+                    {
+                      programsData?.find((program) => program.id === userProfile.university_program)
+                        ?.program
+                    }
+                  </TableCell>
+                  <TableCell>
+                    {userProfile.created_at
+                      ? new Date(userProfile.created_at).toLocaleString()
+                      : '-'}
                   </TableCell>
                   <TableCell className="text-center">{count ?? '-'}</TableCell>
                 </TableRow>
