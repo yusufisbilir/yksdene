@@ -14,7 +14,7 @@ import { Menu } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useState } from 'react'
 import { UserMenu } from './UserMenu'
-import { getRouteName, ROUTES } from '@/constants/routes'
+import { getNavbarRoutes, getRouteName, ROUTES, RouteValue } from '@/constants/routes'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 
@@ -56,22 +56,20 @@ const Header = () => {
             </div>
           </DrawerHeader>
           <div className="px-4 header_links">
-            {Object.entries(ROUTES)
-              .filter(([key]) => key !== 'LOGIN')
-              .map(([key, value]) => (
-                <Link
-                  key={key}
-                  href={value}
-                  className={cn(
-                    'header_link',
-                    isActive(value) ? 'header_link_active' : 'header_link_inactive',
-                  )}
-                  suppressHydrationWarning
-                  onClick={() => setIsOpen(false)}
-                >
-                  {getRouteName(value)}
-                </Link>
-              ))}
+            {getNavbarRoutes().map(({ key, value }: { key: string; value: RouteValue }) => (
+              <Link
+                key={key}
+                href={value}
+                className={cn(
+                  'header_link',
+                  isActive(value) ? 'header_link_active' : 'header_link_inactive',
+                )}
+                suppressHydrationWarning
+                onClick={() => setIsOpen(false)}
+              >
+                {getRouteName(value)}
+              </Link>
+            ))}
           </div>
           <DrawerFooter>
             <UserMenu />

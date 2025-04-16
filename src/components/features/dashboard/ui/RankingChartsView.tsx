@@ -22,19 +22,23 @@ interface RankingChartProps {
 
 export const RankingChart = ({ dataKey, label, color, stats, chartData }: RankingChartProps) => {
   return (
-    <div style={{ width: '100%', height: 300 }} className="mb-4">
-      <ResponsiveContainer>
-        <LineChart data={chartData} margin={{ top: 10, right: 30, left: 30, bottom: 30 }}>
+    <div className="w-full h-64 md:h-80 mb-4">
+      <ResponsiveContainer width="100%" height="100%">
+        <LineChart data={chartData} margin={{ top: 5, right: 5, left: 5, bottom: 15 }}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="date" />
+          <XAxis dataKey="date" tick={{ fontSize: 12 }} tickMargin={10} />
           <YAxis
             tickFormatter={(value) => value.toLocaleString('tr-TR')}
             domain={['dataMax', 'dataMin']}
             reversed={true}
+            tick={{ fontSize: 12 }}
+            tickMargin={10}
           />
+
           <Tooltip
             formatter={(value) => value.toLocaleString('tr-TR')}
             labelFormatter={(label) => `Tarih: ${label}`}
+            contentStyle={{ fontSize: 12, padding: '8px' }}
           />
 
           <Line
@@ -43,15 +47,15 @@ export const RankingChart = ({ dataKey, label, color, stats, chartData }: Rankin
             name={`${label} Sıralaması`}
             stroke={color}
             strokeWidth={2}
-            dot={{ r: 5 }}
-            activeDot={{ r: 8 }}
+            dot={{ r: 3 }}
+            activeDot={{ r: 6 }}
           />
 
-          {stats.best && stats.bestIndex >= 0 && (
+          {stats?.best && stats?.bestIndex >= 0 && (
             <ReferenceDot
               x={chartData[stats.bestIndex].date}
               y={stats.best}
-              r={8}
+              r={6}
               fill={color}
               stroke="none"
               fillOpacity={0.6}
