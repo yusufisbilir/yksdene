@@ -25,7 +25,7 @@ export default function EmptyDashboardView() {
           </p>
 
           <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-            <Link href={ROUTES.DENEMELERIM}>
+            <Link href={ROUTES.DENEME_EKLE}>
               <Button size="lg" className="flex items-center w-full gap-2 sm:w-auto">
                 <Rocket className="w-5 h-5" />
                 İlk Deneme Sonucumu Ekle!
