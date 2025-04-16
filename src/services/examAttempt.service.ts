@@ -51,9 +51,11 @@ export const examAttemptService = {
     return await apiRequestValidator.withServiceAuth(async (userId) => {
       const supabase = await supabaseServerClient()
 
-      // Get count of user's exam attempts
-      const count = await this._examAttemptCount(userId)
-      const isPremium = await profileService.getIsPremium()
+      // // Get count of user's exam attempts
+      const [count, isPremium] = await Promise.all([
+        this._examAttemptCount(userId),
+        profileService.getIsPremium(),
+      ])
 
       // Check if user has reached free limit
       if (!isPremium && count >= 5) {
