@@ -153,12 +153,26 @@ export default function DashboardProfileView({
           )}
         </div>
         {/* Edit Targets Button */}
-        <Link href={ROUTES.PROFILE_TARGETS} className=" self-end">
-          <Button size="sm" variant="outline" className="flex items-center gap-1 text-xs shadow-sm">
-            <Edit className="w-3 h-3" />
-            Üniversite Hedefini Düzenle
-          </Button>
-        </Link>
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+          <Link href={ROUTES.DENEME_EKLE} className="order-2 sm:order-1">
+            <Button
+              size="sm"
+              className="flex items-center gap-1 text-xs shadow-sm w-full sm:w-auto"
+            >
+              + Deneme Ekle
+            </Button>
+          </Link>
+          <Link href={ROUTES.PROFILE_TARGETS}>
+            <Button
+              size="sm"
+              variant="outline"
+              className="flex items-center gap-1 text-xs shadow-sm w-full sm:w-auto"
+            >
+              <Edit className="w-3 h-3" />
+              Üniversite Hedefini Düzenle
+            </Button>
+          </Link>
+        </div>
       </div>
     </div>
   )

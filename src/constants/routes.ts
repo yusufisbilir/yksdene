@@ -8,13 +8,16 @@ export const ROUTES = {
   YKS_OBP: '/yks_obp',
   PROFILE_TARGETS: '/profil/hedefler',
   CLERK_TARGETS: '/hedefler',
+  DENEME_EKLE: '/denemelerim?ekle=true',
 } as const
 
 export type RouteValue = (typeof ROUTES)[keyof typeof ROUTES]
 
 export const getNavbarRoutes = () => {
   return Object.entries(ROUTES)
-    .filter(([key]) => key !== 'YKS_OBP' && key !== 'PROFILE_TARGETS' && key !== 'CLERK_TARGETS')
+    .filter(
+      ([key]) => !['YKS_OBP', 'PROFILE_TARGETS', 'CLERK_TARGETS', 'DENEME_EKLE'].includes(key),
+    )
     .map(([key, value]) => ({ key, value }))
 }
 
@@ -38,6 +41,8 @@ export const getRouteName = (route: RouteValue) => {
       return 'Üniversite Hedefi'
     case ROUTES.CLERK_TARGETS:
       return 'Üniversite Hedefi'
+    case ROUTES.DENEME_EKLE:
+      return 'Deneme Ekle'
     default:
       // if route is not in ROUTES, this will throw an error
       const exhaustiveCheck: never = route
