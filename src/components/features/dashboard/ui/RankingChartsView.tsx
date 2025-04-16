@@ -24,7 +24,7 @@ export const RankingChart = ({ dataKey, label, color, stats, chartData }: Rankin
   return (
     <div className="w-full h-64 md:h-80 mb-4">
       <ResponsiveContainer width="100%" height="100%">
-        <LineChart data={chartData} margin={{ top: 5, right: 5, left: 5, bottom: 15 }}>
+        <LineChart data={chartData} margin={{ top: 5, right: 5, left: 12, bottom: 15 }}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="date" tick={{ fontSize: 12 }} tickMargin={10} />
           <YAxis
