@@ -17,6 +17,11 @@ export type Profile = Tables<'profiles'>
 export type ProfileInsert = TablesInsert<'profiles'>
 export type ProfileUpdate = TablesUpdate<'profiles'>
 
+// Orders
+export type Order = Tables<'orders'>
+export type OrderInsert = TablesInsert<'orders'>
+export type OrderUpdate = TablesUpdate<'orders'>
+
 // Subjects
 export type Subject = Tables<'subjects'>
 export type SubjectInsert = TablesInsert<'subjects'>
