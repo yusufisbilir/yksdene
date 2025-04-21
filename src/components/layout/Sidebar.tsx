@@ -9,7 +9,18 @@ import { UserMenu } from './UserMenu'
 const Sidebar = () => {
   const pathname = usePathname()
 
-  const isActive = (path: string) => pathname === path
+  const isActive = (path: string) => {
+    if (path === '/') {
+      return pathname === '/'
+    }
+    if (path === '/denemelerim') {
+      return pathname === '/denemelerim' || pathname.startsWith('/denemelerim?')
+    }
+    if (path === '/deneme') {
+      return pathname === '/deneme' || pathname.startsWith('/deneme/')
+    }
+    return pathname.startsWith(path)
+  }
 
   return (
     <nav className="sidebar">
