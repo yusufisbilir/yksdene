@@ -46,15 +46,6 @@ export default function OdemeBasarisizPage() {
             doğrulaması veya banka sistemlerindeki geçici sorunlar nedeniyle olabilir.
           </p>
         </div>
-
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button asChild size="lg">
-            <Link href="/odeme">Tekrar Dene</Link>
-          </Button>
-          <Button asChild variant="outline" size="lg">
-            <Link href="/destek">Yardım Al</Link>
-          </Button>
-        </div>
       </Card>
     </div>
   )
