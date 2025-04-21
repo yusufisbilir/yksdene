@@ -263,6 +263,7 @@ export const paymentService = {
       .from('profiles')
       .update({
         is_paid: newStatus === 'paid',
+        is_premium: newStatus === 'paid',
       })
       .eq('id', order.user_id)
 
