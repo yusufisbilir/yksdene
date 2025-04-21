@@ -17,16 +17,16 @@ export async function POST(request: NextRequest) {
       currency: formData.get('currency') as string | undefined,
       test_mode: formData.get('test_mode') as string | undefined,
     }
-
+    console.log('callbackData', callbackData)
     try {
       await paymentService.handlePaymentCallback(callbackData)
       return new Response('OK')
     } catch (error: any) {
-      console.error('PayTR callback işleme hatası:', error.message)
+      console.error('PayTR callback processing error:', error.message)
       return new Response(`PAYTR notification failed: ${error.message}`, { status: 400 })
     }
   } catch (error) {
-    console.error('PayTR callback hatası:', error)
+    console.error('PayTR callback error:', error)
     return new Response('PAYTR notification failed', { status: 500 })
   }
 }

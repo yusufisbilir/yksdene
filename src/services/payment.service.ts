@@ -37,6 +37,7 @@ export const paymentService = {
    * security is ensured through hash validation
    */
   async handlePaymentCallback(callbackData: PaytrCallbackData) {
+    // Direct call to internal method without authentication
     return this._handlePaymentCallbackInternal(callbackData)
   },
 
@@ -259,8 +260,19 @@ export const paymentService = {
       })
       .eq('id', order.id)
 
+    const { error: updateProfileError } = await supabaseAdminClient
+      .from('profiles')
+      .update({
+        is_paid: newStatus === 'paid',
+      })
+      .eq('id', order.user_id)
+
     if (updateError) {
       throw new Error(`Order update error: ${updateError.message}`)
+    }
+
+    if (updateProfileError) {
+      throw new Error(`Profile update error: ${updateProfileError.message}`)
     }
 
     return { status: 'success' }
