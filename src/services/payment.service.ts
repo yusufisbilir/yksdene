@@ -62,6 +62,10 @@ export const paymentService = {
     const user_basket = [['YKS Dene Premium', '99', 1]]
     const basketItems = user_basket
 
+    // PayTR expects base64 encoded JSON for user_basket
+    const user_basket_json = JSON.stringify(user_basket)
+    const user_basketstr = Buffer.from(user_basket_json).toString('base64')
+
     // Test mode - activate test mode in development environment
     const test_mode = process.env.NODE_ENV === 'development' ? '1' : '0'
 
@@ -86,7 +90,7 @@ export const paymentService = {
       userIp: user_ip,
       email,
       paymentAmount: payment_amount,
-      userBasket: JSON.stringify(user_basket),
+      userBasket: user_basketstr,
       noInstallment: no_installment,
       maxInstallment: max_installment,
       currency,
@@ -141,7 +145,7 @@ export const paymentService = {
       email,
       payment_amount: payment_amount.toString(),
       paytr_token,
-      user_basket: JSON.stringify(user_basket),
+      user_basket: user_basketstr,
       debug_on,
       no_installment,
       max_installment,
