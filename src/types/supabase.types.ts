@@ -141,7 +141,22 @@ export type Database = {
           updated_at?: string
           user_id?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "orders_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "orders_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles_university_programs_view"
+            referencedColumns: ["profile_id"]
+          },
+        ]
       }
       profiles: {
         Row: {
@@ -150,6 +165,7 @@ export type Database = {
           graduated: boolean
           id: string
           image_url: string | null
+          is_paid: boolean | null
           is_premium: boolean
           name: string | null
           obp: number
@@ -163,6 +179,7 @@ export type Database = {
           graduated?: boolean
           id: string
           image_url?: string | null
+          is_paid?: boolean | null
           is_premium?: boolean
           name?: string | null
           obp?: number
@@ -176,6 +193,7 @@ export type Database = {
           graduated?: boolean
           id?: string
           image_url?: string | null
+          is_paid?: boolean | null
           is_premium?: boolean
           name?: string | null
           obp?: number
