@@ -17,7 +17,6 @@ export async function POST(request: NextRequest) {
       currency: formData.get('currency') as string | undefined,
       test_mode: formData.get('test_mode') as string | undefined,
     }
-    console.log('callbackData', callbackData)
     try {
       await paymentService.handlePaymentCallback(callbackData)
       return new Response('OK')
