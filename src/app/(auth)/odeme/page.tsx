@@ -29,7 +29,6 @@ export default function OdemePage() {
         userName: profile?.name ?? '',
         userPhone: '5555555555',
         userAddress: 'Turkiye',
-        basketItems: [['YKS Dene Premium', '99', 1]],
       }).unwrap()
 
       if (response.status === 'success') {

@@ -8,7 +8,6 @@ export interface PaymentRequest {
   userName: string
   userAddress: string
   userPhone: string
-  basketItems: [string, string, number][] // [product name, price, quantity]
   orderId?: string
 }
 

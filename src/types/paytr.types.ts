@@ -4,7 +4,6 @@ export interface PaytrPaymentRequest {
   userName: string
   userAddress: string
   userPhone: string
-  basketItems: [string, string, number][] // [product name, price, quantity]
   orderId?: string // Optional, if the order has its own ID
 }
 
