@@ -10,13 +10,6 @@ export interface PaymentInsert {
   userName: string
   userAddress: string
   userPhone: string
-  basketItems:
-    | [string, string, number][]
-    | Array<{
-        name: string
-        price: number
-        quantity: number
-      }>
   orderId?: string
 }
 
@@ -49,7 +42,7 @@ export const paymentService = {
 
   // Private internal implementations
   async _createPaymentInternal(payment: PaymentInsert, userId: string) {
-    const { amount, userEmail, userName, userAddress, userPhone, basketItems, orderId } = payment
+    const { amount, userEmail, userName, userAddress, userPhone, orderId } = payment
     console.log('payment', payment)
 
     // Create order ID - must be alphanumeric (no dashes or special characters)
@@ -66,28 +59,8 @@ export const paymentService = {
     const email = userEmail
     const payment_amount = amount * 100 // PayTR expects 100 for 1.00 TL
 
-    // Basket information - in JSON string format
-    // PayTR expects user_basket as an array of arrays in the format: [["Item name", "Price", "Quantity"], ...]
-    let formattedBasket: [string, string, number][]
-
-    if (Array.isArray(basketItems) && basketItems.length > 0) {
-      // Check if basketItems is already in the correct format [string, string, number][]
-      if (Array.isArray(basketItems[0])) {
-        formattedBasket = basketItems as [string, string, number][]
-      } else {
-        // Convert object format to array format
-        formattedBasket = basketItems.map((item: any) => [
-          item.name || 'Ürün',
-          (item.price || 0).toFixed(2),
-          item.quantity || 1,
-        ]) as [string, string, number][]
-      }
-    } else {
-      // Fallback if basketItems is empty or not provided
-      formattedBasket = [['Ürün', amount.toFixed(2), 1]]
-    }
-
-    const user_basket = JSON.stringify(formattedBasket)
+    const user_basket = [['YKS Dene Premium', '99', 1]]
+    const basketItems = user_basket
 
     // Test mode - activate test mode in development environment
     const test_mode = process.env.NODE_ENV === 'development' ? '1' : '0'
@@ -113,7 +86,7 @@ export const paymentService = {
       userIp: user_ip,
       email,
       paymentAmount: payment_amount,
-      userBasket: user_basket,
+      userBasket: JSON.stringify(user_basket),
       noInstallment: no_installment,
       maxInstallment: max_installment,
       currency,
@@ -168,7 +141,7 @@ export const paymentService = {
       email,
       payment_amount: payment_amount.toString(),
       paytr_token,
-      user_basket,
+      user_basket: JSON.stringify(user_basket),
       debug_on,
       no_installment,
       max_installment,
