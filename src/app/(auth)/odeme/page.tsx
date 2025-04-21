@@ -1,12 +1,12 @@
 'use client'
 
-import React, { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import { useAuth } from '@clerk/nextjs'
-import { useGetProfileQuery } from '@/features/profile.slice'
 import { useCreatePaymentMutation } from '@/features/payment.slice'
-import { Check, CreditCard, Shield } from 'lucide-react'
+import { useGetProfileQuery } from '@/features/profile.slice'
+import { useAuth } from '@clerk/nextjs'
+import { Check, CreditCard, Shield, Star, Loader2 } from 'lucide-react'
+import { useState } from 'react'
 
 export default function OdemePage() {
   const { userId } = useAuth()
@@ -47,6 +47,61 @@ export default function OdemePage() {
     }
   }
 
+  if (isProfileLoading) {
+    return (
+      <div className="container mx-auto py-12 max-w-5xl px-4 sm:px-6 bg-gradient-to-b from-orange-50/50 to-transparent rounded-3xl">
+        <div className="flex flex-col items-center justify-center min-h-[50vh]">
+          <Loader2 className="h-12 w-12 text-orange-500 animate-spin mb-4" />
+          <p className="text-gray-600">Profil bilgileri yükleniyor...</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (profile?.is_paid) {
+    return (
+      <div className="container mx-auto py-12 max-w-5xl px-4 sm:px-6 bg-gradient-to-b from-orange-50/50 to-transparent rounded-3xl">
+        <h1 className="text-3xl font-bold mb-8 text-center">YKS Dene Premium Üyelik</h1>
+        <Card className="overflow-hidden border-0 shadow-md max-w-2xl mx-auto">
+          <div className="bg-gradient-to-r from-green-500 to-green-400 p-6">
+            <h2 className="text-xl font-semibold text-white">Premium Hesap</h2>
+          </div>
+          <div className="p-8 text-center">
+            <div className="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-6">
+              <Check className="h-10 w-10 text-green-500" />
+            </div>
+            <h3 className="text-2xl font-bold text-green-600 mb-3">Ödeme Yapıldı</h3>
+            <p className="text-gray-600 mb-6">
+              Premium hesaba başarıyla abone oldunuz. Tüm özel içeriklere erişebilirsiniz.
+            </p>
+          </div>
+        </Card>
+      </div>
+    )
+  }
+
+  if (profile?.is_premium) {
+    return (
+      <div className="container mx-auto py-12 max-w-5xl px-4 sm:px-6 bg-gradient-to-b from-orange-50/50 to-transparent rounded-3xl">
+        <h1 className="text-3xl font-bold mb-8 text-center">YKS Dene Premium Üyelik</h1>
+        <Card className="overflow-hidden border-0 shadow-md max-w-2xl mx-auto">
+          <div className="bg-gradient-to-r from-purple-500 to-purple-400 p-6">
+            <h2 className="text-xl font-semibold text-white">Ücretsiz Premium Hesap</h2>
+          </div>
+          <div className="p-8 text-center">
+            <div className="w-20 h-20 rounded-full bg-purple-100 flex items-center justify-center mx-auto mb-6">
+              <Star className="h-10 w-10 text-purple-500" />
+            </div>
+            <h3 className="text-2xl font-bold text-purple-600 mb-3">Ücretsiz Premium Hesap</h3>
+            <p className="text-gray-600 mb-6">
+              Ücretsiz premium hesaba sahipsiniz. Tüm özel içeriklere erişebilirsiniz.
+            </p>
+          </div>
+        </Card>
+      </div>
+    )
+  }
+
   return (
     <div className="container mx-auto py-12 max-w-5xl px-4 sm:px-6 bg-gradient-to-b from-orange-50/50 to-transparent rounded-3xl">
       <h1 className="text-3xl font-bold mb-8 text-center">YKS Dene Premium Üyelik</h1>
@@ -67,7 +122,6 @@ export default function OdemePage() {
                   erişebilirsiniz.
                 </p>
               </div>
-
               <div className="mb-6">
                 <h3 className="text-lg font-medium text-orange-500">Paket İçeriği</h3>
                 <ul className="mt-3 space-y-2">
@@ -87,7 +141,7 @@ export default function OdemePage() {
                     <div className="h-5 w-5 rounded-full bg-orange-100 flex items-center justify-center mr-2 flex-shrink-0 mt-0.5">
                       <Check className="h-3 w-3 text-orange-500" />
                     </div>
-                    <span className="text-gray-600">Günluk Denemeler</span>
+                    <span className="text-gray-600">Günlük Denemeler</span>
                   </li>
                   <li className="flex items-start">
                     <div className="h-5 w-5 rounded-full bg-orange-100 flex items-center justify-center mr-2 flex-shrink-0 mt-0.5">
@@ -103,7 +157,6 @@ export default function OdemePage() {
                   </li>
                 </ul>
               </div>
-
               <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                 <div className="flex items-center gap-3">
                   <span className="text-gray-400 line-through">₺399</span>
@@ -137,11 +190,18 @@ export default function OdemePage() {
 
                 <Button
                   onClick={handlePayment}
-                  disabled={loading || isProfileLoading}
+                  disabled={loading}
                   className="w-full h-12 text-base font-medium bg-orange-500 hover:bg-orange-600"
                   size="lg"
                 >
-                  {loading ? 'İşleniyor...' : 'Şimdi Satın Al'}
+                  {loading ? (
+                    <div className="flex items-center gap-2">
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                      <span>İşleniyor...</span>
+                    </div>
+                  ) : (
+                    'Şimdi Satın Al'
+                  )}
                 </Button>
               </div>
 

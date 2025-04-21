@@ -5,6 +5,7 @@ export const ROUTES = {
   DAILYEXAMPRACTICE: '/gunluk_deneme',
   POMODORO: '/pomodoro',
   PROFILE: '/profil',
+  PAYMENT: '/odeme',
   YKS_OBP: '/yks_obp',
   PROFILE_TARGETS: '/profil/hedefler',
   CLERK_TARGETS: '/hedefler',
@@ -35,6 +36,8 @@ export const getRouteName = (route: RouteValue) => {
       return 'Anasayfa'
     case ROUTES.PROFILE:
       return 'Profil'
+    case ROUTES.PAYMENT:
+      return 'Ödeme'
     case ROUTES.YKS_OBP:
       return 'YKS OBP'
     case ROUTES.PROFILE_TARGETS:
