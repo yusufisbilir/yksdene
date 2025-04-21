@@ -10,11 +10,13 @@ export interface PaymentInsert {
   userName: string
   userAddress: string
   userPhone: string
-  basketItems: Array<{
-    name: string
-    price: number
-    quantity: number
-  }>
+  basketItems:
+    | [string, string, number][]
+    | Array<{
+        name: string
+        price: number
+        quantity: number
+      }>
   orderId?: string
 }
 
@@ -66,13 +68,24 @@ export const paymentService = {
 
     // Basket information - in JSON string format
     // PayTR expects user_basket as an array of arrays in the format: [["Item name", "Price", "Quantity"], ...]
-    const formattedBasket = Array.isArray(basketItems)
-      ? basketItems.map((item) => [
+    let formattedBasket: [string, string, number][]
+
+    if (Array.isArray(basketItems) && basketItems.length > 0) {
+      // Check if basketItems is already in the correct format [string, string, number][]
+      if (Array.isArray(basketItems[0])) {
+        formattedBasket = basketItems as [string, string, number][]
+      } else {
+        // Convert object format to array format
+        formattedBasket = basketItems.map((item: any) => [
           item.name || 'Ürün',
           (item.price || 0).toFixed(2),
           item.quantity || 1,
-        ])
-      : [['Ürün', amount.toFixed(2), 1]]
+        ]) as [string, string, number][]
+      }
+    } else {
+      // Fallback if basketItems is empty or not provided
+      formattedBasket = [['Ürün', amount.toFixed(2), 1]]
+    }
 
     const user_basket = JSON.stringify(formattedBasket)
 

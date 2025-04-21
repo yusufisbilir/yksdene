@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
+import { ROUTES } from '@/constants/routes'
 
 export default function OdemeBasariliPage() {
   const searchParams = useSearchParams()
@@ -44,15 +45,6 @@ export default function OdemeBasariliPage() {
             erişebilirsiniz. Herhangi bir sorun yaşarsanız, lütfen destek ekibimizle iletişime
             geçin.
           </p>
-        </div>
-
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button asChild size="lg">
-            <Link href="/dashboard">Dashboard'a Git</Link>
-          </Button>
-          <Button asChild variant="outline" size="lg">
-            <Link href="/denemeler">Denemelere Başla</Link>
-          </Button>
         </div>
       </Card>
     </div>
