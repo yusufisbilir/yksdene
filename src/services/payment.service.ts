@@ -10,7 +10,11 @@ export interface PaymentInsert {
   userName: string
   userAddress: string
   userPhone: string
-  basketItems: any[]
+  basketItems: Array<{
+    name: string
+    price: number
+    quantity: number
+  }>
   orderId?: string
 }
 
@@ -61,7 +65,16 @@ export const paymentService = {
     const payment_amount = amount * 100 // PayTR expects 100 for 1.00 TL
 
     // Basket information - in JSON string format
-    const user_basket = JSON.stringify(basketItems)
+    // PayTR expects user_basket as an array of arrays in the format: [["Item name", "Price", "Quantity"], ...]
+    const formattedBasket = Array.isArray(basketItems)
+      ? basketItems.map((item) => [
+          item.name || 'Ürün',
+          (item.price || 0).toFixed(2),
+          item.quantity || 1,
+        ])
+      : [['Ürün', amount.toFixed(2), 1]]
+
+    const user_basket = JSON.stringify(formattedBasket)
 
     // Test mode - activate test mode in development environment
     const test_mode = process.env.NODE_ENV === 'development' ? '1' : '0'
@@ -75,7 +88,7 @@ export const paymentService = {
     const no_installment = '0' // Installment option (0: active, 1: passive)
     const max_installment = '0' // Maximum number of installments
     const timeout_limit = '30' // Payment time (minutes)
-    const debug_on = '1' // Debugging
+    const debug_on = '0' // Debugging
     const lang = 'tr' // Language
 
     // Token creation
