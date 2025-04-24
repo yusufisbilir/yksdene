@@ -107,57 +107,6 @@ export type Database = {
         }
         Relationships: []
       }
-      orders: {
-        Row: {
-          amount: number
-          created_at: string
-          id: string
-          merchant_oid: string | null
-          payment_details: Json | null
-          payment_id: string | null
-          status: string
-          updated_at: string
-          user_id: string
-        }
-        Insert: {
-          amount: number
-          created_at?: string
-          id?: string
-          merchant_oid?: string | null
-          payment_details?: Json | null
-          payment_id?: string | null
-          status?: string
-          updated_at?: string
-          user_id?: string
-        }
-        Update: {
-          amount?: number
-          created_at?: string
-          id?: string
-          merchant_oid?: string | null
-          payment_details?: Json | null
-          payment_id?: string | null
-          status?: string
-          updated_at?: string
-          user_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "orders_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "orders_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "profiles_university_programs_view"
-            referencedColumns: ["profile_id"]
-          },
-        ]
-      }
       profiles: {
         Row: {
           created_at: string
@@ -165,8 +114,6 @@ export type Database = {
           graduated: boolean
           id: string
           image_url: string | null
-          is_paid: boolean | null
-          is_premium: boolean
           name: string | null
           obp: number
           university_program: string | null
@@ -179,8 +126,6 @@ export type Database = {
           graduated?: boolean
           id: string
           image_url?: string | null
-          is_paid?: boolean | null
-          is_premium?: boolean
           name?: string | null
           obp?: number
           university_program?: string | null
@@ -193,8 +138,6 @@ export type Database = {
           graduated?: boolean
           id?: string
           image_url?: string | null
-          is_paid?: boolean | null
-          is_premium?: boolean
           name?: string | null
           obp?: number
           university_program?: string | null

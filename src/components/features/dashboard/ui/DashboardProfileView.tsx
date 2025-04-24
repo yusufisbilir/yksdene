@@ -21,7 +21,6 @@ type DashboardProfileViewProps = {
   lastRanking: number | null
   lastScore: number | null
   isSuccess: boolean
-  isPremium: boolean
 }
 
 export default function DashboardProfileView({
@@ -29,7 +28,6 @@ export default function DashboardProfileView({
   lastRanking,
   lastScore,
   isSuccess,
-  isPremium,
 }: DashboardProfileViewProps) {
   const profile = profileWithUniversityProgram
 
@@ -55,10 +53,6 @@ export default function DashboardProfileView({
                   <UserIcon className="w-12 h-12 text-primary/60" />
                 </div>
               )}
-            </div>
-            {/* Graduation Status Badge */}
-            <div className="absolute -bottom-2 -right-2 bg-orange-500 text-white p-1.5 rounded-full shadow-md">
-              {isPremium ? <p className="text-xs">Pro</p> : <p className="text-xs">Free</p>}
             </div>
           </div>
 
