@@ -75,7 +75,6 @@ export default function DashboardProfile() {
         (getLastRanking(profileWithUniversityProgram, yksRanking) ?? 0) <=
         (profileWithUniversityProgram?.rank ?? 0)
       }
-      isPremium={profile?.is_premium ?? false}
     />
   )
 }

@@ -44,17 +44,4 @@ export const profileService = {
       return data
     })
   },
-
-  async getIsPremium(): Promise<boolean> {
-    return await apiRequestValidator.withServiceAuth(async (userId) => {
-      const supabase = await supabaseServerClient()
-      const { data, error } = await supabase
-        .from('profiles')
-        .select('is_premium')
-        .eq('id', userId)
-        .single()
-      if (error) throw error
-      return data?.is_premium ?? false
-    })
-  },
 }
