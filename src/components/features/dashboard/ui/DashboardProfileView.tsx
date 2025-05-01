@@ -49,8 +49,8 @@ export default function DashboardProfileView({
                   className="object-cover w-full h-full"
                 />
               ) : (
-                <div className="flex items-center justify-center w-full h-full bg-gradient-to-br from-indigo-200 to-purple-200 dark:from-indigo-800 dark:to-purple-800">
-                  <UserIcon className="w-12 h-12 text-primary/60" />
+                <div className="flex items-center justify-center w-full h-full bg-white">
+                  <Image src="/logo.svg" alt="YKS Dene Logo" width={90} height={90} />
                 </div>
               )}
             </div>
