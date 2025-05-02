@@ -64,7 +64,7 @@ export async function POST(req: Request) {
         .from('profiles')
         .insert({
           id: user.id,
-          name: user?.first_name + ' ' + user?.last_name,
+          name: user?.last_name ? user?.first_name + ' ' + user?.last_name : user?.first_name,
           graduated: false,
           obp: 80,
           image_url: user?.image_url,
@@ -84,7 +84,7 @@ export async function POST(req: Request) {
       const { error } = await supabase
         .from('profiles')
         .update({
-          name: user?.first_name + ' ' + user?.last_name,
+          name: user?.last_name ? user?.first_name + ' ' + user?.last_name : user?.first_name,
           image_url: user?.image_url,
           username: user?.username,
           email: user?.email_addresses?.find(
