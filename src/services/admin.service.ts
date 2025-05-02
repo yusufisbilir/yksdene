@@ -48,7 +48,10 @@ export const adminService = {
   async getAllProfilesWithUniversityProgram(): Promise<ProfilesUniversityProgramView[] | null> {
     return await apiRequestValidator.withAdminAuth(async () => {
       const supabase = await supabaseAdminClient
-      const { data, error } = await supabase.from('profiles_university_programs_view').select('*')
+      const { data, error } = await supabase
+        .from('profiles_university_programs_view')
+        .select('*')
+        .order('created_at', { ascending: false })
       if (error) throw error
       return data
     })
