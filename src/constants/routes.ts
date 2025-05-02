@@ -9,6 +9,7 @@ export const ROUTES = {
   PROFILE_TARGETS: '/profil/hedefler',
   CLERK_TARGETS: '/hedefler',
   DENEME_EKLE: '/denemelerim?ekle=true',
+  SPONSORS: '/sponsorlar',
 } as const
 
 export type RouteValue = (typeof ROUTES)[keyof typeof ROUTES]
@@ -43,6 +44,8 @@ export const getRouteName = (route: RouteValue) => {
       return 'Üniversite Hedefi'
     case ROUTES.DENEME_EKLE:
       return 'Deneme Ekle'
+    case ROUTES.SPONSORS:
+      return 'Sponsorlar'
     default:
       // if route is not in ROUTES, this will throw an error
       const exhaustiveCheck: never = route
