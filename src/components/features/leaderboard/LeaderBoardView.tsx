@@ -233,9 +233,7 @@ export default function LeaderBoardView({ leaderboardData }: { leaderboardData: 
 
                     {/* Name and Username */}
                     <h3 className="font-semibold text-center">
-                      {true
-                        ? 'Yusuf Emir ışbilir'
-                        : student?.username ?? student?.name ?? 'Yksdene'}
+                      {student?.username ?? student?.name ?? 'Yksdene'}
                     </h3>
 
                     {/* Middle Information Section */}
