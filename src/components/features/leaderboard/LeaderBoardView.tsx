@@ -1,10 +1,11 @@
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
-  CardFooter,
 } from '@/components/ui/card'
 import {
   Table,
@@ -14,13 +15,9 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import Image from 'next/image'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import Link from 'next/link'
-import { ChevronRight, Home, Trophy, Info, Calendar } from 'lucide-react'
-import { ROUTES } from '@/constants/routes'
-import { LeaderBoard } from '@/types'
 import universityProgramsData from '@/constants/universityPrograms/universityPrograms.json'
+import { LeaderBoard } from '@/types'
+import { Calendar, Info, Trophy } from 'lucide-react'
 
 // Helper function to render rank number or badge for top ranks
 const getRankBadge = (rank: number) => {
@@ -68,7 +65,7 @@ const getCategoryDisplayName = (category: string | null) => {
   }
 }
 
-// Üniversite programları için type tanımlama
+// Type definition for university programs
 type UniversityProgram = {
   id: string
   university: string
@@ -76,10 +73,10 @@ type UniversityProgram = {
   category: 'say' | 'soz' | 'ea' | 'tyt' | 'dil'
 }
 
-// JSON dosyasını doğru tipte kullanabilmek için
+// Using the JSON file with the correct type
 const typedUniversityPrograms = universityProgramsData as UniversityProgram[]
 
-// Üniversite program bilgilerini alma fonksiyonu
+// Function to get university program information
 const getUniversityProgramInfo = (programId: string | null) => {
   if (!programId) {
     return {
@@ -117,15 +114,16 @@ export default function LeaderBoardView({ leaderboardData }: { leaderboardData: 
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="rounded-md border">
+        {/* desktop*/}
+        <div className="hidden md:block rounded-md border">
           <Table>
             <TableHeader>
               <TableRow>
                 <TableHead className="w-[80px] text-center">Sıra</TableHead>
                 <TableHead>Öğrenci</TableHead>
-                <TableHead className="hidden md:table-cell">Üniversite Hedefi</TableHead>
-                <TableHead className="hidden sm:table-cell text-center">Alan</TableHead>
-                <TableHead className="hidden lg:table-cell text-center">Sıralama</TableHead>
+                <TableHead>Üniversite Hedefi</TableHead>
+                <TableHead className="text-center">Alan</TableHead>
+                <TableHead className="text-center">Sıralama</TableHead>
                 <TableHead className="text-center">Toplam Deneme</TableHead>
               </TableRow>
             </TableHeader>
@@ -169,10 +167,10 @@ export default function LeaderBoardView({ leaderboardData }: { leaderboardData: 
                         </div>
                       </div>
                     </TableCell>
-                    <TableCell className="hidden md:table-cell text-muted-foreground">
+                    <TableCell className="text-muted-foreground">
                       {programInfo.displayName}
                     </TableCell>
-                    <TableCell className="hidden sm:table-cell text-center">
+                    <TableCell className="text-center">
                       <div
                         className={`px-2 py-1 rounded-full text-xs font-medium inline-block ${getFieldBadgeColor(
                           category,
@@ -181,7 +179,7 @@ export default function LeaderBoardView({ leaderboardData }: { leaderboardData: 
                         {getCategoryDisplayName(category)}
                       </div>
                     </TableCell>
-                    <TableCell className="hidden lg:table-cell text-center text-muted-foreground">
+                    <TableCell className="text-center text-muted-foreground">
                       {rankToShow ? rankToShow.toLocaleString() : '-'}
                     </TableCell>
                     <TableCell className="text-center font-semibold">
@@ -193,6 +191,74 @@ export default function LeaderBoardView({ leaderboardData }: { leaderboardData: 
             </TableBody>
           </Table>
         </div>
+
+        {/* mobile */}
+        <div className="md:hidden space-y-4">
+          {leaderboardData.map((student, index) => {
+            const programInfo = getUniversityProgramInfo(student.university_program)
+            const category = programInfo.category
+
+            const rankToShow =
+              category === 'tyt'
+                ? student.tyt_placement_rank
+                : category === 'say'
+                ? student.say_placement_rank
+                : category === 'soz'
+                ? student.soz_placement_rank
+                : student.ea_placement_rank
+
+            return (
+              <Card key={student.id} className="p-4 rounded-2xl ">
+                <CardContent className="p-0">
+                  {/* Top Section: Trophy, Avatar and Name */}
+                  <div className="flex flex-col gap-3">
+                    {/* Trophy/Rank */}
+                    {index === 0 ? (
+                      <div className="h-12 w-12 bg-yellow-500 rounded-full flex items-center justify-center self-center">
+                        <Trophy className="h-7 w-7 text-white" />
+                      </div>
+                    ) : (
+                      <Avatar className="h-12 w-12 self-center">
+                        <AvatarImage src={student.image_url || ''} alt={student.name || ''} />
+                        <AvatarFallback>
+                          {student.name
+                            ? student.name
+                                .split(' ')
+                                .map((n) => n[0])
+                                .join('')
+                            : '?'}
+                        </AvatarFallback>
+                      </Avatar>
+                    )}
+
+                    {/* Name and Username */}
+                    <h3 className="font-semibold text-center">
+                      {true
+                        ? 'Yusuf Emir ışbilir'
+                        : student?.username ?? student?.name ?? 'Yksdene'}
+                    </h3>
+
+                    {/* Middle Information Section */}
+                    <div>
+                      <p className="text-slate-500 text-sm">Üniversite</p>
+                      <p className="text-xs">{programInfo?.displayName}</p>
+                    </div>
+                    <div>
+                      <p className="text-slate-500 text-sm">Son Sıralama</p>
+                      <p className="">{rankToShow ? rankToShow.toLocaleString() : '-'}</p>
+                    </div>
+
+                    {/* Bottom Section - Total Attempts */}
+                    <div className="border-t w-full pt-1">
+                      <p className="text-slate-500 text-sm">Toplam Deneme</p>
+                      <p className="text-orange-500">{student.total_exam_attempts} deneme</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            )
+          })}
+        </div>
       </CardContent>
       <CardFooter className="flex flex-col items-start gap-2 px-6 text-sm text-muted-foreground">
         <div className="flex items-center gap-1">
@@ -201,7 +267,7 @@ export default function LeaderBoardView({ leaderboardData }: { leaderboardData: 
         </div>
         <div className="flex items-center gap-1">
           <Calendar className="w-4 h-4 text-blue-500" />
-          <span>Sıralama haftalık olarak instagram @yksdene sayfamızda paylaşılıyor.</span>
+          <span>Sıralama instagram @yksdene sayfamızda paylaşılacak.</span>
         </div>
       </CardFooter>
     </Card>
