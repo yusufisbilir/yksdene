@@ -6,4 +6,5 @@ export const API_ROUTES = {
   PROFILE: '/profile',
   YKS_RANKING: '/yks_ranking',
   PROFILE_WITH_UNIVERSITY_PROGRAM: '/profile_with_university_program',
+  LEADER_BOARD: '/leader_board',
 } as const

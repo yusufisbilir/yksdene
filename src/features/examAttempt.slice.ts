@@ -4,6 +4,7 @@ import {
   ExamAttemptInsert,
   ExamAttemptView,
   ExamCategoryStatistics,
+  LeaderBoard,
   SubjectResultInsert,
   YksRanking,
 } from '@/types'
@@ -51,6 +52,12 @@ export const examAttemptSlice = apiSlice.injectEndpoints({
       transformResponse: (response: { result: YksRanking[] }) => response.result,
       providesTags: ['ExamAttempts'],
     }),
+
+    getLeaderboard: builder.query<LeaderBoard[], void>({
+      query: () => API_ROUTES.LEADER_BOARD,
+      transformResponse: (response: { results: LeaderBoard[] }) => response.results ?? [],
+      providesTags: ['ExamAttempts'],
+    }),
   }),
 })
 
@@ -60,4 +67,5 @@ export const {
   useGetExamAttemptViewQuery,
   useGetYKSRankingQuery,
   useGetExamAttemptStatisticsQuery,
+  useGetLeaderboardQuery,
 } = examAttemptSlice
