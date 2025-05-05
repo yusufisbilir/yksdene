@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { Tables, TablesInsert, TablesUpdate } from './supabase.types'
+import { Enums, Tables, TablesInsert, TablesUpdate } from './supabase.types'
 
 // Exam Attempts
 export type ExamAttempt = Tables<'exam_attempts'>
@@ -37,6 +37,12 @@ export type ProfilesUniversityProgramView = Tables<'profiles_university_programs
 export type YksRankingInsertWithoutId = Omit<YksRankingInsert, 'id'>
 
 export type UniversityProgram = Tables<'university_programs'>
+
+// Leaderboard
+export type LeaderBoard = Tables<'leaderboard_view'>
+
+// Exam category
+export type ExamCategory = Enums<'exam_category'>
 
 export const Exam = {
   tyt: 'tyt',

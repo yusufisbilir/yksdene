@@ -5,6 +5,7 @@ import {
   ExamCategoryStatistics,
   ExamTemplate,
   LastExamResults,
+  LeaderBoard,
   SubjectResultInsert,
 } from '@/types'
 import { examTemplates } from '@/constants/db.constants'
@@ -193,6 +194,23 @@ export const examAttemptService = {
       })
 
       return statsByTemplate
+    })
+  },
+
+  async getLeaderboardData(): Promise<LeaderBoard[]> {
+    return await apiRequestValidator.withServiceAuth(async (userId) => {
+      const supabase = await supabaseServerClient()
+
+      const { data, error } = await supabase
+        .from('leaderboard_view')
+        .select('*')
+        .order('total_exam_attempts', { ascending: false })
+        .limit(10)
+
+      console.log(data)
+
+      if (error) throw error
+      return data || []
     })
   },
 
