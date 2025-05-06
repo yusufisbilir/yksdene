@@ -141,7 +141,7 @@ export function Pomodoro() {
                   />
                 </div>
                 <Button onClick={saveSettings} className="w-full">
-                  Save Settings
+                  Ayarları Kaydet
                 </Button>
               </div>
             </CardContent>
