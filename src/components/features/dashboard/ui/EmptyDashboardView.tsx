@@ -19,7 +19,7 @@ export default function EmptyDashboardView() {
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
-          <p className="max-w-xl mx-auto text-left sm:text-center text-lg text-muted-foreground">
+          <p className="max-w-2xl mx-auto text-left sm:text-center text-lg text-muted-foreground">
             Harika bir başlangıç yaptın! 🎉 İlk deneme sonucunu ekleyerek gelişimini takip etmeye
             başla ve hedeflerine ne kadar yaklaştığını gör!
           </p>

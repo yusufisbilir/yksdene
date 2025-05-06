@@ -17,6 +17,10 @@ export function SubjectResults({ form, subjects }: SubjectResultsProps) {
           .getValues('subjectResults')
           .findIndex((s) => s.subject_id === subject.id)
 
+        const correctCount = form.watch(`subjectResults.${subjectIndex}.correct_count`) ?? 0
+        const incorrectCount = form.watch(`subjectResults.${subjectIndex}.incorrect_count`) ?? 0
+        const remainingQuestions = subject.question_count - correctCount - incorrectCount
+
         return (
           <div key={subject.id} className="space-y-2">
             <div className="flex items-center gap-2">
@@ -34,18 +38,22 @@ export function SubjectResults({ form, subjects }: SubjectResultsProps) {
                         className="bg-green-50 border-green-300"
                         type="number"
                         min="0"
-                        max={subject.question_count}
+                        max={subject.question_count - incorrectCount}
                         placeholder="Doğru"
-                        value={field.value || ''}
+                        value={field.value === 0 ? '0' : field.value || ''}
                         onFocus={(e) => e.target.select()}
                         onChange={(e) => {
-                          const value =
-                            e.target.value === ''
-                              ? 0
-                              : Math.min(
-                                  Math.max(0, parseInt(e.target.value) || 0),
-                                  subject.question_count,
-                                )
+                          // Boş girişi 0 olarak kabul et
+                          const enteredValue =
+                            e.target.value === '' ? 0 : parseInt(e.target.value) || 0
+                          const maxAllowed = subject.question_count - incorrectCount
+                          const value = Math.min(Math.max(0, enteredValue), maxAllowed)
+
+                          if (enteredValue > maxAllowed) {
+                            // Bildirim yerine direkt max değeri uygulayarak düzeltiyoruz
+                            e.target.value = value.toString()
+                          }
+
                           field.onChange(value)
                         }}
                       />
@@ -64,18 +72,22 @@ export function SubjectResults({ form, subjects }: SubjectResultsProps) {
                         className="bg-red-50 border-red-300"
                         type="number"
                         min="0"
-                        max={subject.question_count}
+                        max={subject.question_count - correctCount}
                         placeholder="Yanlış"
-                        value={field.value || ''}
+                        value={field.value === 0 ? '0' : field.value || ''}
                         onFocus={(e) => e.target.select()}
                         onChange={(e) => {
-                          const value =
-                            e.target.value === ''
-                              ? 0
-                              : Math.min(
-                                  Math.max(0, parseInt(e.target.value) || 0),
-                                  subject.question_count,
-                                )
+                          // Boş girişi 0 olarak kabul et
+                          const enteredValue =
+                            e.target.value === '' ? 0 : parseInt(e.target.value) || 0
+                          const maxAllowed = subject.question_count - correctCount
+                          const value = Math.min(Math.max(0, enteredValue), maxAllowed)
+
+                          if (enteredValue > maxAllowed) {
+                            // Bildirim yerine direkt max değeri uygulayarak düzeltiyoruz
+                            e.target.value = value.toString()
+                          }
+
                           field.onChange(value)
                         }}
                       />
@@ -84,6 +96,10 @@ export function SubjectResults({ form, subjects }: SubjectResultsProps) {
                   </FormItem>
                 )}
               />
+            </div>
+
+            <div className="text-xs text-gray-500 mt-1">
+              <span>Kalan: {remainingQuestions} soru</span>
             </div>
           </div>
         )
