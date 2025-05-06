@@ -31,6 +31,7 @@ import { calculateExamResults } from '@/utils/calculateExamResults'
 import { CreateExamAttemptInput, createExamAttemptSchema } from '@/types'
 import { useRouter } from 'next/navigation'
 import { ROUTES } from '@/constants/routes'
+import { toast } from 'sonner'
 
 export function AddExamForm() {
   const { isAddingExamAttempt, setIsAddingExamAttempt } = useExamAttemptContext()
@@ -54,6 +55,35 @@ export function AddExamForm() {
 
   const onSubmit = async (data: CreateExamAttemptInput) => {
     try {
+      // Kontrol et: her ders için doğru + yanlış <= soru sayısı
+      const invalidSubjects = data.subjectResults.filter((result) => {
+        const subject = dbSubjects.find((s) => s.id === result.subject_id)
+        if (!subject) return false
+        return result.correct_count + result.incorrect_count > subject.question_count
+      })
+
+      if (invalidSubjects.length > 0) {
+        const subjectNames = invalidSubjects
+          .map((result) => dbSubjects.find((s) => s.id === result.subject_id)?.name)
+          .filter(Boolean)
+          .join(', ')
+
+        toast.error(
+          `Doğru ve yanlış toplamı soru sayısını aşamaz. Kontrol edilmesi gereken dersler: ${subjectNames}`,
+        )
+        return
+      }
+
+      // Tüm alanlarda sıfır kontrolü
+      const allZeroSubjects = data.subjectResults.every(
+        (result) => result.correct_count === 0 && result.incorrect_count === 0,
+      )
+
+      if (allZeroSubjects) {
+        toast.error('En az bir ders için doğru veya yanlış değeri girmeniz gerekiyor.')
+        return
+      }
+
       await createExamAttemptWithResults({
         examAttempt: {
           name: data.examAttempt.name,
@@ -73,9 +103,11 @@ export function AddExamForm() {
         },
         subjectResults: [],
       })
+      toast.success('Deneme başarıyla kaydedildi!')
       router.push(ROUTES.HOME)
     } catch (error) {
       console.error('Failed to save exam results:', error)
+      toast.error('Deneme kaydedilirken bir hata oluştu.')
     }
   }
 
