@@ -9,7 +9,13 @@ import { UserMenu } from './UserMenu'
 const Sidebar = () => {
   const pathname = usePathname()
 
-  const isActive = (path: string) => {
+  const isActive = (path: RouteValue) => {
+    // Eğer path bir fonksiyon ise, doğrudan false döndür
+    if (typeof path !== 'string') {
+      return false
+    }
+
+    // String path kontrolleri
     if (path === '/') {
       return pathname === '/'
     }
@@ -29,7 +35,7 @@ const Sidebar = () => {
       </Link>
 
       <div className="sidebar_links">
-        {getNavbarRoutes().map(({ key, value }: { key: string; value: RouteValue }) => (
+        {getNavbarRoutes().map(({ key, value }) => (
           <Link
             key={key}
             href={value}

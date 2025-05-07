@@ -6,6 +6,6 @@ export const apiSlice = createApi({
     baseUrl: '/api',
     credentials: 'include',
   }),
-  tagTypes: ['ExamAttempts', 'Profile'],
+  tagTypes: ['ExamAttempts', 'Profile', 'Groups', 'GroupMembers', 'GroupLeaderboard'],
   endpoints: () => ({}),
 })
