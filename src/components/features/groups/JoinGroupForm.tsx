@@ -20,7 +20,7 @@ import { ROUTES } from '@/constants/routes'
 import { toast } from 'sonner'
 
 const joinGroupSchema = z.object({
-  groupId: z.string().uuid('Geçerli bir grup ID girin'),
+  groupId: z.string().min(1, 'Grup ID alanı boş olamaz'),
   joinCode: z.string().optional(),
 })
 
