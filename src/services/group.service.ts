@@ -12,9 +12,27 @@ export const groupService = {
     return await apiRequestValidator.withServiceAuth(async (userId) => {
       const supabase = await supabaseServerClient()
 
+      // Normalize group name to create a unique slug-like ID
+      const groupId = name
+        .toLowerCase()
+        .replace(/\s+/g, '-')
+        .replace(/[^a-z0-9-]/g, '')
+
+      // Check if group ID already exists
+      const { data: existingGroup } = await supabase
+        .from('groups')
+        .select('id')
+        .eq('id', groupId)
+        .single()
+
+      if (existingGroup) {
+        throw new Error('Bu grup adı zaten kullanılıyor. Lütfen farklı bir isim seçiniz.')
+      }
+
       const { data, error } = await supabase
         .from('groups')
         .insert({
+          id: groupId,
           name,
           description,
           is_public: isPublic,
@@ -24,14 +42,24 @@ export const groupService = {
         .select()
         .single()
 
-      if (error) throw error
+      if (error) {
+        console.error('Grup oluşturma hatası:', error)
+        throw new Error('Grup oluşturulurken hata oluştu: ' + error.message)
+      }
 
       // Grup oluşturan kullanıcıyı admin olarak ekle
-      await supabase.from('group_members').insert({
+      const { error: memberError } = await supabase.from('group_members').insert({
         group_id: data.id,
         user_id: userId,
         role: 'admin',
       })
+
+      if (memberError) {
+        console.error('Grup üyesi ekleme hatası:', memberError)
+        // Grup oluşturuldu ama üye eklenemedi, grubu silelim
+        await supabase.from('groups').delete().eq('id', data.id)
+        throw new Error('Grup üyeliği oluşturulurken hata oluştu')
+      }
 
       return data
     })
@@ -180,7 +208,7 @@ export const groupService = {
     return await apiRequestValidator.withServiceAuth(async (userId) => {
       const supabase = await supabaseServerClient()
 
-      // Kullanıcının rolünü kontrol et
+      // Kullanıcının rolünü ve grup bilgisini kontrol et
       const { data: membership, error: membershipError } = await supabase
         .from('group_members')
         .select('*')
@@ -190,6 +218,29 @@ export const groupService = {
 
       if (membershipError) throw membershipError
       if (!membership) throw new Error('Bu grubun üyesi değilsiniz')
+
+      // Grup bilgisini al
+      const { data: group, error: groupError } = await supabase
+        .from('groups')
+        .select('*')
+        .eq('id', groupId)
+        .single()
+      if (groupError) throw groupError
+      if (!group) throw new Error('Grup bulunamadı')
+
+      // Eğer ayrılan kişi oluşturucu ise grubu ve tüm üyelikleri sil
+      if (group.created_by === userId) {
+        // Tüm üyelikleri sil
+        const { error: deleteMembersError } = await supabase
+          .from('group_members')
+          .delete()
+          .eq('group_id', groupId)
+        if (deleteMembersError) throw deleteMembersError
+        // Grubu sil
+        const { error: deleteGroupError } = await supabase.from('groups').delete().eq('id', groupId)
+        if (deleteGroupError) throw deleteGroupError
+        return
+      }
 
       // Eğer admin ise başka admin var mı kontrol et
       if (membership.role === 'admin') {

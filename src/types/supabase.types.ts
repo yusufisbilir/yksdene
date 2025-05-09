@@ -134,7 +134,7 @@ export type Database = {
           id?: number
           joined_at?: string | null
           role?: string
-          user_id?: string
+          user_id: string
         }
         Update: {
           group_id?: string
@@ -147,42 +147,42 @@ export type Database = {
           {
             foreignKeyName: "group_members_group_id_fkey"
             columns: ["group_id"]
-            isOneToOne: true
+            isOneToOne: false
             referencedRelation: "group_leaderboard_view"
             referencedColumns: ["group_id"]
           },
           {
             foreignKeyName: "group_members_group_id_fkey"
             columns: ["group_id"]
-            isOneToOne: true
+            isOneToOne: false
             referencedRelation: "groups"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "group_members_user_id_fkey"
             columns: ["user_id"]
-            isOneToOne: true
+            isOneToOne: false
             referencedRelation: "group_leaderboard_view"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "group_members_user_id_fkey"
             columns: ["user_id"]
-            isOneToOne: true
+            isOneToOne: false
             referencedRelation: "leaderboard_view"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "group_members_user_id_fkey"
             columns: ["user_id"]
-            isOneToOne: true
+            isOneToOne: false
             referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "group_members_user_id_fkey"
             columns: ["user_id"]
-            isOneToOne: true
+            isOneToOne: false
             referencedRelation: "profiles_university_programs_view"
             referencedColumns: ["profile_id"]
           },
@@ -200,9 +200,9 @@ export type Database = {
         }
         Insert: {
           created_at?: string
-          created_by?: string
+          created_by: string
           description?: string | null
-          id?: string
+          id: string
           is_public?: boolean
           join_code?: string | null
           name: string

@@ -1,12 +1,6 @@
 import GroupLeaderboard from '@/components/features/groups/GroupLeaderboard'
 
-interface GroupLeaderboardPageProps {
-  params: {
-    id: string
-  }
-}
-
-export default function GroupLeaderboardPage({ params }: GroupLeaderboardPageProps) {
+export default async function GroupLeaderboardPage({ params }: { params: { id: string } }) {
   return (
     <div className="panel">
       <GroupLeaderboard groupId={params.id} />

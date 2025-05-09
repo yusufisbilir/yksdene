@@ -23,7 +23,6 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-  console.log('here')
   return apiRequestValidator.withAuth(request, async (req, userId) => {
     try {
       const body = await req.json()
@@ -33,10 +32,26 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({ error: 'Grup adı gerekli' }, { status: 400 })
       }
 
+      // Validate group name format
+      if (name.length < 3 || name.length > 30) {
+        return NextResponse.json(
+          { error: 'Grup adı 3-30 karakter arasında olmalıdır' },
+          { status: 400 },
+        )
+      }
+
+      // Check if name contains valid characters
+      if (!/^[a-zA-Z0-9\s\-_]+$/.test(name)) {
+        return NextResponse.json(
+          { error: 'Grup adı sadece harf, rakam, boşluk, tire ve alt çizgi içerebilir' },
+          { status: 400 },
+        )
+      }
+
       const group = await groupService.createGroup(
         name,
         description || null,
-        isPublic || true,
+        isPublic !== undefined ? isPublic : true,
         joinCode || null,
       )
 

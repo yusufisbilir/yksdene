@@ -1,12 +1,6 @@
 import GroupDetails from '@/components/features/groups/GroupDetails'
 
-interface GroupPageProps {
-  params: {
-    id: string
-  }
-}
-
-export default function GroupPage({ params }: GroupPageProps) {
+export default async function GroupPage({ params }: { params: { id: string } }) {
   return (
     <div className="panel">
       <GroupDetails groupId={params.id} />

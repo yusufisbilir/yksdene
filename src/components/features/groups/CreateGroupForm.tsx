@@ -64,7 +64,7 @@ export default function CreateGroupForm() {
       }).unwrap()
 
       toast.success('Grup başarıyla oluşturuldu')
-      router.push(ROUTES.GROUPS)
+      router.push(ROUTES.GROUP_DETAIL(result.id))
     } catch (error) {
       console.error('Grup oluşturma hatası:', error)
       toast.error('Grup oluşturulurken bir hata oluştu')
