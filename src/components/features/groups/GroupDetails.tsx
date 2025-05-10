@@ -1,4 +1,5 @@
 'use client'
+
 import {
   useGetGroupByIdQuery,
   useGetGroupMembersQuery,
@@ -15,7 +16,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
-import { useRouter } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import { ROUTES } from '@/constants/routes'
 import { toast } from 'sonner'
 import {
@@ -43,19 +44,24 @@ import {
 } from '@/components/ui/dialog'
 import { useState } from 'react'
 import { Badge } from '@/components/ui/badge'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
-export default function GroupDetails({ groupId }: { groupId: string }) {
+export default function GroupDetails() {
+  const { id } = useParams()
+
+  if (!id || typeof id !== 'string') {
+    return <div>Grup ID bulunamadı</div>
+  }
+
   const router = useRouter()
   const [isLeaveDialogOpen, setIsLeaveDialogOpen] = useState(false)
   const [copied, setCopied] = useState(false)
-  const { data: group, isLoading: groupLoading, error: groupError } = useGetGroupByIdQuery(groupId)
-  const { data: members, isLoading: membersLoading } = useGetGroupMembersQuery(groupId)
+  const { data: group, isLoading: groupLoading, error: groupError } = useGetGroupByIdQuery(id)
+  const { data: members, isLoading: membersLoading } = useGetGroupMembersQuery(id)
   const [leaveGroup, { isLoading: isLeaving }] = useLeaveGroupMutation()
 
   const handleLeaveGroup = async () => {
     try {
-      await leaveGroup(groupId).unwrap()
+      await leaveGroup(id).unwrap()
       toast.success('Gruptan başarıyla ayrıldınız')
       router.push(ROUTES.GROUPS)
     } catch (error) {

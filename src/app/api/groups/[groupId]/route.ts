@@ -3,10 +3,15 @@ import { handleApiError } from '@/utils/handleApiError'
 import { apiRequestValidator } from '@/services/requestValidator.service'
 import { groupService } from '@/services/group.service'
 
+interface RouteParams {
+  groupId: string
+}
+
 export async function GET(request: NextRequest, { params }: { params: { groupId: string } }) {
+  const { groupId } = params
+
   return apiRequestValidator.withAuth(request, async (req, userId) => {
     try {
-      const groupId = params.groupId
       const group = await groupService.getGroupById(groupId)
       return NextResponse.json({ result: group })
     } catch (error) {
@@ -16,9 +21,10 @@ export async function GET(request: NextRequest, { params }: { params: { groupId:
 }
 
 export async function PATCH(request: NextRequest, { params }: { params: { groupId: string } }) {
+  const { groupId } = params
+
   return apiRequestValidator.withAuth(request, async (req, userId) => {
     try {
-      const groupId = params.groupId
       const body = await req.json()
       const { name, description, isPublic, joinCode } = body
 

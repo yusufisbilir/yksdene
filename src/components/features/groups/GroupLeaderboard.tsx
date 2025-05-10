@@ -23,6 +23,7 @@ import { AlertCircle, Calendar, Info, Trophy, ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import { ROUTES } from '@/constants/routes'
 import universityProgramsData from '@/constants/universityPrograms/universityPrograms.json'
+import { useParams } from 'next/navigation'
 
 // Helper function to render rank number or badge for top ranks
 const getRankBadge = (rank: number) => {
@@ -105,7 +106,12 @@ const getUniversityProgramInfo = (programId: string | null) => {
   }
 }
 
-export default function GroupLeaderboard({ groupId }: { groupId: string }) {
+export default function GroupLeaderboard() {
+  const { groupId } = useParams()
+  if (!groupId || typeof groupId !== 'string') {
+    return <div>Grup ID bulunamadı</div>
+  }
+
   const { data: group, isLoading: groupLoading } = useGetGroupByIdQuery(groupId)
   const {
     data: leaderboardData,

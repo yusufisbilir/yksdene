@@ -3,10 +3,14 @@ import { handleApiError } from '@/utils/handleApiError'
 import { apiRequestValidator } from '@/services/requestValidator.service'
 import { groupService } from '@/services/group.service'
 
-export async function POST(request: NextRequest, { params }: { params: { groupId: string } }) {
+export async function POST(
+  request: NextRequest,
+  { params }: { params: Promise<{ groupId: string }> },
+) {
+  const { groupId } = await params
+
   return apiRequestValidator.withAuth(request, async (req, userId) => {
     try {
-      const groupId = params.groupId
       const body = await req.json()
       const { targetUserId, role } = body
 

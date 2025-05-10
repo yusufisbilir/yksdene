@@ -71,7 +71,7 @@ export default function JoinGroupForm() {
                 <FormItem>
                   <FormLabel>Grup ID</FormLabel>
                   <FormControl>
-                    <Input placeholder="12345678-1234-1234-1234-123456789012" {...field} />
+                    <Input placeholder="grup-ismi" {...field} />
                   </FormControl>
                   <FormDescription>Katılmak istediğiniz grubun ID'sini girin</FormDescription>
                   <FormMessage />

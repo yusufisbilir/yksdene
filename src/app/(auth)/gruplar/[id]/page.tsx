@@ -1,9 +1,9 @@
 import GroupDetails from '@/components/features/groups/GroupDetails'
 
-export default async function GroupPage({ params }: { params: { id: string } }) {
+export default async function GroupPage() {
   return (
     <div className="panel">
-      <GroupDetails groupId={params.id} />
+      <GroupDetails />
     </div>
   )
 }
