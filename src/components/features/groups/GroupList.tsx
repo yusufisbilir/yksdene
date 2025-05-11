@@ -2,7 +2,6 @@
 import { useGetMyGroupsQuery, useGetPublicGroupsQuery } from '@/features/group.slice'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Group } from '@/types'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
@@ -11,23 +10,23 @@ import { Users, Lock, UnlockIcon, Plus, Trophy, User, CalendarDays } from 'lucid
 import { cn } from '@/lib/utils'
 import { Badge } from '@/components/ui/badge'
 import React from 'react'
+import { useGetProfileQuery } from '@/features/profile.slice'
 
 export default function GroupList() {
   const { data: myGroups, isLoading: myGroupsLoading } = useGetMyGroupsQuery()
   const { data: publicGroups, isLoading: publicGroupsLoading } = useGetPublicGroupsQuery()
+  const { data: profile } = useGetProfileQuery()
 
   const isLoading = myGroupsLoading || publicGroupsLoading
 
-  // Grupları birleştir, tekrar edenleri kaldır
-  const allGroups = React.useMemo(() => {
-    if (!myGroups && !publicGroups) return []
-    const all = [...(myGroups || []), ...(publicGroups || [])]
-    const uniq = all.filter((group, idx, arr) => arr.findIndex((g) => g.id === group.id) === idx)
-    return uniq
-  }, [myGroups, publicGroups])
+  const myGroupIds = React.useMemo(() => (myGroups ? myGroups.map((g) => g.id) : []), [myGroups])
+  const notJoinedPublicGroups = React.useMemo(
+    () => (publicGroups || []).filter((g) => !myGroupIds.includes(g.id)),
+    [publicGroups, myGroupIds],
+  )
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-10">
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <h1 className="text-3xl font-bold tracking-tight">Gruplar</h1>
         <div className="flex flex-wrap gap-2">
@@ -69,46 +68,69 @@ export default function GroupList() {
             </Card>
           ))}
         </div>
-      ) : allGroups.length === 0 ? (
-        <div className="text-center py-16 bg-muted/30 rounded-lg border border-dashed border-muted-foreground/20">
-          <div className="mx-auto w-16 h-16 flex items-center justify-center rounded-full bg-muted mb-4">
-            <Users className="h-8 w-8 text-muted-foreground" />
-          </div>
-          <h3 className="text-xl font-medium mb-2">Henüz hiç grup bulunmuyor</h3>
-          <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-            Yeni bir grup oluşturarak veya mevcut bir gruba katılarak arkadaşlarınızla birlikte
-            çalışabilirsiniz.
-          </p>
-          <div className="flex gap-2 justify-center">
-            <Button asChild variant="outline">
-              <Link href={ROUTES.GROUP_JOIN}>Gruba Katıl</Link>
-            </Button>
-            <Button asChild>
-              <Link href={ROUTES.GROUP_CREATE}>Grup Oluştur</Link>
-            </Button>
-          </div>
-        </div>
       ) : (
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {allGroups.map((group) => (
-            <GroupCard key={group.id} group={group} />
-          ))}
-        </div>
+        <>
+          <div>
+            <h2 className="text-xl font-semibold mb-4">Gruplarım</h2>
+            {myGroups && myGroups.length > 0 ? (
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {myGroups.map((group) => (
+                  <GroupCard key={group.id} group={group} isMine />
+                ))}
+              </div>
+            ) : (
+              <div className="text-muted-foreground text-center py-8">
+                Henüz bir gruba katılmadın.
+              </div>
+            )}
+          </div>
+
+          <div>
+            <h2 className="text-xl font-semibold mb-4 mt-8">Katılmadığım Açık Gruplar</h2>
+            {notJoinedPublicGroups && notJoinedPublicGroups.length > 0 ? (
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {notJoinedPublicGroups.map((group) => (
+                  <GroupCard key={group.id} group={group} isPublicOnly />
+                ))}
+              </div>
+            ) : (
+              <div className="text-muted-foreground text-center py-8">Grup oluştur</div>
+            )}
+          </div>
+        </>
       )}
     </div>
   )
 }
 
-function GroupCard({ group, isPublic }: { group: Group; isPublic?: boolean }) {
+function GroupCard({
+  group,
+  isMine,
+  isPublicOnly,
+}: {
+  group: Group
+  isMine?: boolean
+  isPublicOnly?: boolean
+}) {
   return (
-    <Card className="overflow-hidden border border-border/40 hover:border-border/80 hover:shadow-md transition-all duration-200">
+    <Card
+      className={cn(
+        'overflow-hidden border border-border/40 hover:border-border/80 hover:shadow-md transition-all duration-200',
+        isPublicOnly && 'bg-orange-50 border-orange-200',
+      )}
+    >
       <CardHeader className="pb-3 relative">
         <div className="flex justify-between items-start mb-1">
           <CardTitle className="text-lg font-bold line-clamp-1 pr-20">{group.name}</CardTitle>
           {group.is_public ? (
             <Badge
               variant="outline"
-              className="absolute top-4 right-6 bg-green-50 text-green-700 border-green-200 hover:bg-green-100 hover:text-green-800"
+              className={cn(
+                'absolute top-4 right-6',
+                isPublicOnly
+                  ? 'bg-orange-100 text-orange-700 border-orange-300'
+                  : 'bg-green-50 text-green-700 border-green-200 hover:bg-green-100 hover:text-green-800',
+              )}
             >
               <UnlockIcon className="w-3 h-3 mr-1" /> Açık
             </Badge>
