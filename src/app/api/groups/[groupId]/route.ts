@@ -3,12 +3,8 @@ import { handleApiError } from '@/utils/handleApiError'
 import { apiRequestValidator } from '@/services/requestValidator.service'
 import { groupService } from '@/services/group.service'
 
-interface RouteParams {
-  groupId: string
-}
-
 export async function GET(request: NextRequest, { params }: { params: { groupId: string } }) {
-  const { groupId } = params
+  const { groupId } = await params
 
   return apiRequestValidator.withAuth(request, async (req, userId) => {
     try {
