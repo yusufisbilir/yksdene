@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { handleApiError } from '@/utils/handleApiError'
 import { apiRequestValidator } from '@/services/requestValidator.service'
 import { groupService } from '@/services/group.service'
+import { createGroupSchema } from '@/types/groups.types'
 
 export async function GET(request: NextRequest) {
   return apiRequestValidator.withAuth(request, async (req, userId) => {
@@ -23,41 +24,28 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-  return apiRequestValidator.withAuth(request, async (req, userId) => {
-    try {
-      const body = await req.json()
-      const { name, description, isPublic, joinCode } = body
+  return apiRequestValidator.withValidation(
+    request,
+    createGroupSchema,
+    async (req, userId, validatedData) => {
+      try {
+        const { name, description, isPublic, joinCode } = validatedData
 
-      if (!name) {
-        return NextResponse.json({ error: 'Grup adı gerekli' }, { status: 400 })
-      }
-
-      // Validate group name format
-      if (name.length < 3 || name.length > 30) {
-        return NextResponse.json(
-          { error: 'Grup adı 3-30 karakter arasında olmalıdır' },
-          { status: 400 },
+        const group = await groupService.createGroup(
+          name,
+          description || null,
+          isPublic !== undefined ? isPublic : true,
+          joinCode || null,
         )
+
+        return NextResponse.json({ result: group })
+      } catch (error) {
+        return handleApiError(error)
       }
-
-      // Check if name contains valid characters
-      if (!/^[a-zA-Z0-9\s\-_]+$/.test(name)) {
-        return NextResponse.json(
-          { error: 'Grup adı sadece harf, rakam, boşluk, tire ve alt çizgi içerebilir' },
-          { status: 400 },
-        )
-      }
-
-      const group = await groupService.createGroup(
-        name,
-        description || null,
-        isPublic !== undefined ? isPublic : true,
-        joinCode || null,
-      )
-
-      return NextResponse.json({ result: group })
-    } catch (error) {
-      return handleApiError(error)
-    }
-  })
+    },
+    {
+      limit: 3,
+      windowMs: 60 * 1000,
+    },
+  )
 }

@@ -31,7 +31,7 @@ export default function CreateGroupForm() {
       name: '',
       description: '',
       isPublic: true,
-      joinCode: undefined,
+      joinCode: '',
     },
   })
 
@@ -43,7 +43,7 @@ export default function CreateGroupForm() {
         name: data.name,
         description: data.description || undefined,
         isPublic: data.isPublic,
-        joinCode: !data.isPublic ? data.joinCode || undefined : undefined,
+        joinCode: !data.isPublic ? (data.joinCode ? data.joinCode : undefined) : undefined,
       }).unwrap()
 
       toast.success('Grup başarıyla oluşturuldu')
