@@ -146,12 +146,6 @@ export default function GroupDetails() {
           </p>
         </div>
         <div className="flex items-center gap-3">
-          <Button asChild variant="outline">
-            <Link href={ROUTES.GROUP_LEADERBOARD(group.id)}>
-              <Trophy className="w-4 h-4 mr-1.5" />
-              Sıralama
-            </Link>
-          </Button>
           <Dialog open={isLeaveDialogOpen} onOpenChange={setIsLeaveDialogOpen}>
             <DialogTrigger asChild>
               <Button variant="destructive">

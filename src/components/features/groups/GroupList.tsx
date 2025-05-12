@@ -192,25 +192,11 @@ function GroupCard({
             {isLoading ? 'Katılınıyor...' : 'Gruba Katıl'}
           </Button>
         ) : (
-          <div className="grid grid-cols-2 gap-3">
-            <Button asChild variant="outline" size="sm" className="h-9 w-full">
-              <Link href={ROUTES.GROUP_DETAIL(group.id)}>
-                <Users className="w-3.5 h-3.5 mr-1.5" /> Detaylar
-              </Link>
-            </Button>
-            <Button
-              asChild
-              size="sm"
-              className={cn(
-                'h-9 w-full',
-                'bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600',
-              )}
-            >
-              <Link href={ROUTES.GROUP_LEADERBOARD(group.id)}>
-                <Trophy className="w-3.5 h-3.5 mr-1.5" /> Sıralama
-              </Link>
-            </Button>
-          </div>
+          <Button asChild variant="outline" size="sm" className="h-9 w-full">
+            <Link href={ROUTES.GROUP_DETAIL(group.id)}>
+              <Users className="w-3.5 h-3.5 mr-1.5" /> Detaylar
+            </Link>
+          </Button>
         )}
       </CardContent>
     </Card>

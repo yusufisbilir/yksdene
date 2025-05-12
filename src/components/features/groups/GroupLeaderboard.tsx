@@ -106,8 +106,13 @@ const getUniversityProgramInfo = (programId: string | null) => {
   }
 }
 
-export default function GroupLeaderboard() {
-  const { groupId } = useParams()
+type GroupLeaderboardProps = {
+  groupId?: string
+}
+
+export default function GroupLeaderboard({ groupId: propGroupId }: GroupLeaderboardProps) {
+  const params = useParams()
+  const groupId = propGroupId || (params?.groupId as string)
   if (!groupId || typeof groupId !== 'string') {
     return <div>Grup ID bulunamadı</div>
   }

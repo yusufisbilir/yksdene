@@ -15,7 +15,6 @@ export const ROUTES = {
   GROUPS: '/gruplar',
   GROUP_CREATE: '/gruplar/olustur',
   GROUP_DETAIL: (id: string) => `/gruplar/${id}`,
-  GROUP_LEADERBOARD: (id: string) => `/gruplar/${id}/siralamalar`,
   GROUP_JOIN: '/gruplar/katil',
 } as const
 
