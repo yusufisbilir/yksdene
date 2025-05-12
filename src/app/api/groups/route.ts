@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
       }
     },
     {
-      limit: 3,
+      limit: 10,
       windowMs: 60 * 1000,
     },
   )
