@@ -1,6 +1,10 @@
 'use client'
 
-import { useGetMyGroupsQuery, useGetPublicGroupsQuery } from '@/features/group.slice'
+import {
+  useGetMyGroupsQuery,
+  useGetPublicGroupsQuery,
+  useJoinGroupMutation,
+} from '@/features/group.slice'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Group } from '@/types'
 import { Skeleton } from '@/components/ui/skeleton'
@@ -12,6 +16,8 @@ import { cn } from '@/lib/utils'
 import { Badge } from '@/components/ui/badge'
 import React from 'react'
 import { useGetProfileQuery } from '@/features/profile.slice'
+import { toast } from 'sonner'
+import { useRouter } from 'next/navigation'
 
 export default function GroupList() {
   const { data: myGroups, isLoading: myGroupsLoading } = useGetMyGroupsQuery()
@@ -113,6 +119,19 @@ function GroupCard({
   isMine?: boolean
   isPublicOnly?: boolean
 }) {
+  const router = useRouter()
+  const [joinGroup, { isLoading }] = useJoinGroupMutation()
+
+  const handleJoin = async () => {
+    try {
+      await joinGroup({ groupId: group.id }).unwrap()
+      toast.success('Gruba başarıyla katıldınız')
+      router.push(ROUTES.GROUP_DETAIL(group.id))
+    } catch (error) {
+      toast.error('Gruba katılırken bir hata oluştu.')
+    }
+  }
+
   return (
     <Card
       className={cn(
@@ -163,25 +182,36 @@ function GroupCard({
           <span>Oluşturan: {group.created_by.substring(0, 8)}...</span>
         </div>
 
-        <div className="grid grid-cols-2 gap-3">
-          <Button asChild variant="outline" size="sm" className="h-9 w-full">
-            <Link href={ROUTES.GROUP_DETAIL(group.id)}>
-              <Users className="w-3.5 h-3.5 mr-1.5" /> Detaylar
-            </Link>
-          </Button>
+        {isPublicOnly ? (
           <Button
-            asChild
+            onClick={handleJoin}
             size="sm"
-            className={cn(
-              'h-9 w-full',
-              'bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600',
-            )}
+            className="h-9 w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white"
+            disabled={isLoading}
           >
-            <Link href={ROUTES.GROUP_LEADERBOARD(group.id)}>
-              <Trophy className="w-3.5 h-3.5 mr-1.5" /> Sıralama
-            </Link>
+            {isLoading ? 'Katılınıyor...' : 'Gruba Katıl'}
           </Button>
-        </div>
+        ) : (
+          <div className="grid grid-cols-2 gap-3">
+            <Button asChild variant="outline" size="sm" className="h-9 w-full">
+              <Link href={ROUTES.GROUP_DETAIL(group.id)}>
+                <Users className="w-3.5 h-3.5 mr-1.5" /> Detaylar
+              </Link>
+            </Button>
+            <Button
+              asChild
+              size="sm"
+              className={cn(
+                'h-9 w-full',
+                'bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600',
+              )}
+            >
+              <Link href={ROUTES.GROUP_LEADERBOARD(group.id)}>
+                <Trophy className="w-3.5 h-3.5 mr-1.5" /> Sıralama
+              </Link>
+            </Button>
+          </div>
+        )}
       </CardContent>
     </Card>
   )
