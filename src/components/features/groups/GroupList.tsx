@@ -1,4 +1,5 @@
 'use client'
+
 import { useGetMyGroupsQuery, useGetPublicGroupsQuery } from '@/features/group.slice'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Group } from '@/types'

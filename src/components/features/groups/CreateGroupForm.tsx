@@ -1,5 +1,4 @@
 'use client'
-import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
@@ -20,29 +19,13 @@ import { ROUTES } from '@/constants/routes'
 import { toast } from 'sonner'
 import { Textarea } from '@/components/ui/textarea'
 import { Switch } from '@/components/ui/switch'
-import { useEffect } from 'react'
-
-const createGroupSchema = z.object({
-  name: z
-    .string()
-    .min(3, 'Grup adı en az 3 karakter olmalıdır')
-    .max(50, 'Grup adı en fazla 50 karakter olabilir'),
-  description: z.string().max(500, 'Açıklama en fazla 500 karakter olabilir').optional(),
-  isPublic: z.boolean().default(false),
-  joinCode: z
-    .string()
-    .min(4, 'Katılım kodu en az 4 karakter olmalıdır')
-    .max(20, 'Katılım kodu en fazla 20 karakter olabilir')
-    .optional(),
-})
-
-type FormData = z.infer<typeof createGroupSchema>
+import { createGroupSchema, CreateGroupInput } from '@/types/groups.types'
 
 export default function CreateGroupForm() {
   const router = useRouter()
   const [createGroup, { isLoading }] = useCreateGroupMutation()
 
-  const form = useForm<FormData>({
+  const form = useForm<CreateGroupInput>({
     resolver: zodResolver(createGroupSchema),
     defaultValues: {
       name: '',
@@ -54,7 +37,7 @@ export default function CreateGroupForm() {
 
   const isPublic = form.watch('isPublic')
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async (data: CreateGroupInput) => {
     try {
       const result = await createGroup({
         name: data.name,
