@@ -20,6 +20,8 @@ import { toast } from 'sonner'
 import { Textarea } from '@/components/ui/textarea'
 import { Switch } from '@/components/ui/switch'
 import { createGroupSchema, CreateGroupInput } from '@/types/groups.types'
+import { useEffect, useState } from 'react'
+import { useDebounce } from 'use-debounce'
 
 export default function CreateGroupForm() {
   const router = useRouter()
@@ -31,11 +33,39 @@ export default function CreateGroupForm() {
       name: '',
       description: '',
       isPublic: true,
-      joinCode: '',
+      joinCode: undefined,
     },
   })
 
   const isPublic = form.watch('isPublic')
+  const groupName = form.watch('name')
+  const [debouncedGroupName] = useDebounce(groupName, 500)
+  const [isNameAvailable, setIsNameAvailable] = useState<boolean | null>(null)
+  const [checkingName, setCheckingName] = useState(false)
+
+  useEffect(() => {
+    if (isPublic) {
+      form.setValue('joinCode', '')
+    } else {
+      form.setValue('joinCode', undefined)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isPublic])
+
+  useEffect(() => {
+    if (!debouncedGroupName || debouncedGroupName.length < 3) {
+      setIsNameAvailable(null)
+      return
+    }
+    setCheckingName(true)
+    fetch(`/api/groups/check-name?name=${encodeURIComponent(debouncedGroupName)}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setIsNameAvailable(data.available)
+      })
+      .catch(() => setIsNameAvailable(null))
+      .finally(() => setCheckingName(false))
+  }, [debouncedGroupName])
 
   const onSubmit = async (data: CreateGroupInput) => {
     try {
@@ -75,6 +105,15 @@ export default function CreateGroupForm() {
                     <Input placeholder="YKS Çalışma Grubu" {...field} />
                   </FormControl>
                   <FormDescription>Grubunuzun adı herkes tarafından görülebilir</FormDescription>
+                  {checkingName && (
+                    <span className="text-xs text-muted-foreground">Kontrol ediliyor...</span>
+                  )}
+                  {isNameAvailable === false && (
+                    <span className="text-xs text-destructive">Bu grup adı kullanılamaz</span>
+                  )}
+                  {isNameAvailable === true && (
+                    <span className="text-xs text-green-500">Bu grup adı kullanılabilir</span>
+                  )}
                   <FormMessage />
                 </FormItem>
               )}

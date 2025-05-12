@@ -105,6 +105,11 @@ export const groupSlice = apiSlice.injectEndpoints({
       transformResponse: (response: { results: GroupLeaderboard[] }) => response.results ?? [],
       providesTags: (result, error, groupId) => [{ type: 'GroupLeaderboard', id: groupId }],
     }),
+
+    checkGroupName: builder.query<{ available: boolean }, string>({
+      query: (name) => `/api/groups/check-name?name=${encodeURIComponent(name)}`,
+      transformResponse: (response: { available: boolean }) => response,
+    }),
   }),
 })
 
@@ -120,4 +125,5 @@ export const {
   useChangeGroupMemberRoleMutation,
   useRemoveGroupMemberMutation,
   useGetGroupLeaderboardQuery,
+  useCheckGroupNameQuery,
 } = groupSlice

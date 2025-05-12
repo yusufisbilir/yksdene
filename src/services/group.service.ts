@@ -398,4 +398,14 @@ export const groupService = {
       return data
     })
   },
+
+  async checkGroupName(name: string): Promise<{ available: boolean }> {
+    const supabase = await supabaseServerClient()
+    const groupId = name
+      .toLowerCase()
+      .replace(/\s+/g, '-')
+      .replace(/[^a-z0-9-]/g, '')
+    const { data } = await supabase.from('groups').select('id').eq('id', groupId).single()
+    return { available: !data }
+  },
 }
