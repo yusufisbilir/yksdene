@@ -42,21 +42,29 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Badge } from '@/components/ui/badge'
+import { GroupMembersProfilesView } from '@/types'
+import { useUser } from '@clerk/nextjs'
 
 export default function GroupDetails() {
   const { id } = useParams()
+  const { user } = useUser()
+  const router = useRouter()
 
   if (!id || typeof id !== 'string') {
     return <div>Grup ID bulunamadı</div>
   }
 
-  const router = useRouter()
   const [isLeaveDialogOpen, setIsLeaveDialogOpen] = useState(false)
-  const [copied, setCopied] = useState(false)
+  const [copiedId, setCopiedId] = useState(false)
+  const [copiedCode, setCopiedCode] = useState(false)
   const { data: group, isLoading: groupLoading, error: groupError } = useGetGroupByIdQuery(id)
-  const { data: members, isLoading: membersLoading } = useGetGroupMembersQuery(id)
+  const {
+    data: members,
+    isLoading: membersLoading,
+    error: membersError,
+  } = useGetGroupMembersQuery(id)
   const [leaveGroup, { isLoading: isLeaving }] = useLeaveGroupMutation()
 
   const handleLeaveGroup = async () => {
@@ -70,10 +78,18 @@ export default function GroupDetails() {
     }
   }
 
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
+  const copyGroupId = () => {
+    if (group) {
+      navigator.clipboard.writeText(group.id)
+      setCopiedId(true)
+      setTimeout(() => setCopiedId(false), 2000)
+    }
+  }
+
+  const copyJoinCode = (code: string) => {
+    navigator.clipboard.writeText(code)
+    setCopiedCode(true)
+    setTimeout(() => setCopiedCode(false), 2000)
   }
 
   if (groupLoading) {
@@ -114,7 +130,7 @@ export default function GroupDetails() {
     )
   }
 
-  if (groupError || !group) {
+  if (groupError || !group || membersError) {
     return (
       <Card>
         <CardContent className="py-12">
@@ -216,25 +232,13 @@ export default function GroupDetails() {
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="flex items-center p-3 rounded-md border">
-                  <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center mr-3">
-                    <User className="h-5 w-5 text-orange-600" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">Oluşturan</p>
-                    <p className="font-medium">{group.created_by.substring(0, 10)}...</p>
-                  </div>
+              <div className="flex items-center p-3 rounded-md border">
+                <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                  <Users className="h-5 w-5 text-blue-600" />
                 </div>
-
-                <div className="flex items-center p-3 rounded-md border">
-                  <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
-                    <Users className="h-5 w-5 text-blue-600" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">Üye Sayısı</p>
-                    <p className="font-medium">{members?.length || 0} üye</p>
-                  </div>
+                <div>
+                  <p className="text-sm text-muted-foreground">Üye Sayısı</p>
+                  <p className="font-medium">{members?.length || 0} üye</p>
                 </div>
               </div>
             </CardContent>
@@ -244,13 +248,8 @@ export default function GroupDetails() {
                   <div className="font-medium text-sm mr-2">Grup ID:</div>
                   <code className="bg-muted px-2 py-0.5 rounded text-xs font-mono">{group.id}</code>
                 </div>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="h-8 px-2"
-                  onClick={() => copyToClipboard(group.id)}
-                >
-                  {copied ? <CheckCheck className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+                <Button variant="ghost" size="sm" className="h-8 px-2" onClick={copyGroupId}>
+                  {copiedId ? <CheckCheck className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
                 </Button>
               </div>
 
@@ -266,9 +265,9 @@ export default function GroupDetails() {
                     variant="ghost"
                     size="sm"
                     className="h-8 px-2"
-                    onClick={() => group.join_code && copyToClipboard(group.join_code)}
+                    onClick={() => group.join_code && copyJoinCode(group.join_code)}
                   >
-                    {copied ? <CheckCheck className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+                    {copiedCode ? <CheckCheck className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
                   </Button>
                 </div>
               )}
@@ -301,51 +300,44 @@ export default function GroupDetails() {
                 </div>
               ) : (
                 <div className="space-y-3 pr-1 max-h-[350px] overflow-y-auto">
-                  {members?.map((member, index) => {
-                    const memberWithProfile = member as any
-                    const profile = memberWithProfile.profile || {}
-
-                    return (
-                      <div key={member.id}>
-                        {index > 0 && <div className="border-t my-3" />}
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center space-x-3">
-                            <Avatar>
-                              <AvatarImage
-                                src={profile?.avatar_url || profile?.image_url}
-                                alt={profile?.full_name || profile?.name || 'Üye'}
-                              />
-                              <AvatarFallback className="bg-gradient-to-br from-orange-100 to-amber-100 text-amber-700">
-                                {profile?.full_name || profile?.name
-                                  ? (profile?.full_name || profile?.name)
-                                      .split(' ')
-                                      .map((n: string) => n[0])
-                                      .join('')
-                                  : '?'}
-                              </AvatarFallback>
-                            </Avatar>
-                            <div>
-                              <p className="font-medium line-clamp-1">
-                                {profile?.full_name || profile?.name || 'İsimsiz Kullanıcı'}
-                              </p>
-                              {member.role === 'admin' && (
-                                <Badge
-                                  variant="outline"
-                                  className="bg-blue-50 text-blue-700 border-blue-200 mt-1"
-                                >
-                                  Admin
-                                </Badge>
-                              )}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    )
-                  })}
+                  {members?.map((member, index) => (
+                    <div key={member.id}>
+                      {index > 0 && <div className="border-t my-3" />}
+                      <MemberCard member={member} />
+                    </div>
+                  ))}
                 </div>
               )}
             </CardContent>
           </Card>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function MemberCard({ member }: { member: GroupMembersProfilesView }) {
+  return (
+    <div className="flex items-center justify-between py-2">
+      <div className="flex items-center space-x-3">
+        <Avatar>
+          <AvatarImage src={member.image_url || undefined} alt={member.name || 'Üye'} />
+          <AvatarFallback className="bg-gradient-to-br from-orange-100 to-amber-100 text-amber-700">
+            {member.name
+              ? member.name
+                  .split(' ')
+                  .map((n) => n[0])
+                  .join('')
+              : '?'}
+          </AvatarFallback>
+        </Avatar>
+        <div>
+          <p className="font-medium line-clamp-1">{member.name || 'İsimsiz Kullanıcı'}</p>
+          {member.role === 'admin' && (
+            <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200 mt-1">
+              Admin
+            </Badge>
+          )}
         </div>
       </div>
     </div>

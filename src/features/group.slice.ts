@@ -1,6 +1,6 @@
 import { API_ROUTES } from '@/constants/api.routes'
 import { apiSlice } from './api/apiSlice'
-import { Group, GroupLeaderboard, GroupMember } from '@/types'
+import { Group, GroupLeaderboard, GroupMember, GroupMembersProfilesView } from '@/types'
 
 export const groupSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -72,9 +72,10 @@ export const groupSlice = apiSlice.injectEndpoints({
       invalidatesTags: ['Groups'],
     }),
 
-    getGroupMembers: builder.query<GroupMember[], string>({
+    getGroupMembers: builder.query<GroupMembersProfilesView[], string>({
       query: (groupId) => API_ROUTES.GROUP_MEMBERS(groupId),
-      transformResponse: (response: { results: GroupMember[] }) => response.results ?? [],
+      transformResponse: (response: { results: GroupMembersProfilesView[] }) =>
+        response.results ?? [],
       providesTags: (result, error, groupId) => [{ type: 'GroupMembers', id: groupId }],
     }),
 

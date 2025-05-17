@@ -1,6 +1,7 @@
 import { supabaseServerClient } from '@/lib/supabaseServerClient'
 import { Group, GroupLeaderboard, GroupMember, GroupInsert } from '@/types'
 import { apiRequestValidator } from './requestValidator.service'
+import { GroupMembersProfilesView } from '@/types'
 
 export const groupService = {
   async createGroup(
@@ -178,7 +179,7 @@ export const groupService = {
     })
   },
 
-  async getGroupMembers(groupId: string): Promise<GroupMember[]> {
+  async getGroupMembers(groupId: string): Promise<GroupMembersProfilesView[]> {
     return await apiRequestValidator.withServiceAuth(async (userId) => {
       const supabase = await supabaseServerClient()
 
@@ -193,10 +194,10 @@ export const groupService = {
       if (membershipError) throw membershipError
       if (!membership) throw new Error('Bu grubun üyesi değilsiniz')
 
-      // Grup üyelerini getir
+      // Grup üyelerini ve profil bilgilerini getir
       const { data, error } = await supabase
-        .from('group_members')
-        .select('*, profile:profiles(id, name, username, image_url)')
+        .from('group_members_profiles_view')
+        .select('*')
         .eq('group_id', groupId)
 
       if (error) throw error

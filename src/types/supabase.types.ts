@@ -737,6 +737,80 @@ export type Database = {
           },
         ]
       }
+      group_members_profiles_view: {
+        Row: {
+          email: string | null
+          graduated: boolean | null
+          group_id: string | null
+          id: number | null
+          image_url: string | null
+          joined_at: string | null
+          name: string | null
+          obp: number | null
+          role: string | null
+          university_program: string | null
+          user_id: string | null
+          username: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "group_members_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "group_leaderboard_view"
+            referencedColumns: ["group_id"]
+          },
+          {
+            foreignKeyName: "group_members_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "groups"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "group_members_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "group_leaderboard_view"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "group_members_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "leaderboard_view"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "group_members_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "group_members_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles_university_programs_view"
+            referencedColumns: ["profile_id"]
+          },
+          {
+            foreignKeyName: "profiles_university_program_fkey"
+            columns: ["university_program"]
+            isOneToOne: false
+            referencedRelation: "profiles_university_programs_view"
+            referencedColumns: ["university_program_id"]
+          },
+          {
+            foreignKeyName: "profiles_university_program_fkey"
+            columns: ["university_program"]
+            isOneToOne: false
+            referencedRelation: "university_programs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       leaderboard_view: {
         Row: {
           ea_placement_rank: number | null

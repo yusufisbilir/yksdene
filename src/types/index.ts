@@ -53,6 +53,7 @@ export type GroupMemberUpdate = TablesUpdate<'group_members'>
 
 // Group views
 export type GroupLeaderboard = Tables<'group_leaderboard_view'>
+export type GroupMembersProfilesView = Tables<'group_members_profiles_view'>
 
 // Exam category
 export type ExamCategory = Enums<'exam_category'>

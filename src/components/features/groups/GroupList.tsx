@@ -11,18 +11,16 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { ROUTES } from '@/constants/routes'
-import { Users, Lock, UnlockIcon, Plus, Trophy, User, CalendarDays } from 'lucide-react'
+import { Users, Lock, UnlockIcon, Plus, CalendarDays } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Badge } from '@/components/ui/badge'
 import React from 'react'
-import { useGetProfileQuery } from '@/features/profile.slice'
 import { toast } from 'sonner'
 import { useRouter } from 'next/navigation'
 
 export default function GroupList() {
   const { data: myGroups, isLoading: myGroupsLoading } = useGetMyGroupsQuery()
   const { data: publicGroups, isLoading: publicGroupsLoading } = useGetPublicGroupsQuery()
-  const { data: profile } = useGetProfileQuery()
 
   const isLoading = myGroupsLoading || publicGroupsLoading
 
@@ -176,11 +174,6 @@ function GroupCard({
         <p className="text-sm mb-6 line-clamp-2 min-h-[40px]">
           {group.description || 'Açıklama yok'}
         </p>
-
-        <div className="flex items-center text-xs text-muted-foreground mb-4">
-          <User className="w-3.5 h-3.5 mr-1" />
-          <span>Oluşturan: {group.created_by.substring(0, 8)}...</span>
-        </div>
 
         {isPublicOnly ? (
           <Button
