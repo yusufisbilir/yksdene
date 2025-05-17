@@ -178,12 +178,6 @@ export default function GroupLeaderboard({ groupId: propGroupId }: GroupLeaderbo
               <CardTitle className="text-xl">{group?.name || 'Grup'} Sıralaması</CardTitle>
               <CardDescription>Bu grupta henüz veri bulunmuyor</CardDescription>
             </div>
-            <Button asChild variant="outline" size="sm">
-              <Link href={ROUTES.GROUP_DETAIL(groupId)}>
-                <ArrowLeft className="w-4 h-4 mr-1" />
-                Gruba Dön
-              </Link>
-            </Button>
           </div>
         </CardHeader>
         <CardContent className="py-10 text-center">
@@ -208,12 +202,6 @@ export default function GroupLeaderboard({ groupId: propGroupId }: GroupLeaderbo
             </CardTitle>
             <CardDescription>Grup üyeleri arasında en çok deneme çözenler</CardDescription>
           </div>
-          <Button asChild variant="outline" size="sm">
-            <Link href={ROUTES.GROUP_DETAIL(groupId)}>
-              <ArrowLeft className="w-4 h-4 mr-1" />
-              Gruba Dön
-            </Link>
-          </Button>
         </div>
       </CardHeader>
       <CardContent>
