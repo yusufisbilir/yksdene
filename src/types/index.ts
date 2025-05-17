@@ -41,6 +41,20 @@ export type UniversityProgram = Tables<'university_programs'>
 // Leaderboard
 export type LeaderBoard = Tables<'leaderboard_view'>
 
+// Groups
+export type Group = Tables<'groups'>
+export type GroupInsert = TablesInsert<'groups'>
+export type GroupUpdate = TablesUpdate<'groups'>
+
+// Group Members
+export type GroupMember = Tables<'group_members'>
+export type GroupMemberInsert = TablesInsert<'group_members'>
+export type GroupMemberUpdate = TablesUpdate<'group_members'>
+
+// Group views
+export type GroupLeaderboard = Tables<'group_leaderboard_view'>
+export type GroupMembersProfilesView = Tables<'group_members_profiles_view'>
+
 // Exam category
 export type ExamCategory = Enums<'exam_category'>
 

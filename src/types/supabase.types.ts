@@ -74,6 +74,13 @@ export type Database = {
             foreignKeyName: "exam_attempts_user_id_fkey"
             columns: ["user_id"]
             isOneToOne: false
+            referencedRelation: "group_leaderboard_view"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_attempts_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
             referencedRelation: "leaderboard_view"
             referencedColumns: ["id"]
           },
@@ -113,6 +120,132 @@ export type Database = {
           name?: string
         }
         Relationships: []
+      }
+      group_members: {
+        Row: {
+          group_id: string
+          id: number
+          joined_at: string | null
+          role: string
+          user_id: string
+        }
+        Insert: {
+          group_id: string
+          id?: number
+          joined_at?: string | null
+          role?: string
+          user_id: string
+        }
+        Update: {
+          group_id?: string
+          id?: number
+          joined_at?: string | null
+          role?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "group_members_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "group_leaderboard_view"
+            referencedColumns: ["group_id"]
+          },
+          {
+            foreignKeyName: "group_members_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "groups"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "group_members_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "group_leaderboard_view"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "group_members_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "leaderboard_view"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "group_members_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "group_members_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles_university_programs_view"
+            referencedColumns: ["profile_id"]
+          },
+        ]
+      }
+      groups: {
+        Row: {
+          created_at: string
+          created_by: string
+          description: string | null
+          id: string
+          is_public: boolean
+          join_code: string | null
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          created_by: string
+          description?: string | null
+          id: string
+          is_public?: boolean
+          join_code?: string | null
+          name: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string
+          description?: string | null
+          id?: string
+          is_public?: boolean
+          join_code?: string | null
+          name?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "groups_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "group_leaderboard_view"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "groups_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "leaderboard_view"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "groups_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "groups_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "profiles_university_programs_view"
+            referencedColumns: ["profile_id"]
+          },
+        ]
       }
       profiles: {
         Row: {
@@ -226,6 +359,13 @@ export type Database = {
             columns: ["subject_id"]
             isOneToOne: false
             referencedRelation: "subjects"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "subject_results_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "group_leaderboard_view"
             referencedColumns: ["id"]
           },
           {
@@ -442,6 +582,13 @@ export type Database = {
             foreignKeyName: "yks_rankings_user_id_fkey"
             columns: ["user_id"]
             isOneToOne: false
+            referencedRelation: "group_leaderboard_view"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "yks_rankings_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
             referencedRelation: "leaderboard_view"
             referencedColumns: ["id"]
           },
@@ -479,6 +626,13 @@ export type Database = {
           user_id: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "exam_attempts_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "group_leaderboard_view"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "exam_attempts_user_id_fkey"
             columns: ["user_id"]
@@ -522,6 +676,13 @@ export type Database = {
             foreignKeyName: "exam_attempts_user_id_fkey"
             columns: ["user_id"]
             isOneToOne: false
+            referencedRelation: "group_leaderboard_view"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_attempts_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
             referencedRelation: "leaderboard_view"
             referencedColumns: ["id"]
           },
@@ -541,10 +702,12 @@ export type Database = {
           },
         ]
       }
-      leaderboard_view: {
+      group_leaderboard_view: {
         Row: {
           ea_placement_rank: number | null
           exam_category: Database["public"]["Enums"]["exam_category"] | null
+          group_id: string | null
+          group_name: string | null
           id: string | null
           image_url: string | null
           name: string | null
@@ -556,6 +719,134 @@ export type Database = {
           university: string | null
           university_program: string | null
           username: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "profiles_university_program_fkey"
+            columns: ["university_program"]
+            isOneToOne: false
+            referencedRelation: "profiles_university_programs_view"
+            referencedColumns: ["university_program_id"]
+          },
+          {
+            foreignKeyName: "profiles_university_program_fkey"
+            columns: ["university_program"]
+            isOneToOne: false
+            referencedRelation: "university_programs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      group_members_profiles_view: {
+        Row: {
+          email: string | null
+          graduated: boolean | null
+          group_id: string | null
+          id: number | null
+          image_url: string | null
+          joined_at: string | null
+          name: string | null
+          obp: number | null
+          role: string | null
+          university_program: string | null
+          user_id: string | null
+          username: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "group_members_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "group_leaderboard_view"
+            referencedColumns: ["group_id"]
+          },
+          {
+            foreignKeyName: "group_members_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "groups"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "group_members_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "group_leaderboard_view"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "group_members_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "leaderboard_view"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "group_members_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "group_members_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles_university_programs_view"
+            referencedColumns: ["profile_id"]
+          },
+          {
+            foreignKeyName: "profiles_university_program_fkey"
+            columns: ["university_program"]
+            isOneToOne: false
+            referencedRelation: "profiles_university_programs_view"
+            referencedColumns: ["university_program_id"]
+          },
+          {
+            foreignKeyName: "profiles_university_program_fkey"
+            columns: ["university_program"]
+            isOneToOne: false
+            referencedRelation: "university_programs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      leaderboard_view: {
+        Row: {
+          ea_placement_rank: number | null
+          id: string | null
+          image_url: string | null
+          name: string | null
+          say_placement_rank: number | null
+          soz_placement_rank: number | null
+          total_exam_attempts: number | null
+          tyt_placement_rank: number | null
+          university_program: string | null
+          username: string | null
+        }
+        Insert: {
+          ea_placement_rank?: never
+          id?: string | null
+          image_url?: string | null
+          name?: string | null
+          say_placement_rank?: never
+          soz_placement_rank?: never
+          total_exam_attempts?: never
+          tyt_placement_rank?: never
+          university_program?: string | null
+          username?: string | null
+        }
+        Update: {
+          ea_placement_rank?: never
+          id?: string | null
+          image_url?: string | null
+          name?: string | null
+          say_placement_rank?: never
+          soz_placement_rank?: never
+          total_exam_attempts?: never
+          tyt_placement_rank?: never
+          university_program?: string | null
+          username?: string | null
         }
         Relationships: [
           {

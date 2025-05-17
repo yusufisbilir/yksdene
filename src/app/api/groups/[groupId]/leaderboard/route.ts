@@ -1,0 +1,20 @@
+import { NextRequest, NextResponse } from 'next/server'
+import { handleApiError } from '@/utils/handleApiError'
+import { apiRequestValidator } from '@/services/requestValidator.service'
+import { groupService } from '@/services/group.service'
+
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ groupId: string }> },
+) {
+  const { groupId } = await params
+
+  return apiRequestValidator.withAuth(request, async (req, userId) => {
+    try {
+      const leaderboardData = await groupService.getGroupLeaderboard(groupId)
+      return NextResponse.json({ results: leaderboardData })
+    } catch (error) {
+      return handleApiError(error)
+    }
+  })
+}

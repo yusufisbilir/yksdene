@@ -20,7 +20,16 @@ import { cn } from '@/lib/utils'
 
 const Header = () => {
   const pathname = usePathname()
-  const isActive = (path: string) => pathname === path
+
+  const isActive = (path: RouteValue) => {
+    // Eğer path bir fonksiyon ise, doğrudan false döndür
+    if (typeof path !== 'string') {
+      return false
+    }
+
+    return pathname === path
+  }
+
   const [isOpen, setIsOpen] = useState(false)
 
   return (
@@ -56,7 +65,7 @@ const Header = () => {
             </div>
           </DrawerHeader>
           <div className="px-4 header_links">
-            {getNavbarRoutes().map(({ key, value }: { key: string; value: RouteValue }) => (
+            {getNavbarRoutes().map(({ key, value }) => (
               <Link
                 key={key}
                 href={value}
