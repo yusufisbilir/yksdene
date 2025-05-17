@@ -1,12 +1,16 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { ExamResultsList } from '../../denemelerim/ExamResultsList'
-import AverageResults from '../AverageResults'
-import LastRank from '../LastRank'
-import LastRankingChange from '../LastRankingChange'
-import PerformanceTrends from '../PerformanceTrends'
-import QuestionAnalysis from '../QuestionAnalysis'
-import { RankingCharts } from '../RankingCharts'
+import dynamic from 'next/dynamic'
 import DashboardProfile from '../DashboardProfile'
+
+const LastRankingChange = dynamic(() => import('../LastRankingChange'))
+const LastRank = dynamic(() => import('../LastRank'))
+const RankingCharts = dynamic(() => import('../RankingCharts').then((mod) => mod.RankingCharts))
+const ExamResultsList = dynamic(() =>
+  import('../../denemelerim/ExamResultsList').then((mod) => mod.ExamResultsList),
+)
+const AverageResults = dynamic(() => import('../AverageResults'))
+const PerformanceTrends = dynamic(() => import('../PerformanceTrends'))
+const QuestionAnalysis = dynamic(() => import('../QuestionAnalysis'))
 
 export default function DashboardView() {
   return (
