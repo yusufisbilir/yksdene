@@ -1,4 +1,4 @@
-# YKS Dene - Enterprise-Grade Sınav Hazırlık Platformu
+# YKS Dene - Enterprise-Grade Exam Preparation Platform
 
 [![Next.js](https://img.shields.io/badge/Next.js-15.2.1-000000?style=flat-square&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
@@ -8,66 +8,66 @@
 
 [yksdene.com](https://yksdene.com)
 
-## Proje Özeti
+## Project Summary
 
-**YKS Dene**, Next.js 15 App Router mimarisi üzerine inşa edilmiş, üniversite sınavına hazırlanan öğrenciler için geliştirilmiş kapsamlı bir performans izleme ve analiz platformudur. Bu uygulama, öğrencilerin çalışma süreçlerindeki eksiklerini veri odaklı yaklaşımla tespit edip, kişiselleştirilmiş çözümler sunarak sınav başarılarını artırmayı hedefler.
+**YKS Dene** is a comprehensive performance monitoring and analysis platform built on the Next.js 15 App Router architecture, developed for students preparing for university entrance exams. This application aims to increase exam success by detecting deficiencies in students' study processes with a data-driven approach and offering personalized solutions.
 
-## Teknik Mimari
+## Technical Architecture
 
-### Server-Side Rendering (SSR) Yaklaşımı
+### Server-Side Rendering (SSR) Approach
 
-Next.js App Router'ın sunduğu SSR/RSC (React Server Components) yapısını projenin merkezine konumlandırdım. Bu tercih:
+I positioned Next.js App Router's SSR/RSC (React Server Components) structure at the center of the project. This choice provides:
 
-- **SEO Optimizasyonu**: Arama motorları tarafından statik içerik olarak taranabilen sayfalar
-- **İlk Yükleme Performansı**: Daha düşük TTFB (Time To First Byte) ve LCP (Largest Contentful Paint) süreleri
-- **Güvenlik Avantajı**: Hassas işlemlerin sunucu tarafında gerçekleştirilmesi
+- **SEO Optimization**: Pages searchable by search engines as static content
+- **Initial Load Performance**: Lower TTFB (Time To First Byte) and LCP (Largest Contentful Paint) times
+- **Security Advantage**: Sensitive operations performed on the server side
 
-SSR yaklaşımını desteklemek için, Supabase SSR modülünü entegre ettim. Client-side state ve server-side data fetching arasındaki dengeyi React Query ile optimize ettim.
+To support the SSR approach, I integrated the Supabase SSR module. I optimized the balance between client-side state and server-side data fetching using React Query.
 
-### Proje Yapısı
+### Project Structure
 
 ```
 src/
-├── app/            # Next.js App Router rotaları ve sayfa bileşenleri
-├── components/     # Atomik tasarım prensibiyle organize edilmiş UI bileşenleri
-├── contexts/       # Uygulama genelinde erişilebilen React context'leri
-├── features/       # İşlevsel özellikler için domain-driven modüller
-├── hooks/          # Özelleştirilmiş React hooks
-├── lib/            # Üçüncü parti kütüphane konfigürasyonları
-├── providers/      # Uygulama provider'ları
-├── services/       # Harici API ve veri kaynaklarına bağlantı servisleri
-├── store/          # Redux Toolkit tabanlı state yönetimi
-├── types/          # TypeScript tip tanımlamaları
-└── utils/          # Yardımcı fonksiyonlar
+├── app/            # Next.js App Router routes and page components
+├── components/     # UI components organized with atomic design principles
+├── contexts/       # React contexts accessible throughout the application
+├── features/       # Domain-driven modules for functional features
+├── hooks/          # Custom React hooks
+├── lib/            # Third-party library configurations
+├── providers/      # Application providers
+├── services/       # Connection services to external APIs and data sources
+├── store/          # Redux Toolkit based state management
+├── types/          # TypeScript type definitions
+└── utils/          # Helper functions
 ```
 
-Projenin kod mimarisi, domain-driven design ve separation of concerns prensiplerine dayanır. İlgili kod parçalarının aynı klasörde tutulması ve modüler organizasyon, kod bakımını ve geliştirilebilirliği önemli ölçüde artırır.
+The project's code architecture is based on domain-driven design and separation of concerns principles. Keeping related code parts in the same folder and modular organization significantly increases code maintenance and extensibility.
 
-### State Yönetimi Stratejisi
+### State Management Strategy
 
-Redux Toolkit'i merkezi state yönetimi için tercih ederken, daha yerel ve UI odaklı state'ler için React'ın kendi Context API'sini kullandım. Bu hibrit yaklaşım:
+While preferring Redux Toolkit for central state management, I used React's own Context API for more local and UI-focused states. This hybrid approach:
 
-- **Performans**: Gereksiz render'ları minimize eder
-- **Developer Experience**: Redux DevTools ile debug süreçlerini hızlandırır
-- **Bakım**: İlgili state'lerin doğru seviyelerde enkapsüle edilmesini sağlar
+- **Performance**: Minimizes unnecessary renders
+- **Developer Experience**: Speeds up debug processes with Redux DevTools
+- **Maintenance**: Ensures related states are encapsulated at the correct levels
 
-RTK Query ile yapılan API çağrıları, otomatik cache yönetimi ve optimistik güncellemeler sağlayarak kullanıcı deneyimini iyileştirir.
+API calls made with RTK Query improve user experience by providing automatic cache management and optimistic updates.
 
-## Güvenlik ve Yetkilendirme
+## Security and Authorization
 
-### Auth Mimarisi
+### Auth Architecture
 
-Kimlik doğrulama için endüstri standardı Clerk kullanılmıştır. Bu tercih:
+Industry standard Clerk is used for authentication. This choice provides:
 
-- **JWTs & Session Yönetimi**: Modern ve güvenli kimlik doğrulama
-- **Multi-tenancy**: Farklı kullanıcı tipleri için rol tabanlı erişim kontrolleri
-- **Sosyal Login Entegrasyonu**: OAuth 2.0 destekli sosyal medya girişleri
+- **JWTs & Session Management**: Modern and secure authentication
+- **Multi-tenancy**: Role-based access controls for different user types
+- **Social Login Integration**: OAuth 2.0 supported social media logins
 
-### Route Koruması ve Erişim Kontrolleri
+### Route Protection and Access Controls
 
 ```typescript
 // src/middleware.ts
-// Route koruması için Next.js Middleware kullanımı
+// Using Next.js Middleware for Route protection
 export default clerkMiddleware(async (auth, req) => {
   if (isPublicRoute(req)) {
     return NextResponse.next()
@@ -75,7 +75,7 @@ export default clerkMiddleware(async (auth, req) => {
 
   const { userId } = await auth()
 
-  // Admin rotalarını koru
+  // Protect admin routes
   if (isAdminRoute(req)) {
     if (!userId || userId !== process.env.ADMIN_USER_ID) {
       const homeURL = new URL(ROUTES.HOME, req.url)
@@ -83,7 +83,7 @@ export default clerkMiddleware(async (auth, req) => {
     }
   }
 
-  // API rotalarını koru
+  // Protect API routes
   if (req.nextUrl.pathname.startsWith('/api/') && !userId && !isPublicRoute(req)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
@@ -92,75 +92,75 @@ export default clerkMiddleware(async (auth, req) => {
 })
 ```
 
-Bu middleware, kullanıcının kimlik doğrulamasını ve yetkilendirmesini merkezi bir noktadan yönetir. Böylece kod tekrarı önlenir ve güvenlik politikaları tutarlı bir şekilde uygulanır.
+This middleware manages user authentication and authorization from a central point. This prevents code duplication and ensures security policies are applied consistently.
 
-### API Güvenliği
+### API Security
 
-- **CORS Yapılandırması**: Beyaz listeye alınmış originler için sınırlı erişim
-- **HTTP-only Cookies**: XSS saldırılarına karşı koruma
-- **Content Security Policy**: İnline script'leri ve stil enjeksiyonlarını engelleme
+- **CORS Configuration**: Restricted access for whitelisted origins
+- **HTTP-only Cookies**: Protection against XSS attacks
+- **Content Security Policy**: Blocking inline scripts and style injections
 
-## Rate Limiting ve Koruma Mekanizmaları
+## Rate Limiting and Protection Mechanisms
 
-Edge Middleware kullanılarak geliştirilmiş bir rate limiting sistemi, aşağıdaki koruma katmanlarını içerir:
+A rate limiting system developed using Edge Middleware includes the following protection layers:
 
-- **IP Tabanlı Throttling**: Aynı IP adresinden gelen aşırı istek sayısını sınırlama
-- **API Endpoint Koruması**: Hassas endpointler için özel limit tanımları
-- **Token Bucket Algoritması**: Adil ve esnek bir rate limiting için
+- **IP Based Throttling**: Limiting excessive number of requests from the same IP address
+- **API Endpoint Protection**: Special limit definitions for sensitive endpoints
+- **Token Bucket Algorithm**: For fair and flexible rate limiting
 
-Bu yaklaşım, DDoS saldırılarına karşı koruma sağlarken, normal kullanıcı davranışlarını etkilemez.
+This approach provides protection against DDoS attacks while not affecting normal user behaviors.
 
-## Performans Optimizasyonları
+## Performance Optimizations
 
-### Statik/Dinamik Dengeleme
+### Static/Dynamic Balancing
 
-Next.js'in sunduğu hibrit rendering ile:
+With hybrid rendering offered by Next.js:
 
-- **Statik Sayfalar**: ISR (Incremental Static Regeneration) ile nadiren değişen içerikler önbelleğe alınır
-- **Dinamik Sayfalar**: Kişiselleştirilmiş içerikler için SSR kullanılır
-- **Route Segment Config**: Her sayfa için optimum rendering stratejisi
+- **Static Pages**: Content that rarely changes is cached with ISR (Incremental Static Regeneration)
+- **Dynamic Pages**: SSR is used for personalized content
+- **Route Segment Config**: Optimum rendering strategy for each page
 
-### Frontend Optimizasyonları
+### Frontend Optimizations
 
-- **Component Lazy Loading**: Büyük bileşenler için React.lazy ve dynamic imports
-- **Image Optimizasyonu**: next/image ile otomatik WebP/AVIF formatları ve responsive image serving
-- **Bundle Size Yönetimi**: webpack-bundle-analyzer ile bundle içeriği monitörü
+- **Component Lazy Loading**: React.lazy and dynamic imports for large components
+- **Image Optimization**: Automatic WebP/AVIF formats and responsive image serving with next/image
+- **Bundle Size Management**: Bundle content monitor with webpack-bundle-analyzer
 
-### Veri Erişim Stratejileri
+### Data Access Strategies
 
-- **SWR Patterns**: Stale-while-revalidate yaklaşımıyla güncel veri ve hızlı UI
-- **Pagination ve Windowing**: Büyük veri setleri için verimli görüntüleme teknikleri
-- **Prefetching**: Olası kullanıcı yolları için önceden veri yükleme
+- **SWR Patterns**: Up-to-date data and fast UI with Stale-while-revalidate approach
+- **Pagination and Windowing**: Efficient display techniques for large data sets
+- **Prefetching**: Pre-loading data for possible user paths
 
-## Kullanılan Teknolojiler
+## Technologies Used
 
 ### Frontend Core
 
-- **Next.js 15**: App Router ile modern React mimarisi
-- **TypeScript**: End-to-end tip güvenliği
-- **Tailwind CSS**: Utility-first ve JIT derleyici ile düşük bundle size
-- **Radix UI**: Erişilebilir ve tamamen özelleştirilebilir bileşen primitifleri
+- **Next.js 15**: Modern React architecture with App Router
+- **TypeScript**: End-to-end type safety
+- **Tailwind CSS**: Low bundle size with Utility-first and JIT compiler
+- **Radix UI**: Accessible and fully customizable component primitives
 
-### State ve Veri Yönetimi
+### State and Data Management
 
-- **Redux Toolkit**: Tiplendirilmiş ve immutable global state
-- **Zod**: Runtime tip validasyonu
-- **React Hook Form**: Performans odaklı form yönetimi
-- **Recharts**: SVG tabanlı, responsive veri görselleştirme
+- **Redux Toolkit**: Typed and immutable global state
+- **Zod**: Runtime type validation
+- **React Hook Form**: Performance-focused form management
+- **Recharts**: SVG-based, responsive data visualization
 
-### DevOps ve Altyapı
+### DevOps and Infrastructure
 
-- **Vercel**: Edge Network CDN ve otomatik deployment
-- **Vercel Analytics & Speed Insights**: Gerçek kullanıcı metrikleri
-- **Supabase**: PostgreSQL veritabanı ve Serverless fonksiyonlar
+- **Vercel**: Edge Network CDN and automatic deployment
+- **Vercel Analytics & Speed Insights**: Real user metrics
+- **Supabase**: PostgreSQL database and Serverless functions
 
-## Geliştirici Deneyimi
+## Developer Experience
 
-### Kod Kalitesi
+### Code Quality
 
-- **ESLint**: Kod standardizasyonu ve hata denetimi
-- **Prettier**: Tutarlı kod formatı
-- **TypeScript Strict Mode**: Tip güvenliği ve daha az runtime hatası
+- **ESLint**: Code standardization and error checking
+- **Prettier**: Consistent code format
+- **TypeScript Strict Mode**: Type safety and fewer runtime errors
 
 ```json
 // tsconfig.json
@@ -173,22 +173,17 @@ Next.js'in sunduğu hibrit rendering ile:
 }
 ```
 
-### Geliştirme Araçları
+### Development Tools
 
-- **Turbopack**: Hızlı development server
-- **tsc-watch**: Otomatik tip kontrolü
-- **Continuous Deployment**: Main branch'e yapılan her commit sonrası otomatik deployment
+- **Turbopack**: Fast development server
+- **tsc-watch**: Automatic type checking
+- **Continuous Deployment**: Automatic deployment after every commit to the main branch
 
-## Yol Haritası
+## Roadmap
 
-Platformun gelecekteki geliştirme planları:
+Future development plans for the platform:
 
-- **Real-time Collaboration**: Socket.io ile canlı çalışma grupları
-- **AI Entegrasyonu**: Kişiselleştirilmiş çalışma önerileri
-- **Progressive Web App**: Offline çalışma desteği
-- **Internationalization**: Çoklu dil desteği
-
----
-
-Yusuf İşbilir  
-[GitHub](https://github.com/username) | [LinkedIn](https://linkedin.com/in/username)
+- **Real-time Collaboration**: Live study groups with Socket.io
+- **AI Integration**: Personalized study recommendations
+- **Progressive Web App**: Offline working support
+- **Internationalization**: Multi-language support
